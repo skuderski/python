@@ -6,5 +6,5 @@ def count_letters_in_string(string: str) -> dict:
         else:
             count[letter] +=1
 
-    return count
+    return coun
 print(count_letters_in_string("wodeczkawsad"))
