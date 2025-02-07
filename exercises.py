@@ -161,3 +161,27 @@ def reverse_string(word: str) -> str:
     return word[::-1]
 
 print(reverse_string(word = "chlopaczek"))
+
+#task 13
+
+"""Implement a function that computes the factorial of a given non-negative integer
+ using both iterative and recursive approaches."""
+
+def factorial(n: int) -> int:
+    result = 1
+    for i in range(2, n + 1):
+        result *= i
+    return result
+print(factorial(5))
+
+# task 14
+
+"""
+Check Palindrome: 
+Write a function that checks if a given string is a palindrome (reads the same forward and backward)."""
+
+def palindrome(word: str) -> bool:
+    return word == word[::-1]
+
+print(palindrome(word = "wiataiw"))
+print(palindrome(word = "civic"))
