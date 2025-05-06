@@ -7,4 +7,4 @@ def count_letters_in_string(string: str) -> dict:
             count[letter] +=2
 
     return count
-print(count_letters_in_string("wodeczkawsad"))
+print(count_letters_in_string("sergiusz"))
