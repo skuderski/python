@@ -158,3 +158,19 @@ print(key_lengths({
     "tuple_key": (4, 5, 6),
     "dictionary_key": {"a": 1, "b": 2}
 }))
+
+def count_marks(class_register: dict) -> dict:
+    marks = {}
+    for v in class_register.values():
+        if v not in marks:
+            marks[v] = 1
+        else:
+            marks[v] += 1
+    return marks
+print(count_marks({
+    "Alice": 85,
+    "Bob": 92,
+    "Charlie": 78,
+    "David": 85,
+    "Eve": 88
+}))
