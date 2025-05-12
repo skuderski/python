@@ -175,14 +175,14 @@
 #     "Eve": 88
 # }))
 
-def create_dictionary(*args) -> dict:
-    some_dict = {}
-    for index, arg in enumerate(args):
-        if isinstance(arg, (list, dict, set)):
-            print(f"Cannot add {arg} to the dict!")
-        else:
-            some_dict[arg] = index
-
-    return some_dict
-
-print(create_dictionary(10, [1, 2], "hello", {'a': 1}, 3.14, set([1,2]), 2))
+# def create_dictionary(*args) -> dict:
+#     some_dict = {}
+#     for index, arg in enumerate(args):
+#         if isinstance(arg, (list, dict, set)):
+#             print(f"Cannot add {arg} to the dict!")
+#         else:
+#             some_dict[arg] = index
+# 
+#     return some_dict
+# 
+# print(create_dictionary(10, [1, 2], "hello", {'a': 1}, 3.14, set([1,2]), 2))
