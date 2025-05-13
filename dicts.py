@@ -186,3 +186,188 @@
 #     return some_dict
 # 
 # print(create_dictionary(10, [1, 2], "hello", {'a': 1}, 3.14, set([1,2]), 2))
+
+
+# Create a dictionary that maps each letter in the string "python" to its position in the string (starting from 1).
+# some_string = "python"
+# dict = {}
+# for index, letter in enumerate(some_string, start = 1):
+#     dict[letter] = index
+# print(dict)
+#
+# # Given a dictionary of student names and their scores, create a new dictionary with only the students who scored above 80.
+#
+# students_scores = {
+#     "Alice": 92,
+#     "Bob": 85,
+#     "Charlie": 78,
+#     "David": 88,
+#     "Eva": 95,
+#     "Frank": 67,
+#     "Grace": 73,
+#     "Helen": 81
+# }
+#
+# scores_above_80 = {}
+#
+# for key, value in students_scores.items():
+#     if value > 80:
+#         scores_above_80[key] = value
+#
+# print(scores_above_80)
+#
+# # Invert a dictionary: given a dictionary where keys are items and values are categories,
+# # create a new dictionary where categories are keys and items are lists of items belonging to each category.
+
+items_categories = {
+    "apple": "fruit",
+    "carrot": "vegetable",
+    "salmon": "fish",
+    "broccoli": "vegetable",
+    "banana": "fruit",
+    "chicken": "meat",
+    "blueberry": "fruit",
+    "potato": "vegetable"
+}
+inverted_dict = {}
+
+for key, value in items_categories.items():
+    if value not in inverted_dict:
+        inverted_dict[value] = []
+    inverted_dict[value].append(key)
+
+print(inverted_dict)
+
+# Calculate the total value of a dictionary of items and prices by summing all the prices.
+
+items_prices = {
+    "bread": 2.50,
+    "milk": 3.00,
+    "eggs": 2.00,
+    "cheese": 5.50,
+    "apple": 0.75,
+    "chicken": 8.00,
+    "rice": 1.20,
+    "orange juice": 3.50
+}
+
+print(sum(items_prices.values()))
+
+# From a dictionary of country populations, find all countries where the population is over 50 million.
+
+random_countries_population = {
+    "Norway": 5378857,
+    "Kenya": 53771296,
+    "Portugal": 10295909,
+    "Vietnam": 97338583,
+    "Australia": 25687041,
+    "Finland": 5540720,
+    "Greece": 10715549,
+    "Thailand": 69799978,
+    "Latvia": 1901548,
+    "Peru": 32971874
+}
+
+over_fifty = []
+
+for key, value in random_countries_population.items():
+    if value > 50000000:
+        over_fifty.append(key)
+print(over_fifty)
+
+
+# Create a dictionary from a list of words, with the word as the key and the length of the word as the value.
+
+cute_words = ["bunny", "kitten", "cupcake", "snuggle", "peach", "butterfly", "cloud", "daisy", "pudding", "sparkle"]
+
+dix = {}
+
+for word in cute_words:
+    dix[word] = len(word)
+print(dix)
+
+
+# Given a dictionary where keys are student names and values are their scores, create a new dictionary with only students who scored below 60.
+
+student_scores = {
+    "Alice": 92,
+    "Bob": 85,
+    "Charlie": 78,
+    "David": 88,
+    "Eve": 95,
+    "Frank": 55,
+    "Grace": 73,
+    "Helen": 81
+}
+
+diksee = {}
+
+for key, value in student_scores.items():
+    if value < 60:
+        diksee[key] = value
+
+print(diksee)
+
+
+# Create a dictionary from a list of numbers where keys are the numbers and values are the number squared, but only include numbers divisible by 3.
+
+random_numbers = [12, -5, 7, 0, 23, -14, 5.5, 8, -2, 15]
+
+dictzzz = {}
+
+for n in random_numbers:
+    if n % 3 == 0:
+        dictzzz[n] = n ** 2
+print(dictzzz)
+
+
+# From a dictionary of country populations, create another dictionary mapping countries to "developed" or "developing"
+# based on whether their population exceeds 100 million (yes for developed, no for developing).
+
+europe_populations = {
+    "Russia": 145912025,
+    "Germany": 83783942,
+    "United Kingdom": 67886011,
+    "France": 65273511,
+    "Italy": 60461826,
+    "Spain": 46754778,
+    "Ukraine": 43733762,
+    "Poland": 37887452,
+    "Romania": 19237582,
+    "Netherlands": 17134872
+}
+
+developed_developing = {}
+
+for key, value in europe_populations.items():
+    if value > 50_000_000:
+        developed_developing[key] = "developed"
+    else:
+        developed_developing[key] = "developing"
+print(developed_developing)
+
+
+# Given a dictionary where keys are words and values are their definitions,
+# swap keys and values to create a new dictionary. (Assume all definitions are unique).
+
+
+word_definitions = {
+    "apple": "A fruit that is round and typically red, green, or yellow.",
+    "book": "A set of written, printed, or blank pages bound together.",
+    "car": "A vehicle with four wheels used for transporting people.",
+    "dog": "A domesticated carnivorous mammal that typically has a long snout.",
+    "elephant": "A large mammal with a trunk native to Africa and Asia.",
+    "flower": "A plant cultivated for its blooms or blossoms.",
+    "guitar": "A musical instrument with strings played by plucking or strumming.",
+    "hat": "A shaped covering for the head, typically with a brim.",
+    "ice": "Frozen water.",
+    "jungle": "A dense tropical forest."
+}
+
+swapparooni = {}
+
+for key, value in word_definitions.items():
+    swapparooni[value] = key
+
+print(swapparooni)
+

@@ -198,7 +198,7 @@ print(greater_than_twenty)
 start_with_vowel = [word for word in sentence.split() if word.lower()[0] in "aeiou"]
 print(start_with_vowel)
 
-"Create a list of all the words in a sentence that have more than 5 characters."
+# "Create a list of all the words in a sentence that have more than 5 characters."
 
 sentence_check = "Creativity is intelligence having fun."
 
