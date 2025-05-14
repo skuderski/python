@@ -219,155 +219,500 @@
 # # Invert a dictionary: given a dictionary where keys are items and values are categories,
 # # create a new dictionary where categories are keys and items are lists of items belonging to each category.
 
-items_categories = {
-    "apple": "fruit",
-    "carrot": "vegetable",
-    "salmon": "fish",
-    "broccoli": "vegetable",
-    "banana": "fruit",
-    "chicken": "meat",
-    "blueberry": "fruit",
-    "potato": "vegetable"
+# items_categories = {
+#     "apple": "fruit",
+#     "carrot": "vegetable",
+#     "salmon": "fish",
+#     "broccoli": "vegetable",
+#     "banana": "fruit",
+#     "chicken": "meat",
+#     "blueberry": "fruit",
+#     "potato": "vegetable"
+# }
+# inverted_dict = {}
+#
+# for key, value in items_categories.items():
+#     if value not in inverted_dict:
+#         inverted_dict[value] = []
+#     inverted_dict[value].append(key)
+#
+# print(inverted_dict)
+#
+# # Calculate the total value of a dictionary of items and prices by summing all the prices.
+#
+# items_prices = {
+#     "bread": 2.50,
+#     "milk": 3.00,
+#     "eggs": 2.00,
+#     "cheese": 5.50,
+#     "apple": 0.75,
+#     "chicken": 8.00,
+#     "rice": 1.20,
+#     "orange juice": 3.50
+# }
+#
+# print(sum(items_prices.values()))
+#
+# # From a dictionary of country populations, find all countries where the population is over 50 million.
+#
+# random_countries_population = {
+#     "Norway": 5378857,
+#     "Kenya": 53771296,
+#     "Portugal": 10295909,
+#     "Vietnam": 97338583,
+#     "Australia": 25687041,
+#     "Finland": 5540720,
+#     "Greece": 10715549,
+#     "Thailand": 69799978,
+#     "Latvia": 1901548,
+#     "Peru": 32971874
+# }
+#
+# over_fifty = []
+#
+# for key, value in random_countries_population.items():
+#     if value > 50000000:
+#         over_fifty.append(key)
+# print(over_fifty)
+#
+#
+# # Create a dictionary from a list of words, with the word as the key and the length of the word as the value.
+#
+# cute_words = ["bunny", "kitten", "cupcake", "snuggle", "peach", "butterfly", "cloud", "daisy", "pudding", "sparkle"]
+#
+# dix = {}
+#
+# for word in cute_words:
+#     dix[word] = len(word)
+# print(dix)
+#
+#
+# # Given a dictionary where keys are student names and values are their scores, create a new dictionary with only students who scored below 60.
+#
+# student_scores = {
+#     "Alice": 92,
+#     "Bob": 85,
+#     "Charlie": 78,
+#     "David": 88,
+#     "Eve": 95,
+#     "Frank": 55,
+#     "Grace": 73,
+#     "Helen": 81
+# }
+#
+# diksee = {}
+#
+# for key, value in student_scores.items():
+#     if value < 60:
+#         diksee[key] = value
+#
+# print(diksee)
+#
+#
+# # Create a dictionary from a list of numbers where keys are the numbers and values are the number squared, but only include numbers divisible by 3.
+#
+# random_numbers = [12, -5, 7, 0, 23, -14, 5.5, 8, -2, 15]
+#
+# dictzzz = {}
+#
+# for n in random_numbers:
+#     if n % 3 == 0:
+#         dictzzz[n] = n ** 2
+# print(dictzzz)
+#
+#
+# # From a dictionary of country populations, create another dictionary mapping countries to "developed" or "developing"
+# # based on whether their population exceeds 100 million (yes for developed, no for developing).
+#
+# europe_populations = {
+#     "Russia": 145912025,
+#     "Germany": 83783942,
+#     "United Kingdom": 67886011,
+#     "France": 65273511,
+#     "Italy": 60461826,
+#     "Spain": 46754778,
+#     "Ukraine": 43733762,
+#     "Poland": 37887452,
+#     "Romania": 19237582,
+#     "Netherlands": 17134872
+# }
+#
+# developed_developing = {}
+#
+# for key, value in europe_populations.items():
+#     if value > 50_000_000:
+#         developed_developing[key] = "developed"
+#     else:
+#         developed_developing[key] = "developing"
+# print(developed_developing)
+#
+#
+# # Given a dictionary where keys are words and values are their definitions,
+# # swap keys and values to create a new dictionary. (Assume all definitions are unique).
+#
+#
+# word_definitions = {
+#     "apple": "A fruit that is round and typically red, green, or yellow.",
+#     "book": "A set of written, printed, or blank pages bound together.",
+#     "car": "A vehicle with four wheels used for transporting people.",
+#     "dog": "A domesticated carnivorous mammal that typically has a long snout.",
+#     "elephant": "A large mammal with a trunk native to Africa and Asia.",
+#     "flower": "A plant cultivated for its blooms or blossoms.",
+#     "guitar": "A musical instrument with strings played by plucking or strumming.",
+#     "hat": "A shaped covering for the head, typically with a brim.",
+#     "ice": "Frozen water.",
+#     "jungle": "A dense tropical forest."
+# }
+#
+# swapparooni = {}
+#
+# for key, value in word_definitions.items():
+#     swapparooni[value] = key
+#
+# print(swapparooni)
+
+
+# Count the number of occurrences of each character in a string.
+
+# random_string = "Skyfall clouds drift gently in the spring breeze."
+#
+# count_occurrences = {}
+#
+# for c in random_string:
+#     if c not in count_occurrences:
+#         count_occurrences[c] = 1
+#     else:
+#         count_occurrences[c] += 1
+#
+# print(count_occurrences)
+#
+# # Create a dictionary from two lists, one of keys and one of values.
+# # (e.g., keys = ["a", "b", "c"], values = [1, 2, 3])
+#
+# keys = ["name", "age", "country", "favorite_color"]
+# values = [5, 3, 7, 2]
+# zipped =zip(keys, values)
+# zipped_dict = (dict(zipped))
+# combined_dict = {}
+#
+# for key, value in zipped_dict.items():
+#     combined_dict[key] = value
+#
+# print(combined_dict)
+#
+# # Given a dictionary of student names and their scores,
+# # create a new dictionary mapping students to "pass" or "fail" based on whether their score is above or below 60.
+#
+# student_scores = {
+#     "Alice": 92,
+#     "Bob": 85,
+#     "Charlie": 78,
+#     "Diana": 50,
+#     "Ethan": 95,
+#     "Fiona": 67,
+#     "George": 73,
+#     "Hannah": 44
+# }
+#
+# pass_or_fail = {}
+#
+# for key, value in student_scores.items():
+#     if value < 60:
+#         pass_or_fail[key] = "fail"
+#     else:
+#         pass_or_fail[key] = "pass"
+#
+# print(pass_or_fail)
+#
+# # Join two dictionaries into one.
+#
+# student_grades1 = {
+#     "Alice": 92,
+#     "Bob": 85,
+#     "Charlie": 78
+# }
+#
+# country_population = {
+#     "USA": 331000000,
+#     "India": 1380004385,
+#     "Brazil": 213993437
+# }
+#
+# merged_dictionaries = {**student_grades1, **country_population}
+#
+# merged = student_grades1 | country_population # union of dictionaries
+#
+# print(merged_dictionaries)
+# print(merged)
+#
+# # Create a dictionary that maps each even number from 1 to 20 to its square, and only include these entries in the dictionary.
+#
+# dictionary_of_squares = {}
+#
+# for num in range(1, 21):
+#     if num % 2 == 0:
+#         dictionary_of_squares[num] = num ** 2
+#
+# print(dictionary_of_squares)
+#
+# # Create a dictionary that maps each number from 1 to 50 to its cube, but only include the entries where the cube's last digit is 5 or 0.
+#
+# dictionary_of_cubes = {}
+#
+# for num in range(1, 51):
+#     if num % 10 == 5 or num % 10 == 0:
+#         dictionary_of_cubes[num] = num ** 3
+#
+# print(dictionary_of_cubes)
+#
+# # Create a dictionary that maps each integer from 1 to 100 to its factorial, but only include entries where the factorial's last digit is 0.
+#
+# def factorial(n):
+#     result = 1
+#     for i in range(1, n + 1):
+#         result *= i
+#     return result
+#
+# factorial_dictionary = {}
+#
+# for num in range(1, 101):
+#     fact = factorial(num)
+#     if fact % 10 == 0:
+#         factorial_dictionary[num] = fact
+#
+# print(factorial_dictionary)
+#
+# # Create a dictionary where the keys are strings representing numbers ("one", "two", "three") and the values are their numerical equivalents.
+#
+# list_of_strings = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
+# list_of_integers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+#
+# zippt = dict(zip(list_of_strings, list_of_integers))
+#
+# print(zippt)
+#
+# # Create a dictionary that maps each character in a sentence to its ASCII code.
+#
+# sentence = "The wind whispered softly through the ancient trees."
+# list_of_character = []
+# character_to_ASCII = []
+#
+# for c in sentence:
+#     list_of_character.append(c)
+#
+# for c in list_of_character:
+#     character_to_ASCII.append((c, ord(c)))
+#
+# print(character_to_ASCII)
+#
+# # In a student grades dictionary, increase everyone's grade by 5 points, but cap the maximum grade at 100.
+#
+# student_grades = {
+#     "Alice": 92,
+#     "Bob": 85,
+#     "Charlie": 78,
+#     "Diana": 88,
+#     "Ethan": 95,
+#     "Fiona": 97,
+#     "George": 73,
+#     "Hannah": 81
+# }
+#
+#
+# for key, value in student_grades.items():
+#     student_grades[key] = min(student_grades[key] + 5, 100)
+#
+# print(student_grades)
+#
+#
+# # Given a dictionary of temperatures in Celsius, decrease each temperature by 3 degrees, but do not allow any temperature to go below 0°C.
+#
+# temperatures = {
+#     "New York": 10,
+#     "Tokyo": 1,
+#     "Paris": 15,
+#     "Sydney": 18,
+#     "Cairo": 3,
+#     "Moscow": 5,
+#     "Rio de Janeiro": 30,
+#     "London": 12,
+#     "Beijing": 20,
+#     "Delhi": 2
+# }
+#
+# for key, value in temperatures.items():
+#     temperatures[key] = max(temperatures[key] -3, 0)
+#
+# print(temperatures)
+#
+# # Given a dictionary of student test scores (with scores possibly exceeding 100),
+# # increase each score by 10 points, but cap the score at 120 (the maximum possible score).
+#
+# student_scorez = {
+#     "Anna": 88,
+#     "Ben": 105,
+#     "Cara": 92,
+#     "Derek": 118,
+#     "Ella": 73,
+#     "Frank": 104,
+#     "Grace": 99,
+#     "Hugo": 117
+# }
+#
+# for key, value in student_scorez.items():
+#     student_scorez[key] = min(student_scorez[key] + 10, 120)
+#
+# print(student_scorez)
+#
+# # Given a dictionary of scores, increase each score by 50 points only if the score is less than 85. After increasing,
+# # cap the score at 130 to prevent exceeding that maximum, even if the increased score would be larger.
+#
+# student_scorsese = {
+#     "Alice": 85,
+#     "Bob": 82,
+#     "Charlie": 92,
+#     "Diana": 88,
+#     "Ethan": 93,
+#     "Fiona": 78,
+#     "George": 84,
+#     "Hannah": 90
+# }
+#
+# for key, value in student_scorsese.items():
+#     if value <= 85:
+#         student_scorsese[key] = min(student_scorsese[key] + 50, 130)
+# print(student_scorsese)
+#
+# # Given a dictionary of stock prices for different companies, increase each stock price by 10%, but only if the current price is below $240.
+# # After increasing, ensure that the final price does not exceed $250 using the min() function.
+#
+# stock_prices = {
+#     "Tesla": 150,
+#     "Apple": 235,
+#     "Amazon": 199,
+#     "Google": 180,
+#     "Microsoft": 250,
+#     "NVIDIA": 190,
+#     "Facebook": 145,
+#     "Netflix": 238,
+#     "Samsung": 222,
+#     "Intel": 195
+# }
+#
+# for key, value in stock_prices.items():
+#     if value <= 240:
+#         stock_prices[key] = min(stock_prices[key] + (stock_prices[key] * 0.1), 250)
+#
+# print(stock_prices)
+#
+# # Given a dictionary of airline ticket prices for various routes,
+# # increase each price by 10% if the current price is below the average price of all routes.
+# # After increasing, ensure that no price exceeds $500 using min().
+#
+# flight_prices = {
+#     "NYC-LAX": 450,
+#     "LHR-JFK": 450,
+#     "SYD-LA": 499,
+#     "PEK-HKG": 450,
+#     "DXB-DEL": 440,
+#     "SFO-ORD": 440,
+#     "FRA-MEX": 435,
+#     "JNB-CPT": 435,
+#     "MIA-CHI": 452,
+#     "VIE-ZRH": 440
+# }
+# average_price = sum(flight_prices.values()) / len(flight_prices)
+# print(average_price)
+# for key, value in flight_prices.items():
+#     if value < average_price:
+#         flight_prices[key] = min(flight_prices[key] + flight_prices[key] * 0.15, 500)
+#
+# print(flight_prices)
+#
+# # Given a dictionary of airline ticket prices, increase each price by 20% if:
+# #
+# # The current price is below twice the average price of all routes, and
+# # The current price is not already above $400.
+# # After increasing, cap each price at $500 using min().
+#
+# flight_prices2 = {
+#     "NYC-LAX": 450,
+#     "LHR-JFK": 480,
+#     "SYD-LA": 520,
+#     "PEK-HKG": 390,
+#     "DXB-DEL": 410,
+#     "SFO-ORD": 430,
+#     "FRA-MEX": 370,
+#     "JNB-CPT": 385,
+#     "MIA-CHI": 495,
+#     "VIE-ZRH": 392
+# }
+# avg = sum(flight_prices2.values()) / len(flight_prices2)
+# for key, value in flight_prices2.items():
+#     if value < (avg * 2) and value < 400:
+#         flight_prices2[key] = min(flight_prices2[key] + flight_prices2[key] * 0.2, 500)
+#
+# print(flight_prices2)
+
+# Given a dictionary of airline ticket prices, for each route:
+#
+# Increase the price by 30% if:
+# The price is less than the average price of all routes, and
+# The price is less than $300.
+# If the price after increase exceeds $600, cap it at $600.
+# Additionally, if after the increase the price is more than 80% of the original price,
+# apply a discount to reduce it back to 80% of its original pre-increase value (but don’t go below $250).
+
+flight_p = {
+    "NYC-LAX": 450,
+    "LHR-JFK": 470,
+    "SYD-LA": 580,
+    "PEK-HKG": 290,
+    "DXB-DEL": 310,
+    "SFO-ORD": 340,
+    "FRA-MEX": 275,
+    "JNB-CPT": 250,
+    "MIA-CHI": 595,
+    "VIE-ZRH": 260
 }
-inverted_dict = {}
+before_increase = {}
+for key, value in flight_p.items():
+    before_increase[key] = value
+print(before_increase)
 
-for key, value in items_categories.items():
-    if value not in inverted_dict:
-        inverted_dict[value] = []
-    inverted_dict[value].append(key)
+average = sum(flight_p.values()) / len(flight_p)
 
-print(inverted_dict)
+for key, value in flight_p.items():
+    if value < average and value < 300:
+        flight_p[key] = min(flight_p[key] + flight_p[key] * 0.3, 600)
 
-# Calculate the total value of a dictionary of items and prices by summing all the prices.
-
-items_prices = {
-    "bread": 2.50,
-    "milk": 3.00,
-    "eggs": 2.00,
-    "cheese": 5.50,
-    "apple": 0.75,
-    "chicken": 8.00,
-    "rice": 1.20,
-    "orange juice": 3.50
-}
-
-print(sum(items_prices.values()))
-
-# From a dictionary of country populations, find all countries where the population is over 50 million.
-
-random_countries_population = {
-    "Norway": 5378857,
-    "Kenya": 53771296,
-    "Portugal": 10295909,
-    "Vietnam": 97338583,
-    "Australia": 25687041,
-    "Finland": 5540720,
-    "Greece": 10715549,
-    "Thailand": 69799978,
-    "Latvia": 1901548,
-    "Peru": 32971874
-}
-
-over_fifty = []
-
-for key, value in random_countries_population.items():
-    if value > 50000000:
-        over_fifty.append(key)
-print(over_fifty)
+for key in flight_p:
+    original_price = before_increase[key]
+    current_price = flight_p[key]
+    if current_price > original_price * 0.8:
+        flight_p[key] = max(original_price * 0.8, 250)
+print(flight_p)
 
 
-# Create a dictionary from a list of words, with the word as the key and the length of the word as the value.
+# Count how many words in a paragraph start with each letter, resulting in a dictionary where keys are letters,
+# and values are counts of words starting with that letter.
 
-cute_words = ["bunny", "kitten", "cupcake", "snuggle", "peach", "butterfly", "cloud", "daisy", "pudding", "sparkle"]
+paragraph = "The sun dipped below the horizon, casting a warm golden hue across the sky. The gentle breeze carried the sweet scent of blooming flowers, creating a peaceful atmosphere."
+words = paragraph.split(" ")
+print(words)
 
-dix = {}
+count_of_letter = {}
 
-for word in cute_words:
-    dix[word] = len(word)
-print(dix)
-
-
-# Given a dictionary where keys are student names and values are their scores, create a new dictionary with only students who scored below 60.
-
-student_scores = {
-    "Alice": 92,
-    "Bob": 85,
-    "Charlie": 78,
-    "David": 88,
-    "Eve": 95,
-    "Frank": 55,
-    "Grace": 73,
-    "Helen": 81
-}
-
-diksee = {}
-
-for key, value in student_scores.items():
-    if value < 60:
-        diksee[key] = value
-
-print(diksee)
-
-
-# Create a dictionary from a list of numbers where keys are the numbers and values are the number squared, but only include numbers divisible by 3.
-
-random_numbers = [12, -5, 7, 0, 23, -14, 5.5, 8, -2, 15]
-
-dictzzz = {}
-
-for n in random_numbers:
-    if n % 3 == 0:
-        dictzzz[n] = n ** 2
-print(dictzzz)
-
-
-# From a dictionary of country populations, create another dictionary mapping countries to "developed" or "developing"
-# based on whether their population exceeds 100 million (yes for developed, no for developing).
-
-europe_populations = {
-    "Russia": 145912025,
-    "Germany": 83783942,
-    "United Kingdom": 67886011,
-    "France": 65273511,
-    "Italy": 60461826,
-    "Spain": 46754778,
-    "Ukraine": 43733762,
-    "Poland": 37887452,
-    "Romania": 19237582,
-    "Netherlands": 17134872
-}
-
-developed_developing = {}
-
-for key, value in europe_populations.items():
-    if value > 50_000_000:
-        developed_developing[key] = "developed"
+for word in words:
+    first_letter = word[0].lower().strip(".,")
+    if first_letter not in count_of_letter:
+        count_of_letter[first_letter] = 1
     else:
-        developed_developing[key] = "developing"
-print(developed_developing)
+        count_of_letter[first_letter] += 1
+
+print(count_of_letter)
 
 
-# Given a dictionary where keys are words and values are their definitions,
-# swap keys and values to create a new dictionary. (Assume all definitions are unique).
 
 
-word_definitions = {
-    "apple": "A fruit that is round and typically red, green, or yellow.",
-    "book": "A set of written, printed, or blank pages bound together.",
-    "car": "A vehicle with four wheels used for transporting people.",
-    "dog": "A domesticated carnivorous mammal that typically has a long snout.",
-    "elephant": "A large mammal with a trunk native to Africa and Asia.",
-    "flower": "A plant cultivated for its blooms or blossoms.",
-    "guitar": "A musical instrument with strings played by plucking or strumming.",
-    "hat": "A shaped covering for the head, typically with a brim.",
-    "ice": "Frozen water.",
-    "jungle": "A dense tropical forest."
-}
-
-swapparooni = {}
-
-for key, value in word_definitions.items():
-    swapparooni[value] = key
-
-print(swapparooni)
 
