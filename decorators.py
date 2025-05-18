@@ -292,14 +292,171 @@ print(add(2))
 # Before calling the decorated function, it prints the name of the function being called.
 # It then calls the decorated function and returns its result.
 
-def log_calls(func):
+# def log_calls(func):
+#     def wrapper(*args, **kwargs):
+#         print(f"Calling {func.__name__}")
+#         result = func(*args, *kwargs)
+#         return result
+#     return wrapper
+# @log_calls
+# def add(x, y):
+#     return x + y
+#
+# print(add(2, 5))
+
+# print_name_decorator: Write a decorator that prints the name of the function being called after the function has executed.
+# (Similar to what you did before, but printing after).
+
+def print_name_decorator(func):
     def wrapper(*args, **kwargs):
-        print(f"Calling {func.__name__}")
-        result = func(*args, *kwargs)
+        result = func(*args, **kwargs)
+        print(func.__name__)
         return result
     return wrapper
-@log_calls
+
+@print_name_decorator
+def adding(x, y, z):
+    return x * y * z
+
+print(adding(1, 2, 3))
+
+# multiply_result_by_3: Write a decorator that multiplies the result of a function (that returns a number) by 3.
+
+def multiply_result_by_3(func):
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        return result * 3
+    return wrapper
+@multiply_result_by_3
+def multiply(x):
+    return x
+
+print(multiply(5))
+
+# add_stars: Write a decorator that surrounds the string returned by a function with asterisks (*).
+
+def add_stars(func):
+    def wrapper(*args):
+        result = ([f"*{arg}*" for arg in args])
+        return " ".join(result)
+    return wrapper
+
+@add_stars
+def star(*names):
+    return names
+
+print(star("Sergiusz", "Kuderski"))
+
+# force_positive: Write a decorator that takes the absolute value of the number returned by a function.
+
+def force_positive(func):
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        return abs(result)
+    return wrapper
+
+@force_positive
+def absolute(x):
+    return x * 2
+
+print(absolute(-2))
+
+# say_hello: Write a decorator that has the decorator print "Hello!". (The decorated function shouldn't print anything).
+
+def say_hello(func):
+    def wrapper(*args, **kwargs):
+        print("Hello")
+        return func(*args, **kwargs)
+    return wrapper
+
+@say_hello
 def add(x, y):
     return x + y
 
-print(add(2, 5))
+print(add(2, 3))
+
+# add_10: A decorator which adds 10 to a result.
+
+def add_10(func):
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        return result + str(10)
+    return wrapper
+
+@add_10
+def add(data):
+    return data["name"]
+
+data_dict = {"name": "Sergiusz"}
+print(add(data_dict))
+
+
+# make_question: A decorator that adds a question mark to the end of a result.
+
+def make_question(func):
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        return result + "?"
+    return wrapper
+
+@make_question
+def sentence(sent):
+    return sent.upper()
+
+print(sentence("what's up"))
+
+# negate: A decorator that flips the sign of a number.
+
+def negate(func):
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        return -result
+    return wrapper
+@negate
+def add(x, y):
+    return x + y
+
+print(add(2, 3))
+
+
+# to_the_power_of_2: Write a decorator that raises the result to the power of 2.
+
+def to_the_power_of_2(func):
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        return result ** 2
+    return wrapper
+@to_the_power_of_2
+def powered_up(x, y):
+    return x ** y
+
+print(powered_up(2, 2))
+
+
+# apply_function: Write a decorator takes a function (such as uppercase, or bold). The result should apply the function from the decorator.
+
+def apply_function(func):
+    def decorator(apply_func):
+        def wrapper(*args, **kwargs):
+            result = func(*args, **kwargs)
+            return apply_func(result)
+        return wrapper
+    return decorator
+
+def uppercase(text):
+    return text.upper()
+
+def bold(text):
+    return f"<b>{text}</b>"
+
+@apply_function(uppercase)
+def writing(name):
+    return name[0:2].lower() + name[2:]
+
+print(writing("sergiusz"))
+@apply_function(bold)
+def writing_bold(name):
+    return name[0:2].lower() + name[2:]
+
+
+print(writing_bold("sergiusz"))
