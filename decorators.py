@@ -52,62 +52,62 @@ long_function()"""
 # taxes_5 = taxes(1000)
 # print(taxes_5(20))
 
-def inc(x):
-    return x + 1
-
-def dec(x):
-    return x - 1
-
-def operation(func, x):
-    result = func(x)
-    return result
-
-operation(inc, 5)
-
-operation(dec, 5)
-
-def decorate(func):
-    def inner():
-        print("Decorated before")
-        func()
-        print("Decorated after")
-    return inner
-def printer():
-    print("Hello")
-
-decorated_printer = decorate(printer)
-
-decorated_printer()
-
-@decorate
-def printer():
-    print("Hello")
-
-
-def my_dec(func):
-    def wrapper():
-        print("Before calling the function.")
-        func()  # Call the original function
-        print("After calling the function.")
-    return wrapper
-
-@my_dec
-def say_hello():
-    print("Hello!")
-
-say_hello()
-
-def add_fudge(func):
-    def wrapper():
-        print("You add fudge")
-        func()
-    return wrapper
-
-@add_fudge
-def get_ice_cream():
-    print("Here is your ice cream")
-
-get_ice_cream()
+# def inc(x):
+#     return x + 1
+#
+# def dec(x):
+#     return x - 1
+#
+# def operation(func, x):
+#     result = func(x)
+#     return result
+#
+# operation(inc, 5)
+#
+# operation(dec, 5)
+#
+# def decorate(func):
+#     def inner():
+#         print("Decorated before")
+#         func()
+#         print("Decorated after")
+#     return inner
+# def printer():
+#     print("Hello")
+#
+# decorated_printer = decorate(printer)
+#
+# decorated_printer()
+#
+# @decorate
+# def printer():
+#     print("Hello")
+#
+#
+# def my_dec(func):
+#     def wrapper():
+#         print("Before calling the function.")
+#         func()  # Call the original function
+#         print("After calling the function.")
+#     return wrapper
+#
+# @my_dec
+# def say_hello():
+#     print("Hello!")
+#
+# say_hello()
+#
+# def add_fudge(func):
+#     def wrapper():
+#         print("You add fudge")
+#         func()
+#     return wrapper
+#
+# @add_fudge
+# def get_ice_cream():
+#     print("Here is your ice cream")
+#
+# get_ice_cream()
 
 # hello_decorator: Write a decorator that prints "Hello from the decorator!" before the decorated function is executed.
 
@@ -127,162 +127,162 @@ get_ice_cream()
 
 # goodbye_decorator: Write a decorator that prints "Goodbye from the decorator!" after the decorated function is executed.
 
-def goodbye(func):
-    def wrapper(x, y):
-        func(x, y)
-        print("Goodbye from the decorator!")
-        result = func(x, y)
-        return result
-    return wrapper
-
-@goodbye
-def subtract(x, y):
-    return x - y
-
-print(subtract(5, 2))
-
-
-# uppercase_decorator: Write a decorator that converts the result of a function to uppercase. Assume the function returns a string.
-
-def uppercase(func):
-    def wrapper(*args, **kwargs):
-        func(*args, **kwargs)
-        result = func(*args, **kwargs)
-        return result.upper()
-    return wrapper
-@uppercase
-def some_function(string):
-    return string
-
-print(some_function("sergiusz"))
-
-# exclaim_decorator: Write a decorator that adds an exclamation mark ("!") to the end of the string returned by a function.
-# Assume the function returns a string.
-
-def exclaim(func):
-    def wrapper(*args, **kwargs):
-        result = func(*args, **kwargs)
-        return result + "!"
-    return wrapper
-
-@exclaim
-def some_function(s):
-    return s
-
-print(some_function("sergiusz"))
-
-# greeting_decorator: Write a decorator that takes a greeting string (e.g., "Hi", "Welcome") as an argument.
-# The decorator should print the greeting before the decorated function is executed.
-
-def greeting_decorator_factory(greeting):
-    def greeting_decorator(func):
-        def wrapper(*args, **kwargs):
-            print(greeting)
-            result = func(*args, **kwargs)
-            return result
-        return wrapper
-    return greeting_decorator
-
-@greeting_decorator_factory("Hi there!")
-def the_function():
-    return "Function called"
-
-print(the_function())
-
-
-# repeat_decorator: Write a decorator that takes an integer n as an argument. The decorator should execute the decorated function n times.
-
-def repeat_decorator(n):
-    def decorator(func):
-        def wrapper(*args, **kwargs):
-            for _ in range(n):
-                func(*args, **kwargs)
-        return wrapper
-    return decorator
-
-@repeat_decorator(3)
-def something(name):
-    print( f"Called {name}")
-
-something("Sergiusz")
-
-
-# bold_decorator: Write a decorator that surrounds the string returned by a function with HTML <b> and </b> tags (making it bold in HTML).
-
-def bold_decorator(func):
-    def wrapper(*args, **kwargs):
-        result = func(*args, **kwargs)
-        return f"<b>{result}</b>"
-
-    return wrapper
-@bold_decorator
-def get_name():
-    return "John Doe"
-
-print(get_name())
-
-# italic_decorator: Write a decorator that surrounds the string returned by a function with HTML <i> and </i> tags (making it italic in HTML).
-
-def italic_decorator(func):
-    def wrapper(*args, **kwargs):
-        result = func(*args, **kwargs)
-        return f"<i>{result}</i>"
-    return wrapper
-
-@italic_decorator
-def get_age(num):
-    return str(num * 2)
-
-print(get_age(2))
-
-# print_args_decorator: Write a decorator that prints the arguments passed to the decorated function before the function is executed.
-
-def print_args_decorator(func):
-    def wrapper(*args, **kwargs):
-        print("Positional arguments:", args)
-        print("Keyword arguments:", kwargs)
-        result = func(*args, **kwargs)
-        return result
-    return wrapper
-
-@print_args_decorator
-def some_cool_funcjone(*args, **kwargs):
-    return 1
-
-print(some_cool_funcjone(2, 4, name = "Sergiusz", age = 30))
-
-
-
-# multiply_by_two_decorator: Write a decorator that multiplies the number returned by a function by 2. Assume the function returns a number.
-
-def multiply_by_two_decorator(func):
-    def wrapper(*args, **kwargs):
-        result = func(*args, **kwargs)
-        return result * 2
-    return wrapper
-
-@multiply_by_two_decorator
-def multiply(num):
-    return num
-
-print(multiply(2))
-
-# Write a function called multiplier_decorator(multiplier). This function should take a number multiplier as input and return a decorator.
-# The decorator should then multiply the result of the decorated function by the given multiplier.
-# Assume the decorated function returns a number.
-
-def multiplier_decorator_factory(multiplier):
-    def multiplier_decorator(func):
-        def wrapper(*args, **kwargs):
-            result = func(*args, **kwargs)
-            return result * multiplier
-        return wrapper
-    return multiplier_decorator
-@multiplier_decorator_factory(3)
-def add(x):
-    return x * 2
-
-print(add(2))
+# def goodbye(func):
+#     def wrapper(x, y):
+#         func(x, y)
+#         print("Goodbye from the decorator!")
+#         result = func(x, y)
+#         return result
+#     return wrapper
+#
+# @goodbye
+# def subtract(x, y):
+#     return x - y
+#
+# print(subtract(5, 2))
+#
+#
+# # uppercase_decorator: Write a decorator that converts the result of a function to uppercase. Assume the function returns a string.
+#
+# def uppercase(func):
+#     def wrapper(*args, **kwargs):
+#         func(*args, **kwargs)
+#         result = func(*args, **kwargs)
+#         return result.upper()
+#     return wrapper
+# @uppercase
+# def some_function(string):
+#     return string
+#
+# print(some_function("sergiusz"))
+#
+# # exclaim_decorator: Write a decorator that adds an exclamation mark ("!") to the end of the string returned by a function.
+# # Assume the function returns a string.
+#
+# def exclaim(func):
+#     def wrapper(*args, **kwargs):
+#         result = func(*args, **kwargs)
+#         return result + "!"
+#     return wrapper
+#
+# @exclaim
+# def some_function(s):
+#     return s
+#
+# print(some_function("sergiusz"))
+#
+# # greeting_decorator: Write a decorator that takes a greeting string (e.g., "Hi", "Welcome") as an argument.
+# # The decorator should print the greeting before the decorated function is executed.
+#
+# def greeting_decorator_factory(greeting):
+#     def greeting_decorator(func):
+#         def wrapper(*args, **kwargs):
+#             print(greeting)
+#             result = func(*args, **kwargs)
+#             return result
+#         return wrapper
+#     return greeting_decorator
+#
+# @greeting_decorator_factory("Hi there!")
+# def the_function():
+#     return "Function called"
+#
+# print(the_function())
+#
+#
+# # repeat_decorator: Write a decorator that takes an integer n as an argument. The decorator should execute the decorated function n times.
+#
+# def repeat_decorator(n):
+#     def decorator(func):
+#         def wrapper(*args, **kwargs):
+#             for _ in range(n):
+#                 func(*args, **kwargs)
+#         return wrapper
+#     return decorator
+#
+# @repeat_decorator(3)
+# def something(name):
+#     print( f"Called {name}")
+#
+# something("Sergiusz")
+#
+#
+# # bold_decorator: Write a decorator that surrounds the string returned by a function with HTML <b> and </b> tags (making it bold in HTML).
+#
+# def bold_decorator(func):
+#     def wrapper(*args, **kwargs):
+#         result = func(*args, **kwargs)
+#         return f"<b>{result}</b>"
+#
+#     return wrapper
+# @bold_decorator
+# def get_name():
+#     return "John Doe"
+#
+# print(get_name())
+#
+# # italic_decorator: Write a decorator that surrounds the string returned by a function with HTML <i> and </i> tags (making it italic in HTML).
+#
+# def italic_decorator(func):
+#     def wrapper(*args, **kwargs):
+#         result = func(*args, **kwargs)
+#         return f"<i>{result}</i>"
+#     return wrapper
+#
+# @italic_decorator
+# def get_age(num):
+#     return str(num * 2)
+#
+# print(get_age(2))
+#
+# # print_args_decorator: Write a decorator that prints the arguments passed to the decorated function before the function is executed.
+#
+# def print_args_decorator(func):
+#     def wrapper(*args, **kwargs):
+#         print("Positional arguments:", args)
+#         print("Keyword arguments:", kwargs)
+#         result = func(*args, **kwargs)
+#         return result
+#     return wrapper
+#
+# @print_args_decorator
+# def some_cool_funcjone(*args, **kwargs):
+#     return 1
+#
+# print(some_cool_funcjone(2, 4, name = "Sergiusz", age = 30))
+#
+#
+#
+# # multiply_by_two_decorator: Write a decorator that multiplies the number returned by a function by 2. Assume the function returns a number.
+#
+# def multiply_by_two_decorator(func):
+#     def wrapper(*args, **kwargs):
+#         result = func(*args, **kwargs)
+#         return result * 2
+#     return wrapper
+#
+# @multiply_by_two_decorator
+# def multiply(num):
+#     return num
+#
+# print(multiply(2))
+#
+# # Write a function called multiplier_decorator(multiplier). This function should take a number multiplier as input and return a decorator.
+# # The decorator should then multiply the result of the decorated function by the given multiplier.
+# # Assume the decorated function returns a number.
+#
+# def multiplier_decorator_factory(multiplier):
+#     def multiplier_decorator(func):
+#         def wrapper(*args, **kwargs):
+#             result = func(*args, **kwargs)
+#             return result * multiplier
+#         return wrapper
+#     return multiplier_decorator
+# @multiplier_decorator_factory(3)
+# def add(x):
+#     return x * 2
+#
+# print(add(2))
 
 # Task: Simple Logging Decorator
 #
@@ -307,156 +307,334 @@ print(add(2))
 # print_name_decorator: Write a decorator that prints the name of the function being called after the function has executed.
 # (Similar to what you did before, but printing after).
 
-def print_name_decorator(func):
+# def print_name_decorator(func):
+#     def wrapper(*args, **kwargs):
+#         result = func(*args, **kwargs)
+#         print(func.__name__)
+#         return result
+#     return wrapper
+#
+# @print_name_decorator
+# def adding(x, y, z):
+#     return x * y * z
+#
+# print(adding(1, 2, 3))
+#
+# # multiply_result_by_3: Write a decorator that multiplies the result of a function (that returns a number) by 3.
+#
+# def multiply_result_by_3(func):
+#     def wrapper(*args, **kwargs):
+#         result = func(*args, **kwargs)
+#         return result * 3
+#     return wrapper
+# @multiply_result_by_3
+# def multiply(x):
+#     return x
+#
+# print(multiply(5))
+#
+# # add_stars: Write a decorator that surrounds the string returned by a function with asterisks (*).
+#
+# def add_stars(func):
+#     def wrapper(*args):
+#         result = ([f"*{arg}*" for arg in args])
+#         return " ".join(result)
+#     return wrapper
+#
+# @add_stars
+# def star(*names):
+#     return names
+#
+# print(star("Sergiusz", "Kuderski"))
+#
+# # force_positive: Write a decorator that takes the absolute value of the number returned by a function.
+#
+# def force_positive(func):
+#     def wrapper(*args, **kwargs):
+#         result = func(*args, **kwargs)
+#         return abs(result)
+#     return wrapper
+#
+# @force_positive
+# def absolute(x):
+#     return x * 2
+#
+# print(absolute(-2))
+#
+# # say_hello: Write a decorator that has the decorator print "Hello!". (The decorated function shouldn't print anything).
+#
+# def say_hello(func):
+#     def wrapper(*args, **kwargs):
+#         print("Hello")
+#         return func(*args, **kwargs)
+#     return wrapper
+#
+# @say_hello
+# def add(x, y):
+#     return x + y
+#
+# print(add(2, 3))
+#
+# # add_10: A decorator which adds 10 to a result.
+#
+# def add_10(func):
+#     def wrapper(*args, **kwargs):
+#         result = func(*args, **kwargs)
+#         return result + str(10)
+#     return wrapper
+#
+# @add_10
+# def add(data):
+#     return data["name"]
+#
+# data_dict = {"name": "Sergiusz"}
+# print(add(data_dict))
+#
+#
+# # make_question: A decorator that adds a question mark to the end of a result.
+#
+# def make_question(func):
+#     def wrapper(*args, **kwargs):
+#         result = func(*args, **kwargs)
+#         return result + "?"
+#     return wrapper
+#
+# @make_question
+# def sentence(sent):
+#     return sent.upper()
+#
+# print(sentence("what's up"))
+#
+# # negate: A decorator that flips the sign of a number.
+#
+# def negate(func):
+#     def wrapper(*args, **kwargs):
+#         result = func(*args, **kwargs)
+#         return -result
+#     return wrapper
+# @negate
+# def add(x, y):
+#     return x + y
+#
+# print(add(2, 3))
+#
+#
+# # to_the_power_of_2: Write a decorator that raises the result to the power of 2.
+#
+# def to_the_power_of_2(func):
+#     def wrapper(*args, **kwargs):
+#         result = func(*args, **kwargs)
+#         return result ** 2
+#     return wrapper
+# @to_the_power_of_2
+# def powered_up(x, y):
+#     return x ** y
+#
+# print(powered_up(2, 2))
+#
+#
+# # apply_function: Write a decorator takes a function (such as uppercase, or bold). The result should apply the function from the decorator.
+#
+# def apply_function(func):
+#     def decorator(apply_func):
+#         def wrapper(*args, **kwargs):
+#             result = func(*args, **kwargs)
+#             return apply_func(result)
+#         return wrapper
+#     return decorator
+#
+# def uppercase(text):
+#     return text.upper()
+#
+# def bold(text):
+#     return f"<b>{text}</b>"
+#
+# @apply_function(uppercase)
+# def writing(name):
+#     return name[0:2].lower() + name[2:]
+#
+# print(writing("sergiusz"))
+# @apply_function(bold)
+# def writing_bold(name):
+#     return name[0:2].lower() + name[2:]
+#
+#
+# print(writing_bold("sergiusz"))
+#
+# def repeat_twice(func):
+#     def inner(*args, **kwargs):
+#         func(*args, **kwargs)
+#         func(*args, **kwargs)
+#     return inner
+#
+# @repeat_twice
+# def double_num(num: int):
+#     print(num)
+#     return num * 2
+#
+# print(double_num(4))
+
+# Print "Hello" before calling any function.
+#
+# Create a decorator that prints "Hello" every time a function is called.
+# Add a message after the function runs.
+
+# def greeting(func):
+#     def wrapper(*args, **kwargs):
+#         print("Hello")
+#         return func(*args, **kwargs)
+#     return wrapper
+# @greeting
+# def hello():
+#     pass
+#
+# hello()
+
+
+#
+# Write a decorator that, after executing the function, prints "Function finished!"
+# Count how many times a function is called.
+
+# def finished(func):
+#     count = 0
+#     def wrapper(*args, **kwargs):
+#         nonlocal count
+#         count += 1
+#         result = func(*args, **kwargs)
+#         print("Function finished")
+#         print(f"The function has been called {count} times")
+#         return result
+#     return wrapper
+# @finished
+# def sayhello(name):
+#     print(f"Hello {name}")
+#
+# sayhello("Sergiusz")
+# sayhello("Adam")
+
+# Create a decorator that counts how many times a specific function has been called and prints the count each time.
+# Make a decorator that adds parentheses around a string output.
+
+def counter(func):
+    count = 0
     def wrapper(*args, **kwargs):
+        nonlocal count
+        count += 1
         result = func(*args, **kwargs)
-        print(func.__name__)
-        return result
+        print(f"The function has been called {count} times.")
+        return f"({result})"
     return wrapper
+@counter
+def name(name):
+    return (f"Hello, {name}")
 
-@print_name_decorator
-def adding(x, y, z):
-    return x * y * z
-
-print(adding(1, 2, 3))
-
-# multiply_result_by_3: Write a decorator that multiplies the result of a function (that returns a number) by 3.
-
-def multiply_result_by_3(func):
-    def wrapper(*args, **kwargs):
-        result = func(*args, **kwargs)
-        return result * 3
-    return wrapper
-@multiply_result_by_3
-def multiply(x):
-    return x
-
-print(multiply(5))
-
-# add_stars: Write a decorator that surrounds the string returned by a function with asterisks (*).
-
-def add_stars(func):
-    def wrapper(*args):
-        result = ([f"*{arg}*" for arg in args])
-        return " ".join(result)
-    return wrapper
-
-@add_stars
-def star(*names):
-    return names
-
-print(star("Sergiusz", "Kuderski"))
-
-# force_positive: Write a decorator that takes the absolute value of the number returned by a function.
-
-def force_positive(func):
-    def wrapper(*args, **kwargs):
-        result = func(*args, **kwargs)
-        return abs(result)
-    return wrapper
-
-@force_positive
-def absolute(x):
-    return x * 2
-
-print(absolute(-2))
-
-# say_hello: Write a decorator that has the decorator print "Hello!". (The decorated function shouldn't print anything).
-
-def say_hello(func):
-    def wrapper(*args, **kwargs):
-        print("Hello")
-        return func(*args, **kwargs)
-    return wrapper
-
-@say_hello
-def add(x, y):
-    return x + y
-
-print(add(2, 3))
-
-# add_10: A decorator which adds 10 to a result.
-
-def add_10(func):
-    def wrapper(*args, **kwargs):
-        result = func(*args, **kwargs)
-        return result + str(10)
-    return wrapper
-
-@add_10
-def add(data):
-    return data["name"]
-
-data_dict = {"name": "Sergiusz"}
-print(add(data_dict))
+print(name("Sergiusz"))
 
 
-# make_question: A decorator that adds a question mark to the end of a result.
-
-def make_question(func):
-    def wrapper(*args, **kwargs):
-        result = func(*args, **kwargs)
-        return result + "?"
-    return wrapper
-
-@make_question
-def sentence(sent):
-    return sent.upper()
-
-print(sentence("what's up"))
-
-# negate: A decorator that flips the sign of a number.
-
-def negate(func):
-    def wrapper(*args, **kwargs):
-        result = func(*args, **kwargs)
-        return -result
-    return wrapper
-@negate
-def add(x, y):
-    return x + y
-
-print(add(2, 3))
+# Create a decorator that converts a number to its square.
+# The decorated function returns a number, and the decorator should return its square.
 
 
-# to_the_power_of_2: Write a decorator that raises the result to the power of 2.
-
-def to_the_power_of_2(func):
+def decorator(func):
     def wrapper(*args, **kwargs):
         result = func(*args, **kwargs)
         return result ** 2
     return wrapper
-@to_the_power_of_2
-def powered_up(x, y):
-    return x ** y
+@decorator
+def number(x):
+    return x
 
-print(powered_up(2, 2))
+print(number(3))
+
+# Create a decorator that ensures a function receives only positive numbers.
+# If the number is negative, change it to positive before passing it to the function.
+
+def deco(func):
+    def wrapper(*args, **kwargs):
+        new_args = []
+        for arg in args:
+            if isinstance(arg, (int, float)) and arg < 0:
+                new_args.append(-arg)
+            else:
+                new_args.append(arg)
+        return func(*new_args, **kwargs)
+    return wrapper
+@deco
+def number(num):
+    return num
+
+print(number(-5))
+print(number(10))
+print(number(-9))
+
+# Write a decorator that measures and prints how long a function takes to run.
+# (Hint: Use time module)
+
+import time
+
+def counting_time(func):
+    def wrapper(*args, **kwargs):
+        start = time.perf_counter()
+        result = func(*args, **kwargs)
+        end = time.perf_counter()
+        print(f"Elapsed time: {end - start} seconds")
+        return result
+    return wrapper
+@counting_time
+def counteeink():
+    for i in range(1000000):
+        pass
+
+counteeink()
+
+# Create a decorator that reverses the string output of a function.
+# The function returns a string, and the decorator should reverse that string.
+
+def some_cute_decorator(func):
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        return result[::-1]
+    return wrapper
+@some_cute_decorator
+def hello(name):
+    return name
+
+print(hello("Sergiusz"))
 
 
-# apply_function: Write a decorator takes a function (such as uppercase, or bold). The result should apply the function from the decorator.
+# Make a decorator that adds a warning if a function takes longer than 1 second.
+# Print a message if the function runs too long.
+import time
+def warning(func):
+    def wrapper(*args, **kwargs):
+        start = time.perf_counter()
+        result = func(*args, **kwargs)
+        end = time.perf_counter()
+        elapsed = end - start
+        result = func(*args, **kwargs)
+        print(f"Elapsed time: {elapsed}")
+        if elapsed > 1:
+            print("Function taking too long")
+        return result
+    return wrapper
 
-def apply_function(func):
-    def decorator(apply_func):
-        def wrapper(*args, **kwargs):
-            result = func(*args, **kwargs)
-            return apply_func(result)
-        return wrapper
-    return decorator
+@warning
+def times():
+    for i in range(10000000):
+        pass
+times()
 
-def uppercase(text):
-    return text.upper()
+# Create a decorator that prints the name of the function when it is called.
+# Show the function's name before it runs.
+import functools
+def creators(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        print(func.__name__)
+        return func(*args, **kwargs)
+    return wrapper
+@creators
+def add(x, y):
+    return x + y
 
-def bold(text):
-    return f"<b>{text}</b>"
-
-@apply_function(uppercase)
-def writing(name):
-    return name[0:2].lower() + name[2:]
-
-print(writing("sergiusz"))
-@apply_function(bold)
-def writing_bold(name):
-    return name[0:2].lower() + name[2:]
-
-
-print(writing_bold("sergiusz"))
+add(2, 5)
