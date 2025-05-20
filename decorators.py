@@ -515,126 +515,249 @@ long_function()"""
 # Create a decorator that counts how many times a specific function has been called and prints the count each time.
 # Make a decorator that adds parentheses around a string output.
 
-def counter(func):
-    count = 0
+# def counter(func):
+#     count = 0
+#     def wrapper(*args, **kwargs):
+#         nonlocal count
+#         count += 1
+#         result = func(*args, **kwargs)
+#         print(f"The function has been called {count} times.")
+#         return f"({result})"
+#     return wrapper
+# @counter
+# def name(name):
+#     return (f"Hello, {name}")
+#
+# print(name("Sergiusz"))
+#
+#
+# # Create a decorator that converts a number to its square.
+# # The decorated function returns a number, and the decorator should return its square.
+#
+#
+# def decorator(func):
+#     def wrapper(*args, **kwargs):
+#         result = func(*args, **kwargs)
+#         return result ** 2
+#     return wrapper
+# @decorator
+# def number(x):
+#     return x
+#
+# print(number(3))
+#
+# # Create a decorator that ensures a function receives only positive numbers.
+# # If the number is negative, change it to positive before passing it to the function.
+#
+# def deco(func):
+#     def wrapper(*args, **kwargs):
+#         new_args = []
+#         for arg in args:
+#             if isinstance(arg, (int, float)) and arg < 0:
+#                 new_args.append(-arg)
+#             else:
+#                 new_args.append(arg)
+#         return func(*new_args, **kwargs)
+#     return wrapper
+# @deco
+# def number(num):
+#     return num
+#
+# print(number(-5))
+# print(number(10))
+# print(number(-9))
+#
+# # Write a decorator that measures and prints how long a function takes to run.
+# # (Hint: Use time module)
+#
+# import time
+#
+# def counting_time(func):
+#     def wrapper(*args, **kwargs):
+#         start = time.perf_counter()
+#         result = func(*args, **kwargs)
+#         end = time.perf_counter()
+#         print(f"Elapsed time: {end - start} seconds")
+#         return result
+#     return wrapper
+# @counting_time
+# def counteeink():
+#     for i in range(1000000):
+#         pass
+#
+# counteeink()
+#
+# # Create a decorator that reverses the string output of a function.
+# # The function returns a string, and the decorator should reverse that string.
+#
+# def some_cute_decorator(func):
+#     def wrapper(*args, **kwargs):
+#         result = func(*args, **kwargs)
+#         return result[::-1]
+#     return wrapper
+# @some_cute_decorator
+# def hello(name):
+#     return name
+#
+# print(hello("Sergiusz"))
+#
+#
+# # Make a decorator that adds a warning if a function takes longer than 1 second.
+# # Print a message if the function runs too long.
+# import time
+# def warning(func):
+#     def wrapper(*args, **kwargs):
+#         start = time.perf_counter()
+#         result = func(*args, **kwargs)
+#         end = time.perf_counter()
+#         elapsed = end - start
+#         result = func(*args, **kwargs)
+#         print(f"Elapsed time: {elapsed}")
+#         if elapsed > 1:
+#             print("Function taking too long")
+#         return result
+#     return wrapper
+#
+# @warning
+# def times():
+#     for i in range(10000000):
+#         pass
+# times()
+#
+# # Create a decorator that prints the name of the function when it is called.
+# # Show the function's name before it runs.
+# import functools
+# def creators(func):
+#     @functools.wraps(func)
+#     def wrapper(*args, **kwargs):
+#         print(func.__name__)
+#         return func(*args, **kwargs)
+#     return wrapper
+# @creators
+# def add(x, y):
+#     return x + y
+#
+# add(2, 5)
+#
+# from typing import Callable
+# import pickle
+#
+#
+# def cache(func: Callable) -> Callable:
+#     cache_dictionary = {}
+#
+#     def wrapper(*args) -> Callable:
+#         key = pickle.dumps(args)
+#         if key in cache_dictionary:
+#             print("Getting from cache")
+#             return cache_dictionary[key]
+#         else:
+#             print("Calculating new result")
+#             result = func(*args)
+#             cache_dictionary[key] = result
+#             return result
+#     return wrapper
+# @cache
+# def add(x, y):
+#     return x + y
+#
+# add(2, 3)
+# add(2, 3)
+
+# Add Logging of Function Arguments
+# Create a decorator that prints out the function's name and the arguments it receives each time it's called.
+
+def logging_of_function(func):
     def wrapper(*args, **kwargs):
-        nonlocal count
-        count += 1
+        print(f"{func.__name__}")
+        print(f"args = {args}, kwargs = {kwargs}")
         result = func(*args, **kwargs)
-        print(f"The function has been called {count} times.")
-        return f"({result})"
-    return wrapper
-@counter
-def name(name):
-    return (f"Hello, {name}")
-
-print(name("Sergiusz"))
-
-
-# Create a decorator that converts a number to its square.
-# The decorated function returns a number, and the decorator should return its square.
-
-
-def decorator(func):
-    def wrapper(*args, **kwargs):
-        result = func(*args, **kwargs)
-        return result ** 2
-    return wrapper
-@decorator
-def number(x):
-    return x
-
-print(number(3))
-
-# Create a decorator that ensures a function receives only positive numbers.
-# If the number is negative, change it to positive before passing it to the function.
-
-def deco(func):
-    def wrapper(*args, **kwargs):
-        new_args = []
-        for arg in args:
-            if isinstance(arg, (int, float)) and arg < 0:
-                new_args.append(-arg)
-            else:
-                new_args.append(arg)
-        return func(*new_args, **kwargs)
-    return wrapper
-@deco
-def number(num):
-    return num
-
-print(number(-5))
-print(number(10))
-print(number(-9))
-
-# Write a decorator that measures and prints how long a function takes to run.
-# (Hint: Use time module)
-
-import time
-
-def counting_time(func):
-    def wrapper(*args, **kwargs):
-        start = time.perf_counter()
-        result = func(*args, **kwargs)
-        end = time.perf_counter()
-        print(f"Elapsed time: {end - start} seconds")
         return result
     return wrapper
-@counting_time
-def counteeink():
-    for i in range(1000000):
-        pass
+@logging_of_function
+def add(x, y, name = None):
+    return x + y
 
-counteeink()
+print(add(2, 3, name = "sergiusz"))
 
-# Create a decorator that reverses the string output of a function.
-# The function returns a string, and the decorator should reverse that string.
 
-def some_cute_decorator(func):
-    def wrapper(*args, **kwargs):
-        result = func(*args, **kwargs)
-        return result[::-1]
+# 2. Cache Decorator with Limited Size
+# Write a decorator that caches results of a function but limits the cache size to, say, 3 entries.
+# When the cache exceeds this size, remove the oldest entry.
+
+def cache_decorator(func):
+    caching = {}
+    def wrapper(*args):
+        key = args
+        if key in caching:
+            print(f"Getting from cache for args: {args}")
+            return caching[key]
+        else:
+            print(f"Calculating for args: {args}")
+            result = func(*args)
+            caching[key] = result
+            # Optional: show cache size after inserting
+            print(f"Cache size: {len(caching)}")
+            if len(caching) > 3:
+                oldest_key = next(iter(caching))
+                print(f"Removing oldest cache entry for args: {oldest_key}")
+                del caching[oldest_key]
+            return result
     return wrapper
-@some_cute_decorator
-def hello(name):
-    return name
 
-print(hello("Sergiusz"))
+@cache_decorator
+def fibonacci(n):
+    if n <= 1:
+        return n
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+print(fibonacci(5))
+print(fibonacci(6))
+print(fibonacci(7))
+print(fibonacci(8))
 
 
-# Make a decorator that adds a warning if a function takes longer than 1 second.
-# Print a message if the function runs too long.
-import time
-def warning(func):
+
+
+# 3. Print Function Name and Return Value
+# Make a decorator that prints the name of the function and its return value every time the function is called.
+
+def print_function(func):
     def wrapper(*args, **kwargs):
-        start = time.perf_counter()
         result = func(*args, **kwargs)
-        end = time.perf_counter()
-        elapsed = end - start
-        result = func(*args, **kwargs)
-        print(f"Elapsed time: {elapsed}")
-        if elapsed > 1:
-            print("Function taking too long")
+        print(f"{func.__name__} returned: {result}")
         return result
     return wrapper
-
-@warning
-def times():
-    for i in range(10000000):
-        pass
-times()
-
-# Create a decorator that prints the name of the function when it is called.
-# Show the function's name before it runs.
-import functools
-def creators(func):
-    @functools.wraps(func)
-    def wrapper(*args, **kwargs):
-        print(func.__name__)
-        return func(*args, **kwargs)
-    return wrapper
-@creators
+@print_function
 def add(x, y):
     return x + y
 
 add(2, 5)
+
+
+
+# 4. Run Function Only Once
+# Create a decorator that ensures the decorated function runs only once, no matter how many times it's called afterward.
+
+def decor(func):
+    has_run = False
+    result = 0
+    def wrapper(*args, **kwargs):
+        nonlocal has_run, result
+        if not has_run:
+            result = func(*args, **kwargs)
+            has_run = True
+        return result
+    return wrapper
+@decor
+def subtract(x, y):
+    return x - y
+
+print(subtract(2, 3))
+print(subtract(3, 5))
+
+
+
+# 5. Convert Output to String
+# Write a decorator that converts whatever the function returns into a string, regardless of its original type.
