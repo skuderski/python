@@ -1387,7 +1387,7 @@ def cute_decorator(func):
 # Decorator for Adding Authentication (Simulated)
 # Implement a decorator that checks a "logged_in" boolean before allowing a function to run. If not logged in, print "Access denied."
 def authentication(auth_state):
-    def authentication(func):
+    def auth(func):
         def wrapper(*args, **kwargs):
             if not auth_state['logged_in']:
                 print("Access denied.")
@@ -1397,7 +1397,7 @@ def authentication(auth_state):
                 return func(*args, **kwargs)
 
         return wrapper
-    return authentication
+    return auth
 
 
 auth_state = {'logged_in': False}
