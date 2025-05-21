@@ -110,3 +110,135 @@ def product_description(*args, **kwargs):
     return f"The {name} costs {price} and is {list_of_features}."
 
 print(product_description("strong", "durable", name = "Iphone", price = "300 EUR"))
+
+
+# Sum All Arguments:
+# Write a function that accepts any number of positional arguments and returns their sum.
+
+def summing(*args):
+    return sum(args)
+
+print(summing(2, 3, 4, 5, 6))
+
+# 2. Print Arguments:
+# Create a function that prints all positional and keyword arguments with their names and values.
+
+def printing_args_and_kwargs(*args, **kwargs):
+    for arg in args:
+        print(arg)
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")
+
+printing_args_and_kwargs(1, 2, 3, name='sergiusz', age = 30, surname = 'kuderski')
+# 3. Count Arguments:
+# Write a function that accepts any number of args and kwargs, and returns the total number of arguments passed (positional + keyword).
+
+def count_arguments(*args, **kwargs):
+    count = 0
+    for arg in args:
+        count += 1
+    for kwargs in kwargs:
+        count += 1
+    return count
+
+print(count_arguments(1, 2, 3, name='sergiusz', age = 30, surname = 'kuderski'))
+
+
+
+# 4. Merge Dictionaries:
+# Create a function that accepts any number of dictionaries as keyword arguments and merges them into one dictionary.
+
+def merging_dictionaries(**kwargs):
+    merged = {}
+    for dictionary_name, dictionary in kwargs.items():
+        merged.update(dictionary)
+    return merged
+
+dict1 = {'a': 1, 'b': 2}
+dict2 = {'c': 3, 'd': 4}
+dict3 = {'a': 5, 'e': 6}
+
+merged_dict = merging_dictionaries(first = dict1, second = dict2, third = dict3)
+print(merged_dict)
+
+# 5. Dynamic Greeting:
+# Write a function that takes a greeting string (kwargs) and any number of names as positional arguments,
+# then prints personalized greetings for each.
+
+def dynamic_greeting(*args, **kwargs):
+    greeting = kwargs.get('greeting', "Hello")
+    for name in args:
+        personalized_greeting = f"{greeting}, {name}"
+        print(personalized_greeting)
+dynamic_greeting("Alice", "Bob", "Sergiusz", greeting = "Hello")
+
+# 6. Keyword Arguments Filter:
+# Create a function that filters keyword arguments to only include those with string values.
+
+def filtering(**kwargs):
+    string_values = {}
+    for key, value in kwargs.items():
+        if isinstance(value, str):
+            string_values[key] = value
+
+    return string_values
+
+result = filtering(name="Alice", age=30, city="New York", is_active=True)
+print(result)
+
+
+# 7. Argument Type Summary:
+# Write a function that accepts any args and kwargs, then prints the types of each argument.
+
+def argument_type_summary(*args, **kwargs):
+    for arg in args:
+        print(f"type: {type(arg)}")
+    for key, value in kwargs.items():
+        print(f"type: {type(value)}")
+argument_type_summary(1, 2, "sergiusz", name="Alice", age=30, city="New York", is_active=True)
+
+
+# 8. Repeated Arguments:
+# Create a function that takes multiple args and repeats each argument n times, where n is passed as a kwarg.
+
+def repeated_arguments(*args, n):
+    repeated_list = []
+    for arg in args:
+        if isinstance(arg, str):
+            repeated_list.extend([arg] * n)
+        elif isinstance(arg, list):
+            repeated_list.extend(arg * n)
+        else:
+            repeated_list.extend([arg] * n)
+    return repeated_list
+
+print(repeated_arguments(1, 2, 3, [1, 2, 3],  n = 3))
+
+
+# 9. Arguments Reversal:
+# Write a function that reverses a list of args and kwargs, and returns them as a tuple.
+
+def arguments_reversal(*args, **kwargs):
+    the_list = []
+    for arg in args:
+        the_list.append(arg)
+    for key, value in kwargs.items():
+        the_list.append((key, value))
+    reversed_list = reversed(the_list)
+    tuple_reversed = tuple(reversed_list)
+    return tuple_reversed
+
+print(arguments_reversal(1, 2, 3, [1, 2, 3],  n = 3, name = "sergiusz"))
+
+
+# 10. Keyword Argument Summation:
+# Create a function that multiplies all numerical values in kwargs and returns the total.
+
+
+def keyword_summation(**kwargs):
+    multiply = 1
+    for key, value in kwargs.items():
+        if isinstance(value, (int, float)):
+            multiply *= value
+    return multiply
+print(keyword_summation(age = 30, fruits = 10, bottles_of_vodka = 3, name = "sergiusz"))

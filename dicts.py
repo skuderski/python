@@ -663,56 +663,231 @@
 # Additionally, if after the increase the price is more than 80% of the original price,
 # apply a discount to reduce it back to 80% of its original pre-increase value (but don’t go below $250).
 
-flight_p = {
-    "NYC-LAX": 450,
-    "LHR-JFK": 470,
-    "SYD-LA": 580,
-    "PEK-HKG": 290,
-    "DXB-DEL": 310,
-    "SFO-ORD": 340,
-    "FRA-MEX": 275,
-    "JNB-CPT": 250,
-    "MIA-CHI": 595,
-    "VIE-ZRH": 260
+# flight_p = {
+#     "NYC-LAX": 450,
+#     "LHR-JFK": 470,
+#     "SYD-LA": 580,
+#     "PEK-HKG": 290,
+#     "DXB-DEL": 310,
+#     "SFO-ORD": 340,
+#     "FRA-MEX": 275,
+#     "JNB-CPT": 250,
+#     "MIA-CHI": 595,
+#     "VIE-ZRH": 260
+# }
+# before_increase = {}
+# for key, value in flight_p.items():
+#     before_increase[key] = value
+# print(before_increase)
+#
+# average = sum(flight_p.values()) / len(flight_p)
+#
+# for key, value in flight_p.items():
+#     if value < average and value < 300:
+#         flight_p[key] = min(flight_p[key] + flight_p[key] * 0.3, 600)
+#
+# for key in flight_p:
+#     original_price = before_increase[key]
+#     current_price = flight_p[key]
+#     if current_price > original_price * 0.8:
+#         flight_p[key] = max(original_price * 0.8, 250)
+# print(flight_p)
+#
+#
+# # Count how many words in a paragraph start with each letter, resulting in a dictionary where keys are letters,
+# # and values are counts of words starting with that letter.
+#
+# paragraph = "The sun dipped below the horizon, casting a warm golden hue across the sky. The gentle breeze carried the sweet scent of blooming flowers, creating a peaceful atmosphere."
+# words = paragraph.split(" ")
+# print(words)
+#
+# count_of_letter = {}
+#
+# for word in words:
+#     first_letter = word[0].lower().strip(".,")
+#     if first_letter not in count_of_letter:
+#         count_of_letter[first_letter] = 1
+#     else:
+#         count_of_letter[first_letter] += 1
+#
+# print(count_of_letter)
+
+
+
+# Dictionary Summation
+# Given a dictionary of numbers, write a function to return the sum of all values.
+
+numbers_dict = {
+    'a': 10,
+    'b': 25,
+    'c': 7,
+    'd': 30,
+    'e': 15
 }
-before_increase = {}
-for key, value in flight_p.items():
-    before_increase[key] = value
-print(before_increase)
 
-average = sum(flight_p.values()) / len(flight_p)
+total_sum = sum(numbers_dict.values())
+print(total_sum)
 
-for key, value in flight_p.items():
-    if value < average and value < 300:
-        flight_p[key] = min(flight_p[key] + flight_p[key] * 0.3, 600)
+# 2. Invert a Dictionary
+# Create a function that takes a dictionary and returns a new dictionary with keys and values swapped. Assume all values are unique.
 
-for key in flight_p:
-    original_price = before_increase[key]
-    current_price = flight_p[key]
-    if current_price > original_price * 0.8:
-        flight_p[key] = max(original_price * 0.8, 250)
-print(flight_p)
+def invert_dictionary(dictionary: dict):
+    new_dictionary = {value:key for key, value in dictionary.items()}
+    return new_dictionary
+
+print(invert_dictionary({
+    'a': 10,
+    'b': 25,
+    'c': 7,
+    'd': 30,
+    'e': 15
+}))
+# 3. Merge Two Dictionaries
+# Write a function that merges two dictionaries into one. If keys overlap, sum their values.
+
+dict1 = {'a': 10, 'b': 20, 'c': 30}
+dict2 = {'b': 5, 'c': 15, 'd': 25}
+
+def merging(dict1, dict2):
+    result = dict1.copy()
+    for key, value in dict2.items():
+        if key not in result:
+            result[key] = value
+        else:
+            result[key] += value
+    return result
+
+print(merging({'a': 10, 'b': 20, 'c': 30}, {'b': 5, 'c': 15, 'd': 25} ))
+
+merged_dicts = merging(dict1, dict2)
+print(merged_dicts)
+
+# 4. Count Occurrences
+# Given a list of items, create a dictionary that counts how many times each item appears.
+
+def count_occurrences(items):
+    dictionary = {}
+    for item in items:
+        if item not in dictionary:
+            dictionary[item] = 1
+        else:
+            dictionary[item] += 1
+    return dictionary
+
+print(count_occurrences(['apple', 'banana', 'apple', 'orange', 'banana', 'apple', 'kiwi', 'orange']))
+
+# 5. Find Keys by Value
+# Create a function that, given a dictionary and a value, returns a list of all keys that map to that value.
+
+def finding_keys(dictionary, v):
+    keys = []
+    for key, value in dictionary.items():
+        if value == v:
+            keys.append(key)
+    return keys
+
+print(finding_keys({'a': 10, 'b': 20, 'c': 10, 'd': 30}, 10))
+
+# 6. Filter Dictionary
+# Given a dictionary, create a new one containing only items where the value meets a condition (e.g., value > 10).
+
+the_dictionary = {'a': 10,
+    'b': 25,
+    'c': 7,
+    'd': 30,
+    'e': 15}
+
+new_dict = {}
+
+for key, value in the_dictionary.items():
+    if value > 15:
+        new_dict[key] = value
+print(new_dict)
 
 
-# Count how many words in a paragraph start with each letter, resulting in a dictionary where keys are letters,
-# and values are counts of words starting with that letter.
+# 7. Dictionary Keys to List
+# Write a function that takes a dictionary and returns a list of all its keys sorted alphabetically.
 
-paragraph = "The sun dipped below the horizon, casting a warm golden hue across the sky. The gentle breeze carried the sweet scent of blooming flowers, creating a peaceful atmosphere."
-words = paragraph.split(" ")
-print(words)
+def sorted_function(dictionary: dict):
+    list_of_keys = []
+    for key in dictionary:
+        list_of_keys.append(key)
+    sorted_list = sorted(list_of_keys)
+    return sorted_list
 
-count_of_letter = {}
+print(sorted_function({
+    'name': 'Alice',
+    'age': 30,
+    'city': 'New York',
+    'hobbies': ['reading', 'hiking', 'coding']
+}))
+# 8. Dictionary with Tuple Keys
+# Create a dictionary where keys are tuples, e.g., (x, y),
+# and values are their sum (x + y). Generate this for all pairs (x, y) where x and y are in a list.
 
-for word in words:
-    first_letter = word[0].lower().strip(".,")
-    if first_letter not in count_of_letter:
-        count_of_letter[first_letter] = 1
-    else:
-        count_of_letter[first_letter] += 1
+dict_of_tuples = {}
 
-print(count_of_letter)
+number_tuples = [(1, 10), (2, 20), (3, 30), (4, 40)]
 
+for i in number_tuples:
+    dict_of_tuples[i] = i[0] + i[1]
 
+print(dict_of_tuples)
 
 
 
+# 9. Remove Duplicates Values
+# Given a dictionary, remove all key-value pairs where the value appears more than once, leaving only the first occurrence.
+
+duplicates_dict = {
+    'a': 1,
+    'b': 2,
+    'c': 1,
+    'd': 3,
+    'e': 2,
+    'f': 4
+}
+
+seen_values = set()
+new_dict = {}
+
+for key, value in duplicates_dict.items():
+    if value not in seen_values:
+        new_dict[key] = value
+        seen_values.add(value)
+
+print(new_dict)
+
+
+# 10. Nested Dictionary Access
+# Given a nested dictionary (a dictionary inside a dictionary),
+# write a function that retrieves a value at a specific nested key path, e.g., ['key1']['key2']['key3'].
+
+nested_dict1 = {
+    'user': {
+        'name': 'Alice',
+        'details': {
+            'age': 30,
+            'location': {
+                'city': 'New York',
+                'country': 'USA'
+            }
+        }
+    },
+    'preferences': {
+        'colors': ['red', 'blue'],
+        'food': {
+            'breakfast': 'pancakes',
+            'lunch': 'sandwich'
+        }
+    }
+}
+
+def get_nested_value(nested_dict, key_path):
+    current_value = nested_dict
+    for key in key_path:
+        current_value = current_value[key]
+    return current_value
+
+print(get_nested_value(nested_dict1, ['preferences','food', 'breakfast']))
+print(get_nested_value(nested_dict1, ['user', 'details', 'age']))
