@@ -1412,3 +1412,197 @@ add(2, 3)
 auth_state['logged_in'] = True
 
 add(2, 3)
+
+
+# Simple Greeting Decorator:
+#
+# Create a decorator called greeting_decorator that adds "Hello!" before the output of a function.
+# The function should return a string.
+
+def greeting_decorator(func):
+    def wrapper(*args):
+        print("Hello!")
+        return func(*args)
+    return wrapper
+
+@greeting_decorator
+def name():
+    print("This will get printed after 'Hello'")
+
+name()
+
+
+# Timing Decorator:
+# Create a decorator called timing_decorator that measures the execution time of a function and prints the time taken.
+# Use the time module.
+
+import time
+
+def timing_decorator(func):
+    def wrapper(*args, **kwargs):
+        start = time.perf_counter()
+        result = func(*args, **kwargs)
+        end = time.perf_counter()
+        duration = end - start
+        print(f"Time taken: {duration:.3f}")
+        return result
+    return wrapper
+
+@timing_decorator
+def add():
+    for _ in range(1000000):
+        pass
+
+add()
+
+
+
+# Uppercase Decorator:
+# Create a decorator called uppercase_decorator that converts the output of a function to uppercase.
+# The function should return a string.
+
+def uppercase_decorator(func):
+    def wrapper(*args):
+        result = func(*args)
+        return result.upper()
+    return wrapper
+
+@uppercase_decorator
+def greeting(greet, name):
+    return f"{greet}, dear {name}"
+
+print(greeting("Hello", "bastardo"))
+
+
+# Repeat Decorator:
+# Create a decorator called repeat_decorator that executes the decorated function a specified number of times
+# (e.g., the decorator takes an argument n=3 and runs the function 3 times).
+
+def factory(n):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            for _ in range(n):
+                result = func(*args, **kwargs)
+            print(f"Function called '{func.__name__}' was called {n} times.")
+            return result
+        return wrapper
+    return decorator
+@factory(3)
+def add(x, y):
+    print(x + y)
+    return x + y
+
+add(2, 3)
+
+
+
+# Even/Odd Output Decorator
+#
+# Create a decorator called even_odd_decorator.
+# This decorator should be applied to a function that returns an integer.
+# The decorator should:
+# Print "Even" if the function returns an even number.
+# Print "Odd" if the function returns an odd number.
+# Still return the original integer value from the function.
+
+def even_odd_decorator(func):
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        if result % 2 == 0:
+            print("Even")
+        else:
+            print("Odd")
+        return result
+    return wrapper
+
+@even_odd_decorator
+def subtract(x, y):
+    return x - y
+
+print(subtract(10, 2))
+
+
+
+# Okay, let's simplify the logging decorator task significantly. Here's a much easier version:
+#
+# Simplified Logging Decorator:
+#
+# Create a decorator called simple_logging_decorator.
+# This decorator should:
+# Print "Calling function: [function name]" before the decorated function is executed.
+# Print "Function [function name] finished" after the decorated function is executed.
+
+def simple_logging_decorator(func):
+    def wrapper(*args, **kwargs):
+        print(f"Calling function: '{func.__name__}'")
+        result = func(*args, **kwargs)
+        print(f"Function '{func.__name__}' finished")
+        return result
+    return wrapper
+@simple_logging_decorator
+def adding(x, y):
+    return x + y
+
+print(adding(20, 30))
+
+# Create a decorator called enhanced_logging_decorator.
+# This decorator should:
+# Print "Calling function: [function name] with arguments: [arguments]" before the decorated function is executed.
+# Include both positional and keyword arguments in the output.
+# Print "Function [function name] finished. Result: [result]" after the decorated function is executed.
+
+def enhanced_logging_decorator(func):
+    def wrapper(*args, **kwargs):
+        print(f"Calling function: '{func.__name__}' with arguments {args} and {kwargs}")
+        result = func(*args, **kwargs)
+        print(f"Function '{func.__name__}'finished. Result: {result}")
+        return result
+    return wrapper
+@enhanced_logging_decorator
+def adding(x, y):
+    return x + y
+
+print(adding(10, 20))
+
+
+# Memoization Decorator:
+# Create a decorator called memoize that caches the results of a function based on its input arguments.
+# This is useful for optimizing functions that are computationally expensive and have the same inputs called multiple times.
+# Use a dictionary to store the cached results.
+
+def memoize(func):
+    dict = {}
+    def wrapper(*args, **kwargs):
+        key = args + tuple(sorted(kwargs.items()))
+        if key in dict:
+            print(f"Retrieving result from cache for {func.__name__}")
+            return dict[key]
+        else:
+            result = func(*args, **kwargs)
+            dict[key] = result
+            return result
+    return wrapper
+
+@memoize
+def fibonacci(n):
+    if n <= 1:
+        return n
+    else:
+        return fibonacci(n-1) + fibonacci(n-2)
+
+print(fibonacci(10))
+print(fibonacci(10))
+
+
+# Retry Decorator:
+# Create a decorator called retry that retries a function a certain number of times
+# if it raises an exception.
+#
+# Permission Check Decorator:
+# Create a  called permission_required that checks if a user has a specific permission before executing a function.
+# Assume you have a user object with a has_permission(permission_name) method.
+#
+#
+# Class-Based Decorator:
+# Create a class-based decorator that counts how many times a function has been called.
+# The decorator should have a __call__ method that increments the counter and executes the decorated function.
