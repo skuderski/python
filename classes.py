@@ -17,7 +17,6 @@
 #
 # print(first_user.name)
 # print(first_user.surname)
-from exercises import calculate_area
 
 
 class User: #PascalCase
@@ -366,3 +365,65 @@ class Book:
         self.author = author
 
 book = Book("My favourite book", 42)
+
+# Extending the Car Class (Inheritance):
+# Start with your existing Car class (with make, model, year, is_running, start(), stop()).
+# Create an ElectricCar class that inherits from the Car class.
+# Add a new attribute battery_capacity to the ElectricCar class.
+# Override the start() method in the ElectricCar class to also print "Electric motor started silently"
+# in addition to the base Car's "Engine started".
+
+class Car:
+    def __init__(self, make, model, year, is_running: bool = False):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.is_running = is_running
+    def start(self):
+        self.is_running = True
+        print("Engine started.")
+    def stop(self):
+        self.is_running = False
+        print("Engine stopped")
+
+class ElectricCar(Car):
+    def __init__(self, make, model, year, battery_capacity, is_running:bool = False):
+        super().__init__(make, model, year, is_running)
+        self.battery_capacity = battery_capacity
+    def start(self):
+        super().start()
+        print("Electric motor started silently.")
+
+my_car = ElectricCar("Tesla", "Model S", 2023, 100)
+my_car.start()
+
+
+# BankAccount with Transaction History:
+# Start with your existing BankAccount class (with balance, deposit(), withdraw()).
+# Add a new attribute transaction_history that is a list.
+# Modify the deposit()
+# and withdraw() methods to add a record of each transaction to the transaction_history list (e.g., "Deposit: +500", "Withdrawal: -100").
+
+class BankAccount:
+    def __init__(self, balance = 0):
+        self.balance = balance
+        self.transaction_history = []
+    def deposit(self, amount):
+        self.balance += amount
+        depo = f"Deposit: +{amount}"
+        self.transaction_history.append(depo)
+    def withdraw(self, amount):
+        if amount > self.balance:
+            print("Insufficient funds")
+        else:
+            self.balance -= amount
+            withd = f"Withdrawal: -{amount}"
+            self.transaction_history.append(withd)
+
+account = BankAccount()
+print(account.balance)
+account.deposit(500)
+print(account.balance)
+account.withdraw(300)
+print(account.balance)
+print(account.transaction_history)
