@@ -427,3 +427,221 @@ print(account.balance)
 account.withdraw(300)
 print(account.balance)
 print(account.transaction_history)
+
+# Library Class with Books:
+#
+# Create a Library class with an attribute books that is a dictionary.
+# The keys of the dictionary should be book titles, and the values should be Book objects (from your earlier task).
+# Add methods: add_book(book) (adds a book to the books dictionary) and find_book(title) (returns the Book object with the given title,
+# or None if not found).
+class Book:
+    def __init__(self, name: str, author: str):
+        self.name = name
+        self.author = author
+
+class Library:
+    def __init__(self, books: dict = None):
+        self.books = books or {}
+    def add_book(self, book):
+        self.books[book.title] = book
+    def find_book(self, title):
+        if title in self.books:
+            return self.books[title]
+        else:
+            return None
+
+
+# Shape Hierarchy (Inheritance and Polymorphism):
+#
+# Create a base class Shape with an abstract method calculate_area().
+# (To do this properly, you'd use the abc module, but for simplicity, just define the method and have it raise NotImplementedError if called directly).
+# Create subclasses Rectangle (from your earlier task) and Circle (from your earlier task) that inherit from Shape
+# and implement the calculate_area() method.
+import math
+class Shape:
+    def calculate_area(self):
+        raise NotImplementedError("Subclasses must implement calculate_area method")
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+    def calculate_area(self):
+        return self.width * self.height
+
+class Circle(Shape):
+    def __init__(self, radius):
+            self.radius = radius
+    def calculate_area(self):
+            return math.pi * self.radius ** 2
+
+rectangle = Rectangle(width=5, height=10)
+circle = Circle(radius=7)
+
+print(f"Rectangle area: {rectangle.calculate_area()}")
+print(f"Circle area: {circle.calculate_area()}")
+
+try:
+    shape = Shape()  # This will raise an error
+    area = shape.calculate_area()
+    print(area)
+except NotImplementedError as e:
+    print(e)
+
+# Counter Class:
+# Create a class called Counter.
+# Give it an attribute count initialized to 0 in the __init__ method.
+# Add a method increment() that increases the count by 1.
+# Add a method reset() that sets the count back to 0.
+
+class Counter:
+    def __init__(self):
+        self.count = 0
+    def increment(self):
+        self.count += 1
+    def reset(self):
+        self.count = 0
+incrementing = Counter()
+incrementing.increment()
+print(incrementing.count)
+incrementing.reset()
+print(incrementing.count)
+
+# Bounded Counter Class:
+# Create a class called BoundedCounter.
+# Give it an attribute count initialized to 0 in the __init__ method.
+# The __init__ method should also take a max_value argument, which represents the maximum value the counter can reach.
+# Store this in an attribute called self.max_value.
+# Add a method increment() that increases the count by 1, but only if the count is less than max_value.
+# If the count is already at max_value, the increment() method should do nothing.
+# Add a method reset() that sets the count back to 0.
+# Add a method is_at_max() that returns True if the counter is at its maximum value (count == max_value), and False otherwise.
+
+class BoundedCounter:
+    def __init__(self, max_value):
+        self.count = 0
+        self.max_value = max_value
+    def increment(self):
+        if self.count < self.max_value:
+            self.count += 1
+        elif self.count == self.max_value:
+            return
+    def reset(self):
+        self.count = 0
+    def is_at_max(self):
+        return self.count == self.max_value
+
+counter = BoundedCounter(4)
+counter.increment()
+counter.increment()
+counter.increment()
+counter.increment()
+counter.increment()
+print(counter.count)
+
+
+
+# Dog Class with Multiple Attributes:
+# Create a class called Dog.
+# Give it name, breed, and age attributes in the __init__ method.
+# Create a method description() that returns a string describing the dog (e.g., "This is a [breed] named [name] who is [age] years old.").
+
+
+
+class Dog:
+    def __init__(self, name, breed, age):
+        self.name = name
+        self.breed = breed
+        self.age = age
+    def description(self):
+        return f"This is a {self.breed} name {self.name} who is {self.age} years old."
+
+dog = Dog("Sergiusz", "kundel", "30")
+
+print(dog.description())
+
+# Movie Class:
+# Create a class called Movie.
+# Give it title, director, and year attributes in the __init__ method.
+# Add a method summary() that prints a summary of the movie with the title, director, and year.
+
+class Movie:
+    def __init__(self, title, director, year):
+        self.title = title
+        self.director = director
+        self.year = year
+    def summary(self):
+        print(f"Title: {self.title}, Director: {self.director}, Year: {self.year}")
+the_movie = Movie("Lord of the Rings", "don't remember", "2002")
+the_movie.summary()
+
+
+# Student Class with Name and ID:
+# Create a class called Student.
+# Give it name and student_id attributes in the __init__ method.
+# Add a method display_info() that prints the student's name and ID.
+
+class Student:
+    def __init__(self, name, student_id):
+        self.name = name
+        self.student_id = student_id
+    def display_info(self):
+        print(f"Name: {self.name}, Student ID: {self.student_id}")
+
+studento = Student("Sergiusz", 420)
+studento.display_info()
+
+
+# Enhanced Student Class with Course Information:
+
+# Create a class called Student.
+# Give it name, student_id, and major attributes in the __init__ method.
+# Add a method enroll(course_name) that takes a course_name as input and adds it to a list called courses
+# (which should be initialized as an empty list in the __init__ method).
+# Add a method display_info() that prints the student('s name, ID, major, and a list of the courses they are enrolled in. '
+#                                                     'If the student is not enrolled in any courses, print "Not enrolled in any courses." '
+#                                                     'instead of the list.)
+
+class Student:
+    def __init__(self, name, student_id, major, courses = None):
+        self.courses = []
+        self.name = name
+        self.student_id = student_id
+        self.major = major
+    def enroll(self, course_name):
+        self.courses.append(course_name)
+    def display_info(self):
+        print(f"Name: {self.name}, ID: {self.student_id}, major: {self.major}")
+        if self.courses:
+            print(f"Courses: {self.courses}")
+        else:
+            print("Not enrolled in any courses.")
+
+studencik = Student("Sergiusz", "420", "Computer Science")
+studencik.display_info()
+studencik.enroll("English")
+studencik.enroll("Maths")
+studencik.display_info()
+
+
+
+# Rectangle Class with Modified Attributes:
+# Create a Rectangle class.
+# Give it width and height attributes in the __init__ method.
+# Add a method change_dimensions(new_width, new_height) that takes new width and height values
+# and updates the object's width and height attributes.
+
+class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+    def change_dimensions(self, new_width, new_height):
+        self.width = new_width
+        self.height = new_height
+    def calculate(self):
+        return self.width * self.height
+
+rect = Rectangle(20, 30)
+print(f"Area before changing dimension: {rect.calculate()}")
+rect.change_dimensions(10, 20)
+print(f"Area after changing dimension: {rect.calculate()}")
