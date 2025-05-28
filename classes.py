@@ -326,19 +326,19 @@ print(distance)
 # (Introduction to inheritance): Create a Dog class that inherits from the Animal class.
 # Override the speak() method in the Dog class to print "Woof!". (This is your first taste of inheritance and polymorphism!)
 
-class Animal:
-    def speak(self):
-        print("Generic animal sound")
-
-class Dog(Animal):
-    def speak(self):
-        print("Woof")
-
-animal = Animal()
-dog = Dog()
-
-animal.speak()
-dog.speak()
+# class Animal:
+#     def speak(self):
+#         print("Generic animal sound")
+#
+# class Dog(Animal):
+#     def speak(self):
+#         print("Woof")
+#
+# animal = Animal()
+# dog = Dog()
+#
+# animal.speak()
+# dog.speak()
 
 
 # TemperatureConverter Class:
@@ -373,29 +373,29 @@ book = Book("My favourite book", 42)
 # Override the start() method in the ElectricCar class to also print "Electric motor started silently"
 # in addition to the base Car's "Engine started".
 
-class Car:
-    def __init__(self, make, model, year, is_running: bool = False):
-        self.make = make
-        self.model = model
-        self.year = year
-        self.is_running = is_running
-    def start(self):
-        self.is_running = True
-        print("Engine started.")
-    def stop(self):
-        self.is_running = False
-        print("Engine stopped")
+# class Car:
+#     def __init__(self, make, model, year, is_running: bool = False):
+#         self.make = make
+#         self.model = model
+#         self.year = year
+#         self.is_running = is_running
+#     def start(self):
+#         self.is_running = True
+#         print("Engine started.")
+#     def stop(self):
+#         self.is_running = False
+#         print("Engine stopped")
 
-class ElectricCar(Car):
-    def __init__(self, make, model, year, battery_capacity, is_running:bool = False):
-        super().__init__(make, model, year, is_running)
-        self.battery_capacity = battery_capacity
-    def start(self):
-        super().start()
-        print("Electric motor started silently.")
-
-my_car = ElectricCar("Tesla", "Model S", 2023, 100)
-my_car.start()
+# class ElectricCar(Car):
+#     def __init__(self, make, model, year, battery_capacity, is_running:bool = False):
+#         super().__init__(make, model, year, is_running)
+#         self.battery_capacity = battery_capacity
+#     def start(self):
+#         super().start()
+#         print("Electric motor started silently.")
+#
+# my_car = ElectricCar("Tesla", "Model S", 2023, 100)
+# my_car.start()
 
 
 # BankAccount with Transaction History:
@@ -645,3 +645,314 @@ rect = Rectangle(20, 30)
 print(f"Area before changing dimension: {rect.calculate()}")
 rect.change_dimensions(10, 20)
 print(f"Area after changing dimension: {rect.calculate()}")
+
+# Create a Person class with attributes like name and age. Instantiate an object and print its attributes.
+
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+Sergiusz = Person("Sergiusz", 30)
+
+print(f"name: {Sergiusz.name}, age: {Sergiusz.age}")
+
+# Create a Person class with attributes name, age, and email. Add a method called greet() that prints a greeting message
+# including the person('s name. '
+# 'Instantiate an object with sample data, call the greet() method, and print out all the attributes separately.)
+
+
+
+class Person:
+    def __init__(self, name, age, email):
+        self.name = name
+        self.age = age
+        self.email = email
+    def greet(self):
+        print(f"Hello {self.name}!")
+
+person1 = Person("Sergiusz", 30, "skuderski@gmail.com")
+person1.greet()
+print(person1.name)
+print(person1.age)
+print(person1.email)
+
+# Create a Person class with attributes name, age, and email. Add a method called introduce()
+# that prints a message including the person('s name and age. Implement a class method called from_birth_year() '
+# 'that creates a Person object by calculating the age from the birth year provided. Instantiate two Person objects using both the regular constructor '
+# 'and the class method, then call introduce() on both and print out all their attributes.)
+
+class Person:
+    def __init__(self, name, age, email):
+        self.name = name
+        self.age = age
+        self.email = email
+    def introduce(self):
+        print(f"{self.name} is {self.age} years old.")
+
+    @classmethod
+    def from_birth_year(cls, name, email, birth_year):
+        current_year = 2025
+        age = current_year - birth_year
+        return cls(name, age, email)
+
+person1 = Person("Sergiusz", 30, "skuderski@gmail.com")
+person2 = Person.from_birth_year("Martyna", "jakistam@gmail.com", 2000)
+
+person1.introduce()
+person2.introduce()
+
+print(person1.__dict__)
+print(person2.__dict__)
+
+
+
+# Add a method to the Person class that prints a greeting message, e.g., "Hello, my name is [name]."
+
+class Person:
+    def __init__(self, name):
+        self.name = name
+        print(f"Hello, my name is {name}.")
+
+persona = Person("Waclaw")
+
+
+# Task:
+# Extend the Person class to include a new method called greet(), which prints a personalized greeting like "Hello, my name is [name]."
+#
+# Then:
+#
+# Create two Person objects—one using the regular constructor and one using the from_birth_year() class method.
+# Call the greet() method on both objects.
+# Print all attributes of each person.
+
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    def greet(self):
+        print(f"Hello, my name is {self.name} and I am {self.age} years old.")
+
+    @classmethod
+    def from_birth_year(cls, name, birth_year, current_year = 2025):
+        age = current_year - birth_year
+        return cls(name, age)
+
+personna1 = Person("Sergiusz", 30)
+personna2 = Person.from_birth_year("Inga", 1986)
+
+personna1.greet()
+personna2.greet()
+
+
+# Create a Car class with attributes like make, model, and year. Instantiate a few cars and print their details.
+
+
+class Car:
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+    def current_fkn_year(self, current_year = 2025):
+        age = current_year - self.year
+        return age
+
+first_car = Car("Toyota", "Corolla", 2000)
+second_car = Car("Subaru", "Impreza", 1992)
+
+print(first_car.model)
+print(f"{first_car.make}, year: {first_car.year}")
+print(f"My car is {first_car.current_fkn_year()} years old.")
+print(f"His car is {second_car.current_fkn_year()} years old.")
+
+
+# Add a method to the Car class that returns the age of the car based on the current year.
+
+
+# Create a Rectangle class with width and height attributes. Add methods to calculate area and perimeter.
+
+class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+    def calculate_area(self):
+        return self.width * self.height
+    def calculate_perimeter(self):
+        return (2 * self.width) + (2 * self.height)
+
+recta = Rectangle(10, 20)
+print(recta.calculate_perimeter())
+print(recta.calculate_area())
+
+# Task:
+# Create a Rectangle class with attributes width and height.
+#
+# Add methods to calculate area() and perimeter().
+# Include a method called is_square() that returns True if the rectangle is a square, otherwise False.
+# Implement a method called resize(new_width, new_height) that updates the rectangle's dimensions.
+
+class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+    def calculate_area(self):
+        return self.width * self.height
+    def calculate_perimeter(self):
+        return (2 * self.width) + (2 * self.height)
+    def is_square(self):
+        return self.width == self.height
+    def resize(self, new_width, new_height):
+        self.width = new_width
+        self.height = new_height
+        return new_width, new_height
+
+rectii = Rectangle(12, 6)
+print(rectii.calculate_perimeter())
+print(rectii.calculate_area())
+print(rectii.is_square())
+rectii.resize(3, 5)
+print(rectii.calculate_area())
+
+# Create a Student class with attributes like name and grade. Add a method to check if the student is passing (grade >= passing mark).
+
+
+class Student:
+    def __init__(self, name, grade):
+        self.name = name
+        self.grade = grade
+    def check(self, passing_mark):
+        return self.grade >= passing_mark
+
+me = Student("Sergiusz", 50)
+print(me.check(40))
+
+# Task:
+# Create a Student class with attributes name and grades (a list of grades).
+#
+# Add a method called average_grade() that calculates and returns the student's average grade.
+# Add another method called is_passing() that takes a passing_mark and returns True
+# if the student's average grade is at least the passing mark, otherwise False.
+# Create multiple student objects with different sets of grades, and test the methods to check if they're passing based on their average grades.
+
+
+
+class Student:
+    def __init__(self, name, grades: list):
+        self.name = name
+        self.grades = grades
+    def average_grade(self):
+        if len(self.grades) == 0:
+            return 0
+        return sum(self.grades) / len(self.grades)
+    def is_passing(self, passing_mark):
+        return self.average_grade() >= passing_mark
+
+student_uno = Student("Sergiusz", [1, 2, 5, 8])
+print(student_uno.average_grade())
+print(student_uno.is_passing(10))
+
+
+# Implement a simple BankAccount class with attributes for account-holder's name and balance. Add methods to deposit and withdraw money.
+
+class BankAccount:
+    def __init__(self, name, balance):
+        self.name = name
+        self.balance = balance
+    def deposit(self, money):
+        self.balance += money
+        return self.balance
+my_account = BankAccount("Sergiusz", 2000)
+my_account.deposit(2000)
+
+print(my_account.balance)
+
+# Create a BankAccount class with attributes for account-holder's name, balance, and account number.
+#
+# Implement methods to deposit, withdraw, and transfer money between accounts.
+# Add a method to check the current balance.
+# Ensure that withdrawals and transfers cannot exceed the available balance (prevent overdraft).
+# Include basic error handling for invalid inputs.
+
+class BankAccount:
+    def __init__(self, name, balance, account_number):
+        self.name = name
+        self.balance = balance
+        self.account_number = account_number
+    def deposit(self, money):
+        if money > 0:
+            self.balance += money
+        return self.balance
+    def withdraw(self, money):
+        if money <= self.balance:
+            self.balance -= money
+        else:
+            print("Insufficient funds available")
+        return self.balance
+    def transfer(self, target_account, amount):
+        if amount > 0 and amount <= self.balance:
+            self.withdraw(amount)
+            target_account.deposit(amount)
+            print(f"Transferred {amount} to {target_account.name}")
+        else:
+            print("Transfer failed: insufficient funds or invalid amount.")
+
+acc1 = BankAccount("Sergiusz", 300, 23323)
+acc2 = BankAccount("Michal", 500, 1111)
+
+acc1.transfer(acc2, 100)
+print(acc1.balance)
+print(acc2.balance)
+
+# Create a class called Book with title, author, and pages attributes. Add a method that returns a formatted string describing the book.
+
+class Book:
+    def __init__(self, title, author, pages):
+        self.title = title
+        self.author = author
+        self.pages = pages
+    def summary(self):
+        print(f"The title: {self.title}, the author: {self.author}, amount of pages: {self.pages}")
+
+book_one = Book("Lord of the Rings", "Tolkien", 500)
+book_one.summary()
+
+
+# Build a simple Animal class with a method make_sound, and create subclasses like Dog and Cat that override this method.
+
+class Animal:
+    def __init__(self):
+        return
+    def make_sound(self):
+        print("eek")
+
+class Dog(Animal):
+    def make_sound(self):
+        print("WOOF")
+
+class Cat(Animal):
+    def make_sound(self):
+        print("meoow")
+
+los_animal = Animal()
+dog = Dog()
+cat = Cat()
+los_animal.make_sound()
+dog.make_sound()
+cat.make_sound()
+
+# Create a Point class with x and y coordinates, and add a method to calculate the distance to another point.
+
+
+import math
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    def calculate(self, other_point):
+        dx = self.x - other_point.x
+        dy = self.y - other_point.y
+        return math.sqrt(dx**2 +dy**2)
+
+one_point = Point(2, 3)
+two_point = Point(3, 4)
+print(one_point.calculate(two_point))
