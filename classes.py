@@ -956,3 +956,129 @@ class Point:
 one_point = Point(2, 3)
 two_point = Point(3, 4)
 print(one_point.calculate(two_point))
+
+# Create a Circle class with attributes radius and color. Add methods to calculate the circle's area and circumference.
+import math
+class Circle:
+    def __init__(self, radius, color):
+        self.radius = radius
+        self.color = color
+    def calculate_area(self):
+        return math.pi * (self.radius ** 2)
+    def calculate_circumference(self):
+        return 2 * math.pi * self.radius
+
+circle = Circle(5,"blue")
+print(circle.calculate_area())
+print(circle.calculate_circumference())
+
+#
+# Design a Student class that tracks name, subject, and list of scores. Add methods to calculate average score
+# and determine if the student is passing (e.g., average ≥ 60).
+
+class Student:
+    def __init__(self, name, subject, scores):
+        self.name = name
+        self.subject = subject
+        self.scores = scores
+    def average_score(self):
+        return sum(self.scores) / len(self.scores)
+    def is_passing(self, passing):
+        return self.average_score() >= passing
+
+studenciczek = Student("Sergiusz", "English", [2, 3, 4, 6, 2])
+print(studenciczek.average_score())
+print(studenciczek.is_passing(60))
+
+
+# Build a WeatherForecast class with attributes city and temperature readings (list of temperatures for the week).
+# Add methods to get the highest, lowest, and average temperature.
+
+
+class WeatherForecast:
+    def __init__(self, city, temperatures):
+        self.city = city
+        self.temperatures = temperatures
+    def highest(self):
+        return max(self.temperatures)
+    def lowest(self):
+        return min(self.temperatures)
+    def average(self):
+        return sum(self.temperatures) / len(self.temperatures)
+
+Weather = WeatherForecast("Dubai", [1, 10, 15, 22, 30, 4, 7])
+print(Weather.highest())
+print(Weather.lowest())
+print(Weather.average())
+
+
+
+
+
+
+# Create a BankAccount class with methods to process deposits, withdrawals, and display the current balance.
+# Add a method to apply a monthly interest rate.
+
+class BankAccount:
+    def __init__(self, balance):
+        self.balance = balance
+    def deposito(self, cash):
+        if cash > 0:
+            self.balance += cash
+        return self.balance
+    def withdrawalz(self, cash):
+        if cash <= self.balance:
+            self.balance -= cash
+        return self.balance
+    def current_balance(self):
+        return self.balance
+
+
+    def monthly_interest(self, percentage):
+        self.balance += self.balance * (percentage / 100)
+        return self.balance
+
+my_bank_account = BankAccount(2000)
+print(my_bank_account.deposito(200))
+print(my_bank_account.withdrawalz(450))
+print(my_bank_account.current_balance())
+print(my_bank_account.monthly_interest(5))
+
+
+# Implement an InventoryItem class with attributes name, price, and quantity. Add methods to increase/decrease stock,
+# and calculate total inventory value.
+
+class InventoryItem:
+    def __init__(self, name, price, quantity):
+        self.name = name
+        self.price = price
+        self.quantity = quantity
+    def increase_stock(self, amount):
+        self.quantity += amount
+        return self.quantity
+    def decrease_stock(self, amount):
+        if self.quantity >= amount:
+            self.quantity -= amount
+        return self.quantity
+    def calculate_price(self):
+        inventory_value = self.price * self.quantity
+        return inventory_value
+
+the_stock = InventoryItem("Wedel", 5, 100)
+print(the_stock.increase_stock(2))
+print(the_stock.decrease_stock(5))
+print(the_stock.calculate_price())
+
+
+
+# Design a BookSeries class that stores multiple Book objects. Add methods to add books, remove books,
+# and list all book titles.
+#
+# Create a VideoGame class with attributes title, genre, and rating. Add methods to update ratings and display game details.
+#
+# Build a Playlist class containing songs (as strings). Add methods to add, remove, and list songs. Also, include a method to shuffle songs.
+#
+# Develop a CarRental class with attributes car model, rental days, and price per day.
+# Add methods to calculate total rental cost, apply discounts, and display rental info.
+#
+# Create a Time class with hours, minutes, and seconds. Add methods to add or subtract time, and display it in HH:MM:SS format.
