@@ -1073,9 +1073,119 @@ print(the_stock.calculate_price())
 
 # Design a BookSeries class that stores multiple Book objects. Add methods to add books, remove books,
 # and list all book titles.
-#
+class Book:
+    def __init__(self, name, title):
+        self.name = name
+        self.title = title
+class BookSeries:
+    def __init__(self):
+        self.books = []
+    def add_book(self, book):
+        self.books.append(book)
+    def remove_book(self, title):
+        self.books = [b for b in self.books if b.title != title]
+    def list_titles(self):
+        for book in self.books:
+            print(book.title)
+
+series = BookSeries()
+book1 = Book("JK Rowling", "Harry Potter")
+book2 = Book("David Goggins", "Never Finished")
+series.add_book(book1)
+series.add_book(book2)
+
+series.list_titles()
+series.remove_book("Harry Potter")
+series.list_titles()
+
+
+
 # Create a VideoGame class with attributes title, genre, and rating. Add methods to update ratings and display game details.
+
+
+class VideoGame:
+    def __init__(self, title, genre, rating):
+        self.title = title
+        self.genre = genre
+        self.rating = rating
+    def update_rating(self, new_rating):
+        self.rating = new_rating
+    def display(self):
+        print(f"Title: {self.title}, Genre: {self.genre}, Rating: {self.rating}")
+
+first_game = VideoGame("BattleBit Remasterd", "FPS", "8/10")
+first_game.update_rating("9/10")
+first_game.display()
+
+
+# Task:
+# Create a VideoGame class with title, genre, ratings (a list of ratings from users), and an average_rating() method
+# that calculates the average rating.
 #
+# Add a method add_rating(new_rating) to include new user ratings.
+# Add a method display_info() that shows the title, genre, and average rating (formatted to 2 decimal places).
+# Ensure the class handles cases when there are no ratings yet.
+
+class VideoGame:
+    def __init__(self, title, genre, ratings):
+        self.title = title
+        self.genre = genre
+        self.ratings = ratings
+    def average_rating(self):
+        if len(self.ratings) == 0:
+            return 0
+        return sum(self.ratings) / len(self.ratings)
+    def add_rating(self, new_rating):
+        self.ratings.append(new_rating)
+    def display_info(self):
+        avg = self.average_rating()
+        print(f"The title: {self.title}, Genre: {self.genre}, Ratings: {avg:.2f}")
+
+game = VideoGame("Dead Cells", "roguelike", [1, 2, 3, 10, 20, 6])
+print(game.average_rating())
+game.add_rating(10)
+game.display_info()
+
+
+# Task:
+# Create a Library class that manages a collection of Book objects. Each Book should have attributes like title, author, and year.
+# The Library class should have methods to:
+#
+# Add a new book
+# Remove a book by title
+# List all books (show title and author)
+# Find books by a specific author
+# Bonus:
+# Add a method to count how many books the library has.
+class Book:
+    def __init__(self, name, author, year):
+        self.name = name
+        self.author = author
+        self.year = year
+class Library:
+    def __init__(self):
+        self.books = []
+    def add(self, book):
+        self.books.append(book)
+    def remove(self, name):
+        self.books = [book for book in self.books if book.name != name]
+    def listing(self):
+        for book in self.books:
+            print(f"{book.name}, {book.author}")
+
+    def find_by_author(self, author_name):
+        results = []
+        for book in self.books:
+            if book.author == author_name:
+                results.append(book)
+        return results
+
+
+
+
+
+
+
 # Build a Playlist class containing songs (as strings). Add methods to add, remove, and list songs. Also, include a method to shuffle songs.
 #
 # Develop a CarRental class with attributes car model, rental days, and price per day.
