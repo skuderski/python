@@ -1192,3 +1192,93 @@ class Library:
 # Add methods to calculate total rental cost, apply discounts, and display rental info.
 #
 # Create a Time class with hours, minutes, and seconds. Add methods to add or subtract time, and display it in HH:MM:SS format.
+
+# Create a class called Student that has:
+#
+# An attribute name.
+# An attribute score.
+# When you create a Student object, it should just store the name and score.
+#
+# Now, create a list of students with different names and scores.
+#
+# Finally, write a small loop that goes through the list and prints each student's name and score.
+
+class Student:
+    def __init__(self, name, score):
+        self.name = name
+        self.score = score
+
+student1 = Student("Sergiusz", 22)
+student2 = Student("Michal", 33)
+student3 = Student("Wiesiek", 40)
+student4 = Student("Miroslawa", 50)
+
+the_list = [student1, student2, student3, student4]
+
+for s in the_list:
+    print(s.name, s.score)
+
+
+
+# Practice Task:
+# Create a Student class with:
+#
+# Attributes: name, score, and pass_threshold (the minimum score to pass).
+# A method is_passing() that returns True if the student is passing, otherwise False.
+# Then:
+#
+# Create a list of several Student objects with different scores.
+# Loop through the list and for each student, print their name, score, and whether they are passing or not.
+
+class Student:
+    def __init__(self, name, score, pass_threshold = 50):
+        self.name = name
+        self.score = score
+        self.pass_threshold = pass_threshold
+    def is_passing(self):
+        return self.score >= self.pass_threshold
+
+first = Student("Sergiusz", 40)
+second = Student("Michal", 60)
+
+list_of_students = [first, second]
+
+for s in list_of_students:
+    print(s.name, s.score, s.is_passing())
+
+# Create a class called Car. Each Car has:
+#
+# An attribute called brand.
+# An attribute called owner (which should be a Person object).
+# A method called car_info() that prints "This car is a [brand], owned by [owner's name]".
+# Create a class called Person with:
+#
+# An attribute called name.
+# Then:
+#
+# Instantiate some Person objects.
+# Instantiate some Car objects, assigning each a person as its owner.
+# Call the car_info() method for each car.
+
+class Car:
+    def __init__(self, brand, owner):
+        self.brand = brand
+        self.owner = owner
+    def car_info(self):
+        print(f"This car is a {self.brand}, owned by {self.owner.name}")
+
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+first_person = Person("Sergiusz")
+second_person = Person("Michal")
+third_person = Person("Waclaw")
+
+firstc = Car("bmw", first_person)
+secondc = Car("subaru", second_person)
+thirdc = Car("toyota", third_person)
+
+firstc.car_info()
+secondc.car_info()
+thirdc.car_info()
