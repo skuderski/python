@@ -1157,128 +1157,289 @@ game.display_info()
 # Find books by a specific author
 # Bonus:
 # Add a method to count how many books the library has.
-class Book:
-    def __init__(self, name, author, year):
+# class Book:
+#     def __init__(self, name, author, year):
+#         self.name = name
+#         self.author = author
+#         self.year = year
+# class Library:
+#     def __init__(self):
+#         self.books = []
+#     def add(self, book):
+#         self.books.append(book)
+#     def remove(self, name):
+#         self.books = [book for book in self.books if book.name != name]
+#     def listing(self):
+#         for book in self.books:
+#             print(f"{book.name}, {book.author}")
+#
+#     def find_by_author(self, author_name):
+#         results = []
+#         for book in self.books:
+#             if book.author == author_name:
+#                 results.append(book)
+#         return results
+#
+#
+#
+#
+#
+#
+#
+# # Build a Playlist class containing songs (as strings). Add methods to add, remove, and list songs. Also, include a method to shuffle songs.
+# #
+# # Develop a CarRental class with attributes car model, rental days, and price per day.
+# # Add methods to calculate total rental cost, apply discounts, and display rental info.
+# #
+# # Create a Time class with hours, minutes, and seconds. Add methods to add or subtract time, and display it in HH:MM:SS format.
+#
+# # Create a class called Student that has:
+# #
+# # An attribute name.
+# # An attribute score.
+# # When you create a Student object, it should just store the name and score.
+# #
+# # Now, create a list of students with different names and scores.
+# #
+# # Finally, write a small loop that goes through the list and prints each student's name and score.
+#
+# class Student:
+#     def __init__(self, name, score):
+#         self.name = name
+#         self.score = score
+#
+# student1 = Student("Sergiusz", 22)
+# student2 = Student("Michal", 33)
+# student3 = Student("Wiesiek", 40)
+# student4 = Student("Miroslawa", 50)
+#
+# the_list = [student1, student2, student3, student4]
+#
+# for s in the_list:
+#     print(s.name, s.score)
+#
+#
+#
+# # Practice Task:
+# # Create a Student class with:
+# #
+# # Attributes: name, score, and pass_threshold (the minimum score to pass).
+# # A method is_passing() that returns True if the student is passing, otherwise False.
+# # Then:
+# #
+# # Create a list of several Student objects with different scores.
+# # Loop through the list and for each student, print their name, score, and whether they are passing or not.
+#
+# class Student:
+#     def __init__(self, name, score, pass_threshold = 50):
+#         self.name = name
+#         self.score = score
+#         self.pass_threshold = pass_threshold
+#     def is_passing(self):
+#         return self.score >= self.pass_threshold
+#
+# first = Student("Sergiusz", 40)
+# second = Student("Michal", 60)
+#
+# list_of_students = [first, second]
+#
+# for s in list_of_students:
+#     print(s.name, s.score, s.is_passing())
+#
+# # Create a class called Car. Each Car has:
+# #
+# # An attribute called brand.
+# # An attribute called owner (which should be a Person object).
+# # A method called car_info() that prints "This car is a [brand], owned by [owner's name]".
+# # Create a class called Person with:
+# #
+# # An attribute called name.
+# # Then:
+# #
+# # Instantiate some Person objects.
+# # Instantiate some Car objects, assigning each a person as its owner.
+# # Call the car_info() method for each car.
+#
+# class Car:
+#     def __init__(self, brand, owner):
+#         self.brand = brand
+#         self.owner = owner
+#     def car_info(self):
+#         print(f"This car is a {self.brand}, owned by {self.owner.name}")
+#
+# class Person:
+#     def __init__(self, name):
+#         self.name = name
+#
+# first_person = Person("Sergiusz")
+# second_person = Person("Michal")
+# third_person = Person("Waclaw")
+#
+# firstc = Car("bmw", first_person)
+# secondc = Car("subaru", second_person)
+# thirdc = Car("toyota", third_person)
+#
+# firstc.car_info()
+# secondc.car_info()
+# thirdc.car_info()
+
+# Create a class Employee with:
+#
+# Attributes: name, salary, and department.
+# Methods:
+# give_raise(amount) to increase salary.
+# change_department(new_department) to update the department.
+# display_info() to print the employee's details.
+# Create a class Company with:
+#
+# An attribute: employees (a list of Employee objects).
+# Methods:
+# add_employee(employee) to add new employees.
+# remove_employee(employee_name) to remove an employee by name.
+# list_employees() to display all employees with their details.
+# give_raise_all(amount) to give all employees a raise.
+# find_by_department(department) to list employees in a specific department.
+
+class Employee:
+    def __init__(self, name, salary, department):
         self.name = name
-        self.author = author
-        self.year = year
-class Library:
+        self.salary = salary
+        self.department = department
+
+    def give_raise(self, amount):
+        self.salary += amount
+        return self.salary
+
+    def change_department(self, new_department):
+        self.department = new_department
+
+    def display_info(self):
+        print(f"Name: {self.name}, Salary: {self.salary}, Department: {self.department}")
+
+class Company:
     def __init__(self):
-        self.books = []
-    def add(self, book):
-        self.books.append(book)
-    def remove(self, name):
-        self.books = [book for book in self.books if book.name != name]
-    def listing(self):
-        for book in self.books:
-            print(f"{book.name}, {book.author}")
+        self.employees = []
+    def add_employee(self, employee):
+        self.employees.append(employee)
 
-    def find_by_author(self, author_name):
-        results = []
-        for book in self.books:
-            if book.author == author_name:
-                results.append(book)
-        return results
+    def remove_employee(self, employee_name):
+        for employee in self.employees:
+            if employee.name == employee_name:
+                self.employees.remove(employee)
+                break
+    def list_employees(self):
+        for employee in self.employees:
+            print(f"Name: {employee.name}, Salary: {employee.salary}, Department: {employee.department}")
+    def give_raise_all(self, amount):
+        for employee in self.employees:
+            employee.salary += amount
+    def find_by_department(self, department):
+        for employee in self.employees:
+            if employee.department == department:
+                print(f"{employee.name}, Salary: {employee.salary}, Department: {employee.department}")
+employee1 = Employee("Sergiusz", 2000, "Custumer Service")
+employee2 = Employee("Irena", 30000, "Dentistry")
+employee3 = Employee("Wiesiek", 500000, "Engineering")
 
+print(employee3.give_raise(2000))
+employee2.change_department("Firefighting")
+print(employee2.department)
+employee1.display_info()
 
-
-
-
-
-
-# Build a Playlist class containing songs (as strings). Add methods to add, remove, and list songs. Also, include a method to shuffle songs.
-#
-# Develop a CarRental class with attributes car model, rental days, and price per day.
-# Add methods to calculate total rental cost, apply discounts, and display rental info.
-#
-# Create a Time class with hours, minutes, and seconds. Add methods to add or subtract time, and display it in HH:MM:SS format.
-
-# Create a class called Student that has:
-#
-# An attribute name.
-# An attribute score.
-# When you create a Student object, it should just store the name and score.
-#
-# Now, create a list of students with different names and scores.
-#
-# Finally, write a small loop that goes through the list and prints each student's name and score.
-
-class Student:
-    def __init__(self, name, score):
-        self.name = name
-        self.score = score
-
-student1 = Student("Sergiusz", 22)
-student2 = Student("Michal", 33)
-student3 = Student("Wiesiek", 40)
-student4 = Student("Miroslawa", 50)
-
-the_list = [student1, student2, student3, student4]
-
-for s in the_list:
-    print(s.name, s.score)
-
+company1 = Company()
+new_employee = Employee("Piotrek", 20000, "Legal Executive")
+new_employee2 = Employee("Witold", 200, "Chauffer")
+company1.add_employee(new_employee2)
+company1.add_employee(new_employee)
+company1.add_employee(employee2)
+company1.add_employee(employee1)
+company1.add_employee(employee3)
+company1.list_employees()
+company1.give_raise_all(3000)
+company1.list_employees()
+company1.find_by_department("Custumer Service")
 
 
 # Practice Task:
-# Create a Student class with:
+# Create a class Library with the following features:
 #
-# Attributes: name, score, and pass_threshold (the minimum score to pass).
-# A method is_passing() that returns True if the student is passing, otherwise False.
-# Then:
+# An attribute books that is a list of Book objects.
+# A method add_book(book) to add a Book object.
+# A method remove_book(title) to remove a book from the library by its title.
+# A method list_books() to print details (title and author) of all books.
+# A method find_books_by_author(author) to list all books written by a certain author.
+# Create a class Book with:
 #
-# Create a list of several Student objects with different scores.
-# Loop through the list and for each student, print their name, score, and whether they are passing or not.
+# Attributes: title and author.
 
-class Student:
-    def __init__(self, name, score, pass_threshold = 50):
-        self.name = name
-        self.score = score
-        self.pass_threshold = pass_threshold
-    def is_passing(self):
-        return self.score >= self.pass_threshold
+class Library:
+    def __init__(self):
+        self.books = []
+    def add_book(self, book):
+        self.books.append(book)
+    def remove_book(self, title):
+        for book in self.books:
+            if book.title == title:
+                self.books.remove(book)
+                break
+    def list_books(self):
+        for book in self.books:
+            print(f"Title: {book.title}, Author: {book.author}")
+    def find_books_by_author(self, author):
+        the_list = []
+        for book in self.books:
+            if book.author == author:
+                print(f"{book.author}")
+class Book:
+    def __init__(self, title, author):
+        self.title = title
+        self.author = author
 
-first = Student("Sergiusz", 40)
-second = Student("Michal", 60)
+book1 = Book("11", "22")
+book2 = Book("22", "33")
+book3 = Book("33", "44")
 
-list_of_students = [first, second]
+library = Library()
+library.add_book(book1)
+library.add_book(book2)
+library.add_book(book3)
+library.add_book(book1)
+library.remove_book("11")
+library.list_books()
+library.find_books_by_author("22")
 
-for s in list_of_students:
-    print(s.name, s.score, s.is_passing())
-
-# Create a class called Car. Each Car has:
+# Task: Person and Pet
+# Create a Person class:
 #
-# An attribute called brand.
-# An attribute called owner (which should be a Person object).
-# A method called car_info() that prints "This car is a [brand], owned by [owner's name]".
-# Create a class called Person with:
+# Attributes: name, age
+# Method: greet() — prints a greeting with the person's name.
+# Create a Pet class:
 #
-# An attribute called name.
-# Then:
+# Attributes: name, type (like cat, dog)
+# Attribute: owner (which should be a Person object)
+# Method: describe() — prints the pet's name, type, and owner's name.
+# Steps to do:
 #
-# Instantiate some Person objects.
-# Instantiate some Car objects, assigning each a person as its owner.
-# Call the car_info() method for each car.
-
-class Car:
-    def __init__(self, brand, owner):
-        self.brand = brand
-        self.owner = owner
-    def car_info(self):
-        print(f"This car is a {self.brand}, owned by {self.owner.name}")
+# Instantiate a Person.
+# Instantiate a Pet, assign the person as the owner.
+# Call the pet's describe() method to see the details.
 
 class Person:
-    def __init__(self, name):
+    def __init__(self, name, age):
         self.name = name
+        self.age = age
+    def greet(self):
+        print(f"Hello, {self.name}")
 
-first_person = Person("Sergiusz")
-second_person = Person("Michal")
-third_person = Person("Waclaw")
+class Pet:
+    def __init__(self, name, pet_type, owner):
+        self.name = name
+        self.pet_type = pet_type
+        self.owner = owner
+    def describe(self):
+        print(f"Name: {self.name}, type: {self.pet_type}, owner: {self.owner.name}")
 
-firstc = Car("bmw", first_person)
-secondc = Car("subaru", second_person)
-thirdc = Car("toyota", third_person)
+person = Person("Sergiusz", 30)
+pet = Pet("Piesiek", "chihuahua", person)
 
-firstc.car_info()
-secondc.car_info()
-thirdc.car_info()
+pet.describe()
