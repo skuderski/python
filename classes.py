@@ -1443,3 +1443,89 @@ person = Person("Sergiusz", 30)
 pet = Pet("Piesiek", "chihuahua", person)
 
 pet.describe()
+
+# Create a Library and Book classes where:
+#
+# You can add/remove books.
+# List books by genre or author.
+# Find books published after a certain year.
+
+class Book:
+    def __init__(self, title, genre, author, year):
+        self.title = title
+        self.genre = genre
+        self.author = author
+        self.year = year
+
+class Library:
+    def __init__(self):
+        self.books = []
+    def __add__(self, other):
+        self.books.append(other)
+        return self
+    def remove(self, book):
+            if book in self.books:
+                self.books.remove(book)
+            return self
+    def listing(self, genre):
+        for book in self.books:
+            if genre is None or book.genre == genre:
+                print(f"{book.title}")
+    def other_listing(self, author):
+        for book in self.books:
+            if book.author == author:
+                print(f"{book.title}")
+
+book1 = Book("I don't know", "criminal", "Oscar Wilde", 1950)
+book2 = Book("The same","fantasy", "Johnny Wick", 1960)
+library = Library()
+library + book1 + book2
+library.listing("fantasy")
+library.other_listing("Oscar Wilde")
+library.remove(book1)
+
+# Build a Movie and Actor classes:
+#
+# Actors can act in multiple movies.
+# Movies can have multiple actors.
+# Include methods to list movies an actor starred in and actors in a movie.
+# Design a Course and Student classes:
+#
+# Students can enroll in multiple courses.
+# Courses can have many students.
+# Methods to enroll/drop students and list students in a course.
+# Implement a SalesPerson and Sale classes:
+#
+# SalesPersons can make multiple sales.
+# Record sale amounts and dates.
+# Methods to calculate total sales per salesperson.
+# Create an Order and Product classes:
+#
+# An order contains multiple products with quantities.
+# Calculate total order cost.
+# Apply discounts to products or entire orders.
+# Design a Team and Player classes:
+#
+# Players can belong to multiple teams (e.g., for different seasons).
+# Teams can list their players.
+# Track player stats and display top performers.
+# Create a Wallet and Transaction classes:
+#
+# Wallet holds multiple transactions.
+# Transactions can be deposits or withdrawals.
+# Methods to get the current balance and recent transactions.
+# Implement a Company and Department classes:
+#
+# Departments contain employees.
+# Add/remove employees, list department members.
+# Transfer employees between departments.
+# Design a Recipe and Ingredient classes:
+#
+# Recipes use multiple ingredients.
+# Ingredients store quantity and units.
+# Methods to calculate total cost, adjust quantities.
+# Create an Event and Attendee classes:
+#
+# Attendees can register for multiple events.
+# Events track their attendees.
+# Methods to list attendees per event and events per attendee.

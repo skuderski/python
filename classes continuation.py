@@ -192,7 +192,18 @@ print(Car.convert_mpg_to_lpkm(20))
 
 
 # Create a MathHelper class with static methods like add(x, y) and multiply(x, y).
-#
+
+class MathHelper:
+    @staticmethod
+    def add(x, y):
+        return x + y
+    @staticmethod
+    def multiply(x, y):
+        return x * y
+
+print(MathHelper.multiply(2, 3))
+print(MathHelper.add(3, 5))
+
 # Create a Book class with a class method from_string(book_str) where book_str is formatted like "Title,Author"; the method creates a Book object.
 #
 # Add a static method calculate_discount(price, percentage) that returns the discounted price.
