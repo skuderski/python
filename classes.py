@@ -1529,3 +1529,78 @@ library.remove(book1)
 # Attendees can register for multiple events.
 # Events track their attendees.
 # Methods to list attendees per event and events per attendee.
+
+# Simple Vehicle Class
+# Create a Vehicle class with attributes like make, model, and year. Add a method display_info() that prints out these details.
+
+class Vehicle:
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+    def display_info(self):
+        print(f"Make: {self.make}, Model: {self.model}, Year: {self.year}")
+
+car = Vehicle("Toyota", "Corolla", 1994)
+
+car.display_info()
+
+# Create a Vehicle class with the following features:
+
+# Attributes: make, model, year, mileage.
+# Methods:
+# display_info() to print all vehicle details.
+# drive(distance) to increase mileage based on a distance traveled.
+# years_old(current_year) to calculate how old the vehicle is.
+# is_classic() that returns True if the vehicle is older than 25 years.
+
+
+class Vehicle:
+    def __init__(self, make, model, year, mileage):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.mileage = mileage
+    def display_info(self):
+        print(f"Make: {self.make}, Model: {self.model}, Year: {self.year}, Mileage: {self.mileage}")
+    def distance(self, distance):
+        self.mileage += distance
+        return self.mileage
+    def years_old(self, current_year = 2025):
+        return current_year - self.year
+
+    def is_classic(self):
+        return 2025 - self.year > 25
+
+
+# Rectangle Area Calculator
+# Create a Rectangle class with width and height attributes. Add a method calculate_area() that returns the area.
+
+class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+    def calculate_area(self):
+        return self.width * self.height
+    def calculate_perimeter(self):
+        return 2 * (self.width + self.height)
+    def resize(self, new_width, new_height):
+        self.width = new_width
+        self.height = new_height
+
+
+# Student Score Tracker
+# Create a Student class with attributes name and scores (a list). Add methods to add new scores and to compute the average score.
+
+class Student:
+    def __init__(self, name, scores: list):
+        self.name = name
+        self.scores = scores
+    def add_scores(self, score):
+        self.scores.append(score)
+        return self.scores
+    def average_score(self):
+        if not self.scores:
+            return 0
+        average = sum(self.scores) / len(self.scores)
+        return average
