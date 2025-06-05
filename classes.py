@@ -1604,3 +1604,91 @@ class Student:
             return 0
         average = sum(self.scores) / len(self.scores)
         return average
+    # Task 1: Inventory Management System
+    # Create an Item class with attributes: name, price, stock.
+    # Add methods to:
+    # - restock (increase stock)
+    # - sell (decrease stock, but not below zero)
+    # - display item details
+
+class Item:
+    def __init__(self, name, price, stock):
+        self.name = name
+        self.price = price
+        self.stock = stock
+    def restock(self, increase):
+        self.stock += increase
+        return self.stock
+    def sell(self, decrease):
+        if decrease <= self.stock:
+            self.stock -= decrease
+            return self.stock
+    def display(self):
+        print(f"Name: {self.name}, Price: {self.price}, Stock: {self.stock}")
+
+the_item = Item("kinder bueno", 20, 1000)
+
+the_item.restock(10)
+the_item.sell(100)
+the_item.display()
+
+
+    # Task 2: Bank System
+    # Create an Account class with attributes: account_holder, balance.
+    # Add methods to:
+    # - deposit money
+    # - withdraw money (with a check for insufficient funds)
+    # - display balance info
+
+
+
+class Account:
+    def __init__(self, account_holder, balance):
+        self.account_holder = account_holder
+        self.balance = balance
+    def deposit(self, money):
+        self.balance += money
+        return self.balance
+    def withdraw(self, money):
+        if self.balance >= money:
+            self.balance -= money
+        else:
+            print(f"Insufficient funds")
+        return self.balance
+    def display(self):
+        print(f"Account holder: {self.account_holder}, Balance: {self.balance}")
+
+the_account = Account("Sergiusz", 1)
+the_account.deposit(2)
+the_account.withdraw(1)
+the_account.display()
+
+
+
+    # Task 3: Event Organizer
+    # Create classes Event and Participant.
+    # - Event has attributes: name, date, list of participants.
+    # - Methods to add/remove participants, list all participants,
+    #   and check if a participant is registered.
+class Participant:
+    def __init__(self, name, email=None):
+        self.name = name
+        self.email = email
+class Event:
+    def __init__(self, name, date, participants: list):
+        self.name = name
+        self.date = date
+        self.participants = participants
+    def add(self, participant):
+        self.participants.append(participant)
+    def remove(self, participant):
+        self.participants.remove(participant)
+    def listink(self):
+        print(f"The name of the participant is {self.name}. The date of the event is {self.date}.")
+        for participant in self.participants:
+            print(f" {participant.name} (Email): {participant.email}")
+    def regi(self, participant_name):
+        for participant in self.participants:
+            if participant.name == participant_name:
+                return True
+        return False
