@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 class Dog:
 
     # class attribute
@@ -204,6 +206,18 @@ class MathHelper:
 print(MathHelper.multiply(2, 3))
 print(MathHelper.add(3, 5))
 
-# Create a Book class with a class method from_string(book_str) where book_str is formatted like "Title,Author"; the method creates a Book object.
-#
-# Add a static method calculate_discount(price, percentage) that returns the discounted price.
+class Age:
+    def __init__(self, value: int) -> None:
+        self.value = value
+
+    def __add__(self, other: Age | int): #Union[Age, int]
+        if isinstance(other, Age):
+            return Age(self.value + other.value)
+
+        return Age(self.value + other)
+    def __str__(self) -> str:
+        return f"Age: {self.value}"
+
+if __name__ == "__main__":
+    print(Age(25) + Age(13))
+    print(Age(25) + 10)

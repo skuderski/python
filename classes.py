@@ -1692,3 +1692,376 @@ class Event:
             if participant.name == participant_name:
                 return True
         return False
+
+
+# Bank System: Create a BankAccount class with deposit, withdraw, transfer, and display balance methods. Add a feature to accrue interest.
+
+class BankAccount:
+    def __init__(self, name, account_balance, account_number):
+        self.name = name
+        self.account_balance = account_balance
+        self.account_number = account_number
+    def deposit(self, money):
+        self.account_balance += money
+        return self.account_balance
+    def withdraw(self, money):
+        if self.account_balance >= money:
+            self.account_balance -= money
+        return self.account_balance
+
+    def transfer(self, other_account, money):
+        if self.account_balance >= money:
+            self.withdraw(money)
+            other_account.deposit(money)
+        else:
+            print("Not enough funds")
+        return self.account_balance
+    def display(self):
+        print(f"The name of the account holder: {self.name}, the balance: {self.account_balance}, the account number: {self.account_number}")
+
+bank_account = BankAccount("Sergiusz", 2000, 1952432)
+bank_account2 = BankAccount("Wiesiek", 3000, 15912)
+bank_account.deposit(1000)
+bank_account.withdraw(500)
+bank_account.display()
+bank_account.transfer(bank_account2, 5000)
+bank_account2.display()
+
+
+# Shopping Cart: Design Product and Cart classes. The cart can add/remove products, update quantities, and calculate total cost.
+
+class Product:
+    def __init__(self, name, quantity, cost):
+        self.name = name
+        self.quantity = quantity
+        self.cost = cost
+
+class Cart:
+    def __init__(self):
+        self.products = []
+    def add(self, product):
+        self.products.append(product)
+
+    def remove(self, product):
+        self.products = [p for p in self.products if p.name != product]
+        return self.products
+
+    def update_quantity(self, product, new_quantity):
+        for p in self.products:
+            if p.name == product:
+                p.quantity = new_quantity
+                break
+
+    def total_cost(self):
+        total = 0
+        for p in self.products:
+            total += p.cost * p.quantity
+        return total
+
+    def __str__(self):
+        lines = []
+        for p in self.products:
+            lines.append(f"{p.name}: {p.quantity} @ {p.cost}")
+        lines.append(f"Total cost: {self.total_cost()}")
+        return "\n".join(lines)
+
+product1 = Product("cheese", 50, 2)
+product2 = Product("meat", 20, 5)
+product3 = Product("water", 5, 10)
+product4 = Product("sausages", 15, 7)
+
+cart = Cart()
+
+cart.add(product1)
+cart.add(product2)
+cart.add(product3)
+cart.add(product4)
+cart.update_quantity("meat", 30)
+print(cart.total_cost())
+print(cart)
+
+# Create a Dog class with attributes like name and breed, and a method bark() that prints a bark message.
+
+class Dog:
+    def __init__(self, name, breed):
+        self.name = name
+        self.breed = breed
+
+    def bark(self):
+        print("Bark Bark")
+
+doggy = Dog("Rodi", "le szampinjon")
+doggy.bark()
+
+# Create a Dog class that includes:
+#
+# Attributes: name breed energy_level (initially set to 100)
+# Methods: bark() — prints a bark message, but also decreases energy_level by 10.  eat() — increases energy_level by 20, up to a max of 100.
+# play() — decreases energy_level by 30 and prints a playful message.rest() — increases energy_level by 50, up to 100.
+# status() — prints the current energy level with a message.
+
+class Dog:
+    def __init__(self, name, breed, energy_level = 100):
+        self.name = name
+        self.breed = breed
+        self.energy_level = energy_level
+    def bark(self):
+        print("bark")
+        self.energy_level = max(self.energy_level - 10, 0)
+        return self.energy_level
+    def eat(self):
+        self.energy_level = min(self.energy_level + 20, 100)
+        return self.energy_level
+
+    def play(self):
+        self.energy_level = max(self.energy_level - 30, 0)
+        print("who's a good boy")
+        return self.energy_level
+
+    def rest(self):
+        self.energy_level = min(self.energy_level + 50, 100)
+        return self.energy_level
+
+    def status(self):
+        print(f"The current energy level of {self.name} is: {self.energy_level}")
+
+the_doggo = Dog("Buddy", "labrador")
+the_doggo.bark()
+the_doggo.play()
+the_doggo.play()
+the_doggo.status()
+the_doggo.eat()
+the_doggo.bark()
+the_doggo.bark()
+the_doggo.status()
+the_doggo.rest()
+the_doggo.status()
+
+# Create a Dog class with the following features:
+#
+# Attributes: name breed energy_level (initially 100) happiness (initially 50)
+# Methods:
+
+# bark(): prints "Woof!", decreases energy_level by 10 (min 0), increases happiness by 2 (max 100).  eat(): increases energy_level by 20 (max 100), increases happiness by 1 (max 100).
+# play(): decreases energy_level by 30 (min 0), increases happiness by 10 (max 100). rest(): increases energy_level by 50 (max 100), no change to happiness.
+# greet(): prints a greeting that includes the dog's name. status(): prints current energy_level and happiness.
+# Implement a method is_happy() that returns True if happiness > 75, otherwise False.
+# Optional:
+# Add a method train() that increases happiness by 15 but decreases energy by 20.
+
+class Dog:
+    def __init__(self, name, breed, energy_level = 100, happiness = 50):
+        self.name = name
+        self.breed = breed
+        self.energy_level = energy_level
+        self.happiness = happiness
+
+    def bark(self):
+        print("Woof!")
+        self.energy_level = max(self.energy_level - 10, 0)
+        self.happiness = min(self.happiness + 2, 100)
+
+    def eat(self):
+        self.energy_level = max(self.energy_level + 20, 100)
+        self.happiness = min(self.happiness + 2, 100)
+
+    def play(self):
+        self.energy_level = max(self.energy_level - 30, 0)
+        self.happiness = min(self.happiness + 10, 100)
+
+    def rest(self):
+        self.energy_level = min(self.energy_level + 50, 100)
+
+    def greet(self):
+        print(f"Hello, {self.name}")
+
+    def status(self):
+        print(f"{self.name}'s energy level: {self.energy_level}")
+        print(f"{self.name}'s happiness: {self.happiness}")
+
+    def is_happy(self):
+        return self.happiness > 75
+
+    def train(self):
+        self.energy_level = min(self.energy_level + 15, 100)
+        self.happiness = max(self.happiness - 20, 0)
+
+
+
+the_dog = Dog("Rodi", "kundel")
+
+the_dog.bark()
+the_dog.status()
+print(the_dog.is_happy())
+the_dog.train()
+the_dog.status()
+
+# Design a Circle class with an attribute radius and a method calculate_area() to compute its area.
+import math
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+    def calculate_area(self):
+        return math.pi * self.radius ** 2
+
+the_circlo = Circle(5)
+print(the_circlo.calculate_area())
+
+# Create a Circle class that:
+#
+# Has an attribute radius.
+# Includes methods to:
+# calculate_area(): compute the area.
+# calculate_circumference(): compute the circumference of the circle.
+# scale(factor): multiply the radius by a scaling factor (and update the radius).
+# info(): print detailed info about the circle (radius, area, circumference).
+# Bonus:
+# Add validation to ensure the radius can never be negative.
+# Add a class variable circle_count that tracks how many Circle instances have been created.
+
+class Circle:
+    circle_count = 0
+    def __init__(self, radius):
+        if radius < 0:
+            raise ValueError("Radius cannot be negative")
+        self.radius = radius
+        Circle.circle_count += 1
+
+    def calculate_area(self):
+        return math.pi * self.radius ** 2
+
+    def calculate_circumference(self):
+        return 2 * math.pi * self.radius
+
+    def scale(self, factor):
+        self.radius *= factor
+        return self.radius
+
+    def info(self):
+        print(f"The radius is: {self.radius}. The area is {self.calculate_area()} and the circumference is: {self.calculate_circumference()}")
+
+
+
+circlo = Circle(5)
+circlo2 = Circle(10)
+circlo.info()
+circlo2.calculate_area()
+circlo2.info()
+circlo2.scale(3)
+circlo2.calculate_area()
+circlo2.info()
+
+print(Circle.circle_count)
+
+# Build a Person class with attributes name and age, and a method say_hello() that prints a greeting.
+
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def say_hello(self):
+        print(f"Hello {self.name}")
+
+me = Person("Sergiusz", 30)
+
+me.say_hello()
+
+# Create a Person class with:
+# Attributes:
+# name
+# birth_year
+# Methods:
+# say_hello(): prints a greeting with the person's name.
+# calculate_age(current_year): returns the person's age based on the current year.
+# is_adult(current_year): returns True if the person is 18 or older.
+# have_birthday(): increases the age by 1.
+
+class Person:
+    def __init__(self, birth_year, age, name="Anonymous"):
+        self.name = name
+        self.birth_year = birth_year
+        self.age = age
+    def say_hello(self):
+        print(f"Hello, {self.name}")
+
+    def calculate_age(self, current_year = 2025):
+        if current_year > 2025:
+            print("Year in the future")
+        self.age = current_year - self.birth_year
+        return self.age
+
+    def is_adult(self, current_year = 2025):
+        return (current_year - self.birth_year) >= 18
+
+    def have_birthday(self):
+        self.age += 1
+
+Sergiusz = Person(1994, 30, "Sergiusz")
+Sergiusz.say_hello()
+print(Sergiusz.calculate_age())
+print(Sergiusz.is_adult())
+Sergiusz.have_birthday()
+Sergiusz.have_birthday()
+print(Sergiusz.age)
+
+# Create an Employee Management System with two classes: Employee and Company.
+
+# 1. Employee Class:
+#    - Attributes:
+#        - name (string): the employee's name
+#        - birth_year (int): year of birth
+#        - hire_year (int): year when the employee was hired
+#        - salary (number): employee's salary
+#    - Methods:
+#        - calculate_age(current_year): returns age based on birth_year
+#        - calculate_years_of_service(current_year): returns years worked at the company
+#        - give_raise(amount): increases salary by the specified amount
+#        - status(): prints employee info: name, age, years of service, salary
+#    - Validation:
+#        - birth_year and hire_year should not be in the future (use datetime to check)
+#
+# 2. Company Class:
+#    - Attributes:
+#        - name (string): name of the company
+#        - employees (list): list of Employee objects
+#    - Methods:
+#        - add_employee(employee): adds an employee
+#        - remove_employee(employee_name): removes employee by name
+#        - total_salary(): sums salaries of all employees
+#        - list_employees(): prints info of all employees
+#        - raise_all(amount): increases all employees' salaries
+#        - find_employee(employee_name): returns Employee object or None
+#
+# 3. Additional Tips:
+#    - Use current system year (datetime module) for age and service calculations.
+#    - Handle invalid input gracefully.
+#    - Test with multiple employees and company operations.
+
+class Employee:
+    def __init__(self, name, birth_year, hire_year, salary):
+        self.name = name
+        self.birth_year = birth_year
+        self.hire_year = hire_year
+        self.salary = salary
+
+    def calculate_age(self, current_year = 2025):
+        age = current_year - self.birth_year
+        return age
+
+    def calculate_years_of_service(self, current_year = 2025):
+        years_of_service = current_year - self.hire_year
+        return years_of_service
+
+    def give_raise(self, amount):
+        self.salary += amount
+        return self.salary
+
+    def status(self):
+        print(f"Name: {self.name}, Age: {self.calculate_age()}, Years of service: {self.calculate_years_of_service()}, Salary: {self.salary}")
+
+Sergiusz_Kuderski = Employee("Sergiusz", 1994, 2022, 1000)
+print(Sergiusz_Kuderski.calculate_age())
+print(Sergiusz_Kuderski.calculate_years_of_service())
+Sergiusz_Kuderski.give_raise(200)
+Sergiusz_Kuderski.status()
