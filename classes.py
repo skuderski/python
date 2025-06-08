@@ -1,3 +1,5 @@
+import datetime
+
 # class Pizza:
 #    def __init__(self, sauce: str, toppings: str, cheese: str):
 #        self.sauce = sauce
@@ -2040,16 +2042,26 @@ print(Sergiusz.age)
 
 class Employee:
     def __init__(self, name, birth_year, hire_year, salary):
+        current_year = datetime.datetime.now().year
+        if birth_year > current_year:
+            raise ValueError ("Birth year cannot be in the future.")
+        if hire_year > current_year:
+            raise ValueError ("Hire year cannot be in the future.")
         self.name = name
         self.birth_year = birth_year
         self.hire_year = hire_year
         self.salary = salary
 
-    def calculate_age(self, current_year = 2025):
+
+    def calculate_age(self, current_year = None):
+        if current_year is None:
+            current_year = datetime.datetime.now().year
         age = current_year - self.birth_year
         return age
 
-    def calculate_years_of_service(self, current_year = 2025):
+    def calculate_years_of_service(self, current_year = None):
+        if current_year is None:
+            current_year = datetime.datetime.now().year
         years_of_service = current_year - self.hire_year
         return years_of_service
 
@@ -2060,8 +2072,689 @@ class Employee:
     def status(self):
         print(f"Name: {self.name}, Age: {self.calculate_age()}, Years of service: {self.calculate_years_of_service()}, Salary: {self.salary}")
 
+    def __str__(self):
+        return f"Employee: {self.name}, Salary: {self.salary}, Birth Year: {self.birth_year}"
+
+
+class Company:
+    def __init__(self, name: str):
+        self.name = name
+        self.employees = []
+
+    def add_employee(self, employee):
+        self.employees.append(employee)
+
+    def remove_employee(self, employee):
+        self.employees = [e for e in self.employees if e.name != employee.name]
+
+    def total_salary(self):
+        total = 0
+        for employee in self.employees:
+            total += employee.salary
+        return total
+
+    def list_employees(self):
+        for e in self.employees:
+            print(f"Name: {e.name}, salary: {e.salary}, birth year: {e.birth_year}")
+
+    def raise_all(self, amount):
+        for e in self.employees:
+            e.salary += amount
+
+    def find_employee(self, employee_name):
+        for e in self.employees:
+            if e.name == employee_name:
+                return e
+        return None
+
+
 Sergiusz_Kuderski = Employee("Sergiusz", 1994, 2022, 1000)
+Tomasz_Konopka = Employee("Tomasz", 1988, 2020, 1500)
+Piotr_Kuderski = Employee("Piotr", 1985, 2015, 2000)
 print(Sergiusz_Kuderski.calculate_age())
 print(Sergiusz_Kuderski.calculate_years_of_service())
 Sergiusz_Kuderski.give_raise(200)
 Sergiusz_Kuderski.status()
+
+company = Company("Wodka Holdings")
+company.add_employee(Sergiusz_Kuderski)
+company.list_employees()
+company.add_employee(Tomasz_Konopka)
+company.add_employee(Piotr_Kuderski)
+company.list_employees()
+company.remove_employee(Tomasz_Konopka)
+company.list_employees()
+print(company.total_salary())
+company.raise_all(200)
+company.add_employee(Tomasz_Konopka)
+company.list_employees()
+print(company.total_salary())
+print(company.find_employee("Sergiusz"))
+
+# Create a Student class with attributes name and scores (list). Include methods to add a score and compute the average score.
+
+class Student:
+    def __init__(self, name):
+        self.name = name
+        self.scores = []
+
+    def adding(self, score):
+        self.scores.append(score)
+        return self.scores
+
+    def compute_average(self):
+        if len(self.scores) == 0:
+            return 0
+        return sum(self.scores) / len(self.scores)
+
+student1 = Student("Sergiusz")
+student1.adding(20)
+student1.adding(30)
+student1.adding(40)
+student1.adding(50)
+
+print(student1.compute_average())
+
+
+# Create a Student class with:
+#
+# Attributes:
+#
+# name
+# scores (list of scores only, e.g., [85, 90, 78])
+# Methods:
+#
+# add_score(score): adds a new score to the list.
+# calculate_average(): returns the average score of all recorded scores.
+# highest_score(): returns the highest score.
+
+class Student:
+    def __init__(self, name):
+        self.name = name
+        self.scores = []
+
+    def add_score(self, score):
+        self.scores.append(score)
+        return self.scores
+
+    def calculate_average(self):
+        return sum(self.scores) / len(self.scores)
+
+    def highest_score(self):
+        return max(self.scores)
+
+student_sergiusz = Student("Sergiusz")
+student_sergiusz.add_score(20)
+student_sergiusz.add_score(50)
+student_sergiusz.add_score(30)
+print(student_sergiusz.calculate_average())
+print(student_sergiusz.highest_score())
+
+# Create a Student class with:
+#
+# Attributes:
+#
+# name
+# scores (list of scores)
+# name (student's name)
+# Methods:
+#
+# add_score(score): add a score.
+# calculate_average(): return the average, but only considering scores from the last 5 entries.
+# highest_score(): return the highest score and its position in the score list (the index).
+
+class Student:
+    def __init__(self, name):
+        self.name = name
+        self.scores = []
+
+    def add_score(self, score):
+        self.scores.append(score)
+
+    def calculate_average(self):
+        if not self.scores:
+            return 0
+        recent_scores = self.scores[-5:]
+        return sum(recent_scores) / len(recent_scores)
+
+    def highest_score(self):
+        max_index, max_score = max(enumerate(self.scores), key=lambda x: x[1])
+        return max_score, max_index
+
+student_1 = Student("Sergiusz")
+student_1.add_score(2)
+student_1.add_score(3)
+student_1.add_score(4)
+student_1.add_score(5)
+student_1.add_score(6)
+print(student_1.calculate_average())
+print(student_1.highest_score())
+
+# Implement a Rectangle class with attributes width and height, and methods to calculate area and perimeter.
+
+class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def calculate_area(self):
+        return self.width * self.height
+
+    def calculate_perimeter(self):
+        return 2 * (self.width + self.height)
+
+some_rectangle = Rectangle(2, 5)
+print(some_rectangle.calculate_area())
+print(some_rectangle.calculate_perimeter())
+
+# Create a Rectangle class with:
+#
+# Attributes:
+#
+# width
+# height
+# Methods:
+#
+# calculate_area(): returns the area.
+# calculate_perimeter(): returns the perimeter.
+# resize(new_width, new_height): update the width and height.
+# is_square(): returns True if the rectangle is a square, otherwise False.
+# swap_dimensions(): swaps the width and height.
+
+class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def calculate_area(self):
+        return self.width * self.height
+
+    def calculate_perimeter(self):
+        return 2 * (self.width + self.height)
+
+    def resize(self, new_width, new_height):
+        if new_width <= 0 or new_height <= 0:
+            raise ValueError("Width and height must be positive numbers.")
+        self.width = new_width
+        self.height = new_height
+
+    def is_square(self):
+        return self.width == self.height
+
+    def swap_dimensions(self):
+        self.width, self.height = self.height, self.width
+
+first_rectangle = Rectangle(2, 10)
+print(first_rectangle.calculate_area())
+print(first_rectangle.calculate_perimeter())
+first_rectangle.resize(5,10)
+print(first_rectangle.is_square())
+first_rectangle.swap_dimensions()
+print(first_rectangle.calculate_area())
+
+# Create a Rectangle class with:
+#
+# Attributes:
+#
+# width
+# height
+# color (optional, defaults to 'black')
+# border_width (optional, defaults to 1)
+# Methods:
+#
+# calculate_area(): returns area.
+# calculate_perimeter(): returns perimeter.
+# resize(new_width, new_height): updates dimensions with validation for positive values.
+# is_square(): returns True if width == height.
+# swap_dimensions(): swaps width and height.
+# set_color(new_color): updates the rectangle's color.
+# set_border_width(new_width): updates border width with validation for non-negative values.
+# display(): prints all properties of the rectangle.
+
+class Rectangle:
+    def __init__(self, width, height, color = "black", border_width = 1):
+        self.width = width
+        self.height = height
+        self.color = color
+        self.border_width = border_width
+
+    def calculate_area(self):
+        return self.width * self.height
+
+    def calculate_perimeter(self):
+        return 2 * (self.width + self.height)
+
+    def resize(self, new_width, new_height):
+        if new_width <= 0 or new_height <= 0:
+            raise ValueError("Width and height must be positive numbers.")
+        self.width = new_width
+        self.height = new_height
+
+    def is_square(self):
+        return self.width == self.height
+
+    def swap_dimensions(self):
+        self.width, self.height = self.height, self.width
+
+    def set_color(self, color):
+        self.color = color
+        return self.color
+
+    def set_border_width(self, new_width):
+        if new_width <= 0:
+            raise ValueError("Must be a positive number")
+        self.border_width = new_width
+
+    def display(self):
+        print(f"The height: {self.height}, the width: {self.width}, the color: {self.color}, the border width: {self.border_width}")
+
+    def __str__(self):
+        return (f"Rectangle(width={self.width}, height={self.height}, "
+                f"color={self.color}, border_width={self.border_width})")
+
+
+cool_rectangle = Rectangle(10, 15, "blue", 5)
+print(cool_rectangle.calculate_area())
+print(cool_rectangle.calculate_perimeter())
+cool_rectangle.resize(5, 7)
+print(cool_rectangle.is_square())
+cool_rectangle.swap_dimensions()
+cool_rectangle.set_color("yellow")
+cool_rectangle.set_border_width(25)
+cool_rectangle.display()
+print(cool_rectangle)
+
+# Design a Book class with attributes title, author, and year, and a method display() that prints the book details.
+
+class Book:
+
+    def __init__(self, title, author, year):
+        self.title = title
+        self.author = author
+        self.year = year
+
+    def display(self):
+        print(f"The title: {self.title}, the author: {self.author}, the year: {self.year}")
+
+some_book = Book("Harry Potter", "J.K. Rowling", 2000)
+some_book.display()
+
+# Create a Book class with:
+#
+# Attributes:
+#
+# title
+# author, year, genre (optional, default to 'Unknown'), pages (optional, default to 0)
+# Methods:
+#
+# display(): Prints all book details in a neat format.
+# is_classic(): Returns True if the book was published more than 50 years ago.
+# update_pages(new_pages): Updates the number of pages (with validation: must be positive).
+# update_genre(new_genre): Changes the genre.
+# Bonus:
+# Add a class attribute book_count to keep track of how many Book instances have been created.
+
+class Book:
+    book_count = 0
+
+    def __init__(self, title, author, year, genre = "Unknown", pages = 0):
+        self.title = title
+        self.author = author
+        self.year = year
+        self.genre = genre
+        self.pages = pages
+        Book.book_count += 1
+
+    def display(self):
+        print(f"The title of the book is: {self.title}. The author of the book is: {self.author}. The year it was published: {self.year}."
+              f"The genre of the book is: {self.genre}. The book consists of {self.pages} pages.")
+
+    def is_classic(self, current_year = None):
+        import datetime
+        if current_year is None:
+            current_year = datetime.datetime.now().year
+        return (current_year - self.year) >= 50
+
+    def update_pages(self, new_pages):
+        if new_pages < 0:
+            raise ValueError ("Must be a positive number")
+        self.pages = new_pages
+
+    def update_genre(self, new_genre):
+        self.genre = new_genre
+
+booka = Book("some_title", "me", 2000, "criminal", 420)
+
+booka.display()
+print(f"is {booka.title} a classic? {booka.is_classic()}")
+booka.update_pages(200)
+booka.update_genre("history")
+booka.display()
+print(Book.book_count)
+
+# Create a `Book` class with the following features:
+
+# Attributes:
+# - `title` (string): the title of the book
+# - `author` (string): the author of the book
+# - `publication_year` (int): year the book was published
+# - `genre` (string, optional, default "Unknown")
+# - `pages` (int): number of pages
+# - `ratings` (list of integers, optional, default empty list): ratings between 1 and 5
+#
+# Methods:
+# - `display()`: prints all details of the book.
+# - `add_rating(rating)`: adds a rating (must be between 1 and 5), with validation.
+# - `calculate_average_rating()`: returns the average rating, or `None` if no ratings exist.
+# - `is_classic(current_year=None)`: checks if the book is over 50 years old based on the current year.
+# - `update_pages(new_pages)`: updates the pages, with validation that pages are positive.
+# - `update_genre(new_genre)`: changes the genre.
+# - `get_summary()`: returns a string summarizing the book with key details (title, author, year, average rating).
+#
+# Additional:
+# - Implement a class attribute `book_count` that tracks how many `Book` instances are created.
+# - Add a method `recommend()` that returns `True` if the average rating is 4 or higher.
+
+class Book:
+    book_count = 0
+
+    def __init__(self, title, author, publication_year, pages, genre = "Unknown"):
+        self.title = title
+        self.author = author
+        self.publication_year = publication_year
+        self.genre = genre
+        self.pages = pages
+        self.ratings = []
+        Book.book_count += 1
+
+    def display(self):
+        print(f"Title: {self.title}"
+              f"Author: {self.author}"
+              f"Publication year: {self.publication_year}"
+              f"Genre: {self.genre}"
+              f"Pages: {self.pages}"
+              f"Ratings: {self.ratings}")
+
+    def add_rating(self, rating):
+        if not isinstance(rating, (float, int)):
+            raise ValueError("Rating must be a number")
+        if 1 <= rating <= 5:
+            self.ratings.append(rating)
+        else:
+            raise ValueError("Rating must be between 1 and 5")
+
+    def calculate_average_rating(self):
+        if not self.ratings:
+            return None
+        return sum(self.ratings) / len(self.ratings)
+
+    def is_classic(self, current_year = None):
+        import datetime
+        if current_year is None:
+            current_year = datetime.datetime.now().year
+        return (current_year - self.publication_year) >= 50
+
+    def update_pages(self, new_pages):
+        self.pages = new_pages
+        return self.pages
+
+    def update_genre(self, new_genre):
+        self.genre = new_genre
+        return self.genre
+
+    def recommend(self):
+        avg_rating = self.calculate_average_rating()
+        return avg_rating is not None and avg_rating >= 4
+
+    def __str__(self):
+        return (f"The title: {self.title}, the author: {self.author}, publication year: {self.publication_year}, genre: {self.genre}, pages: {self.pages}, "
+                f"ratings: {self.ratings}")
+
+some_fun_book = Book("Lord of the Rings", "J. R. R. Tolkien", 1955, 500, "Fantasy")
+print(some_fun_book)
+some_fun_book.add_rating(5)
+some_fun_book.add_rating(3)
+some_fun_book.add_rating(4)
+some_fun_book.add_rating(2)
+print(some_fun_book.calculate_average_rating())
+print(some_fun_book.is_classic())
+some_fun_book.update_pages(450)
+some_fun_book.update_genre("Fantasy improved")
+print(some_fun_book.recommend())
+print(some_fun_book)
+
+# Create a Car class with attributes make, model, and year, and a method display_info().
+
+class Car:
+
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+
+    def display_info(self):
+        print(f"The make of the car is: {self.make}. "
+              f"The model of the car is: {self.model}. "
+              f"The year of the car is: {self.year}.")
+
+my_carro = Car("Toyota", "Corolla", 1990)
+
+my_carro.display_info()
+
+# Create a `Car` class with the following:
+#
+# Attributes:
+# - `make` (string): the manufacturer - `model` (string): the model name  `year` (int): manufacturing year, not in the future
+# - `mileage` (float, default 0.0): total driven distance  `color` (string, default "Black"): car color `price` (float): original price
+
+# Methods:
+# - `display_info()`: print all car details neatly
+# - `update_mileage(new_mileage)`: update mileage; ensure it does not decrease
+# - `paint(new_color)`: change the car's color
+# - `calculate_age(current_year=None)`: compute how many years old the car is
+# - `get_price_after_depreciation(current_year=None)`: estimate current value, assuming a fixed depreciation rate per year
+#
+# Additional:
+# - Validate that `year` is not in the future during initialization.
+# - Add a class attribute `car_count` to track total number of `Car` instances.
+
+class Car:
+
+    car_count = 0
+
+    def __init__(self, make, model, year, price, mileage: float = 0.0, color = "black"):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.mileage = mileage
+        self.color = color
+        self.price = price
+        Car.car_count += 1
+
+    def display_info(self):
+        print(f"The make: {self.make}. "
+              f"The model: {self.model}. "
+              f"The year: {self.year}. "
+              f"The mileage: {self.mileage}. "
+              f"The color: {self.color}. "
+              f"The price: {self.price}. ")
+
+    def update_mileage(self, new_mileage):
+        if new_mileage >= self.mileage:
+            self.mileage = new_mileage
+        else:
+            print(f"Mileage must be equal or greater than the current mileage")
+
+    def paint(self, color):
+        self.color = color
+        return self.color
+
+    def calculate_age(self, current_year = None):
+        import datetime
+        if current_year is None:
+            current_year = datetime.datetime.now().year
+        return current_year - self.year
+
+    def get_price_after_depreciation(self, current_year = None):
+        import datetime
+        if current_year is None:
+            current_year = datetime.datetime.now().year
+        age = current_year - self.year
+        depreciation_rate = 0.15
+        depreciated_price = self.price
+        for _ in range(age):
+            depreciated_price -= depreciated_price * depreciation_rate
+        return depreciated_price
+
+car = Car("Toyota", "Camry", 2010, 20000)
+print(car.get_price_after_depreciation())
+
+
+
+
+# Design an Employee class with attributes name, department, and salary, and methods to give a raise and display info.
+
+class Employee:
+    def __init__(self, name, department, salary):
+        self.name = name
+        self.department = department
+        self.salary = salary
+
+    def give_raise(self, amount):
+        self.salary += amount
+        return self.salary
+
+    def display_info(self):
+        print(f"Name: {self.name} "
+              f"Department: {self.department} "
+              f"Salary: {self.salary} ")
+
+Sergiusz_employee = Employee("Sergiusz", "engineer", 5000)
+Sergiusz_employee.display_info()
+Sergiusz_employee.give_raise(500)
+Sergiusz_employee.display_info()
+
+
+# Create an Employee class with the following:
+#
+# Attributes:
+# - name (string): employee's name
+# - department (string): department name
+# - salary (float): current salary
+# - hire_date (datetime.date): date of hire; defaults to today if not provided
+#
+# Methods:
+# - give_raise(amount): increases salary by given amount (raise cannot be negative)
+# - display_info(): prints detailed info about the employee
+# - change_department(new_department): updates the department
+# - years_with_company(current_year=None): calculates years from hire_date to current year (defaults to today)
+# - is_eligible_for_promotion(current_year=None): returns True if employee has been with the company more than 5 years
+#
+# Additional:
+# - Validate that salary is not negative
+# - Validate hire_date is a datetime.date object if provided
+# - hire_date defaults to today's date
+import datetime
+class Employee:
+
+    def __init__(self, name, department, salary, hire_date = None):
+        if salary < 0:
+            raise ValueError("Salary cannot be negative.")
+        self.name = name
+        self.department = department
+        self.salary = salary
+        if hire_date is None:
+            self.hire_date = datetime.date.today()
+        else:
+            if isinstance(hire_date, datetime.date):
+                self.hire_date = hire_date
+            else:
+                raise TypeError("hire_date must be a datetime.date object.")
+    def give_raise(self, amount):
+        if amount < 0:
+            raise ValueError("The raise cannot be negative")
+        self.salary += amount
+        return self.salary
+
+    def display_info(self):
+        print(f"The name: {self.name}, the department: {self.department}, the salary: {self.salary}, hiring date: {self.hire_date}")
+
+    def change_department(self, new_department):
+        self.department = new_department
+        return self.department
+
+    def years_with_company(self, current_year = None):
+        if current_year is None:
+            current_year = datetime.datetime.now().year
+        return current_year - self.hire_date.year
+
+    def is_eligible_for_promotion(self, current_year = None):
+        if current_year is None:
+            current_year = datetime.datetime.now().year
+        return (current_year - self.hire_date.year) > 5
+
+
+
+
+
+# Build a Point class with x and y coordinates, and a method to compute distance to another point.
+import math
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def distance_to_other(self, other_point):
+        distance = math.sqrt((self.x - other_point.x) ** 2 + (self.y - other_point.y) ** 2)
+        return distance
+
+p1 = Point(0, 0)
+p2 = Point(3,4)
+print(p1.distance_to_other(p2))
+
+
+# Create a Weather class with an attribute temperature, and methods to convert between Celsius and Fahrenheit.
+
+class Weather:
+    def __init__(self, temperature):
+        self.temperature = temperature
+
+    def convert_c_to_f(self):
+        return (self.temperature * 9/5) + 32
+
+one_day = Weather(20)
+
+print(one_day.convert_c_to_f())
+
+# Temperature Class:
+# Create a class with class method from_fahrenheit(cls, temp_f) to instantiate an object from Fahrenheit, converting it to Celsius.
+
+class Temperature:
+
+
+# Math Utility Class:
+# Create a class with static method is_even(number) that returns True if the number is even.
+#
+# Circle Class:
+# Create a class with a method to calculate the area and a class method from_diameter(cls, diameter) to create a circle instance from its diameter.
+#
+# Person Class:
+# Create a class with a class method from_birth_year(cls, name, birth_year) that calculates age based on the current year and creates a person object.
+#
+# Product Class:
+# Create a class with static method calculate_discounted_price(price, discount_percentage) that returns the discount amount; demonstrate usage.
+#
+# Employee Class:
+# Create a class with a class method set_default_vacation_days(cls, days) to set a default number of vacation days for all employees.
+#
+# Date Utility Class:
+# Create a class with static method days_between(date1, date2) that calculates days difference between two dates.
+#
+# Vehicle Class:
+# Create a class with a class method from_model_year(cls, model, year) that creates an object with a calculated age.
+#
+# Temperature Class (Extended):
+# Create a class with static method celsius_to_fahrenheit(celsius) that converts Celsius to Fahrenheit, usable without instantiation.
+#
+# Printer Utility Class:
+# Create a class with static method print_bold(text) that prints the text in bold (using ANSI escape codes).
