@@ -2731,13 +2731,48 @@ print(one_day.convert_c_to_f())
 
 class Temperature:
 
+    def __init__(self, celcius):
+        self.celcius = celcius
+    @classmethod
+    def from_fahrenheit(cls, temp_f):
+        celcius = (temp_f - 32) / 1.8
+        return cls(celcius)
+
+temp = Temperature.from_fahrenheit(68)
+print(temp.celcius)
+
 
 # Math Utility Class:
 # Create a class with static method is_even(number) that returns True if the number is even.
-#
+class Uti:
+
+    @staticmethod
+    def is_even(number):
+        return number % 2 == 0
+
+num = Uti.is_even(4)
+print(num)
+
 # Circle Class:
 # Create a class with a method to calculate the area and a class method from_diameter(cls, diameter) to create a circle instance from its diameter.
-#
+import math
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+
+    def calculate_area(self):
+        area = math.pi * self.radius **2
+        return area
+
+    @classmethod
+    def from_diameter(cls, diameter):
+        radius = diameter / 2
+        return cls(radius)
+circlinho = Circle(5)
+print(circlinho.calculate_area())
+circle2 = Circle.from_diameter(10)
+print(circle2.calculate_area())
+
 # Person Class:
 # Create a class with a class method from_birth_year(cls, name, birth_year) that calculates age based on the current year and creates a person object.
 #
