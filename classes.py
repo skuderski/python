@@ -2774,17 +2774,77 @@ circle2 = Circle.from_diameter(10)
 print(circle2.calculate_area())
 
 # Person Class:
-# Create a class with a class method from_birth_year(cls, name, birth_year) that calculates age based on the current year and creates a person object.
-#
+# Create a class with a class method from_birth_year(cls, name, birth_year)
+# that calculates age based on the current year and creates a person object.
+import datetime
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    @classmethod
+    def from_birth_year(cls, name, birth_year):
+        current_year = datetime.datetime.now().year
+        age = current_year - birth_year
+        return cls(name, age)
+
+me = Person.from_birth_year("Sergiusz", 1994)
+
+print(me.name)
+print(me.age)
+
+
 # Product Class:
-# Create a class with static method calculate_discounted_price(price, discount_percentage) that returns the discount amount; demonstrate usage.
-#
+# Create a class with static method calculate_discounted_price(price, discount_percentage)
+# that returns the discount amount; demonstrate usage.
+
+class Product:
+
+    @staticmethod
+    def calculate_discounted_price(price, discount_percentage):
+        discount = price * (discount_percentage / 100)
+        return discount
+
+the_product = Product.calculate_discounted_price(500, 10)
+print(the_product)
+
+
+
+
+
 # Employee Class:
 # Create a class with a class method set_default_vacation_days(cls, days) to set a default number of vacation days for all employees.
-#
+
+
+class Employii:
+
+    default_vacation_days = 10
+    def __init__(self, days=None):
+        if days is None:
+            self.days = Employii.default_vacation_days
+        else:
+            self.days = days
+    @classmethod
+    def set_default_vacation_days(cls, days):
+        cls.default_vacation_days = days
+        return f"You have {days} days of vacation"
+Employii.set_default_vacation_days(15)
+employii = Employii()
+print(employii.days)
+
+
 # Date Utility Class:
 # Create a class with static method days_between(date1, date2) that calculates days difference between two dates.
-#
+from datetime import datetime
+class Date:
+    @staticmethod
+    def days_between(date1, date2):
+        delta = date2 - date1
+        return abs(delta.days)
+
+date1 = datetime.now().date()
+date2 = datetime(2020, 7, 20).date()
+print(Date.days_between(date1, date2))
 # Vehicle Class:
 # Create a class with a class method from_model_year(cls, model, year) that creates an object with a calculated age.
 #
