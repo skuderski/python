@@ -2847,9 +2847,40 @@ date2 = datetime(2020, 7, 20).date()
 print(Date.days_between(date1, date2))
 # Vehicle Class:
 # Create a class with a class method from_model_year(cls, model, year) that creates an object with a calculated age.
-#
+from datetime import datetime
+class Vehi:
+    def __init__(self, model, year):
+        self.model = model
+        self.year = year
+        self.age = datetime.now().year - year
+    @classmethod
+    def from_model_year(cls, model, year):
+        return cls(model, year)
+
+car = Vehi.from_model_year("Toyota", 1994)
+print(car.model)
+print(car.age)
+print(car.year)
+
 # Temperature Class (Extended):
 # Create a class with static method celsius_to_fahrenheit(celsius) that converts Celsius to Fahrenheit, usable without instantiation.
-#
+
+class Temperature:
+    @staticmethod
+    def celsius_to_fahrenheit(celsius):
+        return (9/5) * celsius + 32
+
+print(Temperature.celsius_to_fahrenheit(20))
+
+
+
+
 # Printer Utility Class:
 # Create a class with static method print_bold(text) that prints the text in bold (using ANSI escape codes).
+
+class Printer:
+    @staticmethod
+    def print_bold(text):
+        return f"\033[1;97m{text}\033[0m"
+
+print(Printer.print_bold("Sergiusz"))
