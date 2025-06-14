@@ -2884,3 +2884,78 @@ class Printer:
         return f"\033[1;97m{text}\033[0m"
 
 print(Printer.print_bold("Sergiusz"))
+
+# Library Book Management
+# Create a Book class with attributes like title, author, and year.
+# Add methods to display book details and a class method to keep track of the total number of books created.
+
+
+class Book:
+    total_books = 0
+    def __init__(self, title, author, year):
+        self.title = title
+        self.author = author
+        self.year = year
+        Book.total_books += 1
+
+    def details(self):
+        print(f"The title: {self.title}, the author: {self.author}, the year: {self.year}")
+
+    @classmethod
+    def tracking(cls):
+        return cls.total_books
+
+# Student Grade Book
+# Create a Student class with attributes name and a list of grades. Include:
+
+class Student:
+    def __init__(self, name):
+        self.name = name
+        self.grades = []
+
+    def add(self, grade):
+        self.grades.append(grade)
+        return self.grades
+    def average(self):
+        return sum(self.grades) / len(self.grades)
+
+    @staticmethod
+    def passing_grade(grade, passing = 60):
+        return grade >= passing
+
+# An instance method to add a grade.
+# An instance method to calculate average grade.
+# A static method to check if a grade is passing.
+# Vehicle Registration System
+# Create a Vehicle class with attributes make, model, and year. Add:
+# A class method to create a vehicle from a string like "Toyota,Camry,2020".
+# An instance method to display vehicle info.
+
+
+class Vehic:
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+    @classmethod
+    def string(cls, vehicle_str):
+        parts = vehicle_str.split(",")
+        make, model, year = parts
+        return cls(make, model, int(year))
+
+vehicle_str = "Toyota,Camry,2020"
+car = Vehic.string(vehicle_str)
+print(f"make: {car.make}")
+
+# E-commerce Cart
+# Create an Item class with name, price, and quantity.
+# Create a ShoppingCart class with methods to:
+# Add items.
+# Remove items.
+# Calculate total cost (use an instance method).
+# Employee Payroll
+# Create an Employee class with attributes name, hours_worked, and hourly_rate.
+# Include:
+# An instance method to calculate weekly pay.
+# A class method to set a standard hourly rate for all employees.
+# A static method to check if hours exceed a certain threshold (e.g., overtime).
