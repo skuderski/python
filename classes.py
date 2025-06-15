@@ -2953,9 +2953,345 @@ print(f"make: {car.make}")
 # Add items.
 # Remove items.
 # Calculate total cost (use an instance method).
+
+class Item:
+    def __init__(self, name, price, quantity):
+        self.name = name
+        self.price = price
+        self.quantity = quantity
+
+class ShoppingCart:
+    def __init__(self, name):
+        self.name = name
+        self.items = []
+
+    def add(self, item):
+        self.items.append(item)
+
+    def subtract(self, item_name):
+        self.items = [item for item in self.items if item.name != item_name]
+
+    def total(self):
+        total = 0
+        for item in self.items:
+            total += (item.price * item.quantity)
+
+
 # Employee Payroll
 # Create an Employee class with attributes name, hours_worked, and hourly_rate.
 # Include:
 # An instance method to calculate weekly pay.
 # A class method to set a standard hourly rate for all employees.
 # A static method to check if hours exceed a certain threshold (e.g., overtime).
+
+class Employ:
+
+    standard_rate = 10
+
+    def __init__(self, name, hours_worked, hourly_rate):
+        self.name = name
+        self.hours_worked = hours_worked
+        self.hourly_rate = hourly_rate if hourly_rate is not None else Employ.standard_rate
+    def weekly_pay(self):
+        return self.hours_worked * self.hourly_rate
+
+    @classmethod
+    def standard_hourly_rate(cls, rate):
+        cls.standard_rate = rate
+
+    @staticmethod
+    def exceeds_overtime(hours, threshold = 40):
+        return hours > threshold
+
+
+# Create a Book class with the following:
+#
+# Attributes: title, author, year, and genre.
+# A class attribute to keep track of the total number of books created.
+# Methods to:
+# Display detailed book information.
+# Update the book's genre.
+# A class method to:
+# Create a Book instance from a string that contains the title, author, year, and genre, separated by commas
+# (e.g., "1984,George Orwell,1949,Dystopian").
+# Implement input validation so that:
+# The year must be a valid integer.
+# The genre must be one of a predefined set of genres (e.g., "Fiction", "Science Fiction", "Dystopian"). If not, set it to "Unknown".
+
+class Boook:
+    books_created = 0
+    allowed_genres = ["Fiction", "Science Fiction", "Dystopian"]
+    def __init__(self, title, author, year: int, genre):
+        self.title = title
+        self.author = author
+        self.year = year
+        if genre in Boook.allowed_genres:
+            self.genre = genre
+        else:
+            self.genre = "Unknown"
+        Boook.books_created += 1
+
+    def display(self):
+        print(f"The title: {self.title}. "
+              f"The author: {self.author}. "
+              f"The year: {self.year}. "
+              f"The genre: {self.genre}.\n"
+              f"Total books: {Boook.books_created}. ")
+
+    def update_genre(self, new_genre):
+        if new_genre in Boook.allowed_genres:
+            self.genre = new_genre
+        else:
+            self.genre = "Unknown"
+        return self.genre
+
+    @classmethod
+    def string(cls, book_str):
+
+        part = book_str.split(",")
+        title, author, year, genre = part
+        return cls(title, author, int(year), genre)
+
+    def __str__(self):
+        return (f"Title: {self.title}\n"
+                f"Author: {self.author}\n"
+                f"Year: {self.year}\n"
+                f"Genre: {self.genre}\n"
+                f"Total books: {Boook.books_created}")
+
+the_first_book = Boook("1984", "George Orwell", 1949, "Dystopian")
+the_second_book = Boook("Brave New World", "Aldous Huxley", 1932, "Science Fiction")
+
+the_first_book.display()
+the_second_book.display()
+Boook.string("1984,George Orwell,1949,Dystopian")
+
+# Create a Student class with the following features:
+# Attributes:name, grades (a dictionary mapping course names to lists of grades)
+# Methods:
+# To add a grade to a specific course.
+# To calculate the average grade for a given course.
+# To calculate the overall GPA (average of all course averages).
+# Static method:
+# To check if a grade is passing based on a specified threshold (default 60), applicable to individual grades.
+# Class method:
+# To create a student from a formatted string like "John,Math:85,Science:78,History:92"
+# where each course and grade are comma-separated in the form CourseName:Grade.
+# Bonus:
+# Add a method to list all courses the student is enrolled in.
+# Add validation to ensure grades are within 0-100.
+
+class Studento:
+    def __init__(self, name):
+        self.name = name
+        self.grades = {}
+
+    def add(self, course, grade):
+        if course in self.grades:
+            self.grades[course].append(grade)
+        else:
+            self.grades[course] = [grade]
+
+    def average(self, course):
+        if course in self.grades and self.grades[course]:
+            total = sum(self.grades[course])
+            count = len(self.grades[course])
+            return total / count
+        else:
+            return None
+
+    def overall_gpa(self):
+        total = 0
+        count = 0
+        for grades_list in self.grades.values():
+            total += sum(grades_list)
+            count += len(grades_list)
+        if count == 0:
+            return 0
+        return total / count
+
+    @staticmethod
+    def check_if_passing(grade, passing_mark = 60):
+        return grade >= passing_mark
+
+    @classmethod
+    def from_string(cls, student_str):
+        parts = student_str.split(",")
+        name = parts[0]
+        grades_dict = {}
+        for item in parts[1:]:
+            course, grade_str = item.split(":")
+            grade = int(grade_str)
+            # Optional: validate grade boundaries
+            if 0 <= grade <= 100:
+                grades_dict.setdefault(course, []).append(grade)
+            else:
+                # Handle invalid grades as needed
+                grades_dict.setdefault(course, []).append(grade)
+        student = cls(name)
+        student.grades = grades_dict
+        return student
+
+
+# Rectangle Class:
+# Create a class representing a rectangle with width and height attributes. Include methods to calculate area and perimeter.
+
+class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def calculate_area(self):
+        area = self.width * self.height
+        return area
+
+    def calculate_perimeter(self):
+        perimeter = 2 * self.width + 2 * self.height
+        return perimeter
+
+first_rectangle_this_one = Rectangle(2, 5)
+print(first_rectangle_this_one.calculate_area())
+print(first_rectangle_this_one.calculate_perimeter())
+
+# Advanced Rectangle Class:
+# Create a Rectangle class that includes:
+#
+# Width and height attributes.
+# Methods to calculate area and perimeter.
+# A method to check if the rectangle is a square (width == height).
+# A method to resize the rectangle by a given scale factor (multiplying width and height).
+# Overload the __str__() method to display the rectangle’s dimensions, area, and perimeter in a formatted string.
+
+class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def calculate_area(self):
+        area = self.width * self.height
+        return area
+
+    def calculate_perimeter(self):
+        perimeter = 2 * self.width + 2 * self.height
+        return perimeter
+
+    def if_square(self):
+        return self.height == self.width
+
+    def resizing(self, factor):
+        self.width = self.width * factor
+        self.height = self.height * factor
+        return self.width, self.height
+
+    def __str__(self):
+        return (f"The area: {self.calculate_area()} "
+                f"the perimeter: {self.calculate_perimeter()} "
+                f"Is this rectangle a square? {self.if_square()} ")
+rectangle = Rectangle(5, 10)
+print(rectangle)
+print(rectangle.resizing(9))
+print(rectangle.calculate_area())
+
+
+
+
+
+
+# Circle Class:
+# Create a class for a circle with a radius attribute. Add methods to calculate area and circumference.
+import math
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+
+    def calculate_area(self):
+        area = math.pi * self.radius ** 2
+        return area
+
+    def calculate_circumference(self):
+        circumference = 2 * self.radius * math.pi
+        return circumference
+
+
+# Create a Circle class that includes:
+#
+# Attributes: radius, and an optional color attribute (default "blue").
+# Methods:
+# To calculate area and circumference (as before).
+# To calculate the diameter.
+# To change the circle's radius and color via methods.
+# To compare two circles for equality (they are equal if their radii are the same).
+# Additional features:
+# Implement __str__() to provide a summary of the circumference, area, radius, and color.
+# Validate the radius (must be a positive number) in the constructor and setter methods.
+import math
+class CircleClass:
+
+    def __init__(self, radius, color = "blue"):
+        if radius > 0:
+            self.radius = radius
+        else:
+            raise ValueError ("Must be a positive number")
+        self.color = color
+
+    def calculate_area(self):
+        area = math.pi * self.radius ** 2
+        return area
+
+    def calculate_circumference(self):
+        circumference = 2 * math.pi * self.radius
+        return circumference
+
+    def calculate_diameter(self):
+        diameter = 2 * self.radius
+        return diameter
+
+    def change_radius_color(self, new_radius, new_color = "blue"):
+        self.radius = new_radius
+        self.color = new_color
+        return self.radius, self.color
+
+    def __eq__(self, other):
+        if isinstance(other, CircleClass):
+            return self.radius == other.radius
+        return False
+
+    def __str__(self):
+        return (f"The area: {self.calculate_area()}\n"
+                f"The circumference: {self.calculate_circumference()}\n"
+                f"The radius: {self.radius}\n"
+                f"The diameter: {self.calculate_diameter()}\n"
+                f"The color: {self.color}")
+
+the_circle = CircleClass(5, "green")
+the_circle2 = CircleClass(6, "red")
+print(the_circle)
+print(the_circle == the_circle2)
+the_circle.change_radius_color(3, "brown")
+print(the_circle)
+the_circle2.change_radius_color(6.999)
+print(the_circle2)
+
+# Bank Account:
+# Create a class that represents a bank account with attributes for account number, owner, and balance. Include methods to deposit, withdraw, and check the balance.
+#
+# Student Record:
+# Create a class for managing student info with name, age, and a list of grades. Add methods to add grades and calculate the average grade.
+#
+# Book Library:
+# Create a Book class with title, author, and year. Add a method to display info about the book.
+#
+# Vehicle Class:
+# Create a class with attributes like make, model, and year. Add a method to display vehicle info.
+#
+# Time Class:
+# Create a class representing a time (hours, minutes, seconds). Add a method to display the time in "HH:MM:SS" format.
+#
+# Point in 2D:
+# Create a class for a point with x and y coordinates. Add methods to calculate distance to another point.
+#
+# Contact List:
+# Create a Contact class with name, phone number, and email. Add a class method to create a contact from a formatted string like "John,555-1234,john@example.com".
+#
+# Temperature Converter:
+# Create a class with static methods to convert Celsius to Fahrenheit and vice versa.
