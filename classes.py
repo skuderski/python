@@ -3273,8 +3273,102 @@ the_circle2.change_radius_color(6.999)
 print(the_circle2)
 
 # Bank Account:
-# Create a class that represents a bank account with attributes for account number, owner, and balance. Include methods to deposit, withdraw, and check the balance.
+# Create a class that represents a bank account with attributes for account number, owner, and balance.
+# Include methods to deposit, withdraw, and check the balance.
+
+class BankAccount:
+    def __init__(self, account_number, owner, balance):
+        self.account_number = account_number
+        self.owner = owner
+        self.balance = balance
+
+    def depositto(self, amount):
+        if amount > 0:
+            self.balance += amount
+        return self.balance
+
+    def withdraw(self, amount):
+        if amount > 0:
+            if self.balance > amount:
+                self.balance -= amount
+        return self.balance
+
+    def display(self):
+        print(f"The balance: {self.balance}")
+
+my_account1 = BankAccount(123, "Sergiusz", 5000)
+my_account1.withdraw(2000)
+my_account1.display()
+my_account1.depositto(1000)
+my_account1.display()
+
+
+# Create a BankAccount class with:
 #
+# Attributes for account number, owner, balance, and an account type (like 'checking' or 'savings').
+# Methods to:
+# Deposit funds.
+# Withdraw funds, with validation for insufficient balance.
+# Check the current balance.
+# Transfer funds from one account to another.
+# Implement a way to track the total number of accounts created.
+# Add a method to display an account statement showing all transactions (you'll need to store transaction history).
+
+class BankAccount:
+    accounts_created = 0
+    def __init__(self, account_number, owner, balance, account_type):
+        self.account_number = account_number
+        self.owner = owner
+        self.balance = balance
+        self.account_type = account_type
+        self.transactions = []
+        BankAccount.accounts_created += 1
+    def depossitti(self, the_amount):
+        if the_amount > 0:
+            self.balance += the_amount
+        self.transactions.append(f"Deposit: +${the_amount:.2f} | Balance: ${self.balance:.2f}")
+        return self.balance
+
+    def withdrawillo(self, the_amount):
+        if self.balance > the_amount:
+            self.balance -= the_amount
+        else:
+            print("Unsufficient funds")
+        self.transactions.append(f"Withdrawal: -${the_amount:.2f} | Balance: ${self.balance:.2f}")
+        return self.balance
+
+    def display(self):
+        print(f"The amount: {self.balance} "
+              f"The owner: {self.owner} "
+              f"The account number: {self.account_number} "
+              f"The account type: {self.account_type} ")
+
+    def transferring(self, other_account, amount):
+        if amount > 0:
+            if self.balance >= amount:
+                self.withdrawillo(amount)
+                other_account.depossitti(amount)
+                print(f"Transferred {amount} from account {self.account_number} to {other_account.account_number}.")
+                self.transactions.append(f"Transferring from {self.account_number} to {other_account.account_number}")
+                other_account.transactions.append((f"Transfer from {self.account_number}: +${amount:.2f} | Balance: ${other_account.balance:.2f}"))
+
+    def show_statement(self):
+        print(f"Statement for account {self.account_number}:")
+        for transaction in self.transactions:
+            print(transaction)
+some_bank_account = BankAccount(12345, "Sergiusz", 2000, "checking")
+some_other_bank_account = BankAccount(67890, "Michal", 2000, "checking")
+some_bank_account.depossitti(1000)
+some_bank_account.withdrawillo(500)
+some_bank_account.display()
+some_other_bank_account.display()
+some_bank_account.transferring(some_other_bank_account, 200)
+some_bank_account.display()
+some_other_bank_account.display()
+some_bank_account.show_statement()
+some_other_bank_account.show_statement()
+
+
 # Student Record:
 # Create a class for managing student info with name, age, and a list of grades. Add methods to add grades and calculate the average grade.
 #
