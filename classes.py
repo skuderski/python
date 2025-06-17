@@ -3371,10 +3371,117 @@ some_other_bank_account.show_statement()
 
 # Student Record:
 # Create a class for managing student info with name, age, and a list of grades. Add methods to add grades and calculate the average grade.
-#
+
+class Studencik:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        self.grades = []
+
+    def add(self, grade):
+        self.grades.append(grade)
+        return self.grades
+
+    def average_grade(self):
+        return sum(self.grades) / len(self.grades)
+
+Sergiusz = Studencik("Sergiusz", 30)
+Sergiusz.add(10)
+Sergiusz.add(20)
+Sergiusz.add(69)
+print(Sergiusz.average_grade())
+
+
+
+
+
 # Book Library:
 # Create a Book class with title, author, and year. Add a method to display info about the book.
-#
+
+
+class Booky:
+    def __init__(self, title, author, year):
+        self.title = title
+        self.author = author
+        self.year = year
+
+    def display(self):
+        return(f"The title: {self.title}\n"
+              f"The author: {self.author}\n"
+              f"The year published: {self.year}")
+
+zee_book = Booky("the titl", "some famous guy", 1969)
+zee_book.display()
+
+
+# Create a Book class with:
+# Attributes:
+# title, author, year, genre
+# status (e.g., 'available', 'checked out')
+# Methods:
+# To display detailed info about the book.
+# To update the book’s genre.
+# To change the status (e.g., from 'available' to 'checked out').
+# To compare two books for equality based on title and author.
+# Additional:
+# Implement a class-level list that keeps track of all books created.
+# Add a class method to find all books by a particular author.
+# Ensure that the book's year is validated to be reasonable (e.g., not in the future).
+
+class Booko:
+    books_created = []
+    def __init__(self, title, author, year, genre, status):
+        self.title = title
+        self.author = author
+        if year <= 2025:
+            self.year = year
+        else:
+            self.year = 2025
+        self.genre = genre
+        self.status = status
+        Booko.books_created.append(self)
+
+    def display(self):
+        print(f"Title: {self.title}\n"
+              f"Author: {self.author}\n"
+              f"Year: {self.year}\n"
+              f"Genre: {self.genre}\n"
+              f"Status: {self.status}")
+
+    def update_genre(self, new_genre):
+        self.genre = new_genre
+        return self.genre
+
+    def change_status(self, new_status):
+        self.status = new_status
+        return self.status
+
+    def compare(self, other):
+        return self.title == other.title and self.author == other.author
+
+    @classmethod
+    def find_all_books(cls, author_name):
+        return [book for book in cls.books_created if book.author == author_name]
+
+    def __str__(self):
+        return(f"Title: {self.title}\n"
+              f"Author: {self.author}\n"
+              f"Year: {self.year}\n"
+              f"Genre: {self.genre}\n"
+              f"Status: {self.status}")
+
+first_booki = Booko("123", "James", 1945, "war", "available")
+second_booki = Booko("321", "Dzejms", 1939, "war", "available")
+third_booki = Booko("567", "Zejmee", 1915, "war", "unavailable")
+
+first_booki.display()
+second_booki.display()
+third_booki.display()
+for book in Booko.books_created:
+    print(book)
+    print("---")
+
+
 # Vehicle Class:
 # Create a class with attributes like make, model, and year. Add a method to display vehicle info.
 #
