@@ -3484,15 +3484,158 @@ for book in Booko.books_created:
 
 # Vehicle Class:
 # Create a class with attributes like make, model, and year. Add a method to display vehicle info.
+
+class Vehicle:
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+
+    def display(self):
+        print(f"Make: {self.make}\n"
+              f"Model: {self.model}\n"
+              f"Year: {self.year}")
+
+
+# Create a Vehicle class with the following features:
 #
+# Attributes:
+# makemodelyearcolormileage
+# Methods:
+# To display vehicle info, including all attributes.
+# To update the mileage (e.g., after a trip).
+# To compare two vehicles — they are considered the same if make, model, and year are the same.
+# To determine if the vehicle is vintage (e.g., older than 25 years from current year).
+# Bonus:
+# Add a class attribute that tracks the total number of vehicles created.
+# Implement validation for the year (must not be in the future).
+# Include a method to update the color.
+from datetime import datetime
+class Vehicl:
+    vehicles = 0
+    def __init__(self, make, model, year, color, mileage):
+        current_year = datetime.now().year
+        self.make = make
+        self.model = model
+        if year < current_year:
+            self.year = year
+        else:
+            print(f"The year cannot be in the future.")
+        self.color = color
+        self.mileage = mileage
+        Vehicl.vehicles += 1
+
+    def display(self):
+        print(f"Make: {self.make}\n"
+              f"Model: {self.model}\n"
+              f"Year: {self.year}\n"
+              f"Color: {self.color}\n"
+              f"Mileage: {self.mileage}")
+
+    def update_mileage(self, distance):
+        self.mileage += distance
+        return self.mileage
+
+    def compare(self, other):
+        return self.make == other.make and self.model == other.model and self.year == other.year
+
+    def vintage(self):
+        current_year = datetime.now().year
+        return current_year - self.year > 25
+
+    def update_color(self, new_color):
+        self.color = new_color
+        return self.color
+
+    def __str__(self):
+        return (f"Make: {self.make}\n"
+                f"Model: {self.model}\n"
+                f"Year: {self.year}\n"
+                f"Color: {self.color}\n"
+                f"Mileage: {self.mileage}")
+
 # Time Class:
 # Create a class representing a time (hours, minutes, seconds). Add a method to display the time in "HH:MM:SS" format.
-#
+
+class Time:
+    def __init__(self, hours, minutes, seconds):
+        self.hours = hours
+        self.minutes = minutes
+        self.seconds = seconds
+
+    def display(self):
+        the_time = f"{self.hours:02d}:{self.minutes:02d}:{self.seconds:02d}"
+        return the_time
+
+t = Time(5, 10, 55)
+print(t.display())
+
 # Point in 2D:
 # Create a class for a point with x and y coordinates. Add methods to calculate distance to another point.
 #
 # Contact List:
-# Create a Contact class with name, phone number, and email. Add a class method to create a contact from a formatted string like "John,555-1234,john@example.com".
+# Create a Contact class with name, phone number, and email.
+# Add a class method to create a contact from a formatted string like "John,555-1234,john@example.com".
+
+class Contact:
+    def __init__(self, name, phone_number, email):
+        self.name = name
+        self.phone_number = phone_number
+        self.email = email
+
+    def create_contact(self):
+        the_contact = f"{self.name},{self.phone_number},{self.email}"
+        return the_contact
+
+el_contacto = Contact("Sergiusz", "999-600-500", "skuderski@gmail.com")
+print(el_contacto.create_contact())
+
+# Create a Contact class with the following features:
 #
+# Attributes:
+# namephone_numberemail
+# Methods:
+#
+# A class method to create a contact from a string formatted like "John,555-1234,john@example.com".
+# An instance method display() to print the contact details in a friendly format.
+# Validate the email format (basic check for presence of '@' and '.').
+# Validate the phone number format (e.g., it should be a string of digits possibly with hyphens, ensuring it's not empty).
+# Additional:
+#
+# Maintain a class attribute that keeps track of all contacts as a list.
+# Add a class method to retrieve all contacts.
+import re
+class Contact:
+    contacts = []
+    def __init__(self, name, phone_number, email):
+        self.name = name
+        self.phone_number = phone_number
+        self.email = email
+        Contact.contacts.append(self)
+
+    @classmethod
+    def from_string(cls, contact_str):
+        parts = contact_str.split(",")
+        if len(parts) != 3:
+            raise ValueError("Input must be in the format 'Name,Phone,Email'")
+        name, phone_number, email = parts
+        if "@" not in email or "." not in email:
+            raise ValueError ("Invalid email format")
+        if not re.match(r"^[\d-]+$", phone_number):
+            raise ValueError("Invalid phone number format")
+        return cls(name, phone_number, email)
+    def create_contact(self):
+        the_contact = f"{self.name},{self.phone_number},{self.email}"
+        return the_contact
+
+    def display(self):
+        print(f"Name: {self.name}\n"
+              f"Phone number: {self.phone_number}\n"
+              f"E-mail: {self.email}")
+
+    @classmethod
+    def retrieve(cls):
+        return cls.contacts
+
 # Temperature Converter:
 # Create a class with static methods to convert Celsius to Fahrenheit and vice versa.
