@@ -3570,9 +3570,74 @@ class Time:
 t = Time(5, 10, 55)
 print(t.display())
 
+
+# Create a Time class with the following features:
+
+# Attributes:# Hours (0-23)Minutes (0-59)Seconds (0-59)
+# Methods:
+# A method to display the time in "HH:MM:SS" format.
+# A method to add a certain number of seconds to the time, properly rolling over minutes/hours if needed.
+# A method to compare two Time objects (e.g., check which time is earlier/later).
+# A method to subtract seconds from the current time, with proper rollover.
+# Implement a method to "convert" time to seconds from midnight, and vice versa.
+# Validation:
+# Ensure that hours, minutes, and seconds are within valid ranges.
+# Bonus:# Implement a method to switch between 12-hour and 24-hour formats.
+# Handle cases where adding or subtracting seconds goes past midnight (i.e., wrap around).
+
+class Time:
+    def __init__(self, hours, minutes, seconds):
+        if 0 <= hours <= 23:
+            self.hours = hours
+        else:
+            ValueError ("Incorrect value")
+        if 0 <= minutes <= 59:
+            self.minutes = minutes
+        else:
+            ValueError ("Incorrect Value")
+        if 0 <= seconds <= 59:
+            self.seconds = seconds
+        else:
+            ValueError ("Incorrect Value")
+
+    def display(self):
+        the_string = f"{self.hours}:{self.minutes}:{self.seconds}"
+        return the_string
+
+    def adding(self, some_seconds):
+        the_time = (self.hours * 3600) + (self.minutes * 60) + (self.seconds)
+        the_time += some_seconds
+        hours = (the_time // 3600) % 24
+        minutes = (the_time % 3600) // 60
+        seconds = the_time % 60
+        return f"{hours:02d}:{minutes:02d}:{seconds:02d}"
+
+    def is_earlier_than(self, other):
+        self_time = (self.hours * 3600)  + (self.minutes * 60) + (self.seconds)
+        other_time = (other.hours * 3600)  + (other.minutes * 60) + (other.seconds)
+        return self_time < other_time
+
+    def substracting(self, some_seconds):
+        the_time = (self.hours * 3600) + (self.minutes * 60) + (self.seconds)
+        the_time -= some_seconds
+        if the_time < 0:
+            the_time = 0
+        hours = (the_time // 3600) % 24
+        minutes = (the_time % 3600) // 60
+        seconds = the_time % 60
+        return f"{hours:02d}:{minutes:02d}:{seconds:02d}"
+
+
+
+
 # Point in 2D:
 # Create a class for a point with x and y coordinates. Add methods to calculate distance to another point.
-#
+
+
+
+
+
+
 # Contact List:
 # Create a Contact class with name, phone number, and email.
 # Add a class method to create a contact from a formatted string like "John,555-1234,john@example.com".
@@ -3639,3 +3704,14 @@ class Contact:
 
 # Temperature Converter:
 # Create a class with static methods to convert Celsius to Fahrenheit and vice versa.
+
+class Temperature:
+    @staticmethod
+    def celsius_to_fahrenheit(celsius):
+        fahrenheit = (9 / 5) * celsius + 32
+        return fahrenheit
+
+    @staticmethod
+    def fahrenheit_to_celsius(fahr):
+        celsius = (fahr - 32) / (9/5)
+        return celsius
