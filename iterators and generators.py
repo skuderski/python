@@ -123,3 +123,108 @@ try:
         print(next(iterator))
 except StopIteration:
     pass
+
+# Print elements in reverse:
+# Create a list of words and use an iterator to print them in reverse order (you might want to reverse the list first, then iterate).
+
+the_words = ["Sergiusz", "Wiesiek", "Anna"]
+
+reversed_words = the_words[::-1]
+
+iterator = iter(reversed_words)
+
+try:
+    while True:
+        print(next(iterator))
+except StopIteration:
+    pass
+
+
+# Filter even numbers:
+# Use an iterator to go through a list of numbers and print only the even ones.
+
+list_of_nums = [1, 2, 3, 4, 6, 10, 5]
+iterator = iter(list_of_nums)
+try:
+    while True:
+        num = next(iterator)
+        if num % 2 == 0:
+            print(num)
+except StopIteration:
+    pass
+
+
+# Count occurrences of a specific element:
+# Given a list and a target element, use an iterator to count how many times the element appears.
+
+elements = [1, 2, 1, 3, 5, 8, 1]
+element = 1
+iterator = iter(elements)
+the_count = 0
+try:
+    while True:
+        current = next(iterator)
+        if current == element:
+            the_count += 1
+except StopIteration:
+    pass
+
+print(f"Number of occurrences of {element}: {the_count}")
+
+# Convert a string to uppercase:
+# Use an iterator to go through each character of a string and build a new string with all characters in uppercase.
+
+some_string = "sergiusz"
+
+iterator = iter(some_string)
+uppercase_iterator = ""
+try:
+    while True:
+        letter = next(iterator)
+        uppercase_iterator += letter.upper()
+except StopIteration:
+    pass
+
+
+# Create an iterable class for Fibonacci sequence:
+# Build a simple class that generates Fibonacci numbers up to a limit, using __iter__() and __next__().
+
+class Fibonacci:
+    def __init__(self, limit):
+        self.limit = limit
+        self.a = 0
+        self.b = 1
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.a > self.limit:
+            raise StopIteration
+
+        next_value = self.a
+        self.a, self.b = self.b, self.a + self.b
+        return next_value
+fib_sequence = Fibonacci(20)
+for num in fib_sequence:
+    print(num)
+
+# Task: Convert a list of words to lowercase
+#
+# Create a list of words.
+# Use an iterator to go through each word in the list.
+# Build a new list containing all words converted to lowercase.
+
+
+words = ["SErgiusz", "Wiesiek", "IRENA"]
+words_lower = []
+iterator = iter(words)
+
+try:
+    while True:
+        word = next(iterator)
+        words_lower.append(word.lower())
+except StopIteration:
+    pass
+
+print(words_lower)
