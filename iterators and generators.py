@@ -228,3 +228,110 @@ except StopIteration:
     pass
 
 print(words_lower)
+
+# Sum of a List:
+# Use an iterator to calculate the total sum of all numbers in a list.
+
+some_cool_numbers = [1, 2, 3, 4, 5]
+
+iterator = iter(some_cool_numbers)
+total = 0
+try:
+    while True:
+        number = next(iterator)
+        total += number
+except StopIteration:
+    pass
+
+print(total)
+
+
+
+
+
+# Find the Maximum:
+# Use an iterator to find the largest number in a list.
+
+the_list_of_nums = [1, 5, 10, 99, 140]
+iterator = iter(the_list_of_nums)
+max_num = next(iterator)
+try:
+    while True:
+        num = next(iterator)
+        if num > max_num:
+            max_num = num
+except StopIteration:
+    pass
+
+print("Maximum number:", max_num)
+
+# Separate Even and Odd Numbers:
+# Use an iterator to split a list into two lists: one with even numbers and one with odd numbers.
+
+the_fkn_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+iterator = iter(the_fkn_list)
+even = []
+odd = []
+
+try:
+    while True:
+        number = next(iterator)
+        if number % 2 == 0:
+            even.append(number)
+        else:
+            odd.append(number)
+except StopIteration:
+    pass
+
+print(even)
+print(odd)
+
+
+# Reverse a String:
+# Use an iterator to reverse a string without using slicing or the reversed() function.
+
+class ReverseString:
+    def __init__(self, s):
+        self.s = s
+        self.index = len(s) - 1
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.index < 0:
+            raise StopIteration
+        char = self.s[self.index]
+        self.index -= 1
+        return char
+
+a_string = "sergiusz"
+reverser = ReverseString(a_string)
+reversed_string = ""
+
+try:
+    while True:
+        reversed_string += next(reverser)
+except StopIteration:
+    pass
+
+print(reversed_string)
+
+
+# Count vowels in a string:
+# Use an iterator to count how many vowels (a, e, i, o, u) are in a given string.
+#
+# Create a Cumulative Sum List:
+# Use an iterator to generate a list where each element is the sum of all previous elements plus the current one.
+#
+# Find First Negative Number:
+# Use an iterator to find the first negative number in a list, or return a message if none exists.
+#
+# Join List of Strings:
+# Use an iterator to concatenate a list of strings into one string with spaces in between.
+#
+# Filter Words Longer Than N:
+# Use an iterator to create a list of words longer than a certain length.
+#
+# Check for Palindrome:
+# Use an iterator to check if a string reads the same forwards and backwards.
