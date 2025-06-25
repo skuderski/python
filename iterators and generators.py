@@ -320,16 +320,83 @@ print(reversed_string)
 
 # Count vowels in a string:
 # Use an iterator to count how many vowels (a, e, i, o, u) are in a given string.
-#
+
+
+some_string = "sergiusz"
+
+iterator = iter(some_string)
+the_count = 0
+try:
+    while True:
+        letter = next(iterator)
+        if letter.lower() in "aeiou":
+            the_count += 1
+except StopIteration:
+    pass
+
+print(the_count)
+
+
+
 # Create a Cumulative Sum List:
 # Use an iterator to generate a list where each element is the sum of all previous elements plus the current one.
-#
+
+nums = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+sum_ofik = []
+
+iterator = iter(nums)
+total = 0
+try:
+    while True:
+        current = next(iterator)
+        total += current
+        sum_ofik.append(total)
+except StopIteration:
+    pass
+
+print(sum_ofik)
+
+
 # Find First Negative Number:
 # Use an iterator to find the first negative number in a list, or return a message if none exists.
-#
+
+
+the_lista = [1, 3, 5, -2, 6]
+
+iterator = iter(the_lista)
+found_negative = False
+try:
+    while True:
+        number = next(iterator)
+        if number < 0:
+            print(number)
+            found_negative = True
+except StopIteration:
+    pass
+
+
+
+
 # Join List of Strings:
 # Use an iterator to concatenate a list of strings into one string with spaces in between.
-#
+
+
+list_of_string = ["sergiusz", "kuderski", "ma", "19", "lat"]
+empty = ""
+
+iterator = iter(list_of_string)
+
+try:
+    while True:
+        stringo = next(iterator)
+        empty += stringo
+        empty += " "
+except StopIteration:
+    pass
+
+print(empty)
+
+
 # Filter Words Longer Than N:
 # Use an iterator to create a list of words longer than a certain length.
 #
