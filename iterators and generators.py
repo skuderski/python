@@ -399,6 +399,60 @@ print(empty)
 
 # Filter Words Longer Than N:
 # Use an iterator to create a list of words longer than a certain length.
-#
+
+list_of_words = ["sergiusz", "michal", "wujek"]
+iterator = iter(list_of_words)
+n = 7
+list_of_words_7 = []
+try:
+    while True:
+        word = next(iterator)
+        if len(word) > 7:
+            list_of_words_7.append(word)
+except StopIteration:
+    pass
+
+print(list_of_words_7)
+
+
+
+
 # Check for Palindrome:
 # Use an iterator to check if a string reads the same forwards and backwards.
+
+palindrome = "wujeejuw"
+
+left_index = 0
+right_index = len(palindrome) - 1
+is_palindrome = True
+
+while left_index < right_index:
+    if palindrome[left_index] != palindrome[right_index]:
+        is_palindrome = False
+        break
+    left_index += 1
+    right_index -= 1
+
+print("Is palindrome:", is_palindrome)
+
+
+# Task: Count the number of uppercase letters in a string
+#
+# Use an iterator to go through each character in a string.
+# Count how many characters are uppercase letters ('A'-'Z').
+# Return or print the count.
+
+the_string = "Sergiusz"
+iterator = iter(the_string)
+
+count = 0
+
+try:
+    while True:
+        letter = next(iterator)
+        if letter == letter.upper():
+            count += 1
+except StopIteration:
+    pass
+
+print(count)
