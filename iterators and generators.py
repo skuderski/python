@@ -456,3 +456,148 @@ except StopIteration:
     pass
 
 print(count)
+
+# Sum all elements: Use an iterator to calculate the total sum of elements in a list of numbers.
+
+numbers = [2, 3, 4, 6, 7]
+iterator = iter(numbers)
+total = 0
+try:
+    while True:
+        number = next(iterator)
+        total += number
+except StopIteration:
+    pass
+
+print(total)
+
+# Task: Calculate the sum of only the positive numbers in a list using an iterator.
+#
+# Use an iterator to go through each element.
+# Sum only the positive numbers (greater than zero).
+# Ignore non-positive numbers.
+# Handle the iteration process with a try-except block for StopIteration.
+
+
+the_numerki = [-1, 2, -3, 0, 5, 6, -10]
+iterator = iter(the_numerki)
+totallo = 0
+try:
+    while True:
+        num = next(iterator)
+        if num > 0:
+            totallo += num
+except StopIteration:
+    pass
+
+print(totallo)
+
+# Task:
+# Calculate the product of all even positive numbers in a list using an iterator.
+#
+# Use an iterator to go through each element.
+# Multiply only the positive even numbers.
+# Handle cases where there are no positive even numbers (the product should be 1 in that case).
+# Remember to handle the iteration with a try-except block.
+
+
+the_list1 = [1, 2, 3, 4, 5, -1, -2, -3]
+iterator = iter(the_list1)
+total = 1
+found_positive = False
+try:
+    while True:
+        multiplying = next(iterator)
+        if multiplying > 0 and multiplying % 2 == 0:
+            total *= multiplying
+            found_positive = True
+except StopIteration:
+    pass
+
+if not found_positive:
+    total = 1
+
+print(total)
+
+
+
+# Find the minimum: Use an iterator to find the smallest number in a list.
+
+
+list_of_numbers = [1, 2, 3, 4, 5, 7]
+iterator = iter(list_of_numbers)
+smallest = next(iterator)
+
+try:
+    while True:
+        minimal = next(iterator)
+        if minimal < smallest:
+            smallest = minimal
+except StopIteration:
+    pass
+
+print(smallest)
+
+
+# Filter by division: Use an iterator to create a list of numbers divisible by 3 from a given list.
+
+numerki = [3, 2, 6, 9, 12, 1]
+iterator = iter(numerki)
+numerki_by_3 = []
+try:
+    while True:
+        by_3 = next(iterator)
+        if by_3 % 3 == 0:
+            numerki_by_3.append(by_3)
+except StopIteration:
+    pass
+
+print(numerki_by_3)
+
+
+
+
+# Count uppercase letters: Use an iterator to count uppercase characters in a string.
+
+some_cute_string = "SerGiuSzZ"
+iterator = iter(some_cute_string)
+uppercase_count = 0
+try:
+    while True:
+        uppercase = next(iterator)
+        if uppercase == uppercase.upper():
+            uppercase_count += 1
+except StopIteration:
+    pass
+
+print(uppercase_count)
+
+
+
+# Concatenate strings: Use an iterator to join a list of strings into one string, separated by commas.
+
+
+list_of_strings = ["sergiusz", "kochany", "jest"]
+joined_strings = ""
+iterator = iter(list_of_strings)
+try:
+    while True:
+        something = next(iterator)
+        joined_strings += something
+        joined_strings += " "
+except StopIteration:
+    pass
+
+print(joined_strings)
+
+
+
+# Reverse a list: Use an iterator to reverse a list without using slicing or the reversed() function.
+#
+# Filter words: Use an iterator to create a list of words starting with a specific letter.
+#
+# Calculate product: Use an iterator to multiply all numbers in a list (i.e., find the product).
+#
+# Identify vowels: Use an iterator to check if a string contains any vowels.
+#
+# Create a sequence: Use an iterator to generate a sequence of numbers (like even numbers between 0 and 20).
