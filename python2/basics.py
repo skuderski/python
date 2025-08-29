@@ -1700,68 +1700,514 @@ import string
 # 1. Check if Any Number is Zero
 # Given a list of numbers, determine if any of them is zero.
 
-list_of_numbers = [0, 1, 2, 3, 4, 5, 6]
-print(any(list_of_numbers))
-
-# 2. Verify All Strings Are Uppercase
-# Check if all strings in a list are uppercase letters.
-
-the_list = ["SERGIUSZ", "KUDERSKI"]
-print(all(s.isupper() for s in the_list))
+# list_of_numbers = [0, 1, 2, 3, 4, 5, 6]
+# print(any(list_of_numbers))
+#
+# # 2. Verify All Strings Are Uppercase
+# # Check if all strings in a list are uppercase letters.
+#
+# the_list = ["SERGIUSZ", "KUDERSKI"]
+# print(all(s.isupper() for s in the_list))
 
 # 3. Find If Any Element is Empty
 # Given a list of strings, determine if any string is empty ("").
 
-list_of_strings = ["", "sergiusz", "kuderski"]
-print(any(s == "" for s in list_of_strings))
+# list_of_strings = ["", "sergiusz", "kuderski"]
+# print(any(s == "" for s in list_of_strings))
 
 # 4. Check if All Elements are Even
 # Verify if all numbers in a list are even.
 
-list_nums = [2, 4, 6, 8]
-print(all(num % 2 == 0 for num in list_nums))
+# list_nums = [2, 4, 6, 8]
+# print(all(num % 2 == 0 for num in list_nums))
 
 
 # 5. Check if Any Number is Negative
 # Determine if any number in the list is negative.
 
-list_of_nums = [2, 4, 6, 8]
-print(any(num < 0 for num in list_of_nums))
+# list_of_nums = [2, 4, 6, 8]
+# print(any(num < 0 for num in list_of_nums))
 
 
 # 6. Verify All Characters Are Alphabets
 # Given a string, check whether all characters are alphabetic.
 
-text = "sergiusz"
-print(all(s.isalpha() for s in text))
+# text = "sergiusz"
+# print(all(s.isalpha() for s in text))
 
 # 7. Find if Any Student Passed
 # Given a list of test scores, determine if any student scored above 90.
 
-list_of_scores = [100, 90, 40, 30]
-print(any(score > 90 for score in list_of_scores))
+# list_of_scores = [100, 90, 40, 30]
+# print(any(score > 90 for score in list_of_scores))
 
 
 # 8. Check If All Items Are Unique
 # Given a list, determine if all items are different (no duplicates).
 
-items = ["desk", "wardrobe", "leg", "desk"]
-items_set = set(items)
-if len(items) != len(items_set):
-    print("all items are not unique")
-else:
-    print("all items are unique")
+# items = ["desk", "wardrobe", "leg", "desk"]
+# items_set = set(items)
+# if len(items) != len(items_set):
+#     print("all items are not unique")
+# else:
+#     print("all items are unique")
 
 
 
 # 9. Verify if Any String Contains a Specific Letter
 # Check if any string in a list contains the letter 'z'.
 
-list_of_str = ["sergiusz", "kuderski"]
-print(any("z" in ch for ch in list_of_str))
+# list_of_str = ["sergiusz", "kuderski"]
+# print(any("z" in ch for ch in list_of_str))
 
 # 10. Check if All Files are Closed
 # Given a list of boolean flags indicating file status (True for closed, False for open), verify if all files are closed.
 
-files = [False, False, False, True]
-print(all(files))
+# files = [False, False, False, True]
+# print(all(files))
+
+# Create a Tuple of Your Favorite Colors
+# Define a tuple with at least five colors.
+colors = ("orange", "blue", "green", "red")
+
+
+# Access Elements in a Tuple
+# Retrieve and print the first and last item from a tuple of city names.
+
+# cities = ("Warsaw", "Athens", "New York", "Barcelona")
+# print(cities[0])
+# print(cities[-1])
+
+
+# Unpack a Tuple into Variables
+# Given a tuple (name, age, city), unpack into separate variables and print them.
+
+# the_tuple = ("Sergiusz", 31, "Athens")
+# name, age, city = the_tuple
+# print(name)
+# print(age)
+# print(city)
+
+
+
+# Create a Tuple with Different Data Types
+# Make a tuple that includes a string, an integer, and a float.
+
+# different_data_tuple = ("Sergiusz", 30, 179.5)
+# name, age, height = different_data_tuple
+# print(height)
+#
+# # Convert a List to a Tuple
+# # Take a list of numbers and convert it into a tuple.
+#
+# numbers = [1, 2, 3, 4, 5, 6, 7]
+# tuple_of_numbers = tuple(numbers)
+# print(tuple_of_numbers)
+#
+#
+# # Find the Length of a Tuple
+# # Use len() to find how many elements are in a tuple.
+#
+# the_length = len(tuple_of_numbers,)
+# print(the_length)
+# # Tuple Slicing
+# # Slice a tuple to get a subset of its elements (e.g., elements from index 2 to 4).
+#
+# print(tuple_of_numbers[2:4])
+#
+#
+# # Concatenate Two Tuples
+# # Join two tuples to make a larger tuple.
+#
+# tuple1 = (1, 2, 3, 4, 5)
+# tuples2 = ("Sergiusz", "Kuderski")
+# tuples3 = tuple1 + tuples2
+# print(tuples3)
+#
+#
+# # Count Occurrences in a Tuple
+# # Count how many times a specific element appears.
+#
+# tup_le = (1, 2, 3, 3, 2, 3, 5, 10)
+# print(tup_le.count(3))
+#
+#
+# # Find an Element by Index
+# # Find which element is at a given index in a tuple.
+#
+# print(tup_le[0])
+# print(tup_le[-2])
+#
+# # Create a Tuple of Even Numbers
+# # Make a tuple containing only even numbers between 2 and 20.
+#
+# even_tuple = ()
+# for n in range(2, 21, 2):
+#     even_tuple += (n,)
+# print(even_tuple)
+#
+# # Unpack a Tuple with Multiple Variables
+# # Given a tuple (10, "Python", 3.14), unpack into variables and print each.
+#
+# nice_tuple = (10, "Python", 3.14)
+# number, language, pi = nice_tuple
+# print(number)
+# print(language)
+# print(pi)
+#
+# # Convert Tuple to List
+# # Change a tuple (1, 2, 3, 4) into a list, then add a new element to the list.
+#
+# tu_ple = (1, 2, 3, 4)
+# l_ist = list(tu_ple)
+# l_ist.append(5)
+# print(l_ist)
+# print(l_ist.index(1))
+#
+# # Find the Index of an Element
+# # In a tuple of city names, find the position of "Berlin".
+#
+# cities = ("New York", "Paris", "Tokyo", "London", "Sydney", "Berlin", "Rome", "Madrid", "Cairo", "Rio de Janeiro")
+# print(cities.index("Berlin"))
+#
+# # Count Items in a Tuple
+# # Count how many times a specific number, say 2, appears in a tuple.
+#
+# tuple_of_nums = (1, 2, 3, 4, 5, 6, 6, 5, 6, 6, 6, 5, 6,)
+# print(tuple_of_nums.count(2))
+#
+#
+# # Create a Tuple with Repeated Elements
+# # Generate a tuple with five repeated "hello" strings.
+#
+# hello_tuple = ("hello", "hello", "hello", "hello", "hello")
+#
+# # Check if an Element Exists in a Tuple
+# # Verify whether "Madrid" is in a tuple of cities.
+#
+# print("Madrid" in cities)
+#
+# # Tuple Slicing with Step
+# # Extract every second element from a tuple of numbers.
+#
+# print(numbers[::2])
+#
+# # Sort a Tuple (Convert to List first)
+# # Since tuples are immutable, convert a tuple of numbers into a list, sort it, then convert back to a tuple.
+#
+# sorting = list(tuple_of_nums)
+# print(sorting)
+# sorting.sort()
+# print(tuple(sorting))
+# # Tuple Concatenation
+# # Combine two tuples into a new tuple.
+#
+# uno = ("Sergiusz")
+# dos = ("Kuderski")
+# tres = uno + " " + dos
+# print(tres)
+#
+# # Create a Dictionary of Countries and Capitals
+# # Make a dictionary with at least five country-capital pairs.
+#
+# countries_capitals = {"Poland" : "Warsaw", "Greece" : "Athens", "Spain" : "Madrid", "Portugal" : "Lisbon", "Russia" : "Moscow"}
+# print(countries_capitals)
+#
+# # Access a Value by Key
+# # Given a dictionary, retrieve the capital of a specific country.
+#
+# print(countries_capitals["Poland"])
+# print(countries_capitals.get("Poland"))
+#
+# # Add a New Key-Value Pair
+# # Add a new country and its capital to the dictionary.
+#
+# countries_capitals["Ukraine"] = "Kiev"
+# print(countries_capitals)
+#
+# # Update a Value
+# # Change the capital of an existing country.
+#
+# countries_capitals["Poland"] = "Krakow"
+# print(countries_capitals)
+#
+# # Remove a Key-Value Pair
+# # Remove a country and its capital from the dictionary.
+#
+# del countries_capitals["Russia"]
+# print(countries_capitals)
+# # Check if a Key Exists
+# # Verify if a certain country is in the dictionary.
+#
+#
+# if "Belarus" in countries_capitals:
+#     print("Belarus is in the dictionary")
+# else:
+#     print("Belarus is not in the dictionary")
+# # Loop Through Keys and Values
+# # Print all country-capital pairs in a formatted way.
+#
+# for key, value in countries_capitals.items():
+#     print(f"{key} : {value}")
+#
+# # Get a List of All Keys
+# # Use .keys() to list all countries.
+#
+# for key in countries_capitals.keys():
+#     print(f"{key}")
+#
+# # Get a List of All Values
+# # Use .values() to list all capitals.
+#
+# for value in countries_capitals.values():
+#     print(f"{value}")
+#
+#
+# # Count How Many Items in the Dictionary
+# # Use len() to find out how many country-capital pairs are stored.
+#
+# length_of_pairs = len(countries_capitals)
+# print(length_of_pairs)
+#
+# # Number and Print List Items
+# #
+# # Loop through a list of fruits, printing each with its index starting at 0.
+#
+# fruits = ["apple", "banana", "cherry", "kiwi"]
+# for index, fruit in enumerate(fruits):
+#     print(f"{fruit} : {index}")
+#
+# # Find the Index of a Specific Item
+# # Use enumerate() to locate the index of "banana" in a list of fruits.
+#
+# for index, fruit in enumerate(fruits):
+#     if fruit == "banana":
+#         print(f"the index of banana is {index}")
+#
+# # Print Items with a Custom Start Index
+# # Loop through a list and number items starting from 1 instead of 0.
+#
+# nums = [5, 6, 7, 8, 9, 10]
+# for index, num in enumerate(nums,start=1):
+#     print(f"{index}: {num}")
+#
+# # Identify and Print Odd Index Items
+# # Print only the items from odd positions in a list.
+#
+# the_list = [2, 5, 110, 2, 1, 9, 15, 3]
+#
+# for index, n in enumerate(the_list):
+#     if index % 2 != 0:
+#         print(f"{index} : {n}")
+#
+# # Create a List of (Index, Item) Tuples
+# # Use enumerate() to create a list of tuples (index, item) from a list.
+#
+# some_cool_list = ["Sergiusz", "Kuderski", "noga", "reka"]
+# list_of_t = []
+# for index, word in enumerate(some_cool_list):
+#     list_of_t.append((index, word))
+#
+# print(list_of_t)
+#
+#
+#
+# # Find All Occurrences of a Value
+# # Find all indices where a certain value (e.g., 3) appears in a list using enumerate().
+#
+# ns = [1, 3, 4, 3, 5, 3]
+# for i, n in enumerate(ns):
+#     if n == 3:
+#         print(f"{i}")
+#
+#
+# # Print List Items with Line Numbers
+# # Print each item prefixed with its line number, starting from 1.
+#
+# color = ["green", "blue", "yellow", "black", "white", "purple"]
+#
+# for i, c in enumerate(color, start=1):
+#     print(f"{i} : {c}")
+#
+#
+# # Use enumerate() with String Characters
+# # Loop over a string, printing character and its position.
+#
+# the_word = "God bless the USA"
+#
+# for index, ch in enumerate(the_word):
+#     print(f"{ch} : {index}")
+#
+# # Edit Items Based on Index
+# # Use enumerate() to replace certain items in a list based on their index (> 2).
+#
+# for index, n in enumerate(ns):
+#     if index > 2:
+#         ns[index] = "x"
+#
+# print(ns)
+
+# Create a Dictionary of Student Grades
+# Initialize a dictionary with student names as keys and grades as values.
+
+student_grades = {"Sergiusz" : "A", "Jane": "B", "John" : "A", "Jenny" : "C"}
+
+
+# 2. Update a Grade
+# Change a specific student’s grade using update().
+
+student_grades.update({"Jenny" : "A"})
+print(student_grades)
+
+# 3. Add Multiple Entries
+# Use update() to add several new students and their grades at once.
+
+
+student_grades.update({"John": "D", "Wiesiek" : "A", "Irena" : "F"})
+print(student_grades)
+
+
+# 4. Retrieve a Grade Safely
+# Use get() to retrieve a student's grade, providing a default message if the student isn’t in the dictionary.
+
+print(student_grades.get("Serg", "not on the list"))
+
+# 5. Update with Default if Key Doesn't Exist
+# Use update() with a new key-value pair, where the key might or might not exist.
+
+student_grades.update({"Inga" : "E"})
+print(student_grades)
+
+# 6. Count the Number of Students
+# Use len() to find out how many students are in the dictionary.
+
+count_students = len(student_grades)
+print(count_students)
+
+
+# 7. Check if a Key Exists
+# Use get() to check if a particular student is in the dictionary (by seeing if the return is None).
+
+print(student_grades.get("Martyna"))
+
+
+
+# 8. Merge Two Dictionaries
+# Use update() to merge two dictionaries of student grades.
+
+more_student_grades = {"Tommy" : "A", "Edgaras" : "B", "Jakub" : "A"}
+student_grades.update(more_student_grades)
+print(student_grades)
+
+# 9. Update a Student’s Grade or Add if Not Present
+# Use get() with a default and update() to modify or insert a student with a new grade.
+
+print(student_grades.get("Sergiusz"))
+student_grades.update({"Sergiusz" : "A+"})
+print(student_grades)
+
+# 10. Use get() with a Complex Default Message
+# Retrieve a value with a default message that includes information like "Student not found."
+
+
+
+print(student_grades.get("Wojciech", "Student not found"))
+
+# List All Keys
+# Given a dictionary, print all the keys using .keys().
+
+print(list(student_grades.keys()))
+
+
+# 2. List All Values
+# Given a dictionary, print all the values using .values().
+
+print(list(student_grades.values()))
+
+
+# 3. Print Key-Value Pairs
+# Use .items() to print each key and value in the format key: value.
+
+for key, value in student_grades.items():
+    print(f"{key}: {value}")
+
+
+
+# 4. Check for a Specific Key
+# Check if a certain key exists in the dictionary using .keys().
+
+if "Sergiusz" in student_grades.keys():
+    print("Sergiusz is on the list.")
+
+
+# 5. Sum All Values
+# If the dictionary contains numbers as values, sum all of them using .values().
+
+
+number_dict = {
+    "one": 1,
+    "two": 2,
+    "three": 3,
+    "four": 4,
+    "five": 5
+}
+
+print(sum(number_dict.values()))
+
+
+
+
+# 6. Find Max Value Key
+# Find the key that has the highest value.
+
+max_key = max(number_dict, key=number_dict.get)
+print(max_key)
+
+
+# 7. Create a List of Keys with Certain Values
+# Get all keys whose values are greater than a certain number.
+
+the_list = []
+for key, value in number_dict.items():
+    if value > 2:
+        the_list.append(key)
+print(the_list)
+
+
+# 8. Count Unique Values
+# Count how many unique values are present in the dictionary.
+
+unique = set()
+for key, value in number_dict.items():
+    unique.add(value)
+
+count = len(unique)
+print(count)
+
+
+
+# 9. Create a Dictionary from Two Lists
+# Use two lists—one of keys and one of values—and create a dictionary with dict(zip(keys, values)).
+
+
+list_one = [1, 2, 3, 4, 5, 1, 2]
+list_two = [5, 4, 3, 2, 1, 1, 2]
+zapped = dict(zip(list_one, list_two))
+print(zapped)
+
+dictionary = {"Sergiusz" : 1, "Monica" : 1, "Michal": 2, "Wojtek": 2, "Ja" : 3}
+# 10. Find Keys with Duplicate Values
+# Find all keys that share the same value with another key (i.e., find duplicates in value).
+reverse = {}
+for key, value in dictionary.items():
+    if value not in reverse:
+        reverse[value] = []
+    reverse[value].append((key))
+print(reverse)
+
+dupli = []
+
+for value, key in reverse.items():
+    if len(key) > 1:
+        dupli.extend(key)
+print(dupli)
