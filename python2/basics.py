@@ -2050,164 +2050,1135 @@ colors = ("orange", "blue", "green", "red")
 # Create a Dictionary of Student Grades
 # Initialize a dictionary with student names as keys and grades as values.
 
-student_grades = {"Sergiusz" : "A", "Jane": "B", "John" : "A", "Jenny" : "C"}
+# student_grades = {"Sergiusz" : "A", "Jane": "B", "John" : "A", "Jenny" : "C"}
+#
+#
+# # 2. Update a Grade
+# # Change a specific student’s grade using update().
+#
+# student_grades.update({"Jenny" : "A"})
+# print(student_grades)
+#
+# # 3. Add Multiple Entries
+# # Use update() to add several new students and their grades at once.
+#
+#
+# student_grades.update({"John": "D", "Wiesiek" : "A", "Irena" : "F"})
+# print(student_grades)
+#
+#
+# # 4. Retrieve a Grade Safely
+# # Use get() to retrieve a student's grade, providing a default message if the student isn’t in the dictionary.
+#
+# print(student_grades.get("Serg", "not on the list"))
+#
+# # 5. Update with Default if Key Doesn't Exist
+# # Use update() with a new key-value pair, where the key might or might not exist.
+#
+# student_grades.update({"Inga" : "E"})
+# print(student_grades)
+#
+# # 6. Count the Number of Students
+# # Use len() to find out how many students are in the dictionary.
+#
+# count_students = len(student_grades)
+# print(count_students)
+#
+#
+# # 7. Check if a Key Exists
+# # Use get() to check if a particular student is in the dictionary (by seeing if the return is None).
+#
+# print(student_grades.get("Martyna"))
+#
+#
+#
+# # 8. Merge Two Dictionaries
+# # Use update() to merge two dictionaries of student grades.
+#
+# more_student_grades = {"Tommy" : "A", "Edgaras" : "B", "Jakub" : "A"}
+# student_grades.update(more_student_grades)
+# print(student_grades)
+#
+# # 9. Update a Student’s Grade or Add if Not Present
+# # Use get() with a default and update() to modify or insert a student with a new grade.
+#
+# print(student_grades.get("Sergiusz"))
+# student_grades.update({"Sergiusz" : "A+"})
+# print(student_grades)
+#
+# # 10. Use get() with a Complex Default Message
+# # Retrieve a value with a default message that includes information like "Student not found."
+#
+#
+#
+# print(student_grades.get("Wojciech", "Student not found"))
+#
+# # List All Keys
+# # Given a dictionary, print all the keys using .keys().
+#
+# print(list(student_grades.keys()))
+#
+#
+# # 2. List All Values
+# # Given a dictionary, print all the values using .values().
+#
+# print(list(student_grades.values()))
+#
+#
+# # 3. Print Key-Value Pairs
+# # Use .items() to print each key and value in the format key: value.
+#
+# for key, value in student_grades.items():
+#     print(f"{key}: {value}")
+#
+#
+#
+# # 4. Check for a Specific Key
+# # Check if a certain key exists in the dictionary using .keys().
+#
+# if "Sergiusz" in student_grades.keys():
+#     print("Sergiusz is on the list.")
+#
+#
+# # 5. Sum All Values
+# # If the dictionary contains numbers as values, sum all of them using .values().
+#
+#
+# number_dict = {
+#     "one": 1,
+#     "two": 2,
+#     "three": 3,
+#     "four": 4,
+#     "five": 5
+# }
+#
+# print(sum(number_dict.values()))
+#
+#
+#
+#
+# # 6. Find Max Value Key
+# # Find the key that has the highest value.
+#
+# max_key = max(number_dict, key=number_dict.get)
+# print(max_key)
+#
+#
+# # 7. Create a List of Keys with Certain Values
+# # Get all keys whose values are greater than a certain number.
+#
+# the_list = []
+# for key, value in number_dict.items():
+#     if value > 2:
+#         the_list.append(key)
+# print(the_list)
+#
+#
+# # 8. Count Unique Values
+# # Count how many unique values are present in the dictionary.
+#
+# unique = set()
+# for key, value in number_dict.items():
+#     unique.add(value)
+#
+# count = len(unique)
+# print(count)
+#
+#
+#
+# # 9. Create a Dictionary from Two Lists
+# # Use two lists—one of keys and one of values—and create a dictionary with dict(zip(keys, values)).
+#
+#
+# list_one = [1, 2, 3, 4, 5, 1, 2]
+# list_two = [5, 4, 3, 2, 1, 1, 2]
+# zapped = dict(zip(list_one, list_two))
+# print(zapped)
+#
+# dictionary = {"Sergiusz" : 1, "Monica" : 1, "Michal": 2, "Wojtek": 2, "Ja" : 3}
+# # 10. Find Keys with Duplicate Values
+# # Find all keys that share the same value with another key (i.e., find duplicates in value).
+# reverse = {}
+# for key, value in dictionary.items():
+#     if value not in reverse:
+#         reverse[value] = []
+#     reverse[value].append(key)
+# print(reverse)
+#
+# dupli = []
+#
+# for value, key in reverse.items():
+#     if len(key) > 1:
+#         dupli.extend(key)
+# print(dupli)
+
+# Create a Set of Unique Words
+# Convert a list of words with duplicates into a set to get only unique words.
+
+# some_fun_list = ["Sergiusz", "Sergiusz", "Kuderski", "misiek"]
+# print(set(some_fun_list))
+#
+#
+# # Add Items to a Set
+# # Add a new element to an existing set.
+#
+# some_fun_set = {"Sergiusz", "Kuderski", "zolw"}
+# some_fun_set.add("noga")
+# print(some_fun_set)
+#
+#
+# # Remove Items from a Set
+# # Remove an element from a set using .remove() or .discard().
+#
+# some_fun_set.remove("Kuderski")
+# print(some_fun_set)
+#
+#
+# # Check Membership
+# # Verify if a particular element exists in a set.
+#
+# if "Sergiusz" in some_fun_set:
+#     print("Sergiusz is in the set")
+#
+#
+# # Find the Intersection of Two Sets
+# # Find common elements between two sets.
+#
+# first_set = {1, 2, 3, 4, 5}
+# second_set = {3, 4, 5, 6, 7, 1, 2}
+# print(first_set.intersection(second_set))
+#
+# # Find the Union of Two Sets
+# # Combine two sets to get all unique elements.
+#
+# print(first_set.union(second_set))
+#
+# # Find the Difference of Two Sets
+# # Find elements that are in one set but not in another.
+#
+# print(second_set.difference(first_set))
+#
+#
+# # Check if One Set is a Subset of Another
+# # Verify whether all elements of one set are contained in another.
+#
+# print(first_set.issubset(second_set))
+#
+# # Find Symmetric Difference
+# # Find elements that are in either set but not in both.
+#
+# print(first_set.symmetric_difference(second_set))
+#
+# # Convert a List to a Set and back
+# # Remove duplicates by converting a list to a set, then back to a list.
+#
+#
+# the_list = [1, 2, 3, 4, 5, 2, 1, 5, 6, 10, 22, 22, 3, 4, 5, 1, 9, 30]
+# the_set = set(the_list)
+# unique_list = list(the_set)
+# print(unique_list)
+#
+# # Create a Dictionary of Countries and Capitals
+#
+# countries_capitals = {"Poland" : "Warsaw", "Russia" : "Moscow", "Spain" : "Madrid", "Greece" : "Athens"}
+# print(countries_capitals)
+#
+# # Add a new country-capital pair to the dictionary.
+#
+# countries_capitals["Turkey"] = "Istanbul"
+# print(countries_capitals)
+#
+# # Update an existing country’s capital.
+#
+# countries_capitals.update({"Russia" : "St Petersburg"})
+# print(countries_capitals)
+#
+# # Remove a country from the dictionary using del.
+#
+# del countries_capitals["Poland"]
+# print(countries_capitals)
+#
+# # Safely remove a country with .pop(), handling if it's not present.
+#
+# print(countries_capitals.pop("Argentina", "not in the dictionary"))
+#
+# # Check if a specific country exists using in with the dictionary.
+#
+# if "Russia" in countries_capitals:
+#     print("Russia is in the dictionary.")
+#
+# # Get a list of all countries using .keys().
+#
+# print(list(countries_capitals.keys()))
+#
+# # Get a list of all capitals using .values().
+#
+# print(list(countries_capitals.values()))
+#
+# # Iterate through the dictionary to print country and capital pairs.
+#
+# for key, value in countries_capitals.items():
+#     print(f"{key} and its capital")
+#
+# # Count the total number of country-capital pairs.
+# length = len(countries_capitals)
+# print(length)
+# print(countries_capitals)
+#
+# # Merge two dictionaries into one.
+#
+# first_dictionary = {"Sergiusz" : 8, "Viktoria" : 10, "Tomek" : 5, "Edgaras" : 8}
+# second_dictionary = {"Irena" : 5, "Waclaw" : 10, "John" : 8}
+# merged_dictionary = {**first_dictionary, **second_dictionary}
+# print(merged_dictionary)
+#
+# # Create a new dictionary from two separate lists: one of countries, one of capitals, using zip().
+#
+#
+# countries = ["Poland", "Ukraine", "England", "Scotland", "Russia", "Germany", "France", "Spain"]
+# capitals = ["Warsaw", "Kiev", "London", "Edinburgh", "Moscow", "Berlin", "Paris", "Madrid"]
+# countries_and_capitals = dict(zip(countries, capitals))
+# print(countries_and_capitals)
+#
+#
+# # Find the country with the longest name.
+# longest = 0
+# longest_country = ""
+# for key in countries_and_capitals.keys():
+#     if len(key) > longest:
+#         longest = len(key)
+#         longest_country = key
+# print(longest)
+# print(longest_country)
+#
+# # Find the country with the shortest name.
+#
+# shortest = 10
+# shortest_country = ""
+#
+# for key in countries_and_capitals.keys():
+#     if len(key) < shortest:
+#         shortest = len(key)
+#         shortest_country = key
+#
+# print(shortest)
+# print(shortest_country)
+#
+#
+# # Create a dictionary of countries and their populations (random large numbers).
+#
+# populations = {"Poland" : 40000000, "Russia" : 140000000, "Greece" : 8000000, "Portugal" : 20200000, "Paraguay" : 2000000}
+# print(populations)
+#
+#
+# # Calculate the total population using .values().
+#
+# print(sum(populations.values()))
+#
+#
+# # Identify countries with capitals starting with a specific letter.
+#
+# for key, value in countries_and_capitals.items():
+#     if value.startswith("P"):
+#         print(f"{key}'s capital starts with the letter \"P\"")
+#
+# # Find all countries with a specific ending in their name.
+#
+# for key, value in countries_and_capitals.items():
+#     if value.lower().endswith("s"):
+#         print(f"{key}'s capital ends with a letter \"S\"")
+#
+# # Create a dictionary of country lengths (name length as value).
+#
+# dictionary_of_name_lengths = {"Poland": len("Poland"), "Russia" : len("Russia"), "Greece" : len("Greece"), "Portugal" : len("Portugal")}
+# print(dictionary_of_name_lengths)
+#
+#
+# # Invert the dictionary: swap keys and values, assuming all values are unique.
+#
+# inverted = {value : key for key, value in countries_and_capitals.items()}
+# print(inverted)
+#
+# # String to Integer
+# # Convert a string "123" into an integer and print the result.
+#
+# text = "123"
+# print(int(text))
+#
+# # Integer to String
+# # Convert an integer 456 into a string and print it.
+#
+# num = 456
+# number = str(num)
+# print(number)
+# print(type(number))
+#
+# # String to Float
+# # Convert a string "3.14159" into a float and print it.
+#
+# the_number = "3.14159"
+# the_num = float(the_number)
+# print(the_num)
+# print(type(the_num))
+#
+# # Float to Integer
+# # Convert a float 9.8 into an integer (truncate or round) and print it.
+#
+# fl = 9.8
+# integ = int(fl)
+# print(integ)
+#
+#
+# # List of Strings to List of Integers
+# # Given ["1", "2", "3"], convert each element to int.
+#
+# strings = ["1", "2", "3"]
+# strings_of_int = []
+# for n in strings:
+#     strings_of_int.append(int(n))
+# print(strings_of_int)
+# print(type(strings_of_int))
+#
+# # List of Numbers to a String
+# # Convert [1, 2, 3, 4] into a single string "1, 2, 3, 4".
+#
+# list_of_nums = [1, 2, 3, 4]
+# num_str = ""
+# for n in list_of_nums:
+#     str_num = str(n)
+#     if num_str:
+#         num_str += ", " + str_num
+#     else:
+#         num_str = str_num
+# print(num_str)
+#
+# # String to Boolean
+# # Convert "True" and "False" strings to boolean values.
+#
+# t = "True"
+# f = "False"
+# t_bool = (t == "True")
+# f_bool = (f == "True")
+# print(t_bool)
+# print(f_bool)
+#
+#
+# # Integer to List of Characters
+# # Convert an integer 12345 to a string, then to a list of individual characters.
+#
+# the_numberr = 12345
+# string_number = str(the_numberr)
+# lista = []
+# for n in string_number:
+#     lista.append(n)
+#
+# print(lista)
+#
+#
+# # Handling Conversion Errors
+# # When converting a string "abc" to int, catch the exception and print a friendly message.
+#
+# the_ej_bi_sea = "abc"
+# try:
+#     print(float(the_ej_bi_sea))
+# except ValueError:
+#     print("can't do it, doc")
+#
+#
+# # Convert List of Floats to List of Strings
+# # Convert [3.14, 2.71, 1.41] into a list of strings.
+#
+# the_floaties = [3.14, 2.71, 1.41]
+# the_stringies = []
+# for n in the_floaties:
+#     the_stringies.append(str(n))
+#
+# print(the_stringies)
+#
+# # Check if Two Numbers Are Equal
+# # Given two numbers, determine if they are equal.
+#
+# a = 1
+# b = 2
+# print(a == b)
+#
+# # 2. Compare if One Number is Greater Than Another
+# # Check if a variable a is greater than b.
+#
+# print(a > b)
+#
+# # 3. Determine if a String is Empty
+# # Check if a string variable has length 0.
+#
+# message = ""
+# print(len(message) == 0)
+#
+# # 4. Compare Two Strings (Case-Insensitive)
+# # Check if two strings are equal ignoring case differences.
+#
+# message1 = "Sergiusz"
+# message2 = "Kuderski"
+#
+# print(message1.lower() != message2.lower())
+#
+# # 5. Check if a Number Is Less Than or Equal to a Threshold
+# # Verify if a score is below or equal to 100.
+#
+# score = 90
+# print(score <= 100)
+#
+# # 6. Compare List Lengths
+# # Given two lists, check if the first is longer than the second.
+#
+# some_list = [1, 2, 3, 4, 5]
+# some_other_list = [2, 3, 4, 5, 6, 1]
+# print(some_list > some_other_list)
+#
+# # 7. Check if a Number Is Outside a Range
+# # Determine if a value x is less than 0 or greater than 100.
+#
+# x = 200
+# print(x < 0 or x > 100)
+#
+# # 8. Verify if Two Variables Are Not Equal
+# # Check if two variables are different.
+#
+# c = 123
+# d = 124
+# print(c != d)
+#
+#
+# # 9. Compare Elements in a List at Different Indices
+# # Check if the element at index 0 is greater than the element at index 1.
+#
+# indeces = [1, 2, 3, 4 ,5]
+# print(indeces[0] > indeces[1])
+#
+# # 10. Determine if a Character Is a Vowel
+#
+# vowels = "aeiou"
+# print("b" in vowels)
+
+# Check if a Number is Even or Odd
+# Given a number, determine whether it's even or odd.
+
+def even_odd(num: int):
+    if num % 2 == 0:
+        return "Even"
+    else:
+        return "Odd"
+
+print(even_odd(4))
+
+# Find the Absolute Value
+# Given a negative number, find its absolute (positive) value.
+
+def absolute_val(num: int):
+    return abs(num)
+
+print(absolute_val(-5))
+
+# Calculate the Square of a Number
+# Square a given number.
+
+def square_a_number(num: int):
+    return num * num
+
+print(square_a_number(5))
+
+# Calculate the Cube of a Number
+# Cube a given number.
+
+def cube_a_numbers(num: int):
+    return num * num * num
+
+print(cube_a_numbers(3))
 
 
-# 2. Update a Grade
-# Change a specific student’s grade using update().
+# Find the Remainder of a Division
+# Given two numbers, find the remainder when the first is divided by the second.
 
-student_grades.update({"Jenny" : "A"})
-print(student_grades)
+a = 10
+b = 3
 
-# 3. Add Multiple Entries
-# Use update() to add several new students and their grades at once.
+rem = a % b
+print(rem)
 
-
-student_grades.update({"John": "D", "Wiesiek" : "A", "Irena" : "F"})
-print(student_grades)
-
-
-# 4. Retrieve a Grade Safely
-# Use get() to retrieve a student's grade, providing a default message if the student isn’t in the dictionary.
-
-print(student_grades.get("Serg", "not on the list"))
-
-# 5. Update with Default if Key Doesn't Exist
-# Use update() with a new key-value pair, where the key might or might not exist.
-
-student_grades.update({"Inga" : "E"})
-print(student_grades)
-
-# 6. Count the Number of Students
-# Use len() to find out how many students are in the dictionary.
-
-count_students = len(student_grades)
-print(count_students)
+# Find the Average of Three Numbers
+# Calculate the average of three user-inputted numbers.
 
 
-# 7. Check if a Key Exists
-# Use get() to check if a particular student is in the dictionary (by seeing if the return is None).
+def calculate_average(nums: list):
+    return sum(nums) / len(nums)
 
-print(student_grades.get("Martyna"))
+print(calculate_average([1, 2, 3, 4, 5]))
 
+# Convert Minutes to Hours and Minutes
+# Convert a total number of minutes into hours and remaining minutes.
 
+minutes = 100000
+hours = minutes // 60
+minutes_left = minutes % hours
+print(hours)
+print(minutes_left)
 
-# 8. Merge Two Dictionaries
-# Use update() to merge two dictionaries of student grades.
+# Determine if a Year is a Leap Year
+# Given a year, check if it's a leap year.
+def check_leap(year: int):
+    return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
 
-more_student_grades = {"Tommy" : "A", "Edgaras" : "B", "Jakub" : "A"}
-student_grades.update(more_student_grades)
-print(student_grades)
-
-# 9. Update a Student’s Grade or Add if Not Present
-# Use get() with a default and update() to modify or insert a student with a new grade.
-
-print(student_grades.get("Sergiusz"))
-student_grades.update({"Sergiusz" : "A+"})
-print(student_grades)
-
-# 10. Use get() with a Complex Default Message
-# Retrieve a value with a default message that includes information like "Student not found."
+print(check_leap(1996))
 
 
+# Calculate the Distance Between Two Points
+# Given two points (x1, y1) and (x2, y2), calculate the Euclidean distance.
 
-print(student_grades.get("Wojciech", "Student not found"))
+import math
 
-# List All Keys
-# Given a dictionary, print all the keys using .keys().
-
-print(list(student_grades.keys()))
-
-
-# 2. List All Values
-# Given a dictionary, print all the values using .values().
-
-print(list(student_grades.values()))
+def distance(a, b):
+    return math.sqrt((b[0] - a[0]) ** 2 + (b[1] - a[1]) ** 2)
 
 
-# 3. Print Key-Value Pairs
-# Use .items() to print each key and value in the format key: value.
+print(distance(a = [10, 2], b = [2, 3]))
 
-for key, value in student_grades.items():
-    print(f"{key}: {value}")
+# Generate a Random Number Between 1 and 50
+# Use random.randint() to generate and print it.
 
+import random
 
-
-# 4. Check for a Specific Key
-# Check if a certain key exists in the dictionary using .keys().
-
-if "Sergiusz" in student_grades.keys():
-    print("Sergiusz is on the list.")
+print(random.randint(1, 50))
 
 
-# 5. Sum All Values
-# If the dictionary contains numbers as values, sum all of them using .values().
+# Count the Number of Words
+# Given a sentence, count how many words it contains.
+
+sentence = "Sergiusz bardzo kocha zycie"
+list_of_words = sentence.split()
+print(len(list_of_words))
 
 
-number_dict = {
-    "one": 1,
-    "two": 2,
-    "three": 3,
-    "four": 4,
-    "five": 5
-}
+# Reverse a String
+# Reverse the order of characters in a string.
 
-print(sum(number_dict.values()))
+some_string = "Sergiusz"
+print(some_string[::-1])
 
 
+# Extract a Substring
+# Extract characters from index 3 to 8 from a string.
+
+imie = "Sergiuszek"
+print(imie[3:8])
+
+# Convert a String to Lowercase and Uppercase
+# Change all characters in a string to lowercase or uppercase.
+
+name = "Sergiusz"
+name_lower = name.lower()
+name_upper = name.upper()
+print(name_lower, name_upper)
 
 
-# 6. Find Max Value Key
-# Find the key that has the highest value.
-
-max_key = max(number_dict, key=number_dict.get)
-print(max_key)
+# Check if a String Contains a Substring
+# Verify whether one string is present inside another.
 
 
-# 7. Create a List of Keys with Certain Values
-# Get all keys whose values are greater than a certain number.
+def substring(one, two):
+    return two in one
 
-the_list = []
-for key, value in number_dict.items():
-    if value > 2:
-        the_list.append(key)
-print(the_list)
+print(substring("Sergiusz", "giu"))
+
+# Replace Parts of a String
+# Replace all occurrences of a word or phrase with another.
+
+def replacing(one):
+    return one.replace("S", "gowno")
+
+print(replacing("Sergiusz"))
+
+# Remove Leading and Trailing Spaces
+# Use strip() to trim spaces from the start and end.
+
+message = "  Sergiusz Kuderski jest kochany.   "
+stripped_message = message.strip()
+print(stripped_message)
+
+# Check if a String is a Palindrome
+# Determine if a string reads the same backward and forward.
+
+def palindrome(word):
+    return word == word[::-1]
+
+print(palindrome("wow"))
 
 
-# 8. Count Unique Values
-# Count how many unique values are present in the dictionary.
+# Count Specific Characters in a String
+# Count how many times a specific character appears.
 
-unique = set()
-for key, value in number_dict.items():
-    unique.add(value)
-
-count = len(unique)
-print(count)
+print(name.lower().count("s"))
 
 
 
-# 9. Create a Dictionary from Two Lists
-# Use two lists—one of keys and one of values—and create a dictionary with dict(zip(keys, values)).
+# Format a String with Variables
+# Use f-strings or .format() to insert variables into a string for personalized messages.
 
 
-list_one = [1, 2, 3, 4, 5, 1, 2]
-list_two = [5, 4, 3, 2, 1, 1, 2]
-zapped = dict(zip(list_one, list_two))
-print(zapped)
+some_message = "Sergiusz Kuderski"
+iss = "jest"
+loving = "kochany"
+dot = "."
 
-dictionary = {"Sergiusz" : 1, "Monica" : 1, "Michal": 2, "Wojtek": 2, "Ja" : 3}
-# 10. Find Keys with Duplicate Values
-# Find all keys that share the same value with another key (i.e., find duplicates in value).
-reverse = {}
-for key, value in dictionary.items():
-    if value not in reverse:
-        reverse[value] = []
-    reverse[value].append((key))
-print(reverse)
+print(f"{some_message} {iss} {loving}{dot}")
 
-dupli = []
+# Create a List of Prime Numbers
+# Generate a list containing all prime numbers between 1 and 50.
 
-for value, key in reverse.items():
-    if len(key) > 1:
-        dupli.extend(key)
-print(dupli)
+import math
+
+def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            return False
+    return True
+primes = []
+for num in range(1, 51):
+    if is_prime(num):
+        primes.append(num)
+print(primes)
+
+
+# Add Items to a List
+# Create an empty list and then add five different colors to it using .append().
+
+colors = []
+colors.append("blue")
+colors.append("yellow")
+colors.append("green")
+colors.append("white")
+colors.append("black")
+
+print(colors)
+
+# Remove an Item from a List
+# Remove a specific item from a list by value using .remove().
+
+colors.remove("green")
+print(colors)
+
+
+# Insert an Item at a Specific Position
+# Insert an element at index 2 in a list.
+
+colors.insert(2, "gray")
+print(colors)
+
+# Sort a List in Reverse Order
+# Sort a list of numbers from highest to lowest.
+
+the_nums = [2, 5, 10, 1, 2, 3, 4]
+sorted_nums = sorted(the_nums, reverse=True)
+print(sorted_nums)
+
+# Reverse the List
+# Reverse the list order using .reverse().
+
+some_numbers = [2, 10, 11, 3, 5, 7, 5, 111]
+some_numbers.reverse()
+print(some_numbers)
+
+# Find the Length of a List
+# Use len() to determine how many elements are in the list.
+
+print(len(some_numbers))
+
+# Access a Range of Elements
+# Extract a sublist from index 3 to 7.
+
+range_of_elements = some_numbers[3:7]
+print(range_of_elements)
+
+# Create a List of Squares
+# Use a loop to fill a list with the squares of numbers from 1 to 10.
+
+squares = []
+
+for i in range(1, 11):
+    squares.append(i*i)
+
+print(squares)
+
+
+# Duplicate a List
+#
+# Copy a list by creating a duplicate (using slicing or .copy()) and append an element to the copy without changing the original.
+
+
+copied_list = some_numbers.copy()
+print(some_numbers)
+print(copied_list)
+copied_list.append(2)
+print(copied_list)
+
+# 1. Create a Dictionary of Countries and Capitals
+# Initialize a dictionary with at least five country-capital pairs.
+
+countries_and_capitals = {"Poland" : "Warsaw", "Greece" : "Athens", "Russia": "Moscow", "Germany" : "Berlin", "Spain" : "Madrid"}
+print(countries_and_capitals)
+
+# Create a Dictionary of Countries and Capitals, then Update and Verify
+# Steps:
+#
+# Start with a dictionary containing at least five country-capital pairs.
+# Update the capital of one specific country.
+# Check if another country (e.g., "France") is in the dictionary.
+# Print a message indicating whether it exists.
+# Print the final dictionary.
+
+countries_and_capitals.update({"Poland" : "Krakow"})
+if "France" not in countries_and_capitals:
+    print("France is not in the dictionary")
+else:
+    print("France is in the dictionary")
+print(countries_and_capitals)
+
+# Start with a dictionary of at least 5 country-capital pairs.
+# Update the capital of a specific country (choose one in your dictionary).
+# Add a new country with its capital.
+# Check if another country (e.g., "Italy") exists:
+# If it exists, print its capital.
+# If it doesn't, add "Italy" with its capital and inform that it was added.
+# Remove a country (e.g., "Spain"), if it exists.
+# Print the final dictionary with all changes.
+
+countries_and_capitals.update({"Russia" : "St Petersburg"})
+countries_and_capitals["Japan"] = "Tokyo"
+
+if "Italy" in countries_and_capitals:
+    print("The capital of Italy is Rome.")
+else:
+    countries_and_capitals["Italy"] = "Rome"
+    print("Italy and its capital Rome was added.")
+
+del countries_and_capitals["Poland"]
+print(countries_and_capitals)
+
+# 2. Add a New Country and Capital
+# Add another country with its capital to your existing dictionary.
+
+countries_and_capitals["Ukraine"] = "Kiev"
+print(countries_and_capitals)
+
+new_pairs = [("Italy", "Rome"), ("Portugal", "Lisbon"), ("Hungary", "Budapest")]
+countries_and_capitals.update(new_pairs)
+print(countries_and_capitals)
+
+# 3. Update an Existing Capital
+# Change the capital of a country already in your dictionary.
+
+countries_and_capitals.update({"Italy" : "Milano"})
+print(countries_and_capitals)
+
+new_capitals = [("Poland", "Gdynia"), ("Italy", "Bari"), ("Russia", "Vladivostok")]
+countries_and_capitals.update(new_capitals)
+print(countries_and_capitals)
+
+# 4. Remove a Country from the Dictionary
+# Remove a country (and its capital) using del or .pop().
+
+del countries_and_capitals["Russia"]
+print(countries_and_capitals)
+
+countries = ["Italy", "Poland", "Greece"]
+for i in countries:
+    countries_and_capitals.pop(i, None)
+
+print(countries_and_capitals)
+
+# 5. Safely Remove a Country (using .pop())
+# Remove a country that may or may not be in the dictionary, with a default message if it doesn't exist.
+
+countries_and_capitals.pop("China", "country not in the dictionary")
+
+# 6. Check if a Country is in the Dictionary
+# Use in to check if a specific country exists.
+
+if "Poland" in countries_and_capitals:
+    print("Poland is in the dictionary")
+else:
+    print("Poland was in the dictionary but has been recently removed.")
+
+# 7. Get a List of All Countries
+# Use .keys() to get a list of all country names.
+
+all_countries = countries_and_capitals.keys()
+the_list_of_countries = list(all_countries)
+the_list_of_countries.sort()
+print(the_list_of_countries)
+
+b_capitals = []
+for key, value in countries_and_capitals.items():
+    if value[0] == "B":
+        b_capitals.append(key)
+
+b_capitals.sort()
+print(b_capitals)
+
+# 8. Get a List of All Capitals
+# Use .values() to get all capitals.
+
+the_capitals = list(countries_and_capitals.values())
+print(the_capitals)
+capitals_with_a = []
+for value in countries_and_capitals.values():
+    if "a" in value:
+        capitals_with_a.append(value)
+sorted_capitals = sorted(capitals_with_a)
+print(sorted_capitals)
+
+# 9. Print All Country-Capital Pairs
+# Loop through the dictionary with .items() and print in a formatted way.
+
+# Then, sort the countries alphabetically before printing, so the output is ordered by country name.
+
+for country in sorted(countries_and_capitals.keys()):
+    capital = countries_and_capitals[country]
+    print(f"Country: {country} | Capital: {capital}")
+
+# 10. Count Total Number of Countries
+# Use len() to count how many country-capital pairs are stored.
+
+print(len(countries_and_capitals))
+the_count = 0
+the_names_bigger_than5 = ""
+for key, value in countries_and_capitals.items():
+    if len(value) > 5:
+        the_count += 1
+        the_names_bigger_than5 += " "
+        the_names_bigger_than5 += value
+print(the_count)
+print(the_names_bigger_than5)
+
+
+# Find the First Even Number
+# Loop through numbers from 1 to 20 and print the first even number you encounter using break.
+
+for n in range(1, 21):
+    if n % 2 == 0:
+        print(n)
+        break
+
+# 2. Skip Negative Numbers
+# Loop through a list of integers, printing only positive numbers using continue.
+
+list_of_ints = [-2, 3, 4, 0, -5, - 10, 16]
+
+for n in list_of_ints:
+    if n < 0:
+        continue
+    print(n)
+
+# 3. Stop at a Specific Number
+# Loop from 1 to 50 and stop printing once you reach number 30 using break.
+
+for n in range(1, 51):
+    print(n)
+    if n == 30:
+        break
+
+# 4. Skip Multiple Values
+# Loop through numbers 1 to 20, but skip multiples of 3 using continue.
+
+for n in range(1, 21):
+    if n % 3 == 0:
+        continue
+    print(n)
+
+# 5. Find the First Multiple of 7
+# Loop from 1 to 100, printing and breaking once you find a number divisible by 7.
+
+
+for n in range(1, 101):
+    if n % 7 == 0:
+        print(n)
+        break
+
+# 6. Ignore Zero
+# Loop through a list of integers, skipping zeros and printing all others.
+
+
+the_list = [1, 0, 20, 3, 4, 5, 11]
+
+for n in the_list:
+    if n == 0:
+        continue
+    print(n)
+
+# 7. Break on a Condition
+# Loop through a list of strings, breaking when you find the string "stop".
+
+
+stringz = ["hello", "world", "this", "stop"]
+
+for s in stringz:
+    if s == "stop":
+        print("found the word")
+        break
+    print(s)
+
+# 8. Skip Conversations Over a Certain Length
+# Loop through a list of message lengths, skipping messages longer than 10 characters.
+
+
+messages = ["Sergiusz Kuderski", "kocha wszystkich wokol", "dziekuje", "za", "uwage"]
+
+for m in messages:
+    if len(m) > 10:
+        continue
+    print(m)
+
+# 9. Find the First Prime in a List
+# Loop through a list of numbers, break as soon as you find a prime number.
+
+
+
+import math
+
+def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+check_them_primez = [1, 2, 3, 4, 5, 6, 7, 8]
+
+for n in check_them_primez:
+    if is_prime(n):
+        print(f"The first prime number is {n}")
+        break
+
+# 10. Remove Duplicates with Continue
+# Loop through a list with duplicates, printing only the
+# first occurrence of each item using continue to skip repeats (use an auxiliary set).
+
+
+the_set = set()
+the_lista = [1, 1, 2, 3, 4, 5, 5, 6, 7]
+
+for n in the_lista:
+    if n in the_set:
+        continue
+    else:
+        the_set.add(n)
+print(the_set)
+
+# 1. Basic Infinite Loop
+# Write a loop that runs forever, printing "Hello". (Use while True:)
+
+# while True:
+#     print("Hello")
+
+
+# 2. Count Up Indefinitely
+# Use an infinite loop to keep counting upwards starting from 1, printing the current number each time (use while True: and a counter).
+# counter = 1
+# while True:
+#     print(counter)
+#     counter += 1
+
+# 3. Break on User Input
+# Create an infinite loop that repeatedly asks for user input and breaks when the user types "exit".
+
+# while True:
+#     user = input()
+#     if user == "exit":
+#         break
+#     else:
+#         print("continuing on")
+
+# 4. Echo Input
+# Make a program that echoes whatever the user types until they type "stop".
+
+
+# while True:
+#     user = input()
+#     if user == "stop":
+#         print("fine")
+#         break
+#     else:
+#         print(user)
+
+# 5. Count Down with Break
+# Use an infinite loop that starts at some number and decreases until it reaches 0, then break.
+
+# counter = 100
+#
+# while True:
+#     print(counter)
+#     counter -= 1
+#     if counter < 0:
+#         break
+
+
+# 6. Print Even Numbers Indefinitely
+# Use an infinite loop to print even numbers, starting from 0, increasing by 2 each time.
+# counter = 0
+# while True:
+#     for num in range(0, 10**6, 2):
+#         print(num)
+#
+
+# 7. Input Validation Loop
+# Use an infinite loop to keep asking for a number input, breaking only if the input is valid (e.g., a number between 1 and 10).
+
+# while True:
+#     user = input()
+#     try:
+#         num = int(user)
+#         if 1 <= num <= 10:
+#             print(f"You entered a valid number: {num}")
+#             break
+#         else:
+#             print("wrong num son")
+#     except ValueError:
+#         print("please give a numba, sonny.")
+
+# 8. Simulate a Real-time Counter
+# Use while True: with time.sleep() to print the current time every second.
+# from time import sleep, time
+#
+# while True:
+#     print(time())
+#     sleep(1)
+
+
+# 9. Random Number Generator
+# Keep generating random numbers forever until a specific number (e.g., 777) appears, then break.
+import random
+
+while True:
+    n = random.randint(1, 777)
+    print(n)
+    if n == 777:
+        break
+
+
+# 10. Menu-driven Program
+# Create an infinite menu loop that displays options; exit only if a specific choice (e.g., "Quit") is made.
+
+while True:
+    user = input("Type \"Continue\" to continue, type \"Quit\" to quit\n")
+    if user == "Quit":
+        break
+    elif user == "Continue":
+        print("Continuing on")
+    else:
+        print("WTf dawg, stop playing")
+
+
+
+
+
