@@ -3904,128 +3904,614 @@ colors = ("orange", "blue", "green", "red")
 # print(the_list)
 
 
-count_people: int = "5"
-price: float = 13.25
-is_empty: bool = True
-message: str = "Hello, world"
-
-# Tasks Involving Mutable Types (list, dict, set):
-# Create a List of Names and Append a New Name
-
-names = ["Sergiusz", "Irena", "Inga", "Wojtek"]
-names.append("Martyna")
-print(names)
-
-
-# Modify an Element in a List
-
-names[2] = "W"
-print(names)
-
-# Remove an Element from a List
-
-names.remove("W")
-print(names)
-
-# Add a New Key-Value Pair to a Dictionary
-
-some_dict = {"Sergiusz" : 31, "Inga" : 39, "Michal" : 31}
-some_dict["Martyna"] = 25
-print(some_dict)
-
-
-
-# Update the Value for an Existing Key in a Dictionary
-
-some_dict.update({"Sergiusz" : 30})
-print(some_dict)
-
-# Remove a Key from a Dictionary
-
-del some_dict["Sergiusz"]
-print(some_dict)
-# Add Elements to a Set
-
-nums = {1, 2, 3, 4, 5}
-nums.add(6)
-print(nums)
-
-
-# Remove Elements from a Set
-
-nums.remove(2)
-nums.remove(3)
-print(nums)
-
-# Sort a List of Numbers (in-place sorting)
-
-list_of_numbers = [1, 2, 3, 4, 3, 6, 7, 8, 9]
-list_of_numbers.sort()
-print(list_of_numbers)
-
-# Reverse a List In-Place
-
-list_of_numbers.sort(reverse=True)
-print(list_of_numbers)
-
-# Tasks Involving Immutable Types (tuple, string, frozenset):
-# Create a Tuple of Integers
-
-integers = (1, 2, 3, 4)
-# Attempt to Change an Element in a Tuple (observe the error)
-# integers[0] = 2
-# print(integers)
-
-# Concatenate Two Tuples to Create a New Tuple
-
-one_tuple = (1, 2, 3, 4, 5, 6, 7)
-two_tuple = (8, 9, 10, 11, 12, 13)
-big_tuple = one_tuple + two_tuple
-print(big_tuple)
-
-
-# Create a String and Attempt to Change a Character (observe the error)
-
-# word = "Sergiusz"
-# word[0] = "F"
-
-
-
-# Create a String and Use Slicing to Extract a Substring
-
-text = "Sergiusz Kuderski"
-sliced_text = text[3:8]
-print(sliced_text)
-
-# Create a Frozenset and Try to Add an Element (observe the error)
-
-# froz = frozenset([1, 2, 3, 2])
+# count_people: int = "5"
+# price: float = 13.25
+# is_empty: bool = True
+# message: str = "Hello, world"
 #
-# froz.add(1)
-# Convert a String to a List, Modify it, and Convert Back
+# # Tasks Involving Mutable Types (list, dict, set):
+# # Create a List of Names and Append a New Name
+#
+# names = ["Sergiusz", "Irena", "Inga", "Wojtek"]
+# names.append("Martyna")
+# print(names)
+#
+#
+# # Modify an Element in a List
+#
+# names[2] = "W"
+# print(names)
+#
+# # Remove an Element from a List
+#
+# names.remove("W")
+# print(names)
+#
+# # Add a New Key-Value Pair to a Dictionary
+#
+# some_dict = {"Sergiusz" : 31, "Inga" : 39, "Michal" : 31}
+# some_dict["Martyna"] = 25
+# print(some_dict)
+#
+#
+#
+# # Update the Value for an Existing Key in a Dictionary
+#
+# some_dict.update({"Sergiusz" : 30})
+# print(some_dict)
+#
+# # Remove a Key from a Dictionary
+#
+# del some_dict["Sergiusz"]
+# print(some_dict)
+# # Add Elements to a Set
+#
+# nums = {1, 2, 3, 4, 5}
+# nums.add(6)
+# print(nums)
+#
+#
+# # Remove Elements from a Set
+#
+# nums.remove(2)
+# nums.remove(3)
+# print(nums)
+#
+# # Sort a List of Numbers (in-place sorting)
+#
+# list_of_numbers = [1, 2, 3, 4, 3, 6, 7, 8, 9]
+# list_of_numbers.sort()
+# print(list_of_numbers)
+#
+# # Reverse a List In-Place
+#
+# list_of_numbers.sort(reverse=True)
+# print(list_of_numbers)
+#
+# # Tasks Involving Immutable Types (tuple, string, frozenset):
+# # Create a Tuple of Integers
+#
+# integers = (1, 2, 3, 4)
+# # Attempt to Change an Element in a Tuple (observe the error)
+# # integers[0] = 2
+# # print(integers)
+#
+# # Concatenate Two Tuples to Create a New Tuple
+#
+# one_tuple = (1, 2, 3, 4, 5, 6, 7)
+# two_tuple = (8, 9, 10, 11, 12, 13)
+# big_tuple = one_tuple + two_tuple
+# print(big_tuple)
+#
+#
+# # Create a String and Attempt to Change a Character (observe the error)
+#
+# # word = "Sergiusz"
+# # word[0] = "F"
+#
+#
+#
+# # Create a String and Use Slicing to Extract a Substring
+#
+# text = "Sergiusz Kuderski"
+# sliced_text = text[3:8]
+# print(sliced_text)
+#
+# # Create a Frozenset and Try to Add an Element (observe the error)
+#
+# # froz = frozenset([1, 2, 3, 2])
+# #
+# # froz.add(1)
+# # Convert a String to a List, Modify it, and Convert Back
+#
+#
+# the_text = "Sergiusz Kuderski"
+# the_list = the_text.split(" ")
+# the_list.append("wiek 30")
+# modified_text = " ".join(the_list)
+# print(modified_text)
+#
+# # Extract a Substring from a String Using Slicing
+#
+# print(modified_text[2:10])
+#
+# # Convert a Tuple to a List, Change the List, and Convert Back to a Tuple
+#
+# some_tuple = (1, 2, 5, 1)
+# a_list = list(some_tuple)
+# a_list.append(10)
+# tuple_changed = tuple(a_list)
+# print(tuple_changed)
+#
+#
+# # Create an Immutable Set (frozenset) from a List and Try to Add Elements
+#
+# # numbers_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+# # frozen = frozenset(numbers_list)
+# # frozen.append(1)
+#
+# # 1. Print Numbers from 0 to N-1
+# # Use range() and len() to print numbers from 0 up to one less than the length of a list.
+#
+# some_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+# for n in range(len(some_list)):
+#     print(n)
+#
+# # 2. Count the Number of Elements in a List
+# # Use len() to find and print the total number of elements.
+#
+# print(len(some_list))
+#
+#
+# # 3. Print Indices of a List
+# # Use range(len(list)) to print all the indices of a list.
+#
+# for n in range(len(some_list)):
+#     print(f"index: {n}")
+#
+#
+# # 4. Create a List of Squares
+# # Use range() to generate numbers from 0 to N-1 and create a list of their squares.
+# squares = []
+# x = 11
+# for n in range(x):
+#     squares.append(n * n)
+# print(squares)
+#
+#
+# # 5. Find the Last Index of a List
+# # Use len() to determine the last valid index in a list.
+#
+# print(len(some_list) - 1)
+#
+#
+# # 6. Print List Elements Using Indices
+# # Loop through indices with range() and print each list element.
+#
+# for n in range(len(some_list)):
+#     print(some_list[n])
+#
+# # 7. Print All Even Indices
+# # Use range() with a step to print only even indices of a list.
+#
+# for n in range(0, len(some_list), 2):
+#     print(n)
+#
+# # 8. Create a List of Index-Value Tuples
+# # Use range() and len() to create pairs of index and value from a list.
+#
+# the_l = []
+# for n in range(len(some_list)):
+#     the_l.append((n, some_list[n]))
+#
+# print(the_l)
+#
+#
+# # 9. Count and Print the Length of a String
+# # Use len() on a string, and then print numbers from 0 up to that length minus 1 using range().
+#
+# word = "Sergiusz"
+# length = len(word)
+# print(length)
+# for n in range(length):
+#     print(n)
+#
+#
+#
+# # 10. Generate a Custom Sequence
+# # Generate a list of numbers starting from 0 to len(list)-1, but only at odd indices.
+#
+# odd_list = []
+#
+# for n in range(1, len(some_list), 2):
+#     odd_list.append(some_list[n])
+
+# print(odd_list)
+#
+# message = "Hello"
+# some_cool_list = [1, 2, 3]
+# print(id(message))
+# print(id(some_cool_list))
+# message += " world"
+# some_cool_list += [4]
+# print(id(message))
+# print(id(some_cool_list))
+# print(message)
+# print(some_cool_list)
+#
+# a = 10
+# b = a
+# print(id(a), id(b))
+#
+# a += 1
+# print(id(a), id(b))
+#
+# arr1 = [1]
+# arr2 = arr1
+# print(id(arr1), id(arr2))
+#
+# c = [1, 2, 3]
+# d = [1, 2, 3]
+# print(id(c), id(d))
+#
+# print(c == d)
+# d = c
+# print(id(c), id(d))
+#
+# x = 0
+# y = False
+# print(x == y)
+# print(x is y)
+# print(id(x))
+# print(id(y))
+
+# x = 500
+# y = 500
+# print(id(x))
+# print(id(y))
+#
+#
+# a = 999999
+# b = 999999
+# print(id(a))
+# print(id(b))
+# print(a == b)
+# print(a is b)
+#
+# arr1 = [1, 2, 3]
+# arr2 = [1, 2, 3]
+# print(id(arr1))
+# print(id(arr2))
+#
+# none1 = None
+# none2 = None
+#
+# print(id(none1))
+# print(id(none2))
+#
+# print(none1 is none2)
+#
+# f1 = False
+# f2 = False
+#
+# print(f1 is f2)
+# print(f1 == f2)
+#
+# one1 = 123
+# one2 = 123
+# print(id(one1))
+# print(id(one2))
+# print(one1 == one2)
+# print(one1 is one2)
+#
+# # 1. Compare IDs of Two Same Literals
+# # Assign the same string literal to two variables and compare their id() values.
+#
+# wordz = "Sergiusz"
+# words = "Sergiusz"
+# print(id(wordz))
+# print(id(words))
+#
+#
+# # 2. Create Two Different Lists with Same Elements
+# # Create two separate lists with the same elements and compare their id() values;
+# # observe that they are different.
+#
+# first_list = [1, 2, 3, 4, 5]
+# second_list = [1, 2, 3, 4, 5]
+# print(id(first_list), id(second_list))
+#
+#
+# # 3. Check ID of Built-in Singleton Objects
+# # Use id() on None, True, and False and verify they are the same object.
+#
+# nonce = None
+# agree = True
+# disagree = False
+# print(id(nonce), id(agree), id(disagree))
+#
+# # 4. Create Two Variables with Same Small Integer
+# # Assign the same small integer (e.g., 100) to two variables and compare their id().
+#
+# xx = 10
+# yy = 10
+# print(id(xx), id(yy))
+# # Are they the same object?
+# # 5. Compare IDs of New List and Tuple with Same Elements
+# # Create a list and a tuple with the same data and compare their id();
+# # they should be different.
+#
+# some_cool_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+# some_cool_tuple = [1, 2, 3, 4, 5, 6, 7, 8 , 9]
+# print(id(some_cool_list), id(some_cool_tuple))
+#
+#
+# # 6. Create Two Large Lists with Same Content
+# # Create two large lists with the same content and check their id(). Are they the same?
+#
+# strings_list = ["Sergiusz", "Kuderski", "kocha", "zycie", "i", "lubi", "jesc"]
+# strings_list2 = ["Sergiusz", "Kuderski", "kocha", "zycie", "i", "lubi", "jesc"]
+#
+# print(id(strings_list), id(strings_list2))
+#
+# # 7. Assign the Same String Literal to Two Variables
+# # Assign "hello" to two variables, compare their id(). Are they the same object?
+#
+# hillo = "hello"
+# hello = "hello"
+# print(id(hillo), id(hello))
+#
+# # 8. Create Two Sets with Same Content
+# # Create two sets with the same elements and compare their id(). Are they the same?
+#
+# first_set = {1, 2, 3, 4, 5, 6, 7, 8, 9}
+# second_set = {1, 2, 3, 4, 5, 6, 7, 8, 9}
+# print(id(first_set), id(second_set))
+#
+#
+# # 9. Check IDs of Integer Objects in Different Ranges
+# # Assign small integers in different ranges (e.g., 10, 200, 500) to different variables
+# # and compare IDs. Which are shared and which are unique?
+#
+# aa = 20
+# bb = 20
+# cc = 500
+# dd = 500
+# print(id(aa), id(bb))
+# print(id(cc), id(dd))
+#
+# def change_list(numbers: list):
+#     numbers += [10]
+#
+# some_fun_list = [1, 2]
+# print(id(some_fun_list))
+# change_list(some_fun_list)
+# print(id(some_fun_list))
+# print(some_fun_list)
+#
+# # Task: Create a Dictionary of Elements with Their Lengths
+# # Write a function that takes any number of arguments (*args).
+# # For each argument:
+# # If it's a string, add it to the dictionary as a key, with its length as the value.
+# # If it's a list, set, or dict, print a message indicating it can't be added
+# # (similar to your example).
+# # Return the resulting dictionary.
+#
+# def dictionary_length(*args):
+#     a_dict = {}
+#     for index, value in enumerate(args):
+#         if isinstance(value, (list, set, dict)):
+#             print(f"Cannot add {value} to the dictionary.")
+#         elif isinstance(value, str):
+#             a_dict[value] = len(value)
+#     return a_dict
+#
+# result = dictionary_length("hello", [1, 2, 3], "world", {1: 'a'}, "Python")
+# print(result)
+#
+# # Task: Create a Dictionary of Argument Types
+# # Write a function that accepts any number of arguments (*args).
+# # For each argument:
+# # If it's a string, add it to the dictionary with the value "string".
+# # If it's an integer, add it with the value "integer".
+# # If it's a float, add it with the value "float".
+# # For any other type, print a message saying it can't be added.
+# # Return the dictionary mapping argument values to their types.
+#
+# def argument_types(*args):
+#     dictionary = {}
+#     for index, value in enumerate(args):
+#         if isinstance(value, str):
+#             dictionary[value] = "string"
+#         elif isinstance(value, int):
+#             dictionary[value] = "integer"
+#         elif isinstance(value, float):
+#             dictionary[value] = "float"
+#         else:
+#             print(f"The {value} cannot be added to the dictionary. I am sorry.")
+#     return dictionary
+#
+#
+# # Task: Categorize Arguments and Count Their Occurrences
+# # Write a function that accepts any number of arguments (*args).
+# # For each argument:
+# # Determine its type: "string", "integer", "float", or "other".
+# # Count how many times each type appears.
+# # Return a dictionary with the types as keys and their counts as values.
+#
+# def counting_occurrences(*args):
+#     dictionary = {}
+#     for value in args:
+#         if isinstance(value, str):
+#             key = "string"
+#         elif isinstance(value, int):
+#             key = "integer"
+#         elif isinstance(value, float):
+#             key = "float"
+#         else:
+#             key = "other"
+#         if key in dictionary:
+#             dictionary[key] += 1
+#         else:
+#             dictionary[key] = 1
+#     return dictionary
+#
+# result = counting_occurrences("hello", 42, 3.14, None, "world", "sergiusz", False, 22, [1, 2, 3])
+# print(result)
+#
+#
+# # 1. Check if All Words Are Capitalized
+# # Given a sentence, verify if each word starts with an uppercase letter.
+#
+# sentence = "Sergiusz Kuderski lubi zycie."
+# words = sentence.split(" ")
+# verification = []
+# for word in words:
+#     if word[0].isupper():
+#         verification.append(True)
+#     else:
+#         verification.append(False)
+#
+# print(verification)
+# print(all(verification))
+#
+# # 2. Remove All Punctuation
+# # Remove all punctuation marks from a string, leaving only letters and numbers.
+#
+# import string
+#
+# other_sentence = "Sergiusz, Kuderski, kocha zycie.!"
+# clean_word = other_sentence.strip(string.punctuation)
+# print(clean_word)
+#
+# # 3. Find the Most Frequent Character
+# # Identify the character that appears most frequently in a string (ignore case).
+#
+#
+# sentence2 = "SErgiusz Kuderski"
+# dictionary = {}
+# for ch in sentence2:
+#     ch = ch.lower()
+#     if ch in dictionary:
+#         dictionary[ch] += 1
+#     else:
+#         dictionary[ch] = 1
+# print(dictionary)
+# most_freq_char = max(dictionary, key=dictionary.get)
+# print(most_freq_char)
+# print(min(dictionary, key=dictionary.get))
+#
+# # 4. Count Words of a Certain Length
+# # Count how many words in a sentence have more than 5 characters.
+#
+# sentence3 = "Dzien dobry Polsko Witajcie w 2026 roku."
+# wordzz = sentence3.split(" ")
+# count = 0
+# for word in wordzz:
+#     if len(word) > 5:
+#         count += 1
+#         print(word)
+# print(count)
+#
+# # 5. Convert a String Into a Title Case
+# # Transform a string so that each word starts with an uppercase letter
+# # and the rest are lowercase.
+# title_case = sentence3.title()
+# print(title_case)
+#
+# # 6.Task: Generate a String of Unique Words
+# # Given an input string, create a string containing all unique words from it.
+# # Preserve the order of first appearance.
+# # Remove duplicate words, but keep the original order.
+#
+# the_string2 = "Sergiusz Kuderski kocha zycie kocha Kuderski wodka"
+# list_the_string = the_string2.split(" ")
+# unq = set()
+# ordered_unq = []
+# for word in list_the_string:
+#     if word not in unq:
+#         unq.add(word)
+#         ordered_unq.append(word)
+# print(ordered_unq)
+#
+#
+#
+#
+# # 7. Create a String of Unique Characters
+# # Generate a string of all unique characters from an input string, preserving order.
+#
+# unique = set()
+# the_string = "Sergiusz Kuderski"
+# unique_chars = []
+#
+# for c in the_string:
+#     c_lower = c.lower()
+#     if c_lower not in unique:
+#         unique.add(c_lower)
+#         unique_chars.append(c)
+# print(unique_chars)
+#
+# # 8. Check if a String is a Valid URL
+# # Verify whether a string starts with 'http://' or 'https://'
+# # and ends with a domain extension like '.com'.
+#
+# website = "http://www.onet.pl"
+# if (website.startswith("http://") or website.startswith("https://")) and website.endswith(".com"):
+#     print("Valid url")
+# else:
+#     print("Invalid url")
+#
+# # 9. Count Vowels and Consonants
+# # Count the number of vowels and consonants in a string.
+#
+# some_very_cool_string = "Sergiusz Kuderski"
+# count_vowels = 0
+# count_consonants = 0
+#
+# for c in some_very_cool_string:
+#     c_low = c.lower()
+#     if c.isalpha():
+#         if c_low in "aeiou":
+#             count_vowels += 1
+#         else:
+#             count_consonants += 1
+# print(f"vowels: {count_vowels}, consonants: {count_consonants}")
+#
+#
+# # 10. Insert Spaces Before Capital Letters
+# # Convert a camelCase string into a space-separated phrase
+# # (e.g., "CamelCaseString" → "Camel Case String").
+#
+#
+# camel_case_string = "CamelCaseString"
+# camel_case = ""
+# for i, c in enumerate(camel_case_string):
+#     if c.isupper() and i is not 0:
+#         camel_case += " "
+#     camel_case += c
+# print(camel_case)
+#
+# print(list(range(100)))
+# result_list = []
+#
+# for i in range(100):
+#     if "3" in str(i):
+#         result_list.append(i)
+# print(result_list)
+#
+# result_list_comprehended = [i for i in range(100) if "3" in str(i)]
+# print(result_list_comprehended)
 
 
-the_text = "Sergiusz Kuderski"
-the_list = the_text.split(" ")
-the_list.append("wiek 30")
-modified_text = " ".join(the_list)
-print(modified_text)
+numbers = [1, 2, 3, 4, 5, 6]
 
-# Extract a Substring from a String Using Slicing
+squared_numbers = [(num * num) for num in numbers]
+print(squared_numbers)
 
-print(modified_text[2:10])
+student_groups = [["group1", "group2"],
+                  ["group3", "group4"]]
 
-# Convert a Tuple to a List, Change the List, and Convert Back to a Tuple
+# new_group_list = []
+# for group in student_groups:
+#     new_group = []
+#
+#     for student in group:
+#         new_group.append(student + " - Python")
+#
+#     new_group_list.append(new_group)
+# print(new_group_list)
 
-some_tuple = (1, 2, 5, 1)
-a_list = list(some_tuple)
-a_list.append(10)
-tuple_changed = tuple(a_list)
-print(tuple_changed)
+new_group_list = [
+    [student + " - Python" for student in group]
+    for group in student_groups
+    ]
+print(new_group_list)
+hundred =[
+    [
+    [student + " - Python" for student in group]
+    for group in student_groups
+    ]
+    for _ in range(100)
 
-
-# Create an Immutable Set (frozenset) from a List and Try to Add Elements
-
-numbers_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-frozen = frozenset(numbers_list)
-frozen.append(1)
+]
+print(hundred)
