@@ -446,4 +446,273 @@ print(seven)
 sum_of = [[row + col for col in range(3)] for row in range(3)]
 print(sum_of)
 
+# Create a 3x3 matrix filled with zeros.
+
+matrix = []
+
+for _ in range(3):
+    row = []
+    for _ in range(3):
+        row.append(0)
+    matrix.append(row)
+print(matrix)
+
+mat = [[0 for _ in range(3)]
+       for _ in range(3)
+       ]
+
+print(mat)
+
+# Create a 4x4 matrix filled with ones.
+
+
+matrix4 = [[1 for _ in range(4)]
+    for _ in range(4)
+]
+
+
+# Create a 5x5 matrix filled with the number 7 using nested loops or list comprehension.
+
+matrix5 = [[7 for _ in range(5)]
+           for _ in range(5)
+]
+
+print(matrix5)
+
+# Create a 6x4 matrix where each element is the product of its row and column indices (starting from 0).
+
+matrix6x4= [[row * column for column in range(4)]
+ for row in range(6)]
+
+print(matrix6x4)
+
+# Create a 7x3 matrix where each element is the sum of its row and column indices (starting from 0).
+
+matrix7x3= [[row + column for column in range(3)]
+for row in range(7)
+]
+
+print(matrix7x3)
+
+
+# Create a 4x6 matrix where each element is the difference between its row and column indices (starting from 0).
+matrix4x6 = [[row - column for column in range(6)]
+for row in range(4)
+]
+print(matrix4x6)
+
+
+# Create a 5x5 matrix where each element
+# is the square of the sum of its row and column indices (starting from 0).
+
+five = [[((row + column) ** 2) for column in range(5)]
+for row in range(5)
+]
+
+
+print(five)
+print(matrix4)
+# Create a 4x4 identity matrix (1s on the diagonal, 0s elsewhere).
+
+identity_matrix = [[1 if i == j else 0 for j in range(4)]
+                    for i in range(4)
+]
+print(identity_matrix)
+# Create a 5x5 identity matrix (1s on the diagonal, 0s elsewhere) using nested list comprehension.
+
+
+# identy = [[1 if i == j else 0 for j in range(5)]
+#           for i in range(5)]
+#
+# print(identy)
+
+# Create a 6x6 matrix where each element is 1 if the sum of its row and column indices is even, and 0 otherwise.
+
+matrix6 = [[1 if (i + j) % 2 == 0 else 0 for j in range(6)]
+            for i in range(6)]
+
+print(matrix6)
+
+# Create a 3x3 matrix where each element is 1 if the row number is greater than the column number,
+# and 0 otherwise.
+
+matrix3 = [[1 if i > j else 0 for j in range(3)]
+            for i in range(3)]
+
+print(matrix3)
+
+# Create a 4x4 matrix where each element is 1 if the column number is even, and 0 if the column number is odd.
+
+matrix4 = [[1 if j % 2 == 0 else 0 for j in range(4)]
+           for i in range(4)]
+print(matrix4)
+
+# Create a 5x5 matrix where each element is 2 if the sum of its row and column indices is divisible by 3,
+# and 0 otherwise.
+
+
+mat5 = [[2 if (i + j) % 3 == 0 else 0 for j in range(5)]
+            for i in range(5)]
+
+print(mat5)
+
+# Generate a 3x3 matrix where each element is the sum of its row and column indices.
+
+ma3 = [[i + j for j in range(3)]
+        for i in range(3)]
+
+print(ma3)
+
+# Create a 4x4 matrix where each element is the difference between its row and column indices.
+
+ma4 = [[i - j for j in range(4)]
+for i in range(4)]
+
+print(ma4)
+
+# Create a 5x5 matrix where each element is 1 if the product of its row and column indices is even,
+# and 0 otherwise.
+
+ma5 = [[1 if (i * j) % 2 == 0 else 0 for j in range(5)]
+for i in range(5)]
+print(ma5)
+
+# Create a 6x6 matrix where each element is 1 if the sum of its row and column indices is divisible by 3,
+# and 0 otherwise.
+
+
+matr6 = [[1 if (i + j) % 3 == 0 else 0 for j in range(6)]
+for i in range(6)]
+
+print(matr6)
+
+# Create a 5x5 multiplication table where each element is the product of its row and column indices.
+
+
+s = [[i * j for j in range(5)]
+for i in range(5)]
+
+print(s)
+
+# Create a 6x6 matrix where each element is the sum of its row and column indices.
+
+ss = [[o + j for j in range(6)]
+for o in range(6)]
+
+print(ss)
+
+# Create a 2x3 matrix filled with the number 7.
+
+sss = [[7 for _ in range(3)]
+for _ in range(2)]
+
+print(sss)
+
+# Create a 3x5 matrix where each element is the difference between 10 and its row and column indices.
+x = [[10 - (i + j) for j in range(5)]
+for i in range(3)]
+
+print(x)
+
+# Create a 4x4 matrix where each element is the product of 2 and its row index, plus the column index.
+
+ssss = [[(2 * i) + j for j in range(4)]
+for i in range(4)]
+
+print(ssss)
+
+# Create a 5x5 matrix where each element is the square of the sum of its row and column indices.
+
+asdsa = [[(i + j) ** 2 for j in range(5)]
+         for i in range(5)]
+print(asdsa)
+
+# Generate a 4x4 matrix with values decreasing from 16 to 1 in row-major order.
+values = [i for i in range(16, 0, -1)]
+aaa = [[values[i *4:(i + 1) * 4]
+for i in range(4)]]
+
+print(aaa)
+
+# Create a 3x3 matrix with alternating 0s and 1s like a checkerboard pattern.
+#
+# Generate a list of lists where each inner list contains the first 5 natural numbers, repeated 3 times.
+#
+# Create a 2x5 matrix with each row being the sequence of numbers from 1 to 5, multiplied
+# by the row number (i.e., row 0 all 0s, row 1 all 1s, etc.).
+#
+# Generate a 4x4 matrix with elements equal to the product of the row and column indices,
+# but only for even row indices.
+
+
+# x = "ABC"
+# y = "123"
+# z = "abc"
+# comb = []
+# for i in x:
+#     for j in y:
+#         for k in z:
+#             comb.append(i + j + k)
+# print(comb)
+#
+# w = [i + j + k for i in x for j in y for k in z
+#
+# ]
+# print(w)
+
+# Create a dictionary from a list of numbers where each key is the number and the value is its square.
+
+numberss = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+dicti = {num: num ** 2 for num in numberss}
+print(dicti)
+
+# Given a list of words, create a dictionary mapping each word to its length.
+
+wordz = ["Sergiusz", "Kuderski", "age", "30"]
+words_di = {word: len(word) for word in wordz}
+print(words_di)
+
+# Create a dictionary with keys being numbers 1 through 5 and values being those numbers multiplied by 10.
+
+ranger = {i: i * 10 for i in range(1, 6)}
+print(ranger)
+
+
+# Given a string, create a dictionary counting how many times each character appears.
+
+stringo = "Sergiusz Kuderski"
+
+stringo_d = {i: stringo.count(i) for i in stringo}
+print(stringo_d)
+
+
+# Create a dictionary from two lists: one with names and another with ages, mapping names to ages.
+
+one = ["Sergiusz", "Irena", "Wiesiek"]
+two = [31, 62, 69]
+three = {name:age for name, age in zip(one, two)}
+print(three)
+
+
+# Generate a dictionary where keys are numbers from 1 to 10 and values are the cubes of those numbers.
+
+some_dicti = {i: i ** 3 for i in range(1, 11)}
+print(some_dicti)
+
+
+# Create a dictionary with words as keys and their uppercase versions as values, given a list of words.
+
+some_other_dicti = {word: word.upper() for word in wordz}
+print(some_other_dicti)
+
+# From a list of tuples (name, score), create a dictionary mapping names to scores.
+
+list_of_te = [("Sergiusz", 30), ("Irena", 62), ("Wiesiek", 69)]
+dics = {l[0]: l[1] for l in list_of_te}
+print(dics)
+
+# Create a dictionary that maps each lowercase letter of the alphabet to its position (a=1, b=2, ..., z=26).
+#
+# Given a list of integers, generate a dictionary where the key is the integer
+
 

@@ -4515,3 +4515,70 @@ hundred =[
 
 ]
 print(hundred)
+
+# Create a dictionary with day names as keys and their abbreviations as values (e.g., 'Monday': 'Mon').
+
+week_days = {"Monday": "Mon", "Tuesday": "Tue", "Wednesday": "Wed", "Thursday": "Thu", "Friday": "Fri"
+             , "Saturday": "Sat", "Sunday": "Sun"}
+
+print((week_days))
+
+
+# Write a program to merge two dictionaries into one.
+
+dict1 = {1: 2, 3: 4, 5: 6}
+dict2 = {2: 3, 4: 5, 6: 7}
+dict3 = {**dict1, **dict2}
+print(dict3)
+
+
+# Create a dictionary that maps integers from 1 to 5 to their squares.
+dictio = {}
+for i in range(1, 6):
+    dictio[i] = i ** 2
+print(dictio)
+
+
+
+# Write a code to list all the keys in a dictionary.
+
+print(list(dictio.keys()))
+
+
+# Write a code to list all the values in a dictionary.
+
+print(list(dictio.values()))
+
+# Create a dictionary from two lists: one with names and one with ages.
+
+list1 = ["Sergiusz", "Martyna", "Wiesiek"]
+list2 = [31, 25, 69]
+dicta = dict(zip(list1, list2))
+print(dicta)
+
+
+# Check if the dictionary is empty, and print a message accordingly.
+asd = {}
+if not asd:
+    print("empty")
+
+
+# Count the frequency of each word in a sentence and store the counts in a dictionary.
+
+sentece = "Sergiusz Sergiusz Sergiusz"
+dicaa = {}
+for i in sentece.split():
+    dicaa[i] = dicaa.get(i, 0) + 1
+print(dicaa)
+
+
+# Write a code to copy a dictionary (create a new copy of it).
+
+d = dicaa.copy()
+print(d)
+print(id(dicaa))
+print(id(d))
+
+# Create a dictionary with default values using dict.get() when retrieving a key that might not exist.
+
+print(dicaa.get("John", "doesn't exist"))
