@@ -711,8 +711,141 @@ list_of_te = [("Sergiusz", 30), ("Irena", 62), ("Wiesiek", 69)]
 dics = {l[0]: l[1] for l in list_of_te}
 print(dics)
 
-# Create a dictionary that maps each lowercase letter of the alphabet to its position (a=1, b=2, ..., z=26).
-#
-# Given a list of integers, generate a dictionary where the key is the integer
+# Create a 3x3 matrix filled with zeros.
+
+sa = [[0 for _ in range(3)]
+    for _ in range(3)
+]
+print(sa)
+
+# Create a 5x5 matrix filled with ones.
+fi = [[1 for _ in range(5)]
+for _ in range(5)]
+
+print(fi)
+
+# Create a 4x4 matrix where each element is the sum of its row and column indices,
+# but only include elements where the sum is an even number; otherwise, fill with zero.
 
 
+fourxfour = [[(row + column) if (row + column) % 2 == 0 else 0 for column in range(4)]
+                for row in range(4)]
+
+print(fourxfour)
+
+# Create a 5x5 matrix where each element is the product of its row and column indices,
+# but only if the product is an odd number; otherwise, fill the cell with zero.
+fivexfive = [[(row * column) if (row * column) % 2 != 0 else 0 for column in range(5)]
+                for row in range(5)]
+
+print(fivexfive)
+
+
+# Create a 6x6 matrix where each element is the difference between its row and column indices,
+# but only include the difference if it's an odd number; otherwise, fill with zero.
+
+sixxsix = [[(row - column) if (row - column) % 2 != 0 else 0 for column in range(6)]
+            for row in range(6)]
+
+print(sixxsix)
+
+# Create a 4x4 identity matrix (1s on the diagonal, 0s elsewhere).
+
+iden = [[1 if i == j else 0 for j in range(4)]
+        for i in range(4)]
+
+print(iden)
+
+# Create a 5x5 matrix where the element is 1
+# if the sum of its row and column indices is divisible by 3, and 0 otherwise.
+
+sada = [[(row + col) if (row + col) % 3 == 0 else 0 for col in range(5)]
+        for row in range(5)]
+
+print(sada)
+# Generate a 3x3 matrix where each element is the sum of its row and column indices.
+
+leesa = [[r + c for c in range(3)]
+         for r in range(3)]
+
+print(leesa)
+
+# Create a 4x4 matrix where each element is the difference between its row and column indices.
+
+dif = [[row - col for col in range(4)]
+       for row in range(4)]
+print(dif)
+
+# Create a 5x5 multiplication table where each element is the product of its row and column indices.
+
+multipa = [[(row * col) for col in range(5)]
+            for row in range(5)]
+
+print(multipa)
+
+# Create a 2x3 matrix filled with the number 7.
+
+seven = [[7 for _ in range(3)]
+            for _ in range(2)]
+
+print(seven)
+
+# Create a 3x4 matrix where each element is the product of its row and column indices,
+# but only include the product if it is an odd number; otherwise, fill the cell with zero.
+
+asdasdas = [[(row * column) if (row * column) % 2 != 0 else 0 for column in range(4)]
+for row in range(3)]
+print(asdasdas)
+# Generate a 4x4 matrix with values decreasing from 16 to 1 in row-major order.
+
+sixteen = [[num for num in range(16, 10, -1)]
+           for _ in range(4)]
+print(sixteen)
+
+# Create a 3x5 matrix where each row contains the numbers from 20 down to 16.
+twooo = [[num for num in range(20, 15, -1)]
+for _ in range(3)]
+print(twooo)
+
+# Create a 3x3 matrix with alternating 0s and 1s like a checkerboard pattern.
+
+al = [[1 if col % 2 == 0 else 0 for col in range(3)]
+      for _ in range(3)]
+print(al)
+
+# Create a 4x4 matrix where each element is 1 if the row index plus the column index is divisible by 3,
+# and 0 otherwise.
+
+print([[1 if (row + col)% 3 == 0 else 0 for col in range(4)]
+for row in range(4)])
+
+# Generate a list of lists where each inner list contains the first 5 natural numbers, repeated 3 times.
+
+natural = [[x for x in range(1, 6)] for _ in range(3)]
+print(natural)
+
+# Create a list of 4 inner lists, where each inner list contains the squares of numbers from 1 to 4.
+# Use nested list comprehension.
+
+squares = [[x ** 2 for x in range(1, 5)] for _ in range(4)]
+print(squares)
+
+# Create a 2x5 matrix with each row being the sequence of numbers from 1 to 5, multiplied by the row number
+# (i.e., row 0 all 0s, row 1 all 1s, etc.).
+
+xcas= [[row * num for num in range(1, 6)] for row in range(2)]
+print(xcas)
+# Create a 3x4 matrix where each row is the sequence of numbers from 0 to 3,
+# multiplied by the row number (i.e., first row all 0s, second row all 1s, and third row all 2s).
+
+aasfa = [[row * num for num in range(4)] for row in range(3)]
+print(aasfa)
+
+
+# Generate a 4x4 matrix with elements equal to the product of the row and column indices,
+# but only for even row indices.
+
+asfasfas = [[(row * col) if row % 2 == 0 else 0 for col in range(4)]
+    for row in range(4)]
+
+print(asfasfas)
