@@ -4582,3 +4582,114 @@ print(id(d))
 # Create a dictionary with default values using dict.get() when retrieving a key that might not exist.
 
 print(dicaa.get("John", "doesn't exist"))
+
+# 1. Sum all positional arguments using *args.
+
+def summing(*args):
+    count = 0
+    for arg in args:
+        count += arg
+    return count
+print(summing(1, 2, 3, 4, 5))
+
+# 2. Create a greeting function that accepts a variable number of names and greets each one.
+
+def greeting( *args):
+    names  = ", ".join(args)
+    return f"Hello, {names}"
+
+print(greeting( "Johnny", "Sergiusz"))
+# 3. Write a function that accepts any number of integers and returns their average.
+
+def averages(*args):
+    return sum(args) / len(args)
+
+print(averages(1, 2, 3, 4))
+
+# 4. Build a product function that multiplies any number of numbers supplied via *args.
+
+def product(*args):
+    num = 1
+    for arg in args:
+        num *= arg
+    return num
+
+print(product(1, 2, 3, 4, 5, 6, 7, 8))
+
+
+# 5. Write a function that takes a fixed argument prefix, optional *args for suffixes,
+#     and **kwargs for optional formatting options, then constructs and returns a string.
+
+def some_function(name: str, *args, **kwargs):
+    args_str = ", ".join(str(arg) for arg in args)
+    kwargs_str = ", ".join(f"{k}={v}" for k, v in kwargs.items())
+    return f"{name}: {args_str}, {kwargs_str}"
+
+print(some_function("Sergiusz", "30", country = "Greece", city = "Athens"))
+
+# Write a function build_message(sender: str, *messages, **attributes) that constructs a message string:
+#
+# sender: the sender's name.
+# *messages: any number of message parts.
+# **attributes: optional key-value pairs describing the message, like "timestamp": "2023-09-15" or "priority": "high".
+# The function should:
+#
+# Concatenate all message parts separated by spaces.
+# Append the attributes at the end, formatted as key=value, separated by commas.
+# Return a string that looks like:
+# "From {sender}: {messages} [{attributes}]"
+
+def build_message(sender: str, *args, **kwargs):
+    message = " ".join(str(arg) for arg in args)
+    attrs = ", ".join(f"{k}={v}" for k, v in kwargs.items())
+    return (f"From {sender}: {message} [{attrs}]")
+
+print(build_message("Alice", "Hi there!", "How are you?", timestamp="2023-09-15", priority="high"))
+
+# 6. Implement a function that accepts any number of key-value pairs via **kwargs,
+# and prints each key and value.
+
+def implementingkwargs(**kwargs):
+    return [f"{k} - {v}" for k, v in kwargs.items()]
+
+print(implementingkwargs(name="Alice", age=30, city="New York"))
+
+# 7. Write a function that can accept multiple lists via *args,
+# and returns a single list concatenating everything.
+
+def conc(*args):
+    result = []
+    for ls in args:
+        result.extend(ls)
+    return result
+
+l = [1, 2, 3]
+ll = [2, 3, 4]
+lll = [2, 7, 2]
+print(conc(l,ll,lll))
+
+# Write a function that accepts any number of lists via *args, and returns a single list containing all elements from all the input lists,
+# concatenated together.
+
+def together(*args):
+    return sum(args, [])
+
+print(together(l, ll, lll))
+
+# 8. Define a function with positional arguments, *args, and **kwargs,
+# and demonstrate how to call it with various combinations.
+
+def calling(*args, **kwargs):
+    for arg in args:
+        print(f"{arg}")
+    print(f"{args}")
+
+    for k, v in kwargs.items():
+        print(f"{k} is {v}")
+    print(f"all keyword arguments: {kwargs}")
+
+calling(1, 2, 3, 4, x=10, y=20)
+
+# 9. Write a function that takes a list of **kwargs dictionaries and merges them into a single dictionary.
+# 10. Create a function that accepts a variable number of positional and keyword arguments,
+# and prints the number of each type.

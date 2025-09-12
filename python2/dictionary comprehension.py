@@ -318,3 +318,283 @@ print(qqwqr)
 
 factd = {n: factorial(n) for n in range(1, 21) if n % 3 == 0 or n % 4 == 0}
 print(factd)
+
+# Practice Task:
+# Suppose you have raw data for multiple products in a store,
+# in a dictionary where each key is a product name,
+# and each value is a list of error messages related to that product.
+#
+# Write a series of functions to produce a structured report:
+#
+# Create a function format_product_error(error: str) -> dict
+# that converts each raw error message into a dictionary with keys:
+#
+# "message": the original error message.
+# "severity": assign "high" if the message contains the word "critical" (case-insensitive), otherwise "low".
+
+# Create a function format_product(product_name: str, errors: list) -> dict
+# that formats each product's data into a dictionary:
+#
+# "name": the product name.
+# "errors": a list of formatted error dicts from format_product_error().
+# "status": "problematic" if there are any errors, otherwise "OK".
+# Create a function generate_report(products_data: dict) -> list
+# that produces a list of formatted product reports, using the previous functions.
+
+
+# def format_product_error(error: str) -> dict:
+#     severity = "high" if "critical" in error.lower() else "low"
+#     return {
+#         "message": error,
+#         "severity": severity
+#     }
+#
+# def format_product(product_name: str, errors: list) -> dict:
+#     status = "problematic" if errors else "OK"
+#     return {
+#         "name": product_name,
+#         "errors": [format_product_error(error) for error in errors],
+#         "status": status
+#     }
+#
+# def generate_report(products_data: dict) -> list:
+#     return [
+#         format_product(product_name, errors) for product_name, errors in products_data.items()
+#     ]
+#
+# print(generate_report(products_data = {
+#     "Smartphone": ["Critical battery drain", "Screen flickering"],
+#     "Laptop": ["Overheating issue", "Keyboard not working"],
+#     "Tablet": ["Critical Bluetooth connectivity problem"],
+#     "Printer": ["Paper jam", "Low ink warning"],
+#     "Monitor": []
+# }))
+#
+# # Suppose you have raw data about students and the courses they are enrolled in,
+# # stored as a dictionary where each key is a student name, and each value is a list of grades for their courses.
+# #
+# # Write a series of functions to produce a structured report:
+# #
+# # Create a function format_grade(grade: float) -> dict that converts each grade into a dictionary with keys:
+# #
+# # "grade": the original grade.
+# # "status": "pass" if the grade is 60 or above, otherwise "fail".
+# # Create a function format_student(name: str, grades: list) -> dict
+# # that formats each student's data into a dictionary:
+# #
+# # "name": the student's name.
+# # "grades": a list of formatted grade dicts from format_grade().
+# # "status": "good standing" if the student has no failing grades, otherwise "probation".
+# # Create a function generate_student_report(students_data: dict) -> list
+# # that produces a list of formatted student reports using the previous functions.
+#
+# # def format_grade(grade: float) -> dict:
+# #     status = "pass" if grade >= 60 else "fail"
+# #     return {
+# #         "grade" : grade,
+# #         "status" : status
+# #     }
+# #
+# # def format_student(name: str, grades: list) -> dict:
+# #     if all(g['status'] == 'pass' for g in [format_grade(g) for g in grades]):
+# #         status = "good standing"
+# #     else:
+# #         status = "probation"
+# #     return {
+# #         "name": name,
+# #         "grades": [format_grade(g) for g in grades],
+# #         "status": status
+# #     }
+# #
+# # def generate_student_report(students_data: dict) -> list:
+# #     return [
+# #         format_student(name, grades) for name, grades in students_data.items()
+# #     ]
+# #
+# # print(generate_student_report(students_data = {
+# #     "Alice": [75, 80, 90],
+# #     "Bob": [55, 65, 70],
+# #     "Charlie": [60, 45, 80],
+# #     "Diana": [85, 92, 88],
+# #     "Evan": [50, 55, 58]
+# # }
+# # ))
+#
+# # New Practice Task:
+# # Suppose you have a dictionary where keys are employee names, and values are lists of their sales figures.
+# # Write functions to produce a structured report:
+# #
+# # Create a function format_sale(sale: float) -> dict:
+# #
+# # "amount": the sale amount.
+# # "performance": "above target" if the sale is above 1000, otherwise "below target".
+# # Create a function format_employee(name: str, sales: list) -> dict:
+# #
+# # "name": employee name.
+# # "sales": list of formatted sale dicts.
+# # "status": "performance", if the average sale is above 1000; otherwise, "needs improvement".
+# # Create a function generate_employee_report(employees_data: dict) -> list:
+# #
+# # Produces a list of employee reports in the desired format.
+#
+# # def format_sale(sale: float) -> dict:
+# #     performance = "above target" if sale > 1000 else "below target"
+# #     return {
+# #         "amount": sale,
+# #         "performance": performance
+# #     }
+# #
+# # def format_employee(name: str, sales: list) -> dict:
+# #     average_sale = sum(sales) / len(sales)
+# #     status = "performance" if average_sale > 1000 else "needs improvement"
+# #     return {
+# #         "name": name,
+# #         "sales": [format_sale(sale) for sale in sales],
+# #         "status": status
+# #     }
+# #
+# # def generate_employee_report(employees_data: dict) -> list:
+# #     return [
+# #         format_employee(name, sales) for name, sales in employees_data.items()
+# #     ]
+# #
+# # print(generate_employee_report(employees_data = {
+# #     "Alice": [1200, 950, 1300],
+# #     "Bob": [800, 900, 850],
+# #     "Charlie": [1500, 1600, 1550],
+# #     "Diana": [700, 720, 680]
+# # }))
+#
+# # Suppose you have a dictionary where the keys are student names, and the values are lists of exam scores.
+# #
+# # Write functions to produce a structured report:
+# #
+# # Create a function format_score(score: float) -> dict:
+# #
+# # "score": the exam score.
+# # "grade": "pass" if the score is 60 or higher, otherwise "fail".
+# # Create a function format_student(name: str, scores: list) -> dict:
+# #
+# # "name": student name.
+# # "scores": list of formatted score dicts.
+# # "status": "passing" if the average score is 60 or higher; otherwise, "failing".
+# # Create a function generate_student_report(students_data: dict) -> list:
+# #
+# # Produces a list of student reports in the specified format.
+#
+# def format_score(score: float) -> dict:
+#     grade = "pass" if score >= 60 else "fail"
+#     return {
+#         "score": score,
+#         "grade": grade,
+#     }
+#
+# def format_student(name: str, scores: list) -> dict:
+#     avg = sum(scores) / len(scores)
+#     status = "passing" if avg >= 60 else "failing"
+#     return {
+#         "name": name,
+#         "scores": [format_score(score) for score in scores],
+#         "status": status
+#     }
+#
+# def generate_student_report(students_data: dict) -> list:
+#     return [
+#         format_student(name, scores) for name, scores in students_data.items()
+#     ]
+#
+# # New task:
+# # Given a dictionary where keys are employee names and values are lists of their monthly sales figures,
+# #
+# # Create a function format_sale(sale: float) -> dict that returns a dictionary with:
+# #
+# # "amount": the sale amount
+# # "status": "above target" if the sale is greater than or equal to 1000, otherwise "below target".
+# # Create a function format_employee(name: str, sales: list) -> dict that returns a dictionary with:
+# #
+# # "name": employee name
+# # "sales": list of formatted sale dictionaries
+# # "average": the average sale amount
+# # "performance": "good" if the average sale is at least 1000, otherwise "needs improvement"
+# # Create a function generate_employee_report(employees_data: dict) -> list
+# # that produces a list of all employee reports.
+#
+# def format_sale(sale: float) -> dict:
+#     status = "above target" if sale >= 1000 else "below target"
+#     return {
+#         "amount": sale,
+#         "status": status
+#     }
+#
+# def format_emp(name: str, sales: list) -> dict:
+#     avg = sum(sales) / len(sales)
+#     return {
+#         "name": name,
+#         "sales": [format_sale(sale) for sale in sales],
+#         "average": avg,
+#         "performance": "good" if avg >= 1000 else "needs improvement"
+#     }
+#
+# def generate_emp_rep(employees_data: dict) -> list:
+#     return [
+#         format_emp(name, sales) for name, sales in employees_data.items()
+#     ]
+#
+# print(generate_emp_rep({
+#     "Alice": [1200, 950, 1050],
+#     "Bob": [950, 860, 920],
+#     "Charlie": [1300, 1350, 1280]
+# }))
+
+# Given a dictionary where keys are employee names and values are lists of their monthly sales figures,
+# create a function `format_sale(sale: float) -> dict` that returns a dictionary with:
+#   - "amount": the sale amount
+#   - "status": "above target" if the sale is >= 1000, otherwise "below target".
+#
+# Then, create a function `format_employee_summary(name: str, sales: list) -> dict` that:
+#   - "name": employee name
+#   - "total_sales": sum of all sales
+#   - "average": average sales
+#   - "status": "top performer" if total_sales >= 10,000,
+#               "average" if total_sales between 5,000 and 9,999,
+#               "needs improvement" if below 5,000.
+#
+# Finally, use a list comprehension to generate a list of employee reports based on the dictionary,
+# utilizing the above functions.
+
+def format_sale(sale: float) -> dict:
+    status = "above target" if sale >= 1000 else "below target"
+    return {
+        "amount": sale,
+        "status": status
+    }
+
+def format_employee_summary(name: str, sales: list) -> dict:
+    total_sales = sum(sales)
+    avg = sum(sales) / len(sales)
+    if total_sales >= 10000:
+        status = "top performer"
+    elif total_sales >= 5000:
+        status = "average"
+    else:
+        status = "needs improvement"
+
+    return {
+        "name": name,
+        "total_sales": total_sales,
+        "average": avg,
+        "status": status
+    }
+
+def report(data: dict) -> list:
+    return [
+        format_employee_summary(name, sales) for name, sales in data.items()
+    ]
+
+print(report({
+    "Alice": [1200, 950, 1300],
+    "Bob": [950, 860, 920],
+    "Charlie": [13000, 13500, 12800],
+    "Diana": [3000, 3500, 3100]
+}
+))
