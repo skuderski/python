@@ -598,3 +598,71 @@ print(report({
     "Diana": [3000, 3500, 3100]
 }
 ))
+
+# Create a dictionary where the keys are numbers from 1 to 10 and the values are their squares.
+
+squaresdict = {n: n ** 2 for n in range(1, 11)}
+print(squaresdict)
+
+# Make a dictionary that maps each lowercase letter ('a' to 'z') to its uppercase equivalent.
+
+chr = {chr(n):chr(n).upper() for n in range(97, 123)}
+print(chr)
+
+
+# Construct a dictionary of the first 10 positive integers and their factorials.
+import math
+factorial_dict = {n: math.factorial(n) for n in range(1, 11)}
+print(factorial_dict)
+
+# Create a dictionary where the keys are numbers from 1 to 15 and the values are their cubes,
+# but only include numbers that are divisible by 3.
+
+cubes_dict = {n: n ** 3 for n in range(1, 16) if n % 3 == 0}
+print(cubes_dict)
+
+
+# Build a dictionary where the keys are students' names and values are their grades, given two separate lists of names and grades.
+
+names = ['Alice', 'Bob', 'Charlie', 'David', 'Eve']
+grades = [85, 92, 78, 90, 88]
+
+zipped = {name: grade for name, grade in zip(names, grades)}
+print(zipped)
+
+
+# Generate a dictionary where the keys are numbers from 0 to 20, and the values are True if the number is even, False otherwise.
+
+true_dict = {n: True if n % 2 == 0 else False for n in range(21)}
+print(true_dict)
+
+
+# Create a dictionary where the keys are strings "Number X" for X from 1 to 5, and values are X squared.
+
+stringed_dict = {f"Number {n}": n ** 2 for n in range(1, 6)}
+print(stringed_dict)
+
+# Construct a dictionary from a list of tuples (name, age) to map names to ages.
+
+people = [
+    ('Alice', 25),
+    ('Bob', 30),
+    ('Charlie', 22),
+    ('David', 28),
+    ('Eve', 35)
+]
+
+people_dict = {tup[0]: tup[1] for tup in people}
+print(people_dict)
+
+# Create a dictionary mapping each word in a sentence to its length.
+
+sentence = "Python programming is fun and versatile."
+
+len_s = {word.strip("."): len(word.strip(".")) for word in sentence.split(" ")}
+print(len_s)
+
+# Create a dictionary where the keys are numbers from 1 to 10, and the values are dictionaries containing their 'double' and 'triple' values.
+
+cool_dict = {n: {"double": n * 2, "triple": n * 3} for n in range(1, 11)}
+print(cool_dict)

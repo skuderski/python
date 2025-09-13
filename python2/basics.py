@@ -4690,6 +4690,95 @@ def calling(*args, **kwargs):
 
 calling(1, 2, 3, 4, x=10, y=20)
 
-# 9. Write a function that takes a list of **kwargs dictionaries and merges them into a single dictionary.
-# 10. Create a function that accepts a variable number of positional and keyword arguments,
-# and prints the number of each type.
+# Create a tuple containing the first five prime numbers.
+import math
+def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            return False
+    return True
+primes = []
+num = 2
+while len(primes) < 5:
+    if is_prime(num):
+        primes.append(num)
+    num += 1
+
+tuple_prime = tuple(primes)
+print(tuple_prime)
+
+
+# Write a function that takes a tuple of numbers and returns a new tuple with each number squared.
+
+random_numbers = (12, 7, 19, 3, 45, 8)
+
+randoms_sq = tuple((n ** 2 for n in random_numbers))
+print(randoms_sq)
+
+
+# Given two tuples, (a, b, c) and (x, y, z), create a new tuple that contains their element-wise sum.
+
+first = (1, 2, 3)
+second = (4, 5, 6)
+third = tuple(a + b for a, b in zip(first, second))
+print(third)
+
+# Write a tuple containing the days of the week, then access and print the third day.
+
+week = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+print(week[2])
+
+
+# Create a tuple of 10 random integers between 1 and 100. Find the maximum and minimum values in the tuple.
+
+import random
+
+r = tuple(random.randint(1, 100) for n in range(10))
+print(r)
+
+max_val = max(r)
+min_val = min(r)
+print(f"Maximum value: {max_val}")
+print(f"Minimum value: {min_val}")
+
+
+# Given a tuple with mixed data types, write code to access only the string elements.
+
+mixed_tuple = (42, "Hello", 3.14, True, [1, 2, 3], {'a': 1})
+
+for n in mixed_tuple:
+    if isinstance(n, str):
+        print(n)
+
+
+# Convert a list of tuples [(1, 'a'), (2, 'b'), (3, 'c')] into a dictionary.
+
+something = [(1, 'a'), (2, 'b'), (3, 'c')]
+
+something_d = {a[0]: a[1] for a in something}
+print(something_d)
+
+# Write a function to swap the first and last elements of a tuple and return the new tuple.
+
+def swapping(new: tuple):
+    first = new[0]
+    last = new[-1]
+    middle = new[1:-1]
+    swapped = (last,) + middle + (first,)
+    return swapped
+
+
+
+print(swapping((1, 2, 3, 4, 5, 6)))
+
+# Create a tuple with 3 elements, and check if a specific value (e.g., 5) exists within the tuple.
+aiaaaa = (1, 2, 3)
+print(5 in aiaaaa)
+# Write a program to concatenate two tuples (1, 2, 3) and (4, 5, 6) into a single tuple.
+
+one1 = (1, 2, 3)
+two2 = (4, 5, 6)
+three = one1 + two2
+print(three)

@@ -849,3 +849,213 @@ asfasfas = [[(row * col) if row % 2 == 0 else 0 for col in range(4)]
     for row in range(4)]
 
 print(asfasfas)
+
+# Create a list of squares for numbers 1 through 10.
+
+squares = [num ** 2 for num in range(1, 11)]
+print(squares)
+
+# Task:
+# Create a list of tuples (number, square, cube) for numbers from 1 to 10,
+# but only include the tuples where the number is divisible by 2 or 3.
+
+squares_tuples = [(num, num ** 2, num ** 3) for num in range(1, 11) if num % 2 == 0 or num % 3 == 0]
+print(squares_tuples)
+
+# Task:
+# Create a list of tuples (number, sum of digits) for numbers from 1 to 50,
+# but only include those where the sum of the digits is greater than 10.
+# (For example, 29 has digits 2 and 9, sum is 11, so it should be included.)
+
+list_of_tuples_ = [(num, sum(int(digit) for digit in str(num))) for num in range(1, 51) if sum(int(digit) for digit in str(num)) > 10]
+print(list_of_tuples_)
+
+# Task:
+# Create a list of tuples (number, product of digits) for numbers from 10 to 99,
+# but only include those where the product of digits is divisible by 3.
+
+list2 = [
+    (num,
+     [int(d) * int(d) for d in str(num)])
+             for num in range(10, 100)
+    if any((int(d) * int(d)) % 3 == 0 for d in str(num))]
+print(list2)
+# Generate a list of all even numbers from 0 to 20.
+
+even_n = [n for n in range(21) if n % 2 == 0]
+print(even_n)
+
+# Create a list of all odd numbers from 1 to 50 using list comprehension.
+
+odd_n = [n for n in range(1, 51) if n % 2 != 0]
+print(odd_n)
+
+# Create a list of squares of all numbers from 1 to 50, but only include those squares that are divisible by 3 or 5.
+
+squares1 = [n ** 2 for n in range(1, 51) if n ** 2 % 3 == 0 or n ** 2 % 5 == 0]
+print(squares1)
+
+# Create a list of numbers from 1 to 100 where the number is divisible by 3 or 5,
+# but exclude numbers where the number's digit sum is greater than 10.
+
+num100 = [n for n in range(1, 100) if (n % 3 == 0 or n % 5 == 0) and sum(int(d) for d in str(n)) <= 10]
+print(num100)
+
+# Create a list of numbers from 200 to 300 that are divisible by 4 or 6,
+# but exclude numbers where the product of their digits is greater than 30.
+import math
+num200 = [n for n in range(200, 301) if (n % 4 == 0 or n % 6 == 0) and math.prod(int(d) for d in str(n)) <= 30]
+print(num200)
+
+# Create a list of strings, where each string is 'Number X' for numbers 1 to 5.
+
+list_str = [f"Number {n}" for n in range(1, 6)]
+print(list_str)
+
+# Create a list of strings where each string is 'Item Y' for numbers 10 to 15.
+
+list_y = [f"Item {n}" for n in range(10, 16)]
+print(list_y)
+
+# Create a list of strings where each string is 'Product N: $X', for numbers 20 to 25, 
+# with the price being calculated as N * 10 + 99. For example, for N=20, the string should be 'Product 20: $299'.
+
+
+listzz = [f"Product {n}: ${n * 10 + 99}" for n in range(20, 26)]
+print(listzz)
+
+# Create a list of strings 'Item N: Price $X' for N from 30 to 35,
+# where the price X is calculated as N * 15 + 50. Use a list comprehension with proper string formatting.
+
+listaaz = [f"Item {n}: Price ${(n * 15) + 50}" for n in range(30, 36)]
+print(listaaz)
+
+# Create a list of strings 'Product N: Discounted Price $Y' for N from 40 to 45, where:
+#
+# The original price X is calculated as N * 20 + 100.
+# The discount price Y is 20% less than the original price.
+
+asfas = [f"Product {n}: Discounted Price ${round((n * 20 + 100) * .8, 2)}" for n in range(40, 46)]
+print(asfas)
+
+# Generate a list of strings 'Item N: Price $X' for N from 100 to 105.
+#
+# The original price X should be calculated as N * 10 + 50.
+# The discounted price should be 15% less than the original price.
+# Use formatted strings (with two decimal places) to display the price.
+
+
+wgqw = [f"Item {n}: Price ${round((n * 10 + 50) * .85, 2)}" for n in range(100, 106)]
+print(wgqw)
+
+# Create a list of the lengths of each word in a list of words.
+
+words = ["apple", "banana", "cherry", "date", "elderberry",
+         "fig", "grape", "honeydew", "kiwi", "lemon"]
+
+len_word = [len(word) for word in words]
+print(len_word)
+
+# Create a list of the uppercase versions of each word in a list of words.
+
+upper_words = [word.upper() for word in words]
+print(upper_words)
+
+# Given a list of words, create a list of strings where each string contains the original word repeated as many times as its length,
+# separated by hyphens (-).
+#
+# For example, if the word is "hi", which has length 2, the string should be "hi-hi".
+
+
+list_sttring = ["-".join([word] * len(word)) for word in words]
+print(list_sttring)
+
+# Given a list of words,
+# create a new list where each element is a string containing the first letter of the word repeated as many times as the length of the word,
+# separated by asterisks (*).
+
+asfwgqg = ["*".join([word[0]] * len(word)) for word in words]
+print(asfwgqg)
+
+# Generate a list of tuples (number, square) for numbers 1 to 10.
+
+tuples = [(n, n ** 2) for n in range(1, 11)]
+print(tuples)
+
+# Create a list of tuples (number, cube) for numbers from 5 to 15, but only include tuples where the cube is divisible by 4.
+
+tuples2 = [(num, num ** 3)  for num in range(5, 16) if num ** 3 % 4 == 0]
+print(tuples2)
+# Create a list of tuples (number, square root of the number rounded to 2 decimal places) for numbers from 10 to 50.
+# # Include only those tuples where the square root is an even integer or a perfect square (i.e., the square root is an integer).
+import math
+def is_perfect_square(n):
+    sqrt_n = math.sqrt(n)
+    return int(sqrt_n) ** 2 == n
+safa = [(n, round(math.sqrt(n), 2)) for n in range(10, 51) if round(math.sqrt(n), 2) % 2 == 0 or is_perfect_square(n)]
+print(safa)
+
+# Create a list of the first 10 Fibonacci numbers.
+
+def fibonacci(n):
+    a, b = 0, 1
+    sequence = []
+    for _ in range(n):
+        sequence.append(a)
+        a, b = b, a + b
+    return sequence
+
+
+print(fibonacci(10))
+
+# Create a list of lowercase letters from 'a' to 'z'.
+
+lowercase = [chr(n) for n in range(97, 123)]
+print(lowercase)
+
+# Create a list of the uppercase letters from 'A' to 'Z' using their ASCII codes.
+# Think about the ASCII range for uppercase letters and how to convert those codes into characters.
+
+upep = [chr(n).upper() for n in range(97, 123)]
+print(upep)
+
+# Generate a list of all possible pairs (x, y) where x is from 0 to 2 and y is from 0 to 2.
+
+x_y_flat = [(x, y) for x in range(3) for y in range(3)]
+print(x_y_flat)
+
+x_y = [(x, y) for y in range(0, 3) for x in range(0, 3)]
+
+print(x_y)
+
+# Generate a list of all possible ordered triples (x, y, z) where each variable ranges from 1 to 3.
+# Think about using nested list comprehensions to cover all combinations.
+
+ordered_triples = [(x, y, z ) for x in range(1, 4) for y in range(1, 4) for z in range(1, 4)]
+print(len(ordered_triples))
+print(ordered_triples)
+
+# Create a list of the absolute values of numbers from -5 to 5.
+
+list_absolute = [abs(n) for n in range(-5, 6)]
+print(list_absolute)
+
+# Create a list of the absolute values of numbers from -10 to 10, but only include those absolute values that are greater than 5.
+# Make sure to use the abs() function in your list comprehension.
+
+absolutes = [abs(n) for n in range(-10, 11) if abs(n) > 5]
+print(absolutes)
+
+
+# Create a list of prime numbers from 2 to 50 (use a helper function to check if a number is prime).
+
+def is_prime(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+primes2 = [n for n in range(2, 51) if is_prime(n)]
+print(primes2)
