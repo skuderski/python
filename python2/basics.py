@@ -4782,3 +4782,170 @@ one1 = (1, 2, 3)
 two2 = (4, 5, 6)
 three = one1 + two2
 print(three)
+
+# Create a dictionary with your favorite fruits as keys and their colors as values. Print the dictionary.
+
+fruits_colors = {"banana": "yellow", "fig": "purple", "cherry": "red", "apple": "red"}
+print(fruits_colors)
+
+# Create a dictionary from a list of tuples where each tuple contains a student
+# ('s name and their score. Then, update the dictionary to include a key ')pass/fail
+# with the value 'pass' if the score is 60 or above, and 'fail' otherwise. Finally, print the updated dictionary.
+
+student_scores = [("Sergiusz", 20), ("Martyna", 30), ("Wiesiek", 70)]
+dictionary_student_scores = {student: score for student, score in student_scores}
+print(dictionary_student_scores)
+status_dict = {}
+for student, score in dictionary_student_scores.items():
+    if score >= 60:
+        status = "pass"
+    else:
+        status = "fail"
+
+    status_dict[student] = (score, status)
+print(status_dict)
+
+# Given a dictionary of student names and their grades, find and print the student with the highest grade.
+
+name_grades = {"Sergiusz": 100, "Martyna": 90, "Wiesiek": 50}
+best_student = max(name_grades, key= name_grades.get)
+print(f"the best student is {best_student}")
+
+
+# Create a dictionary from two lists: one with cities and one with countries, pairing each city with its country.
+
+cities = ["Athens", "Warsaw", "Barcelona", "Helsinki"]
+country = ["Greece", "Poland", "Spain", "Finland"]
+cities_countries = {city: country for city, country in zip(cities, country)}
+print(cities_countries)
+
+# Given two lists—one with product names and another with their prices—create a dictionary pairing each product with its price.
+# Then, increase the price of each product by 10%, and print the updated dictionary.
+
+products = ["Laptop", "Smartphone", "Tablet", "Monitor"]
+prices = [999.99, 599.99, 399.99, 199.99]
+
+p_prices = {product: price for product, price in zip(products, prices)}
+updated_p_prices = {p: price * 1.10 for p, price in p_prices.items()}
+print(updated_p_prices)
+
+# Given two lists—one with student names and another with their scores—create a dictionary linking each student to their score.
+# Then, add an extra 5 points to each student's score, but only for scores below 90. Finally, print the updated dictionary.
+
+students = ["Alice", "Bob", "Charlie", "David"]
+scores = [85, 92, 88, 79]
+
+students_s = {student: score for student, score in zip(students, scores)}
+studentss = {student: score + 5 if score < 90 else score for student, score in students_s.items()}
+print(studentss)
+
+# Write a function that takes a dictionary and returns a new dictionary with all keys and values swapped.
+
+def swapping(one: dict) -> dict:
+    return {v: k for k, v in one.items()}
+
+print(swapping({"one": 1, "two": 2, "three": 3}))
+
+# Create a function that accepts a dictionary and returns a new dictionary where the keys are the original values,
+# and the values are the original keys, but only for entries where the value is an odd number.
+# For entries with even numbers, skip swapping. Then, test the function with a sample dictionary.
+
+def accepting(one) -> dict:
+    return {v:k for k, v in one.items() if v % 2 != 0}
+
+print(accepting({"one": 1, "two": 2, "three": 3, "four": 4, "five": 5}))
+
+# Given a dictionary of items and their prices, add a new item with its price.
+
+items_prices = {
+    "apple": 0.99,
+    "banana": 0.49,
+    "orange": 1.29,
+    "milk": 2.59,
+    "bread": 3.29
+}
+
+items_prices["lentils"] = 2.00
+print(items_prices)
+
+# Starting with the same dictionary of items and prices,
+# update the prices of all items that cost more than $1.00 by increasing their prices by 10%. Print the updated dictionary after the changes.
+
+updated_dict = {item: round(price * 1.10, 2) if price > 1.00 else price for item, price in items_prices.items()}
+print(updated_dict)
+
+# Remove an item from the dictionary by key and print the updated dictionary.
+
+# del items_prices["apple"]
+# print(items_prices)
+
+# Starting with the same dictionary of items and prices,
+# remove all items that cost less than $1.00, then increase the prices of the remaining items by 15%. Finally, print the resulting dictionary.
+
+update_prices = {item: round(price * 1.15, 2) for item, price in items_prices.items() if price >= 1.00}
+print(update_prices)
+
+# Create a dictionary that counts the frequency of each character in a given string.
+
+name = "Sergiuszek"
+count = {}
+for c in name:
+    c_lower = c.lower()
+    if c_lower not in count:
+        count[c_lower] = 1
+    else:
+        count[c_lower] += 1
+print(count)
+
+
+# Create a nested dictionary where each key is a person's name, and each value is a dictionary with their age and city. Print each person's info.
+people_info = {
+    "Alice": {"age": 30, "city": "New York"},
+    "Bob": {"age": 25, "city": "London"},
+    "Charlie": {"age": 35, "city": "Paris"}
+}
+nested_dict = {person: {info["age"]: info["city"]} for person, info in people_info.items()}
+print(nested_dict)
+
+# Create a nested dictionary where each key is a
+# student('s name, and each value is a dictionary with their grades in multiple subjects (e.g., Math, Science). '
+# Then, print each student')s name along with their grades in a formatted way.
+
+students_grades = {
+    "Alice": {"Math": 85, "Science": 90},
+    "Bob": {"Math": 78, "Science": 88},
+    "Charlie": {"Math": 92, "Science": 81}
+}
+
+nested_students = {student: {"Math": grading["Math"], "Science": grading["Science"]} for student, grading in students_grades.items()}
+print(nested_students)
+
+# Write a program that takes a dictionary of items and their quantities, and updates the quantities by adding a fixed number to each.
+
+item_quantities = {
+    "Apples": 50,
+    "Bananas": 30,
+    "Oranges": 40,
+    "Grapes": 25,
+    "Peaches": 15,
+    "Kiwis": 60
+}
+
+items_updated = {fruit: quantity + 2 for fruit, quantity in item_quantities.items()}
+print(items_updated)
+
+# Starting with the same dictionary of items and quantities, update the quantities by adding a variable number (e.g., 3) to each item.
+# However, if an item has a quantity greater than 40,
+# increase it by double the variable number instead of just the variable number. Then, print the updated dictionary.
+
+items_updated2 = {fruit: quantity + 3 if quantity <= 40 else quantity + 6 for fruit, quantity in item_quantities.items()}
+print(items_updated2)
+
+# Create a dictionary with keys as numbers from 1 to 10 and values as their squares. Then, update the values with their cubes. Print the dictionary.
+
+squares_dict = {i: i ** 2 for i in range(1, 11)}
+print(squares_dict)
+for key in squares_dict:
+    squares_dict[key] = key ** 3
+
+print(squares_dict)
