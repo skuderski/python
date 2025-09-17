@@ -48,76 +48,675 @@
 
 # Create a lambda function that takes two numbers and returns their sum. Call it with 5 and 3.
 
-adding = lambda a, b: a + b
-print(adding(5, 3))
+# adding = lambda a, b: a + b
+# print(adding(5, 3))
+#
+# # Create a lambda function that takes a list of numbers and returns a new list containing only the numbers greater than a given threshold.
+# # Set the threshold to 10. Test the lambda with a list of numbers from 5 to 15.
+#
+# numbers = list(range(1, 16))
+# greater_than_10 = lambda numbers: list(filter(lambda a: a > 10, numbers))
+# result = greater_than_10(numbers)
+# print(result)
+# # Write a lambda function that calculates the square of a number. Test it with the number 9.
+#
+# squares = lambda a: a ** 2
+# print(squares(9))
+#
+# # Use a lambda to check if a number is even. Test it with the number 8 and 7.
+#
+# even_nums = lambda a: a % 2 == 0
+# print(even_nums(8))
+# print(even_nums(7))
+#
+# # Create a list of numbers from 1 to 10, then use map() with a lambda to create a new list containing their squares.
+#
+# nums = list(range(1, 11))
+# nums_1 = list(map(lambda x: x ** 2, nums))
+# print(nums_1)
+#
+# # Use filter() with a lambda to filter out odd numbers from the list [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].
+#
+# the_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+#
+# odd = lambda the_list: list(filter(lambda x: x % 2 != 0, the_list))
+# res = odd(the_list)
+# print(res)
+#
+#
+# # Write a lambda function that concatenates two strings and use it to concatenate "Hello" and "World".
+#
+# concatenate = lambda a, b: a + " " + b
+# print(concatenate("Hello", "World"))
+#
+#
+# # Create a list of words, then use sorted() with a lambda to sort the list by word length.
+#
+# words = ["apple", "banana", "cherry", "date", "elderberry", "fig", "grape"]
+#
+# sorting = lambda x: sorted(x, key=len)
+# resulz = sorting(words)
+# print(resulz)
+# from functools import reduce
+#
+# # Use reduce() from functools with a lambda to compute the product of all numbers in the list [1, 2, 3, 4, 5].
+#
+# nums11 = [1, 2, 3, 4, 5]
+# product = reduce(lambda x, y: x * y, (1, 2, 3, 4, 5))
+# print(product)
+#
+# # Create a lambda that takes a list of tuples (name, age) and returns the list sorted by age. Test it with a few sample tuples.
+#
+# people = [
+#     ("Alice", 30),
+#     ("Bob", 25),
+#     ("Charlie", 35),
+#     ("Diana", 28)
+# ]
+#
+# age_sorting = lambda lst: sorted(lst, key= lambda person: person[1])
+# print(age_sorting(people))
+#
+# # Write a lambda function that swaps the elements of a list of two items, e.g. [1, 2], and test it.
+#
+# swapped = lambda x: [x[1], x[0]]
+# print(swapped([1, 2]))
 
-# Create a lambda function that takes a list of numbers and returns a new list containing only the numbers greater than a given threshold.
-# Set the threshold to 10. Test the lambda with a list of numbers from 5 to 15.
+# Create a function that takes a number and another function.
+# The function applies the passed-in function to the number and returns the result. Test it with a lambda that doubles a number.
+# from typing import Any, Callable
+# def some(one: int, f: Callable):
+#     result = f(one)
+#     return result
+#
+# print(some(5, lambda x: x * 2))
+#
+# # Create a function that takes a string and another function.
+# # The function applies the passed-in function to the string and returns the result. Test it with a lambda that reverses the string.
+#
+# def somet(word: str, func: Callable):
+#     result = func(word)
+#     return result
+#
+# print(somet("Sergiusz", lambda x: x[::-1]))
+#
+# # Create a function that takes a list of integers and another function.
+# # The function applies the passed-in function to the entire list and returns the result.
+# # Test it with a lambda that calculates the sum of the list elements.
+#
+# def something(integers: list, func: Callable):
+#     result = func(integers)
+#     return result
+#
+# print(something([1, 2, 3, 4, 5], lambda x: sum(x)))
+#
+# # Create a function that takes a list of strings and a function.
+# # The function applies the passed-in function to each string in the list (like map) and returns a new list of the transformed strings.
+# # Test it with a lambda that converts each string to uppercase.
+#
+# def someth(strings: list, func: Callable):
+#     result = [func(s) for s in strings]
+#     return result
+#
+# print(someth(["Sergiusz", "Kuderski", "kocha"], lambda x: x.upper()))
+#
+# # Create a function that takes a list of integers and a function.
+# # The function applies the passed-in function to each integer in the list (like map) and returns a new list of the results.
+# # Test it with a lambda that computes the square root of each number (use math.sqrt).
+# import math
+# def somethi(integers: list, func: Callable):
+#     result = [func(i) for i in integers]
+#     return result
+#
+# print(somethi([1, 2, 3, 4, 5, 6, 7, 8, 9], lambda x: math.sqrt(x)))
+#
+# # Write a function that takes two numbers and a comparison function (e.g., max, min, or a custom lambda).
+# # The function should return the result of applying the comparison function to the two numbers.
+#
+# def twonums(one: int, two: int, func: Callable):
+#     result = func(one, two)
+#     return result
+#
+# print(twonums(2, 2, lambda x, y: x ** (y * 2)))
+#
+# # Create a function that takes two strings and a function. The function applies the passed-in function to these two strings
+# # (for example, concatenating or comparing them) and returns the result.
+# # Test it with a lambda that concatenates the two strings with a space in between.
+#
+#
+# def somethink(one: str, two: str, func: Callable):
+#     result = func(one, two)
+#     return result
+#
+# print(somethink("Sergiusz", "Kuderski", lambda a, b: a + " " + b))
+#
+# # Create a function that takes a list and a function,
+# # and returns a new list with the function applied to each element (like map). Test with a lambda that adds 10 to each number.
+#
+# def lel(one: list, func: Callable):
+#     result = [func(i) for i in one]
+#     return result
+#
+# print(lel([1, 2, 3, 4, 5], lambda x: x + 10))
+#
+# # Create a function that takes a list of strings and a function.
+# # The function applies the passed-in function only to strings that start with a vowel (A, E, I, O, U), leaving the others unchanged.
+# # Return the new list. Test it with a lambda that converts strings to uppercase.
+#
+# def somesin(strings: list, func: Callable):
+#     vowels = "aeiouAEIOU"
+#     result = [func(s) for s in strings if s[0] in vowels]
+#     return result
+#
+# print(somesin(["Sergiusz", "Kuderski", "zly", "armageddon"], lambda x: x.upper()))
+#
+# # Create a function that takes a list of strings and a function.
+# # The function should apply the passed-in function only to strings that contain the letter 'a' (case-insensitive), leaving other strings unchanged.
+# # Return the new list. Test it with a lambda that converts strings to lowercase.
+#
+# def check(strings: list, func: Callable):
+#     result = [func(s) for s in strings if "a" in s.lower()]
+#     return result
+#
+# print(check(["Sergiusz", "Kuderski", "Alpha"], lambda a: a.lower()))
+#
+#
+# # Write a function that takes a string and a function, applying the function to transform the string (like changing case)
+# # and returning the result. Test with a lambda that converts the string to uppercase.
+#
+# def transforming(word: str, func: Callable):
+#     result = func(word)
+#     return result
+#
+# print(transforming("Sergiusz", lambda x: x.upper()))
+#
+#
+# # Create a higher-order function that takes a list of strings and a function to filter the list, returning the filtered list.
+# # Test with a lambda that keeps only strings longer than 3 characters.
+#
+# def highorder(strings: list, func: Callable):
+#     result = list(func(strings))
+#     return result
+#
+# print(highorder(["Sergiusz", "Kuderski", "Wiesiek", "da"], lambda x: filter(lambda s: len(s) > 3, x)))
+#
+# # Create a higher-order function that takes a list of numbers and a function, then applies the function to each number,
+# # returning a new list of the results. Test it with a lambda that computes the factorial of each number.
+#
+# def high(numbers: list, func: Callable):
+#     result = [func(n) for n in numbers]
+#     return result
+#
+# print(high([1, 2, 3, 4, 5], lambda x: math.factorial(x)))
+#
+#
+# # Write a function that takes two lists and a function, applying the function to combine elements pairwise (like zip but with a custom operation).
+# # For example, sum the pairs or concatenate strings.
+#
+# def twolists(one: list, two: list, func: Callable):
+#     result = func(one, two)
+#     return result
+#
+# print(twolists([1, 2, 3], [4, 5, 6], lambda x, y: [a + b for a, b in zip(x, y)]))
+#
+# # Create a function that takes a list of numbers and a function, and returns the sum of applying the function to each number.
+# # Test with a lambda that squares each number before summing.
+#
+# def zipet(numbers: list, func: Callable):
+#     total = 0
+#     for n in numbers:
+#         total += func(n)
+#     return total
+#
+# print(zipet([1, 2, 3, 4, 5], lambda x: x ** 2))
+#
+# # Create a function that takes a list of strings and a function.
+# # The function should apply the passed-in function to each string only if the string length is greater than 3,
+# # then sum the lengths of the resulting strings. Return this total length.
+# # Test it with a lambda that converts strings to uppercase before considering their length.
+#
+# def stringsz(strings: list, func: Callable):
+#     total = 0
+#     for s in strings:
+#         if len(s) > 3:
+#             transformed = func(s)
+#             total += len(transformed)
+#     return total
+#
+# print(stringsz(["Sergiusz", "Kuderski"], lambda x: x.upper()))
+#
+#
+#
+# # Write a function that accepts a list and a function, and applies the function only to elements satisfying a certain condition
+# # (e.g., only even numbers).
+#
+# def functioning(one: list, func: Callable):
+#     result = [func(i) for i in one if i % 2 == 0]
+#     return result
+#
+# print(functioning([1, 2, 3, 4, 5], lambda x: x * 2))
+#
+# # Write a function that accepts a list and another function,
+# # then applies the function to each element of the list that is greater than a specified threshold value.
+# # The function should ignore elements that do not meet this condition.
+#
+# def accepting(one: list, func: Callable, threshold: int):
+#     result = [func(i) for i in one if i > threshold]
+#     return result
+#
+# print(accepting([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], lambda x: x - 1, 4))
+#
+#
+# # Create a function that takes a list of strings and a sorting function, then returns the list sorted according to that function.
+# # Test with sorted() and a lambda that sorts by string length.
+#
+#
+# def sorting(strings: list, func: Callable):
+#     result = list(sorted(strings, key=func))
+#     return result
+#
+# print(sorting(["apple", "banana", "kiwi"], lambda x: len(x)))
+#
+#
+# #
+# # Write a function that takes a number and a list of functions, applying each function to the number and collecting the results into a list.
+#
+# def combinat(one: int, functions: Callable):
+#     result = [func(one) for func in functions]
+#     return result
+# def square(x):
+#     return x * x
+#
+# def double(x):
+#     return x * 2
+#
+# def add_ten(x):
+#     return x + 10
+#
+# function_list = [square, double, add_ten]
+# print(combinat(5, function_list))
+#
+#
+#                                                         # """global and local variables"""
+#
+# def printer():
+#     global s
+#     s += " how are you?"
+#     print(s)
+# s = "Hello, mate"
+# printer()
+# print("s:", s)
 
-numbers = list(range(1, 16))
-greater_than_10 = lambda numbers: list(filter(lambda a: a > 10, numbers))
-result = greater_than_10(numbers)
-print(result)
-# Write a lambda function that calculates the square of a number. Test it with the number 9.
+# Basic Scope: Write a function that declares a local variable and modifies it. Show that the global variable remains unchanged.
+x = 10
+def basic():
+    x = 5
+    x += 1
+    return x
 
-squares = lambda a: a ** 2
-print(squares(9))
+print(x)
+print(basic())
 
-# Use a lambda to check if a number is even. Test it with the number 8 and 7.
+# Task: Write a function that creates a local variable with the same name as a global variable,
+# modifies the local variable, and then print both to show that they are independent.
+y = 5
+def localizing():
+    y = 10
+    y *= 2
+    print("inside function:", y)
+    return y
 
-even_nums = lambda a: a % 2 == 0
-print(even_nums(8))
-print(even_nums(7))
+print("outside function:", y)
+localizing()
 
-# Create a list of numbers from 1 to 10, then use map() with a lambda to create a new list containing their squares.
-
-nums = list(range(1, 11))
-nums_1 = list(map(lambda x: x ** 2, nums))
-print(nums_1)
-
-# Use filter() with a lambda to filter out odd numbers from the list [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].
-
-the_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-odd = lambda the_list: list(filter(lambda x: x % 2 != 0, the_list))
-res = odd(the_list)
-print(res)
-
-
-# Write a lambda function that concatenates two strings and use it to concatenate "Hello" and "World".
-
-concatenate = lambda a, b: a + " " + b
-print(concatenate("Hello", "World"))
+# Task:
+# Create a global list variable. Write two functions:
+#
+# One function should create a local list with the same name, modify it (e.g., add some elements), and print it.
+# The other function should modify the global list directly (e.g., append an element to it) without creating a local list.
+# In the main program:
+#
+# Call the first function and print the list afterward.
+# Call the second function and print the list afterward.
 
 
-# Create a list of words, then use sorted() with a lambda to sort the list by word length.
+the_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+def modi():
+    the_list = [1, 2, 3, 4, 5]
+    the_list.append(6)
+    print(f"inside function: {the_list}")
 
-words = ["apple", "banana", "cherry", "date", "elderberry", "fig", "grape"]
+def modif():
+    the_list.append(6)
 
-sorting = lambda x: sorted(x, key=len)
-resulz = sorting(words)
-print(resulz)
-from functools import reduce
+modi()
+print(the_list)
+modif()
+print(the_list)
 
-# Use reduce() from functools with a lambda to compute the product of all numbers in the list [1, 2, 3, 4, 5].
+# Task:
+# Create a global dictionary variable. Write three functions:
+#
+# One function should create a local dictionary with the same name and add some key-value pairs to it. Print the local dictionary.
+# A second function should modify the global dictionary by adding or updating some key-value pairs without creating a local variable.
+# A third function should attempt to modify the global dictionary by reassigning it to a new dictionary object, and observe what happens.
 
-nums11 = [1, 2, 3, 4, 5]
-product = reduce(lambda x, y: x * y, (1, 2, 3, 4, 5))
-print(product)
+dictionary = {"one": 1, "two": 2, "three": 3}
 
-# Create a lambda that takes a list of tuples (name, age) and returns the list sorted by age. Test it with a few sample tuples.
+def modi_dic():
+    dictionary = {"four": 4, "five": 5}
+    print(dictionary)
 
-people = [
-    ("Alice", 30),
-    ("Bob", 25),
-    ("Charlie", 35),
-    ("Diana", 28)
-]
+def modi_dict():
+    dictionary["four"] = 4
 
-age_sorting = lambda lst: sorted(lst, key= lambda person: person[1])
-print(age_sorting(people))
+def modi_dict_q():
+    dict_modi = dictionary
+    print(dict_modi)
+    return dict_modi
+modi_dic()
+print(dictionary)
+modi_dict()
+print(dictionary)
+modi_dict_q()
+print(dictionary)
 
-# Write a lambda function that swaps the elements of a list of two items, e.g. [1, 2], and test it.
 
-swapped = lambda x: [x[1], x[0]]
-print(swapped([1, 2]))
+# Global Keyword: Create a global variable and a function that modifies it using the global keyword.
+
+q = 10
+
+def change():
+    global q
+    q = 15
+    print(q)
+    return q
+
+print(q)
+change()
+print(q)
+
+# Task:
+# Create a global counter variable initialized to 0. Write three functions:
+#
+# One function should increment the global counter by a specified value (passed as a parameter) using the global keyword.
+# A second function should decrement the global counter by a specified value, also using global.
+# A third function should reset the global counter to zero, but this time, it should not use the global keyword;
+# instead, explore how to reassign or modify the global variable indirectly.
+
+counter = 0
+
+def increment(one):
+    global counter
+    counter += one
+
+def decrement(two):
+    global counter
+    counter -= two
+
+
+print(counter)
+increment(2)
+print(counter)
+decrement(3)
+print(counter)
+
+
+# Nested Functions: Write a nested function that modifies a variable from the outer function's scope.
+
+def outer():
+    x = 2
+    def inner():
+        nonlocal x
+        x += 2
+    inner()
+    return x
+
+print(outer())
+
+# Task:
+# Write a function called outer_counter() that:
+#
+# Initializes a local variable count to 0.
+# Contains a nested function called increment() that increases count by 1 each time it is called.
+# The outer_counter() function should return the increment() function itself, so that it can be called multiple times to increment the counter.
+# Your goal is to use nonlocal inside increment() to modify the count variable from the outer scope.
+
+def outer_counter():
+    count = 0
+    def increment():
+        nonlocal count
+        count += 1
+        return count
+    return increment
+counter = outer_counter()
+print(counter())
+print(counter())
+print(counter())
+# Variable Shadowing: Demonstrate how a local variable can shadow a global variable with the same name.
+
+z = 10
+def add():
+    z = 2
+    print(f"z inside function: {z}")
+add()
+print(f"z outside of function: {z}")
+
+# Using globals(): Use the globals() dictionary to modify a global variable inside a function.
+
+num = 100
+
+def globaling():
+    globals()["num"] = 50
+    return num
+print(f"before:", num)
+globaling()
+print(f"after:", num)
+
+# Local vs Global Output: Write a program that prints the value of a variable before and after modification inside a function.
+
+n = 99
+
+def changing_n():
+    global n
+    n += 9
+print(f"before function: {n}")
+changing_n()
+print(f"after function: {n}")
+
+
+
+# Task:
+# Write a program with a global variable score initialized to 50. Create two functions:
+#
+# add_points()
+#
+# Uses the global keyword to increase score by a given number.
+# Prints the value of score after the update.
+# subtract_points()
+#
+# Attempts to decrease score by a given number without using the global keyword.
+# Inside this function, explore how to modify the global score indirectly, for example, by modifying a mutable object or using globals().
+
+
+score = 50
+
+def add_points(n):
+    global score
+    score += n
+    print(score)
+
+def subtract_points(n):
+    globals()["score"] -= n
+    print(globals()["score"])
+
+print(score)
+add_points(5)
+subtract_points(10)
+
+# Counter with Global Variable: Create a global counter variable that increments each time a function is called.
+
+the_counter = 0
+
+def incrementing():
+    global the_counter
+    the_counter += 1
+    return the_counter
+incrementing()
+print(the_counter)
+incrementing()
+print(the_counter)
+
+# Task:
+# Create a global list called log. Write a function log_event() that:
+#
+# Uses the global keyword to access the list.
+# Appends a timestamped message (like "Event number X" where X is the event count) to the list each time it's called.
+# The message should include the current call count to track how many times the function has been executed.
+# In your main program:
+#
+# Call log_event() multiple times.
+# After each call, print the entire log list to see the sequence of logged events with timestamps.
+
+log = []
+event_count = 1
+def log_event():
+    global log, event_count
+    log.append(f"Event {event_count}")
+    event_count += 1
+    return event_count
+log_event()
+print(log)
+log_event()
+print(log)
+log_event()
+print(log)
+
+# Attempt to Modify Global Variable: Create a function that tries to modify a global variable without the global keyword and observe the result.
+
+v = 10
+
+def modify():
+    global v
+    v += 10
+    return v
+modify()
+
+# Global List Modification: Use a global list and modify it inside a function by appending or removing elements.
+
+some_list = [1, 2, 3, 4, 5]
+
+def modi_list():
+    global some_list
+    some_list.remove(3)
+    return some_list
+
+print(some_list)
+modi_list()
+print(some_list)
+
+def print_msg(msg):
+    def printer():
+        print(msg)
+
+    return printer
+
+another = print_msg("Hello")
+another()
+
+
+def make_multiplier_of(n):
+
+    def multiplier(x):
+        return x * n
+    return multiplier
+
+times_3 = make_multiplier_of(3)
+
+print(times_3(2))
+
+times_4 = make_multiplier_of(4)
+
+print(times_4(3))
+
+print(times_4(times_3(2)))
+
+def calculate_taxes(percentage):
+    def taxes(sum_of_money):
+        return sum_of_money * percentage / 100
+    return taxes
+
+five = calculate_taxes(5)
+ten = calculate_taxes(10)
+
+print(five(10000))
+print(ten(10000))
+
+from typing import Callable
+
+def produce(device_name: str) -> Callable:
+    count = 0
+    def device():
+        nonlocal count
+        count += 1
+        print(f"{device_name} launch {count}")
+
+    return device
+
+cell = produce("Cell Phone")
+
+cell()
+cell()
+cell()
+cell()
+
+# Your task:
+# Write a function named make_greetings that:
+#
+# Takes a list of person names as input.
+# Creates an inner function that takes a message type (like "hello", "meeting", "bye").
+# The inner function should:
+# Print a personalized message embedding the list of people.
+# The messages should vary based on the message type, similar to your example.
+# The outer function should return this inner function, enabling you to generate customized greeting functions for different groups of people.
+
+def make_greetings(people: list):
+    joined_people = ", ".join(people)
+
+    def inner(message):
+        if message == "yes":
+            print(f"{joined_people} can.")
+        elif message == "no":
+            print(f"{joined_people} unfortunately can't.")
+    return inner
+
+result = make_greetings(["Sergiusz", "Inga"])
+result("yes")
+result("no")
+
+# Write a function create_notifier(recipients: list, notification_type: str) that:
+#
+# Sets up a personalized message context:
+#
+# Joins the list of recipients into a single string (e.g., "Alice, Bob").
+# Creates an inner function that:
+#
+# Accepts additional parameters (like time, location, or subject) to customize the message.
+# Uses the notification_type (e.g., "reminder", "alert", "update") to determine the message content.
+# Formats and returns or prints a notification message incorporating recipient names and any additional parameters.
+# Returns the inner function, so it can be called later to send notifications tailored for that group and notification type.
+
+def create_notifier(recipients: list, notification_type: str):
+    joined_recipients = ", ".join(recipients)
+
+    def inner(location, time):
+        if notification_type == "reminder":
+            print(f"Kind reminder - {joined_recipients}, tomorrow you have to be up at {time} at {location}")
+        elif notification_type == "alert":
+            print(f"{joined_recipients}, please evacuate the premises")
+        elif notification_type == "update":
+            print(f"{joined_recipients} are kindly asked to show up at {location} to update their data")
+    return inner
+
+result = create_notifier(["Sergiusz", "Inga"], "reminder")
+result("Warsaw", 7.00)
