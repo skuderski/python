@@ -45,6 +45,7 @@
 # print(res(1))
 # print(res(1234))
 #                                     lambda
+import math
 
 # Create a lambda function that takes two numbers and returns their sum. Call it with 5 and 3.
 
@@ -720,3 +721,429 @@ def create_notifier(recipients: list, notification_type: str):
 
 result = create_notifier(["Sergiusz", "Inga"], "reminder")
 result("Warsaw", 7.00)
+
+# type annotations
+from typing import Any, Callable
+def validate_length(data: str, max_length: int = 10):
+    return len(data) <= max_length
+
+print(validate_length("Sergiusz"))
+
+def validate_lowercase(data: str):
+    return data.lower() == data
+
+print(validate_lowercase("Sergiusz"))
+
+def validate_no_extra_space(data: str):
+    return data.strip() == data
+
+def validate(validators = list[Callable]):
+    a = 1
+    b = 2
+    return a + b
+
+print(validate(validate_lowercase("Sergiusz")))
+
+# Task: Create a Flexible String Processing Pipeline
+# Objective:
+# Write a function string_pipeline that:
+#
+# Takes a list of strings (strings) as input.
+# Accepts three optional callable parameters:
+# pre_process: a function that receives a string and performs some manipulation (e.g., strip whitespace, convert to lowercase).
+# process: a function that analyzes or transforms the string (e.g., check if it contains a certain substring, count characters).
+# post_process: a function that outputs or logs the final string or analysis result.
+# Applies these functions in sequence for each string in the list.
+# Details to include:
+#
+# Use Callable from typing for type annotations of the function parameters.
+# Make default functions for each step that, for example:
+# default_pre_process: trims whitespace and converts to lowercase.
+# default_process: counts characters and prints the length.
+# default_post_process: prints the final string or result.
+# Allow the user to pass custom functions for each step to customize behavior.
+
+def pre_process(string: str):
+    return string.strip().lower()
+
+def process(string: str):
+    return len(string)
+
+def post_process(string: str):
+    print(f"Character count: {string}")
+
+
+
+
+def string_pipeline(strings: list, pre_process: Callable = pre_process, process: Callable = process, post_process: Callable = post_process):
+    for ch in strings:
+        processed_str = pre_process(ch)
+        result = process(processed_str)
+        post_process(result)
+
+strings = ["  Hello World  ", "Python is fun!", "  OpenAI GPT "]
+string_pipeline(strings)
+
+# Task: Create a Modular Number Processing Pipeline
+# Objective:
+# Write a function number_pipeline that:
+#
+# Takes a list of numbers (numbers) as input.
+# Accepts three optional callable functions:
+# pre_process: a function that takes a number and pre-processes it (e.g., rounds it, filters it).
+# process: a function that analyzes or transforms the number (e.g., compute square, check if positive).
+# post_process: a function that outputs or logs the result (e.g., print the number, log to a file).
+# Implementation Details:
+#
+# Define default functions for each step:
+#
+# default_pre_process: e.g., rounds each number.
+# default_process: e.g., computes the square of each number.
+# default_post_process: e.g., prints the transformed number.
+# Apply these functions to each number in the list in sequence.
+#
+# Allow the user to pass custom functions for each step by overriding the defaults.
+
+def pre_process1(number: float):
+    return round(number, 2)
+
+def process1(number: float):
+    return math.sqrt(number)
+
+def post_process1(number: float):
+    print(f"The number is: {number}")
+
+
+def number_pipeline(numbers: list, pre_process: Callable = pre_process1, process: Callable = process1, post_process: Callable = post_process1):
+    for n in numbers:
+        rounded_n = pre_process(n)
+        result = process(rounded_n)
+        post_process(result)
+numbers = [1.2, 3.7, 4.5, 8.9]
+number_pipeline(numbers)
+
+# Task: Create a Flexible Data Transformation Pipeline
+# Objective:
+# Write a function data_transformer that:
+#
+# Accepts a list of numerical data (integers or floats).
+#
+# Accepts three optional callable parameters:
+#
+# pre_process: a function to preprocess each data point (e.g., normalize, filter).
+# transform: a function to transform each data point (e.g., square, log, convert to percentage).
+# post_process: a function to handle the output (e.g., print, save to file, collect in a list).
+# Applies these functions sequentially to each data point, similar to your previous example.
+#
+# Implementation requirements:
+#
+# Use type annotations (Callable) for the parameters.
+# Provide default functions:
+# default_pre_process: identity or normalization.
+# default_transform: square the number.
+# default_post_process: print the result.
+# Make the pipeline flexible to accept custom functions.
+
+def pre_process11(data: list):
+    return sorted(data)
+
+def transform11(data: list):
+    return [i * 2 for i in data]
+
+def post_process11(data: list):
+    print(f"The processed list is {data}.")
+
+
+def data_transformer(data: list[int],
+                     pre_process: Callable = pre_process11,
+                     transform: Callable = transform11,
+                     post_process: Callable = post_process11):
+        sorted_data = pre_process(data)
+        result = transform(sorted_data)
+        post_process11(result)
+
+data = [3, 1, 4, 2]
+data_transformer(data)
+
+# Objective:
+# Create a function string_pipeline that:
+#
+# Accepts a list of strings.
+#
+# Has three optional callable parameters:
+#
+# pre_process: a function to preprocess each String (e.g., strip whitespace, convert to lowercase).
+# transform: a function to transform the String (e.g., replace characters, reverse, get length).
+# post_process: a function to handle or display the final result (e.g., print, log, collect).
+# Inside the pipeline, apply the functions to each string in sequence, just like your data pipeline.
+#
+# Implementation instructions:
+# Use default functions like:
+# default_pre_process: trim whitespace and make lowercase.
+# default_transform: get the string length or reverse the string.
+# default_post_process: print the result.
+# Make sure your string_pipeline() function calls the callable parameters, not the default functions directly.
+
+def pre_process_one(string: str):
+    return string.strip()
+
+def transform_one(string: str):
+    return string.title()
+
+def post_process_one(string: str):
+    print(f"The processed string is: {string}")
+
+def string_pipeline(strings: list[str], pre_process: Callable = pre_process_one, transform: Callable = transform_one, post_process: Callable = post_process_one):
+    for i in strings:
+        processed_str = pre_process(i)
+        result = transform(processed_str)
+        post_process(result)
+
+sample_strings = [
+    "  Hello, World!  ",
+    "Python is Awesome",
+    "  ChatGPT AI assistant  ",
+    " OpenAI GPT-4 "
+]
+
+string_pipeline(sample_strings)
+
+# Simple Counter Closure:
+# Create a function that returns another function which, when called, increments and returns an internal counter variable.
+
+def outer(n):
+    counter = 0
+
+    def inner():
+        nonlocal counter
+        counter += n
+        return counter
+    return inner
+
+result = outer(2)
+print(result())
+print(result())
+
+# Objective:
+# Write a function make_step_counter(step) that:
+#
+# Takes an initial step value (e.g., 3, 5, or 10).
+# Returns a function that, each time called, adds that step value to an internal counter.
+# The internal counter should start at Zero when the closure is created.
+# Each call to the returned function should return the new total.
+
+def make_step_counter(step):
+    counter = 0
+    def inner():
+        nonlocal counter
+        counter += step
+        return counter
+    return inner
+
+result = make_step_counter(5)
+print(result())
+
+
+# Task: Create a Flexible Subtracting Counter
+# Objective:
+# Write a function make_subtract_counter(subtract_value) that:
+#
+# Accepts a number subtract_value.
+# Returns a function that, each time called, decreases an internal counter by that value.
+# The internal counter should start at 0 when the closure is created.
+# Each subsequent call should return the current total after subtraction.
+
+def make_subtract_counter(subtract_value):
+    counter = 0
+
+    def inner():
+        nonlocal counter
+        counter -= subtract_value
+        return counter
+    return inner
+
+result = make_subtract_counter(3)
+print(result())
+result()
+print(result())
+
+# Persistent Multipliers:
+# Write a function that takes a number n and returns a new function that multiplies its input by n, "remembering" n through closure.
+
+def outer(n):
+    def inner(x):
+        return n * x
+    return inner
+res = outer(2)
+print(res(2))
+
+# Objective:
+# Write a function make_adder(n) that:
+#
+# Takes a number n.
+# Returns a new function that adds its input to n.
+# The inner function should remember the value of n via closure.
+
+def make_adder(n):
+    def inner(y):
+        return y + n
+    return inner
+ress = make_adder(5)
+print(ress(5))
+
+# Objective:
+# Write a function make_power(p) that:
+#
+# Takes an exponent p (like 2 for square, 3 for cube).
+# Returns a new function that takes a number x and raises it to the power p.
+# The inner function should remember the value of p via closure, so you can create multiple functions for different powers.
+
+def make_power(p):
+    def inner(x):
+        return x ** p
+    return inner
+
+result = make_power(3)
+print(result(4))
+
+# Objective:
+# Write a function make_discount(percentage) that:
+#
+# Takes a discount percentage (e.g., 10, 20, 50).
+# Returns a new function that takes a price and applies that discount to it.
+# The inner function should remember the discount percentage via closure.
+
+def make_discount(percentage):
+    def inner(n):
+        return n * (1 - percentage / 100)
+    return inner
+
+percentage_10 = make_discount(10)
+print(percentage_10(96))
+
+# Objective:
+# Write a function make_tip_calculator(tip_percentage) that:
+#
+# Takes a tip percentage (e.g., 10, 15, 20).
+# Returns a new function that takes a bill amount and calculates the total amount including the tip.
+# The inner function should “remember” the tip percentage via closure.
+
+def make_tip_calculator(tip_percentage):
+    def inner(n):
+        return n + (n * (tip_percentage / 100))
+    return inner
+
+percentage_22 = make_tip_calculator(22)
+print(percentage_22(900))
+
+
+# Accumulator Function:
+# Implement a function that creates an accumulator; each call adds a given number to an internal total, which persists across calls.
+
+def accumulator():
+    total = 0
+    def inner():
+        nonlocal total
+        total += 1
+        return total
+    return inner
+
+result = accumulator()
+result()
+print(result())
+
+# Objective:
+# Write a function make_limited_counter(max_value) that:
+#
+# Takes a maximum value max_value.
+# Returns a function that:
+# Increments an internal counter each time it’s called.
+# Stops incrementing once it reaches max_value.
+# Continues to return the max_value after reaching or exceeding it.
+# The counter should start at 0 when created.
+
+def make_limited_counter(max_value):
+    count = 0
+    def inner():
+        nonlocal count
+        if count < max_value:
+            count += 1
+        return count
+    return inner
+
+result = make_limited_counter(2)
+print(result())
+print(result())
+print(result())
+
+
+# List Append Closure:
+# Create a closure that maintains a list, providing a function to add items to it and another to retrieve the list.
+
+def outer():
+    ls = []
+    def add_item(item):
+        ls.append(item)
+
+    def get_list():
+        return ls
+
+    return add_item, get_list
+
+add, get = outer()
+add(5)
+add(10)
+print(get())
+
+# Objective:
+# Write a function make_observable_list() that:
+#
+# Maintains a private list.
+# Returns three functions:
+# add_item(item) — adds an item to the list.
+# remove_item(item) — removes an item from the list if it exists.
+# get_list() — returns the current state of the list.
+# This way, you can perform multiple operations on the list, and all functions share access to the same list via closure.
+
+def make_observable_list():
+    ls = []
+
+    def add_item(item):
+        ls.append(item)
+
+    def remove_item(item):
+        ls.remove(item)
+
+    def get_list():
+        return ls
+
+    return add_item, remove_item, get_list
+
+add, rm, get = make_observable_list()
+
+add(1)
+add(2)
+add(3)
+rm(2)
+print(get())
+
+
+
+
+# Nested Closure:
+# Make a function that returns another function, which in turn returns a third function. Chain them and demonstrate how each level remembers variables.
+#
+# Closure with Configuration:
+# Make a function that accepts configuration parameters and returns a closure that uses those parameters to modify its behavior (e.g., thresholds, messages).
+#
+# Timer Closure:
+# Build a closure that acts as a stopwatch: it records the start time when created and, when called, returns elapsed time.
+#
+# File Writer Closure:
+# Write a function that takes a filename and returns a function which, when called, appends data to that file, maintaining a persistent file handle using closure.
+#
+# Function Factory:
+# Create a closure that generates multiple specialized functions, such as different power functions (square, cube, etc.), demonstrating how each remembers its exponent.
+#
+# Closure with State Reset:
+#     Implement a closure that counts how many times it has been called, with an internal reset method to reset its count to zero.
