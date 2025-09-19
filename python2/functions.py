@@ -1127,23 +1127,363 @@ add(3)
 rm(2)
 print(get())
 
+# Objective:
+# Write a function make_history(max_size) that:
+#
+# Maintains an internal list (the history).
+# Limits the history list to a maximum size (max_size).
+# Returns three functions:
+# add_entry(entry) — adds a new entry to the history; if the list exceeds max_size, remove the oldest entry.
+# remove_entry(entry) — removes a specific entry if it exists.
+# get_history() — returns the current list of entries.
 
+def make_history(max_size):
+    the_history = []
 
+    def add_entry(entry):
+        the_history.append(entry)
+        if len(the_history) > max_size:
+            the_history.pop(0)
+
+    def remove_entry(entry):
+        if entry in the_history:
+            the_history.remove(entry)
+
+    def get_history():
+        return the_history
+    return add_entry, remove_entry, get_history
+
+add, rm, get = make_history(2)
+add(2)
+rm(2)
+add(2)
+add(3)
+add(4)
+add(5)
+rm(4)
+print(get())
 
 # Nested Closure:
 # Make a function that returns another function, which in turn returns a third function. Chain them and demonstrate how each level remembers variables.
+
+def outer():
+    variable = 2
+    def inner():
+        variable2 = 0
+        def inner2():
+            variable3 = 5
+            def inner3():
+                return variable, variable2, variable3
+            return inner3
+        return inner2
+    return inner
+
+result = outer()
+inner2_func = result()
+inner3_func = inner2_func()
+print(inner3_func())
+
+# Objective:
+# Build a function make_chain() that:
 #
+# Returns a chain of three nested functions.
+# Each nested function remembers a variable from its enclosing scope:
+# The outermost function holds a number a.
+# The middle function holds a number b.
+# The innermost function holds a number c.
+# When you call the innermost function, it returns the sum of a, b, and c.
+
+def make_chain(a):
+
+    def middle(b):
+
+        def inner(c):
+            return a + b + c
+        return inner
+    return middle
+first = make_chain(2)
+second = first(3)
+print(second(7))
+
+
 # Closure with Configuration:
-# Make a function that accepts configuration parameters and returns a closure that uses those parameters to modify its behavior (e.g., thresholds, messages).
+# Make a function that accepts configuration parameters
+# and returns a closure that uses those parameters to modify its behavior (e.g., thresholds, messages).
+
+def config(threshold, message):
+    def check(num):
+        if num > threshold:
+            return message
+        else:
+            return "Nothing to worry about"
+    return check
+
+res = config(5, "Alert")
+print(res(6))
+
+# Objective:
+# Write a function make_discount_or_bonus(discount_percentage=0, bonus_amount=0) that:
 #
+# Accepts two configuration parameters:
+# discount_percentage: a percentage discount to apply.
+# bonus_amount: a fixed bonus amount to add.
+# Returns a nested function that takes a price and:
+# Applies the discount (if any).
+# Adds the bonus (if any).
+# Returns the final price after these modifications.
+# The inner function remembers the configuration via closure.
+
+def make_discount_or_bonus(discount_percentage = 0, bonus_amount=0):
+    def inner(price):
+        discounted_price = price * (1 - discount_percentage / 100)
+        final_price = price - discounted_price + bonus_amount
+        return final_price
+    return inner
+
+result = make_discount_or_bonus(8, 100)
+print(result(300))
+
+
+
 # Timer Closure:
 # Build a closure that acts as a stopwatch: it records the start time when created and, when called, returns elapsed time.
+
+# import time
+# def timer():
+#     start_time = time.time()
+#     def inner():
+#         current_time = time.time()
+#         difference = current_time - start_time
+#         return difference
+#     return inner
 #
+# result = timer()
+# time.sleep(1.1)
+# print(result())
+
+# Task: Create a Multi-Stage Stopwatch
+# Objective:
+# Build a closure that acts as a stopwatch with the following features:
+#
+# When initialized, it records the start time.
+# When called the first time, it returns the elapsed time since start.
+# When called the second time, it resets the start time to the current time without returning anything.
+# When called again after reset, it returns the new elapsed time since the reset.
+
+# def timer_watch():
+#     start_time = time.time()
+#     is_reset = False
+#     def stopwatch():
+#         nonlocal start_time, is_reset
+#         if not is_reset:
+#             return time.time() - start_time
+#         else:
+#             start_time = time.time()
+#             is_reset = False
+#             return None
+#     return stopwatch
+#
+# result = timer_watch()
+# time.sleep(2)
+# print(result())
+# result()
+# time.sleep(.5)
+# print(result())
+
 # File Writer Closure:
-# Write a function that takes a filename and returns a function which, when called, appends data to that file, maintaining a persistent file handle using closure.
+# Write a function that takes a filename and returns a function which, when called, appends data to that file,
+# maintaining a persistent file handle using closure.
+
+def outer(file):
+    def inner(data):
+        return file + data
+    return inner
+
+result = outer("s")
+print(result("e"))
+
+# Example: Greeting Generator with Closure
+# Objective:
+# Create a function make_greeting(greeting) that:
 #
+# Takes a greeting word or phrase (like "Hello" or "Hi").
+# Returns a function that takes a name and outputs a personalized greeting using the captured greeting.
+
+def make_greeting(greeting):
+    def inner(name):
+        return f"{greeting}, {name}."
+    return inner
+
+result = make_greeting("Hello")
+print(result("Sergiusz"))
+
+# Objective:
+# Write a function make_chatbot_response(greeting, farewell) that:
+#
+# Accepts two parameters:
+# greeting: a greeting message (e.g., "Hi").
+# farewell: a farewell message (e.g., "Goodbye").
+# Returns two nested functions:
+# say_hello(name): returns a personalized greeting using the captured greeting.
+# say_goodbye(name): returns a personalized farewell using the captured farewell.
+
+def make_chatbot_response(greeting, farewell):
+
+    def say_hello(name):
+        return f"{greeting}, {name}."
+
+    def say_goodbye(name):
+        return f"{farewell}, {name}."
+
+    return say_hello, say_goodbye
+
+hello, goodbye = make_chatbot_response("Hello", "Bye")
+
+print(hello("Sergiusz"))
+print(goodbye("Inga"))
+
+# Objective:
+# Write a function make_notifier(welcome_message, alert_message, farewell_message) that:
+#
+# Takes three message templates as parameters.
+# Returns three functions:
+# welcome(name): returns a personalized welcome message using the welcome_message template.
+# alert(name): returns an alert message using the alert_message template.
+# goodbye(name): returns a farewell message using the farewell_message template.
+
+def make_notifier(welcome_message, alert_message, farewell_message):
+
+    def welcome(name):
+        return f"{welcome_message}, {name}."
+
+    def alert(name):
+        return f"{name}!!! {alert_message}."
+
+    def goodbye(name):
+        return f"{farewell_message}, {name}."
+
+    return welcome, alert, goodbye
+
+hi, alert, bye = make_notifier("Welcome to the kingdom", "Please evacuate", "Farewell young padawan")
+
+print(hi("Sergiusz"))
+print(alert("Martyna"))
+print(bye("Irena"))
+
+
 # Function Factory:
-# Create a closure that generates multiple specialized functions, such as different power functions (square, cube, etc.), demonstrating how each remembers its exponent.
+# Create a closure that generates multiple specialized functions, such as different power functions (square, cube, etc.),
+# demonstrating how each remembers its exponent.
+
+def factory(n):
+
+    def square():
+        return n ** 2
+
+    def cube():
+        return n ** 3
+
+    def quartic():
+        return n ** 4
+
+    return square, cube, quartic
+
+sq, c, quar = factory(2)
+
+print(sq())
+print(c())
+print(quar())
+
+def outer(n, p):
+    def inner():
+        return n ** p
+    return inner
+
+result = outer(2, 3)
+print(result())
+
+# Objective:
+# Create a function make_multi_power(n, exponents) that:
 #
+# Accepts a base number n.
+# Accepts a list of exponents, e.g., [2, 3, 4].
+# Returns a dictionary of functions, where each key is the exponent (as a string or number),
+# and its value is a function that computes n raised to that exponent.
+
+def make_multi_power(n, exponents):
+    functions = {}
+    for i in exponents:
+        def raising(power = i):
+            return n ** power
+        functions[i] = raising
+    return functions
+
+powers = make_multi_power(2, [2, 4, 6])
+print(powers[2]())
+print(powers[4]())
+print(powers[6]())
+
+
 # Closure with State Reset:
-#     Implement a closure that counts how many times it has been called, with an internal reset method to reset its count to zero.
+# Implement a closure that counts how many times it has been called, with an internal reset method to reset its count to zero.
+
+def internal():
+    count = 0
+    def inner():
+        nonlocal count
+        count += 1
+        return count
+
+    def reset():
+        nonlocal count
+        count = 0
+        return count
+
+    inner.reset = reset
+    return inner
+
+c = internal()
+print(c())
+print(c())
+c.reset()
+print(c())
+
+# Objective:
+# Write a function make_paused_counter() that:
+#
+# Maintains an internal count.
+# Provides two main functions:
+# increment(): increases the count by 1, unless paused.
+# pause(): pauses the counter (stops incrementing).
+# resume(): resumes the counter.
+# Attach pause() and resume() as methods to the main counter function.
+# When paused, calls to increment() should not increase the count but should still return the current value.
+
+def make_paused_counter():
+    count = 0
+    is_paused = False
+
+    def increment():
+        nonlocal count, is_paused
+        if is_paused:
+            return count
+        else:
+            count += 1
+            return count
+
+    def pause():
+        nonlocal count, is_paused
+        is_paused = True
+
+    def resume():
+        nonlocal is_paused
+        is_paused = False
+    return increment, pause, resume
+
+counter, pause, resume = make_paused_counter()
+print(counter())
+print(counter())
+pause()
+print(counter())
+resume()
+print(counter())

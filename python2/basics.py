@@ -4949,3 +4949,269 @@ for key in squares_dict:
     squares_dict[key] = key ** 3
 
 print(squares_dict)
+
+# Create a Contact Book:
+# Make a dictionary where keys are contact names and values are phone numbers. Add, update, and delete contacts.
+
+contact_book = {"Sergiusz": 600600600, "Inga": 700700700, "Martyna": 200300400}
+print(contact_book)
+contact_book["Wiesiek"] = 300400400
+print(contact_book)
+contact_book.update({"Sergiusz": 200200200})
+print(contact_book)
+del contact_book["Inga"]
+print(contact_book)
+print("Sergiusz" in contact_book)
+print(contact_book.get("Piotr", "not in the dictionary"))
+print(contact_book.get("Sergiusz", "not in the dictionary"))
+
+for key, value in contact_book.items():
+    print(f"Name: {key}, Phone: {value}")
+
+lower = 300000000
+upper = 700000000
+contacts_in_range = []
+for name, number in contact_book.items():
+    if lower <= number <= upper:
+        contacts_in_range.append(name)
+print(contacts_in_range)
+
+print(len(contact_book))
+
+contact_book.update({"Inga": 700700700})
+contact_names = [name for name, phone in contact_book.items()]
+print(contact_names)
+print(sorted(contact_names))
+
+copy = contact_book.copy()
+print(copy)
+print(contact_book)
+print(id(copy))
+print(id(contact_book))
+
+copy.clear()
+print(copy)
+
+contact_book1 = {
+    "Sergiusz": 600600600,
+    "Inga": 700700700,
+    "Martyna": 200300400
+}
+
+contact_book2 = {
+    "Inga": 999999999,
+    "Wiesiek": 300400400,
+    "Tomek": 555555555
+}
+
+merged_dictionaries = {**contact_book1, **contact_book2}
+print(merged_dictionaries)
+
+
+# Count Word Frequency:
+# Given a list of words, create a dictionary that maps each word to its frequency count.
+
+words = ["apple", "banana", "orange", "grape", "watermelon", "kiwi", "mango", "strawberry", "blueberry", "pineapple"]
+
+dictionary_count = {}
+
+for word in words:
+    for ch in word:
+        if ch in dictionary_count:
+            dictionary_count[ch] += 1
+        else:
+            dictionary_count[ch] = 1
+print(dictionary_count)
+
+
+# Invert a Dictionary:
+# Write a function that takes a dictionary and inverts it (keys become values and values become keys). Handle the case where values are duplicated.
+
+sample_dict = {
+    "Isaac": 42,
+    "Olivia": 35,
+    "Ethan": 29,
+    "Ava": 24,
+    "Liam": 31,
+    "Sophia": 27,
+    "Noah": 33,
+    "Emma": 22
+}
+
+inverted_dict = {value: key for key, value in sample_dict.items()}
+print((inverted_dict))
+
+# Merge Dictionaries:
+# Combine two dictionaries into one, summing values of common keys.
+
+student_grades = {
+    "Alice": 85,
+    "Bob": 92,
+    "Charlie": 78,
+    "David": 88
+}
+
+product_prices = {
+    "Apple": 0.99,
+    "Banana": 0.59,
+    "Orange": 1.29,
+    "Grapes": 2.99
+}
+
+combined_dictionaries = {**student_grades, **product_prices}
+print(combined_dictionaries)
+
+# Activity: Build Your Favorite Movies List
+# Create an empty dictionary called movies_by_genre.
+# Write a function add_movie(genre, movie) that:
+# Adds the movie to the list for the given genre.
+# Creates a new list if the genre isn't already in the dictionary.
+# Write a function get_movies(genre) that:
+# Returns the list of movies for that genre.
+# Returns an empty list if the genre isn't in the dictionary.
+# Use these functions to:
+# Add some movies to different genres.
+# Retrieve and print the list of movies for a couple of genres.
+
+movies_by_genre = {}
+
+def add_movie(genre, movie):
+    if genre in movies_by_genre:
+        movies_by_genre[genre].append(movie)
+    else:
+        movies_by_genre[genre] = [movie]
+
+def get_movies(genre):
+    if not genre in movies_by_genre:
+        return []
+    return movies_by_genre[genre]
+
+add_movie("Scifi", "Matrix")
+add_movie("Scifi", "Interstellar")
+add_movie("Scifi", "Bladerunner")
+print(get_movies("Scifi"))
+
+
+# Dictionary of Lists:
+# Create a dictionary where each key maps to a list of items. Write functions to add items to a specific key, and to retrieve the list.
+
+dictionary_1 = {}
+def add_item(item, category):
+    if category in dictionary_1:
+        dictionary_1[category].append(item)
+    else:
+        dictionary_1[category] = [item]
+
+def get_items(category):
+    return dictionary_1[category]
+
+add_item("wodka", "alcohol")
+add_item("wino", "alcohol")
+
+print(get_items("alcohol"))
+
+# Objective:
+# Create a system to manage students enrolled in different courses.
+#
+# Write a dictionary called course_students where:
+#
+# Keys are course names (e.g., "Math", "History").
+# Values are lists of students enrolled in that course.
+# Write two functions:
+#
+# enroll_student(student, course) — Adds a student to a course. If the course doesn’t exist, create it.
+# get_students(course) — Returns the list of students enrolled in a course. Returns an empty list if no students are enrolled.
+# Use the functions to:
+#
+# Enroll some students in different courses.
+# Retrieve and print the list of students in a specific course.
+
+course_students = {}
+
+def enroll_student(student, course):
+    if course in course_students:
+        course_students[course].append(student)
+    else:
+        course_students[course] = [student]
+
+def get_students(course):
+    if not course in course_students:
+        return []
+    return course_students[course]
+
+enroll_student("Sergiusz", "Computer Science")
+enroll_student("Inga", "Computer Science")
+enroll_student("Martyna", "Computer Science")
+
+print(get_students("Computer Science"))
+
+# Find Max/Min Value:
+# Given a dictionary with numeric values, write functions to find the key with the maximum or minimum value.
+
+sample_numeric_dict = {
+    "Apples": 10,
+    "Oranges": 15,
+    "Bananas": 7,
+    "Grapes": 20,
+    "Mangoes": 13,
+    "Strawberries": 9,
+    "Blueberries": 5
+}
+max_value = max(sample_numeric_dict.values())
+min_value = min(sample_numeric_dict.values())
+print(max_value, min_value)
+
+# Filter Dictionary:
+# Given a dictionary, create a new dictionary that only contains items with values satisfying a certain condition (e.g., values > 10).
+
+temperature_readings = {
+    "Monday": 22,
+    "Tuesday": 19,
+    "Wednesday": 25,
+    "Thursday": 21,
+    "Friday": 20,
+    "Saturday": 23,
+    "Sunday": 18
+}
+
+above_22 = {day: temp for day, temp in temperature_readings.items() if temp >= 22}
+print(above_22)
+
+# Count Characters in Text:
+# Create a dictionary that maps each character in a string to its number of occurrences.
+
+text = "Learning Python is fun and rewarding!"
+
+counting_occurences = {}
+for ch in text:
+    ch_lower = ch.lower()
+    if ch_lower in counting_occurences:
+        counting_occurences[ch_lower] += 1
+    else:
+        counting_occurences[ch_lower] = 1
+print(counting_occurences)
+
+
+
+# Dictionary from Two Lists:
+# Given two lists—one of keys and one of values—create a dictionary mapping each key to its corresponding value.
+
+keys = ["name", "age", "city", "occupation"]
+values = ["Alice", 30, "New York", "Engineer"]
+
+combined = {key: value for key, value in zip(keys, values)}
+print(combined)
+
+
+# Auto-Assign Default Values:
+# Use dict.get() or collections.defaultdict to count occurrences or group items without initializing keys explicitly.
+
+my_dict = {}
+sample_list = ["apple", "banana", "apple", "orange", "banana", "apple", "kiwi", "orange", "kiwi", "banana"]
+
+
+for item in sample_list:
+    current_count = my_dict.get(item, 0)
+    my_dict[item] = current_count + 1
+
+print(my_dict)
