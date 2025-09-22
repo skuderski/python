@@ -652,178 +652,776 @@ import time
 # 3. Function Name Printer
 # Create a decorator that prints the name of the function being called.
 
-def decorator(func):
-    def wrapper(*args, **kwargs):
-        print(f"The name of the function is: {func.__name__}")
-        return func(*args, **kwargs)
-    return wrapper
+# def decorator(func):
+#     def wrapper(*args, **kwargs):
+#         print(f"The name of the function is: {func.__name__}")
+#         return func(*args, **kwargs)
+#     return wrapper
+#
+# @decorator
+# def add(a, b):
+#     print(a + b)
+#     return a + b
+#
+# add(2, 4)
+#
+#
+# # 4. Repeat Call Decorator
+# # Make a decorator that runs a function twice every time it's called.
+#
+# def decor(func):
+#     def wrapper(*args, **kwargs):
+#         result = func(*args, **kwargs)
+#         func(*args, **kwargs)
+#         return result
+#     return wrapper
+# @decor
+# def adding(a, b):
+#     print(a + b)
+#     return a + b
+#
+# adding(2, 1)
+#
+# # 5. Add Pre/Post Messages
+# # Create a decorator that prints "Start" before and "End" after the function runs.
+#
+# def decorator(func):
+#     def wrapper(*args, **kwargs):
+#         print("Start")
+#         result = func(*args, **kwargs)
+#         print("End")
+#         return result
+#     return wrapper
+# @decorator
+# def subtracting(a, b):
+#     print(a - b)
+#     return a - b
+#
+# subtracting(5, 10)
+#
+# # Objective:
+# # Write a decorator factory log_with_messages(pre_msg, post_msg) that:
+# #
+# # Accepts two strings, pre_msg and post_msg.
+# # When applied to a function:
+# # Prints pre_msg before the function runs.
+# # Prints post_msg after the function completes.
+# # Keeps track of how many times the function has been called.
+# # Each time the function runs, it also prints the call count.
+#
+# def log_with_messages(pre_msg, post_msg):
+#     def decorator(func):
+#         func.calls = 0
+#         def wrapper(*args, **kwargs):
+#             print(f"{pre_msg}")
+#             result = func(*args, **kwargs)
+#             print(f"{post_msg}")
+#             func.calls += 1
+#             print(f"The number of calls: {func.calls}")
+#             return result
+#         def reset():
+#             func.calls = 0
+#             print("Call count has been reset.")
+#         wrapper.reset = reset
+#         return wrapper
+#     return decorator
+# @log_with_messages("Hello", "Bye")
+# def multi(a, b):
+#     print(a * b)
+#     return a * b
+#
+# multi(2, 5)
+# multi(3, 6)
+# multi.reset()
+# multi(4, 4)
+# # 6. Call Counter
+# # Write a decorator that counts how many times a function has been called and prints the count each time.
+#
+# def dec(func):
+#     func.total = 0
+#     def wrapper(*args, **kwargs):
+#         print("hey")
+#         result = func(*args, **kwargs)
+#         func.total += 1
+#         print(f"\"{func.__name__}\" has been called {func.total} times.")
+#         print("bye")
+#         return result
+#     return wrapper
+# @dec
+# def printing():
+#     print("Yes")
+#
+# printing()
+# printing()
+#
+# # 7. Uppercase Output
+# # Make a decorator for functions that return strings to always convert their output to uppercase.
+#
+# def dec(func):
+#     def wrapper(*args, **kwargs):
+#         result = func(*args, **kwargs)
+#         result = result.upper()
+#         return result
+#     return wrapper
+# @dec
+# def text():
+#     return "abc"
+#
+# print(text())
+#
+#
+# # 8. Log Arguments
+# # Create a decorator that logs all arguments and keyword arguments passed to a function each time.
+#
+# def decor(func):
+#     def wrapper(*args, **kwargs):
+#         print(f"Arguments:", args,
+#               f"Keyword arguments:", kwargs)
+#         result = func(*args, **kwargs)
+#         return result
+#     return wrapper
+#
+# @decor
+# def addx(a, b, **kwargs):
+#     print(a + b)
+#     print(kwargs)
+#     return a + b
+#
+# addx(1, 5, name="Sergiusz")
+#
+#
+# # 9. Input Validation
+# # Build a decorator that checks if all numeric arguments are positive before running the function, giving a warning if not.
+#
+# def decorator(func):
+#     def wrapper(*args, **kwargs):
+#         for arg in args:
+#             if isinstance(arg, (int, float)):
+#                 if arg <= 0:
+#                     print(f"{arg} not a positive number.")
+#                     return
+#
+#         return func(*args, **kwargs)
+#     return wrapper
+# @decorator
+# def dividing(a, b):
+#     return a / b
+#
+# print(dividing(4, 2))
+#
+# # 10. Decorator with Arguments
+# # Write a decorator that accepts an argument (like a prefix string) and adds that prefix to the function's string output.
+#
+# def factory(prefix):
+#     def decorator(func):
+#         def wrapper(*args, **kwargs):
+#             result = func(*args, **kwargs)
+#             if isinstance(result, str):
+#                 return f"{prefix} {result}"
+#             else:
+#                 return f"{prefix} {str(result)}"
+#         return wrapper
+#     return decorator
+#
+# @factory("Hey")
+# def addi(a, b):
+#     return a + b
+# print(addi(2, 5))
 
-@decorator
-def add(a, b):
-    print(a + b)
-    return a + b
+# 1. Basic Print Message Decorator
+# Create a decorator that prints "Function is about to run" before executing any function.
 
-add(2, 4)
+# def decor(func):
+#     def wrapper(*args, **kwargs):
+#         print("Function is about to run")
+#         result = func(*args, **kwargs)
+#         return result
+#     return wrapper
+# @decor
+# def adding(a, b):
+#     print(a + b)
+#     return a + b
+#
+# adding(2, 4)
+#
+# # Task: Create a Decorator that Logs Function Execution
+# # Objective:
+# # Make a decorator that:
+# #
+# # Prints "Starting execution of {function name}" before running.
+# # Prints "Finished execution of {function name}" after the function completes.
+# # Supports functions with any number of arguments and return a result.
+#
+# def decorator2(func):
+#     def wrapper(*args, **kwargs):
+#         print(f"Starting execution of \"{func.__name__}\"")
+#         result = func(*args, **kwargs)
+#         print(f"Finished execution of \"{func.__name__}\"")
+#         return result
+#     return wrapper
+#
+# @decorator2
+# def do():
+#     print(f"The funkcjone")
+#
+# do()
+#
+# # Objective:
+# # Design a decorator factory called log_and_time(start_msg, end_msg) that:
+# #
+# # Accepts two string arguments for custom start and end messages.
+# # When applied to a function:
+# # Prints the custom start message before executing.
+# # Measures and prints the execution time of the function.
+# # Prints the custom end message after the function completes.
+# # Supports functions with any arguments and preserves their return values.
+#
+# def log_and_time(start_msg, end_msg):
+#     def decorator(func):
+#         def wrapper(*args, **kwargs):
+#             print(f"{start_msg}")
+#             start = time.perf_counter()
+#             result = func(*args, **kwargs)
+#             end = time.perf_counter() - start
+#             print(f"the time it took for the function: {end:.3f} seconds")
+#             print(f"{end_msg}")
+#             return result
+#         return wrapper
+#     return decorator
+#
+#
+# @log_and_time("Starting", "Ending")
+# def sleep():
+#     time.sleep(2)
+#
+# sleep()
+#
+# # Objective:
+# # Build a decorator factory track_stats() that:
+# #
+# # When applied to a function:
+# # Tracks the total number of calls to that function.
+# # Tracks the total execution time across all calls.
+# # Prints the call count and total time each time the function is invoked.
+# # Provides a .reset() method to reset both counters and total time.
+#
+#
+# def track_stats():
+#     def decorator(func):
+#         func.total_calls = 0
+#         func.total_execution_time = 0
+#         def wrapper(*args, **kwargs):
+#             start = time.perf_counter()
+#             result = func(*args, **kwargs)
+#             end = time.perf_counter() - start
+#             func.total_execution_time += end
+#             func.total_calls += 1
+#             print(f"{func.__name__} has been called {func.total_calls} times and took {func.total_execution_time}.")
+#             return result
+#
+#         def reset():
+#             func.total_calls = 0
+#             func.total_execution_time = 0
+#             print("Both counters have been reset.")
+#
+#         wrapper.reset = reset
+#         return wrapper
+#     return decorator
+#
+# @track_stats()
+# def printing():
+#     time.sleep(0.5)
+#     print("Hello")
+#
+# printing()
 
 
-# 4. Repeat Call Decorator
-# Make a decorator that runs a function twice every time it's called.
+# 2. Timing a Function
+# Write a decorator that measures how long a function takes to run and prints the elapsed time.
 
 def decor(func):
     def wrapper(*args, **kwargs):
+        start = time.perf_counter()
         result = func(*args, **kwargs)
-        func(*args, **kwargs)
+        end = time.perf_counter() - start
+        print(f"Elapsed time is {end:.3f}")
         return result
     return wrapper
 @decor
+def power(a, b):
+    time.sleep(0.2)
+    print(a ** b)
+    return a ** b
+
+power(2, 2)
+
+# Objective:
+# Create a decorator factory measure_stats() that:
+#
+# When applied to a function, it:
+#
+# Measures the total execution time for each call.
+# Maintains a cumulative total of all execution times.
+# Counts how many times the function has been called.
+# After each call, it prints:
+# The latest execution time.
+# The cumulative total time.
+# The number of calls.
+# Supports a .reset() method that resets all these stats (call count, total time).
+
+
+def measure_stats():
+    def decorator(func):
+        func.last_run_time = 0
+        func.cumulative = 0
+        func.calls = 0
+        def wrapper(*args, **kwargs):
+            start = time.perf_counter()
+            result = func(*args, **kwargs)
+            end = time.perf_counter() - start
+            func.last_run_time = end
+            func.cumulative += end
+            func.calls += 1
+            print(f"Last run time is {func.last_run_time}. "
+                  f"Total cumulative time is {func.cumulative}. "
+                  f"The amount of calls are: {func.calls}.")
+            return result
+
+        def reset():
+            func.last_run_time = 0
+            func.cumulative = 0
+            func.calls = 0
+            print("The counts have been reset.")
+
+        wrapper.reset = reset
+        return wrapper
+    return decorator
+
+@measure_stats()
+def sleeping():
+    time.sleep(1)
+
+sleeping()
+sleeping()
+sleeping()
+
+
+# 3. Function Name Logger
+# Create a decorator that prints the name of each function before it executes.
+
+def name_decorator(func):
+    def wrapper(*args, **kwargs):
+        print(f"\"{func.__name__}\" is the name of the function.")
+        result = func(*args, **kwargs)
+        return result
+    return wrapper
+@name_decorator
+def calculating(a, b):
+    print(a ** b)
+    return a ** b
+
+calculating(2, 5)
+
+# Objective:
+# Write a decorator factory log_details(start_msg, end_msg) that:
+#
+# Accepts two string messages: start_msg and end_msg.
+# When applied to a function:
+# Prints start_msg along with the function name and arguments before running.
+# Prints end_msg after the function finishes.
+# Supports functions with any number and types of arguments.
+# The messages should be customizable, allowing you to specify your own log text.
+
+def log_details(start_msg, end_msg):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            print(f"{start_msg} - function name: \"{func.__name__}\", Arguments: {args}, Keyword arguments: {kwargs}")
+            result = func(*args, **kwargs)
+            print(f"{end_msg}")
+            return result
+        return wrapper
+    return decorator
+@log_details("Yo men's", "Bye men's")
+def calc(a, b):
+    print(f"the sum of arguments is {a + b}")
+    return a + b
+
+calc(10, 15)
+
+# 4. Repeat Function Call
+# Make a decorator that calls the decorated function twice every time it’s invoked.
+
+def repeat_decor(func):
+    def wrapper(*args, **kwargs):
+        func(*args, **kwargs)
+        res = func(*args, **kwargs)
+        return res
+    return wrapper
+
+@repeat_decor
+def sleeping():
+    time.sleep(2)
+    print("I just slept for 2 seconds.")
+
+sleeping()
+
+# Objective:
+# Write a decorator factory repeat_n_times(n) that:
+#
+# Accepts an integer n.
+# When applied to a function, it runs that function exactly n times every time it's called.
+# After executing, it prints:
+# How many total times the function has been called since the decoration (across all calls).
+# The total time spent executing the function across all calls.
+# Supports a .reset() method to reset both counters and total time.
+
+def repeat_n_times(n):
+    def dec(func):
+        func.total = 0
+        func.execution_time = 0
+        def wrapper(*args, **kwargs):
+            start = time.perf_counter()
+            for _ in range(n):
+                result = func(*args, **kwargs)
+            elapsed = time.perf_counter() - start
+            func.total += n
+            func.execution_time += elapsed
+            print(f"total calls: {func.total}, time: {func.execution_time}")
+            return result
+        def reset():
+            func.total = 0
+            func.execution_time = 0
+            print("Counters reset")
+        wrapper.reset = reset
+        return wrapper
+    return dec
+
+@repeat_n_times(3)
+def sleepzzz():
+    time.sleep(0.3)
+    print("ZzZzZ")
+
+sleepzzz()
+sleepzzz()
+sleepzzz.reset()
+sleepzzz()
+
+
+# 5. Add Pre/Post Messages with Custom Text
+# Create a decorator that accepts custom messages to print before and after the function runs.
+
+def factory(pre, post):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            print(f"{pre}")
+            result = func(*args, **kwargs)
+            print(f"{post}")
+            return result
+        return wrapper
+    return decorator
+@factory("welcome", "salutations")
 def adding(a, b):
     print(a + b)
     return a + b
 
-adding(2, 1)
-
-# 5. Add Pre/Post Messages
-# Create a decorator that prints "Start" before and "End" after the function runs.
-
-def decorator(func):
-    def wrapper(*args, **kwargs):
-        print("Start")
-        result = func(*args, **kwargs)
-        print("End")
-        return result
-    return wrapper
-@decorator
-def subtracting(a, b):
-    print(a - b)
-    return a - b
-
-subtracting(5, 10)
+adding(1, 2)
 
 # Objective:
-# Write a decorator factory log_with_messages(pre_msg, post_msg) that:
+# Write a decorator factory log_with_counts(pre_msg, post_msg) that:
 #
-# Accepts two strings, pre_msg and post_msg.
+# Accepts two custom messages (pre_msg, post_msg).
 # When applied to a function:
-# Prints pre_msg before the function runs.
-# Prints post_msg after the function completes.
-# Keeps track of how many times the function has been called.
-# Each time the function runs, it also prints the call count.
+# Prints the pre_msg before executing.
+# Prints the post_msg after executing.
+# Keeps track of how many times the function has been called since the decorator was applied.
+# After each call, prints the total number of calls.
 
-def log_with_messages(pre_msg, post_msg):
+def log_with_counts(pre_msg, post_msg):
     def decorator(func):
-        func.calls = 0
+        func.total_calls = 0
         def wrapper(*args, **kwargs):
-            print(f"{pre_msg}")
+            print(f"This is the message that is to be shown before the function executes: {pre_msg}")
             result = func(*args, **kwargs)
-            print(f"{post_msg}")
-            func.calls += 1
-            print(f"The number of calls: {func.calls}")
+            print(f"This is the message that is to be shown after the function executes: {post_msg}")
+            func.total_calls += 1
+            print(f"The amount of calls so far is: {func.total_calls}")
             return result
-        def reset():
-            func.calls = 0
-            print("Call count has been reset.")
-        wrapper.reset = reset
         return wrapper
     return decorator
-@log_with_messages("Hello", "Bye")
-def multi(a, b):
-    print(a * b)
-    return a * b
+@log_with_counts("Giasas", "Kalinixta")
+def do_something():
+    print("This is the message of the function.")
 
-multi(2, 5)
-multi(3, 6)
-multi.reset()
-multi(4, 4)
-# 6. Call Counter
-# Write a decorator that counts how many times a function has been called and prints the count each time.
+do_something()
+
+
+# 6. Count How Many Times a Function Is Called
+# Decorator that keeps track of and prints how many times the function has been called.
 
 def dec(func):
-    func.total = 0
+    func.calls = 0
     def wrapper(*args, **kwargs):
-        print("hey")
         result = func(*args, **kwargs)
-        func.total += 1
-        print(f"\"{func.__name__}\" has been called {func.total} times.")
-        print("bye")
+        func.calls += 1
+        print(f"The amount of calls is {func.calls}")
         return result
     return wrapper
 @dec
-def printing():
-    print("Yes")
-
-printing()
-printing()
-
-# 7. Uppercase Output
-# Make a decorator for functions that return strings to always convert their output to uppercase.
-
-def dec(func):
-    def wrapper(*args, **kwargs):
-        result = func(*args, **kwargs)
-        result = result.upper()
-        return result
-    return wrapper
-@dec
-def text():
-    return "abc"
-
-print(text())
-
-
-# 8. Log Arguments
-# Create a decorator that logs all arguments and keyword arguments passed to a function each time.
-
-def decor(func):
-    def wrapper(*args, **kwargs):
-        print(f"Arguments:", args,
-              f"Keyword arguments:", kwargs)
-        result = func(*args, **kwargs)
-        return result
-    return wrapper
-
-@decor
-def addx(a, b, **kwargs):
-    print(a + b)
-    print(kwargs)
+def adding(a, b):
     return a + b
 
-addx(1, 5, name="Sergiusz")
+print(adding(2, 5))
 
 
-# 9. Input Validation
-# Build a decorator that checks if all numeric arguments are positive before running the function, giving a warning if not.
+# 7. Convert String Outputs to Uppercase
+# Decorator for functions that return strings, transforming their output to uppercase.
 
-def decorator(func):
+def upper_decorator(func):
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        return result.upper()
+    return wrapper
+@upper_decorator
+def printing_text(text):
+    return text
+
+print(printing_text("sergiusz"))
+
+# Objective:
+# Write a decorator factory transform_output(transformation) that:
+#
+# Accepts a transformation function (e.g., str.lower, str.replace, custom functions).
+# When applied to a function that returns a string, it:
+# Calls the original function.
+# Applies the transformation to the output.
+# Prints the transformed output.
+# Returns the transformed output.
+
+def transform_output(transformation):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            result = func(*args, **kwargs)
+            if not isinstance(result, str):
+                result = str(result)
+            print(f"Before transformation: \"{result}\"")
+            transformed = transformation(result)
+            print(f"After transformation: \"{transformed}\"")
+            return transformed
+        return wrapper
+    return decorator
+
+@transform_output(str.title)
+def greet():
+    return "hello world"
+
+greet()
+
+# 8. Log Function Arguments
+# Create a decorator that logs all positional and keyword arguments passed to a function each time it’s called.
+
+def deco(func):
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        print(f"Positional arguments: {args}")
+        print(f"Keyword arguments: {kwargs}")
+        return result
+    return wrapper
+@deco
+def some(a, b, c):
+    return a + b + c
+
+print(some(2, 4, 6))
+
+# 9. Validate Numeric Arguments
+# Decorator that checks if all numeric arguments are positive before calling the function; if not, print a warning.
+
+def validate(func):
     def wrapper(*args, **kwargs):
         for arg in args:
             if isinstance(arg, (int, float)):
                 if arg <= 0:
-                    print(f"{arg} not a positive number.")
+                    print("Not a positive number")
                     return
-
         return func(*args, **kwargs)
     return wrapper
-@decorator
-def dividing(a, b):
-    return a / b
+@validate
+def adding(a, b):
+    return a + b
 
-print(dividing(4, 2))
+print(adding(10, 15))
+print(adding(-2, -4))
+
+
 
 # 10. Decorator with Arguments
-# Write a decorator that accepts an argument (like a prefix string) and adds that prefix to the function's string output.
+# Write a decorator that accepts parameters (like a prefix string), and when decorating a function, adds the prefix to the function’s string output.
+def fact(prefix):
+    def dec_with_pars(func):
+        def wrapper(*args, **kwargs):
+            result = f"{prefix} {func(*args, **kwargs)}"
+            return result
+        return wrapper
+    return dec_with_pars
+@fact("Sir")
+def texting(text):
+    return text
+print(texting("Sergiusz"))
 
-def factory(prefix):
+# Objective:
+# Create a decorator factory log(msg) that:
+#
+# Accepts a string msg.
+# When applied to a function:
+# Prints a custom message before the function runs, including the function’s name.
+# Logs each call with timestamp and arguments.
+# Executes the function.
+# Prints a message after the function, including function's name and execution time.
+
+def factory_log(msg):
     def decorator(func):
         def wrapper(*args, **kwargs):
+            print(f"The message of {func.__name__} is {msg} at {time.strftime('%Y-%m-%d %H:%M:%S')}")
+            start = time.perf_counter()
             result = func(*args, **kwargs)
-            if isinstance(result, str):
-                return f"{prefix} {result}"
+            end = time.perf_counter()
+            duration = end - start
+            print(f"Function {func.__name__} took {duration:.4f} seconds.")
+            return result
+        return wrapper
+    return decorator
+@factory_log("Hillo")
+def doink(a, b):
+    time.sleep(.1)
+    return a + b
+
+print(doink(2, 4))
+
+# Objective:
+# Write a decorator factory requires_permission(permission_name) that:
+#
+# Accepts a string permission_name.
+# When applied to a function expecting a user dictionary argument:
+# Checks if user has the specific permission in a list, e.g., user['permissions'].
+# If the user has the permission, execute the function.
+# If not, display a message: "Access denied: missing {permission_name} permission."
+
+def requires_permission(permission_name):
+    def decorator(func):
+        def wrapper(user: dict):
+            if permission_name in user["permissions"]:
+                return func(user)
             else:
-                return f"{prefix} {str(result)}"
+                print(f"Access denied: missing {permission_name} permission")
         return wrapper
     return decorator
 
-@factory("Hey")
-def addi(a, b):
-    return a + b
-print(addi(2, 5))
+@requires_permission("view_reports")
+def view_reports(user):
+    print(f"{user['name']} is viewing reports.")
+
+
+user1 = {'name': 'Alice', 'permissions': ['view_reports', 'edit_users']}
+user2 = {'name': 'Bob', 'permissions': ['edit_users']}
+view_reports(user1)
+view_reports(user2)
+
+# Objective:
+# Write a decorator factory require_permissions(*permissions) that:
+#
+# Accepts multiple permission strings.
+# When applied to a function expecting a user dictionary argument:
+# Checks if all specified permissions are present in user['permissions'].
+# If the user has all permissions, execute the function.
+# If any permission is missing, display: Access denied: missing {permission} for each missing permission.
+
+def require_permissions(*permissions):
+    def decorator(func):
+        def wrapper(user):
+            missing = [perm for perm in permissions if perm not in user["permissions"]]
+            if missing:
+                for perm in missing:
+                    print(f"Access denied: missing {perm}")
+            else:
+                func(user)
+        return wrapper
+    return decorator
+
+@require_permissions("view_reports", "edit_users")
+def edit_reports(user):
+    print(f"{user['name']} is editing reports.")
+
+user1 = {'name': 'Alice', 'permissions': ['view_reports', 'edit_users']}
+user2 = {'name': 'Bob', 'permissions': ['view_reports']}
+
+edit_reports(user1)
+edit_reports(user2)
+
+# Objective:
+# Write a decorator factory require_roles(*roles) that:
+#
+# Accepts multiple role strings (e.g., 'admin', 'editor', 'user').
+# When applied to a function expecting a user dictionary with a 'roles' list:
+# Checks if the user has at least one of the specified roles.
+# If yes, execute the function.
+# If no, print: "Access denied: insufficient roles".
+
+def require_roles(*roles):
+    def decorator(func):
+        def wrapper(user):
+            missing = [role for role in roles if role not in user["roles"]]
+            if missing:
+                print(f"Access denied: missing roles: {', '.join(missing)}")
+            else:
+                return func(user)
+        return wrapper
+    return decorator
+@require_roles("admin")
+def manage_content(user):
+    print(f"{user['name']} is managing the content")
+
+user1 = {'name': 'Alice', 'roles': ['user', 'editor']}
+user2 = {'name': 'Bob', 'roles': ['guest']}
+user3 = {'name': 'Eve', 'roles': ['admin']}
+
+manage_content(user1)
+manage_content(user2)
+manage_content(user3)
+
+# Objective:
+# Write a decorator factory require_roles_and_permissions(roles, permissions) that:
+#
+# Accepts two lists: one of required roles, and one of permissions.
+# When applied to a function expecting a user dict with 'roles' and 'permissions' lists:
+# Checks if the user has at least one of the required roles and at least one of the required permissions.
+# If both conditions are met, executes the function.
+# If either condition fails, prints: "Access denied: missing roles or permissions."
+
+def require_roles_and_permissions(roles, permissions):
+    def decorator(func):
+        def wrapper(user):
+            missing_roles = [role for role in roles if role not in user["roles"]]
+            missing_perms = [perm for perm in permissions if perm not in user["permissions"]]
+            if missing_roles or missing_perms:
+                message_parts = []
+                if missing_roles:
+                    message_parts.append(f"missing roles: {', '.join(missing_roles)}")
+                if missing_perms:
+                    message_parts.append(f"missing permissions: {', '.join(missing_perms)}")
+                print(f"Access denied: {', '.join(message_parts)}")
+                return
+            else:
+                return func(user)
+        return wrapper
+    return decorator
+
+@require_roles_and_permissions(['admin', 'editor'], ['write', 'delete'])
+def delete_content(user):
+    print(f"{user['name']} is deleting content.")
+
+user1 = {'name': 'Alice', 'roles': ['user', 'editor'], 'permissions': ['write']}
+user2 = {'name': 'Bob', 'roles': ['guest'], 'permissions': ['read']}
+user3 = {'name': 'Eve', 'roles': ['admin'], 'permissions': ['write', 'delete']}
+
+delete_content(user1)
+delete_content(user2)
+delete_content(user3)
