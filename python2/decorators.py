@@ -1880,21 +1880,151 @@ print(texting("sergiusz kuderski"))
 
 # 8. Conditional Function Execution
 # Create decorators:
-#
 # execute_if(condition): only execute if condition is met
 # log_execution: logs every call
 # Apply to a function that performs a task.
-#
+def execute_if(condition):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            if condition:
+                return func(*args, **kwargs)
+            else:
+                print("Did not meet the condition")
+        return wrapper
+    return decorator
+
+def log_execution(func):
+    def wrapper(*args, **kwargs):
+        print(f"Calling {func.__name__}")
+        return func(*args, **kwargs)
+    return wrapper
+
+@execute_if(True)
+@log_execution
+def perform_task():
+    print("Task is being performed")
+
+perform_task()
+
 # 9. String Escaping and Sanitizing
 # Decorators:
-#
 # escape_html: escapes HTML characters
 # sanitize_input: removes dangerous characters
 # Chain them on a function that processes user input.
-#
+
+import html
+
+def escape_html(func):
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        return html.escape(result)
+    return wrapper
+
+def sanitize_input(func):
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        dangerous_chars = ['<', '>', '"', "'", ';']
+        for ch in dangerous_chars:
+            result = result.replace(ch, '')
+        return result
+    return wrapper
+
+@escape_html
+@sanitize_input
+def get_user_input():
+    return "<script>alert('XSS');</script>"
+
+print(get_user_input())
+
 # 10. Retry on Failure
 # Create decorators:
-#
 # retry(times): retries the function up to times if it raises an exception
 # log_attempt: logs each attempt
 # Apply both on a function that randomly fails.
+import random
+def retry(times):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            attempts = 0
+            while attempts < times:
+                try:
+                    result = func(*args, **kwargs)
+                    return result  # If success, return immediately
+                except Exception as e:
+                    attempts += 1
+                    print(f"Attempt {attempts} failed with error: {e}")
+                    if attempts >= times:
+                        print("Max retries reached, aborting.")
+                        raise
+        return wrapper
+    return decorator
+
+def log_attempt(func):
+    def wrapper(*args, **kwargs):
+        print(f"Attempting to call {func.__name__}")
+        result = func(*args, **kwargs)
+        return result
+    return wrapper
+
+@log_attempt
+@retry(5)
+def unreliable_task():
+    if random.random() < 0.5:
+        raise ValueError("Random failure")
+    else:
+        print("Task succeeded!")
+
+try:
+    unreliable_task()
+except Exception:
+    print("Function failed after retries.")
+
+import time
+
+# def delay(func):
+#     def wrapper(*args, **kwargs):
+#         print("Sleeping 3 seconds.")
+#         for i in range(3):
+#             time.sleep(1)
+#             print(i + 1)
+#         return func(*args, **kwargs)
+#     return wrapper
+#
+
+
+def delay(seconds):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            print(f"Sleeping {seconds} seconds.")
+            for i in range(seconds):
+                time.sleep(1)
+                print(i + 1)
+            return func(*args, **kwargs)
+        return wrapper
+    return decorator
+
+
+@delay(5)
+def printer(name: str):
+    print(f"Hello {name}")
+
+printer("Sergiusz")
+
+import time
+import functools
+
+def timer(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        res = func(*args, **kwargs)
+        end = time.time()
+        print(f"Elapsed: {end - start}")
+        return res
+    return wrapper
+@timer
+def add(a, b):
+    return a + b
+
+print(add.__name__)
+print(add(2, 4))
