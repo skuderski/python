@@ -1638,393 +1638,603 @@ import time
 # log_end: prints "Function finished"
 # Apply them to a simple function and observe the order of logs.
 
-def log_start(func):
+# def log_start(func):
+#     def wrapper(*args, **kwargs):
+#         print("Starting function")
+#         result = func(*args, **kwargs)
+#         return result
+#     return wrapper
+#
+# def log_args(func):
+#     def wrapper(*args, **kwargs):
+#         print(f"Arguments passed: {args}")
+#         result = func(*args, **kwargs)
+#         return result
+#     return wrapper
+#
+#
+# def log_end(func):
+#     def wrapper(*args, **kwargs):
+#         result = func(*args, **kwargs)
+#         print("Function finished")
+#         return result
+#     return wrapper
+#
+# @log_end
+# @log_args
+# @log_start
+# def add(a, b):
+#     return a + b
+#
+# print(add(2, 1))
+#
+#
+# # 2. Number Transformation Chain
+# # Create decorators:
+# #
+# # multiply_by_two: multiplies numeric inputs by 2
+# # add_five: adds 5 to numeric inputs
+# # convert_to_string: converts the result to a string
+# # Apply them to a function that takes a number and returns it.
+#
+#
+# def multiply_by_two(func):
+#     def wrapper(*args, **kwargs):
+#         result = func(*args, **kwargs) * 2
+#         return result
+#     return wrapper
+#
+# def add_five(func):
+#     def wrapper(*args, **kwargs):
+#         result = func(*args, **kwargs) + 5
+#         return result
+#     return wrapper
+#
+# def convert_to_string(func):
+#     def wrapper(*args, **kwargs):
+#         result = str(func(*args, **kwargs))
+#         return result
+#     return wrapper
+#
+# @convert_to_string
+# @add_five
+# @multiply_by_two
+# def get_num():
+#     return 10
+#
+# print(get_num())
+# print(type(get_num()))
+#
+#
+# # 3. String Reversal and Uppercase
+# # Decorators:
+# # to_upper: converts strings to uppercase
+# # reverse_string: reverses the string
+# # Apply to a function that processes a string.
+#
+# def to_upper(func):
+#     def wrapper(*args, **kwargs):
+#         result = func(*args, **kwargs)
+#         result = result.upper()
+#         return result
+#     return wrapper
+#
+# def reverse_string(func):
+#     def wrapper(*args, **kwargs):
+#         result = func(*args, **kwargs)
+#         return result[::-1]
+#     return wrapper
+#
+# @reverse_string
+# @to_upper
+# def texting(text):
+#     return text
+#
+# print(texting("sergiusz"))
+#
+# #
+# # 4. Access Control
+# # Create decorators:
+# # login_required: only proceeds if user['logged_in'] is True
+# # role_required(role): only proceed if role in user['roles']
+# # Apply both to a function that performs a sensitive action.
+#
+# def login_required(func):
+#     def wrapper(user):
+#         if user["logged_in"] is True:
+#             return func(user)
+#         else:
+#             print(f"{user} not logged in")
+#     return wrapper
+#
+# def role_required(role):
+#     def deco(func):
+#         def wrapper(user):
+#             if role in user["roles"]:
+#                 return func(user)
+#             else:
+#                 print(f"User {user['username']} does not have role '{role}'")
+#         return wrapper
+#     return deco
+#
+# @role_required('admin')
+# @login_required
+# def sensitive_action(user):
+#     print(f"Sensitive action performed for {user['username']}")
+#
+# user = {
+#     "username": "alice",
+#     "logged_in": True,
+#     "roles": ["user", "admin"]
+# }
+# sensitive_action(user)
+#
+#
+#
+#
+# # 5. Data Validation
+# # Create decorators:
+# # validate_type(expected_type): checks if input is of this type
+# # not_empty: ensures input list or string is not empty
+# # Chain them on a function that processes a list.
+#
+# def validate_type(expected_type):
+#     def deco(func):
+#         def wrapper(*args, **kwargs):
+#             for arg in args:
+#                 if not isinstance(arg, expected_type):
+#                     print(f"Invalid type for argument {arg}. Expected {expected_type.__name__}.")
+#                     return
+#
+#             for key, val in kwargs.items():
+#                 if not isinstance(val, expected_type):
+#                     print(f"Invalid type for argument {key}: {val}. Excepted {expected_type.__name__}")
+#                     return
+#             return func(*args, **kwargs)
+#         return wrapper
+#     return deco
+#
+# def not_empty(func):
+#     def wrapper(arg):
+#         if not arg:
+#             print("Input is empty")
+#             return
+#         return func(arg)
+#     return wrapper
+#
+# @validate_type(list)
+# @not_empty
+# def process_list(lst):
+#     print("Processing list:", lst)
+#
+# process_list([1, 2, 3])
+# process_list([])
+# process_list("not a list")
+#
+#
+#
+#
+# # 6. Performance Measurement
+# # Create decorators:
+# # start_timer: prints start time
+# # end_timer: prints end time and duration
+# # Apply both for measuring execution time of a heavy computation.
+# timing_data = {}
+# import time
+# def start_timer(func):
+#     def wrapper(*args, **kwargs):
+#         timing_data['start_time'] = time.time()
+#         print(f"Start time is: {timing_data['start_time']}")
+#         return func(*args, **kwargs)
+#     return wrapper
+#
+# def end_timer(func):
+#     def wrapper(*args, **kwargs):
+#         result = func(*args, **kwargs)
+#         start_time = timing_data.get('start_time')
+#         if start_time is None:
+#             print("Timing info not found.")
+#             return result
+#         end_time = time.time()
+#         duration = end_time - start_time
+#         print(f"End time: {end_time}")
+#         print(f"Duration: {duration}")
+#         return result
+#     return wrapper
+#
+# @start_timer
+# @end_timer
+# def computation():
+#     time.sleep(2)
+#
+# computation()
+#
+# # 7. Output Formatting
+# # Create decorators:
+# # add_header: adds a header string before output
+# # add_footer: adds a footer after output
+# # Apply both to a function that returns data.
+#
+# def add_header(header):
+#     def deco(func):
+#         def wrapper(*args, **kwargs):
+#             result = func(*args, **kwargs)
+#             return f"{header}\n{result}"
+#         return wrapper
+#     return deco
+#
+# def add_footer(footer):
+#     def deco(func):
+#         def wrapper(*args, **kwargs):
+#             result = func(*args, **kwargs)
+#             return f"{result}\n{footer}"
+#         return wrapper
+#     return deco
+#
+# @add_header("header")
+# @add_footer("footer")
+# def texting(text):
+#     return text
+#
+# print(texting("sergiusz kuderski"))
+#
+# # 8. Conditional Function Execution
+# # Create decorators:
+# # execute_if(condition): only execute if condition is met
+# # log_execution: logs every call
+# # Apply to a function that performs a task.
+# def execute_if(condition):
+#     def decorator(func):
+#         def wrapper(*args, **kwargs):
+#             if condition:
+#                 return func(*args, **kwargs)
+#             else:
+#                 print("Did not meet the condition")
+#         return wrapper
+#     return decorator
+#
+# def log_execution(func):
+#     def wrapper(*args, **kwargs):
+#         print(f"Calling {func.__name__}")
+#         return func(*args, **kwargs)
+#     return wrapper
+#
+# @execute_if(True)
+# @log_execution
+# def perform_task():
+#     print("Task is being performed")
+#
+# perform_task()
+#
+# # 9. String Escaping and Sanitizing
+# # Decorators:
+# # escape_html: escapes HTML characters
+# # sanitize_input: removes dangerous characters
+# # Chain them on a function that processes user input.
+#
+# import html
+#
+# def escape_html(func):
+#     def wrapper(*args, **kwargs):
+#         result = func(*args, **kwargs)
+#         return html.escape(result)
+#     return wrapper
+#
+# def sanitize_input(func):
+#     def wrapper(*args, **kwargs):
+#         result = func(*args, **kwargs)
+#         dangerous_chars = ['<', '>', '"', "'", ';']
+#         for ch in dangerous_chars:
+#             result = result.replace(ch, '')
+#         return result
+#     return wrapper
+#
+# @escape_html
+# @sanitize_input
+# def get_user_input():
+#     return "<script>alert('XSS');</script>"
+#
+# print(get_user_input())
+#
+# # 10. Retry on Failure
+# # Create decorators:
+# # retry(times): retries the function up to times if it raises an exception
+# # log_attempt: logs each attempt
+# # Apply both on a function that randomly fails.
+# import random
+# def retry(times):
+#     def decorator(func):
+#         def wrapper(*args, **kwargs):
+#             attempts = 0
+#             while attempts < times:
+#                 try:
+#                     result = func(*args, **kwargs)
+#                     return result  # If success, return immediately
+#                 except Exception as e:
+#                     attempts += 1
+#                     print(f"Attempt {attempts} failed with error: {e}")
+#                     if attempts >= times:
+#                         print("Max retries reached, aborting.")
+#                         raise
+#         return wrapper
+#     return decorator
+#
+# def log_attempt(func):
+#     def wrapper(*args, **kwargs):
+#         print(f"Attempting to call {func.__name__}")
+#         result = func(*args, **kwargs)
+#         return result
+#     return wrapper
+#
+# @log_attempt
+# @retry(5)
+# def unreliable_task():
+#     if random.random() < 0.5:
+#         raise ValueError("Random failure")
+#     else:
+#         print("Task succeeded!")
+#
+# try:
+#     unreliable_task()
+# except Exception:
+#     print("Function failed after retries.")
+#
+# import time
+#
+# # def delay(func):
+# #     def wrapper(*args, **kwargs):
+# #         print("Sleeping 3 seconds.")
+# #         for i in range(3):
+# #             time.sleep(1)
+# #             print(i + 1)
+# #         return func(*args, **kwargs)
+# #     return wrapper
+# #
+#
+#
+# def delay(seconds):
+#     def decorator(func):
+#         def wrapper(*args, **kwargs):
+#             print(f"Sleeping {seconds} seconds.")
+#             for i in range(seconds):
+#                 time.sleep(1)
+#                 print(i + 1)
+#             return func(*args, **kwargs)
+#         return wrapper
+#     return decorator
+#
+#
+# @delay(5)
+# def printer(name: str):
+#     print(f"Hello {name}")
+#
+# printer("Sergiusz")
+#
+# import time
+# import functools
+#
+# def timer(func):
+#     @functools.wraps(func)
+#     def wrapper(*args, **kwargs):
+#         start = time.time()
+#         res = func(*args, **kwargs)
+#         end = time.time()
+#         print(f"Elapsed: {end - start}")
+#         return res
+#     return wrapper
+# @timer
+# def add(a, b):
+#     return a + b
+#
+# print(add.__name__)
+# print(add(2, 4))
+
+# 1. Measure execution time:
+# Before calling the wrapped function, record the current time (using time.time()).
+# After execution, calculate the elapsed time by subtracting the start time from the current time.
+# Print or log the elapsed time for the function call.
+# 2. Implement caching:
+# Maintain a cache, typically a dictionary, inside the decorator.
+# The cache key should be based on the function arguments (args, kwargs) so that the same inputs produce the same cache key.
+# When the function is called:
+# Check if the result for the given inputs exists in the cache.
+# If yes, return the cached result immediately without recalculating.
+# If no, execute the function, cache the result, then return it.
+
+# def decorator(func):
+#     cache = {}
+#     def wrapper(*args, **kwargs):
+#         key = (args, frozenset(kwargs.items()))
+#         if key in cache:
+#             print("Returning cached result.")
+#             return cache[key]
+#         current_time = time.time()
+#         result = func(*args, **kwargs)
+#         end_time = time.time()
+#         elapsed = end_time - current_time
+#         print(f"Function executed in {elapsed:.4f} seconds.")
+#         cache[key] = result
+#         return result
+#     return wrapper
+#
+# @decorator
+# def slow_add(a, b):
+#     time.sleep(2)  # simulate slow computation
+#     return a + b
+#
+#
+# print(slow_add(2, 4))
+
+# 1. Print Arguments
+# Create a decorator that prints all positional and keyword arguments passed to a function before executing it.
+
+def decorator(func):
     def wrapper(*args, **kwargs):
-        print("Starting function")
+        print(f"Arguments: {args}")
+        print(f"Keyword arguments: {kwargs}")
         result = func(*args, **kwargs)
         return result
     return wrapper
 
-def log_args(func):
-    def wrapper(*args, **kwargs):
-        print(f"Arguments passed: {args}")
-        result = func(*args, **kwargs)
-        return result
-    return wrapper
-
-
-def log_end(func):
-    def wrapper(*args, **kwargs):
-        result = func(*args, **kwargs)
-        print("Function finished")
-        return result
-    return wrapper
-
-@log_end
-@log_args
-@log_start
-def add(a, b):
+@decorator
+def add(a, b, **kwargs):
     return a + b
 
-print(add(2, 1))
+print(add(2, 5, name = "Sergiusz"))
 
 
-# 2. Number Transformation Chain
-# Create decorators:
-#
-# multiply_by_two: multiplies numeric inputs by 2
-# add_five: adds 5 to numeric inputs
-# convert_to_string: converts the result to a string
-# Apply them to a function that takes a number and returns it.
 
+# 2. Convert Output to Uppercase
+# Write a decorator that converts the string output of a function to uppercase.
 
-def multiply_by_two(func):
-    def wrapper(*args, **kwargs):
-        result = func(*args, **kwargs) * 2
-        return result
-    return wrapper
-
-def add_five(func):
-    def wrapper(*args, **kwargs):
-        result = func(*args, **kwargs) + 5
-        return result
-    return wrapper
-
-def convert_to_string(func):
-    def wrapper(*args, **kwargs):
-        result = str(func(*args, **kwargs))
-        return result
-    return wrapper
-
-@convert_to_string
-@add_five
-@multiply_by_two
-def get_num():
-    return 10
-
-print(get_num())
-print(type(get_num()))
-
-
-# 3. String Reversal and Uppercase
-# Decorators:
-# to_upper: converts strings to uppercase
-# reverse_string: reverses the string
-# Apply to a function that processes a string.
-
-def to_upper(func):
+def decorator(func):
     def wrapper(*args, **kwargs):
         result = func(*args, **kwargs)
         result = result.upper()
         return result
     return wrapper
 
-def reverse_string(func):
-    def wrapper(*args, **kwargs):
-        result = func(*args, **kwargs)
-        return result[::-1]
-    return wrapper
-
-@reverse_string
-@to_upper
-def texting(text):
+@decorator
+def textin(text):
     return text
 
-print(texting("sergiusz"))
-
-#
-# 4. Access Control
-# Create decorators:
-# login_required: only proceeds if user['logged_in'] is True
-# role_required(role): only proceed if role in user['roles']
-# Apply both to a function that performs a sensitive action.
-
-def login_required(func):
-    def wrapper(user):
-        if user["logged_in"] is True:
-            return func(user)
-        else:
-            print(f"{user} not logged in")
-    return wrapper
-
-def role_required(role):
-    def deco(func):
-        def wrapper(user):
-            if role in user["roles"]:
-                return func(user)
-            else:
-                print(f"User {user['username']} does not have role '{role}'")
-        return wrapper
-    return deco
-
-@role_required('admin')
-@login_required
-def sensitive_action(user):
-    print(f"Sensitive action performed for {user['username']}")
-
-user = {
-    "username": "alice",
-    "logged_in": True,
-    "roles": ["user", "admin"]
-}
-sensitive_action(user)
+print(textin("sergiusz"))
 
 
+# 3. Add a Prefix
+# Create a decorator that adds a fixed prefix (e.g., "INFO: ") to the result of a function returning a string.
 
-
-# 5. Data Validation
-# Create decorators:
-# validate_type(expected_type): checks if input is of this type
-# not_empty: ensures input list or string is not empty
-# Chain them on a function that processes a list.
-
-def validate_type(expected_type):
-    def deco(func):
-        def wrapper(*args, **kwargs):
-            for arg in args:
-                if not isinstance(arg, expected_type):
-                    print(f"Invalid type for argument {arg}. Expected {expected_type.__name__}.")
-                    return
-
-            for key, val in kwargs.items():
-                if not isinstance(val, expected_type):
-                    print(f"Invalid type for argument {key}: {val}. Excepted {expected_type.__name__}")
-                    return
-            return func(*args, **kwargs)
-        return wrapper
-    return deco
-
-def not_empty(func):
-    def wrapper(arg):
-        if not arg:
-            print("Input is empty")
-            return
-        return func(arg)
-    return wrapper
-
-@validate_type(list)
-@not_empty
-def process_list(lst):
-    print("Processing list:", lst)
-
-process_list([1, 2, 3])
-process_list([])
-process_list("not a list")
-
-
-
-
-# 6. Performance Measurement
-# Create decorators:
-# start_timer: prints start time
-# end_timer: prints end time and duration
-# Apply both for measuring execution time of a heavy computation.
-timing_data = {}
-import time
-def start_timer(func):
-    def wrapper(*args, **kwargs):
-        timing_data['start_time'] = time.time()
-        print(f"Start time is: {timing_data['start_time']}")
-        return func(*args, **kwargs)
-    return wrapper
-
-def end_timer(func):
+def decorator(func):
     def wrapper(*args, **kwargs):
         result = func(*args, **kwargs)
-        start_time = timing_data.get('start_time')
-        if start_time is None:
-            print("Timing info not found.")
+        return "INFO: " + result
+    return wrapper
+@decorator
+def doing(text):
+    return text
+
+print(doing("sergiusz is the best"))
+
+
+# 4. Measure Fast Functions
+# Decorate a lightweight function to print a message if it executes faster than a specified threshold (e.g., 0.01s).
+
+def measuring(threshold=0.01):
+    def decor(func):
+        def wrapper(*args, **kwargs):
+            start = time.time()
+            result = func(*args, **kwargs)
+            end = time.time()
+            elapsed = end - start
+            print(f"Speed: {elapsed:.30f}")
+            if elapsed < threshold:
+                print("Wow. lightweight speed")
+            else:
+                print("Wow. so slow.")
             return result
-        end_time = time.time()
-        duration = end_time - start_time
-        print(f"End time: {end_time}")
-        print(f"Duration: {duration}")
-        return result
+        return wrapper
+    return decor
+@measuring()
+def multiply(a, b):
+    return a * b
+
+print(multiply(2, 5))
+
+
+# 5. Repeat Function Call
+# Create a decorator that repeats the wrapped function twice every time it’s called.
+
+def decorator(func):
+    def wrapper(*args, **kwargs):
+        result1 = func(*args, **kwargs)
+        result = func(*args, **kwargs)
+        return result1, result
     return wrapper
 
-@start_timer
-@end_timer
-def computation():
-    time.sleep(2)
+@decorator
+def divide(a, b):
+    return a / b
 
-computation()
+print(divide(10, 5))
 
-# 7. Output Formatting
-# Create decorators:
-# add_header: adds a header string before output
-# add_footer: adds a footer after output
-# Apply both to a function that returns data.
 
-def add_header(header):
-    def deco(func):
-        def wrapper(*args, **kwargs):
-            result = func(*args, **kwargs)
-            return f"{header}\n{result}"
-        return wrapper
-    return deco
 
-def add_footer(footer):
-    def deco(func):
-        def wrapper(*args, **kwargs):
-            result = func(*args, **kwargs)
-            return f"{result}\n{footer}"
-        return wrapper
-    return deco
+# 6. Count Function Calls
+# Write a decorator that counts how many times a function has been called and returns that count each time.
 
-@add_header("header")
-@add_footer("footer")
-def texting(text):
-    return text
-
-print(texting("sergiusz kuderski"))
-
-# 8. Conditional Function Execution
-# Create decorators:
-# execute_if(condition): only execute if condition is met
-# log_execution: logs every call
-# Apply to a function that performs a task.
-def execute_if(condition):
-    def decorator(func):
-        def wrapper(*args, **kwargs):
-            if condition:
-                return func(*args, **kwargs)
-            else:
-                print("Did not meet the condition")
-        return wrapper
-    return decorator
-
-def log_execution(func):
+def decorator(func):
+    func.total_count = 0
     def wrapper(*args, **kwargs):
-        print(f"Calling {func.__name__}")
+        result = func(*args, **kwargs)
+        func.total_count += 1
+        print(f"{func.total_count} is the number the {func.__name__} has been called.")
+        return result
+    return wrapper
+@decorator
+def subtracting(a, b):
+    return a - b
+
+print(subtracting(5, 2))
+print(subtracting(10, 3))
+
+# 7. Print Function Name
+# Create a decorator that prints the name of the function before calling it.
+
+import functools
+
+def deco(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        print(f"The name is of the function: {func.__name__}")
+        resut = func(*args, **kwargs)
+        return resut
+    return wrapper
+
+@deco
+def adding(a, b):
+    return a + b
+
+print(adding(5, 5))
+
+
+
+# 8. Validate Non-Empty String
+# Decorate a function to check if its string argument is non-empty; if empty, print an error instead of executing.
+
+def decorator(func):
+    def wrapper(*args, **kwargs):
+        if args and isinstance(args[0], str):
+            if args[0] == "":
+                print("Error: String argument is empty.")
+                return  # or raise ValueError("String argument is empty.")
+        else:
+            print("Error: Expected a string as the first argument.")
+            return
         return func(*args, **kwargs)
     return wrapper
 
-@execute_if(True)
-@log_execution
-def perform_task():
-    print("Task is being performed")
+@decorator
+def greet(name):
+    print(f"Hello, {name}")
 
-perform_task()
+greet("")
 
-# 9. String Escaping and Sanitizing
-# Decorators:
-# escape_html: escapes HTML characters
-# sanitize_input: removes dangerous characters
-# Chain them on a function that processes user input.
-
-import html
-
-def escape_html(func):
-    def wrapper(*args, **kwargs):
-        result = func(*args, **kwargs)
-        return html.escape(result)
-    return wrapper
-
-def sanitize_input(func):
-    def wrapper(*args, **kwargs):
-        result = func(*args, **kwargs)
-        dangerous_chars = ['<', '>', '"', "'", ';']
-        for ch in dangerous_chars:
-            result = result.replace(ch, '')
-        return result
-    return wrapper
-
-@escape_html
-@sanitize_input
-def get_user_input():
-    return "<script>alert('XSS');</script>"
-
-print(get_user_input())
-
-# 10. Retry on Failure
-# Create decorators:
-# retry(times): retries the function up to times if it raises an exception
-# log_attempt: logs each attempt
-# Apply both on a function that randomly fails.
-import random
-def retry(times):
-    def decorator(func):
-        def wrapper(*args, **kwargs):
-            attempts = 0
-            while attempts < times:
-                try:
-                    result = func(*args, **kwargs)
-                    return result  # If success, return immediately
-                except Exception as e:
-                    attempts += 1
-                    print(f"Attempt {attempts} failed with error: {e}")
-                    if attempts >= times:
-                        print("Max retries reached, aborting.")
-                        raise
-        return wrapper
-    return decorator
-
-def log_attempt(func):
-    def wrapper(*args, **kwargs):
-        print(f"Attempting to call {func.__name__}")
-        result = func(*args, **kwargs)
-        return result
-    return wrapper
-
-@log_attempt
-@retry(5)
-def unreliable_task():
-    if random.random() < 0.5:
-        raise ValueError("Random failure")
-    else:
-        print("Task succeeded!")
-
-try:
-    unreliable_task()
-except Exception:
-    print("Function failed after retries.")
-
-import time
-
-# def delay(func):
-#     def wrapper(*args, **kwargs):
-#         print("Sleeping 3 seconds.")
-#         for i in range(3):
-#             time.sleep(1)
-#             print(i + 1)
-#         return func(*args, **kwargs)
-#     return wrapper
-#
-
+# 9. Delay Execution
+# Write a decorator that delays function execution by a fixed number of seconds (e.g., 2 seconds).
 
 def delay(seconds):
     def decorator(func):
         def wrapper(*args, **kwargs):
-            print(f"Sleeping {seconds} seconds.")
+            time.sleep(seconds)
             for i in range(seconds):
-                time.sleep(1)
-                print(i + 1)
-            return func(*args, **kwargs)
+                print(f"Sleeping 1 second... ({i + 1}/{seconds})")
+            result = func(*args, **kwargs)
+            return result
         return wrapper
     return decorator
 
-
-@delay(5)
-def printer(name: str):
-    print(f"Hello {name}")
-
-printer("Sergiusz")
-
-import time
-import functools
-
-def timer(func):
-    @functools.wraps(func)
-    def wrapper(*args, **kwargs):
-        start = time.time()
-        res = func(*args, **kwargs)
-        end = time.time()
-        print(f"Elapsed: {end - start}")
-        return res
-    return wrapper
-@timer
-def add(a, b):
+@delay(3)
+def adding(a, b):
     return a + b
 
-print(add.__name__)
-print(add(2, 4))
+print(adding(2, 5))
