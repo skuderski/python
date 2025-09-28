@@ -529,3 +529,624 @@ rect.display()
 rect.resize(2)
 rect.change_color("green")
 rect.display()
+
+# class User2:
+#     def __init__(self, name, age):
+#         self.name = name
+#         self.age = age
+#
+#     def print_info(self):
+#         print(f"{user1.name}, age = {user1.age}")
+#
+#
+# user1 = User2("Sergiusz", 31)
+# user1.print_info()
+#
+# # Objective:
+# #
+# # Define a class Book with attributes:
+# #
+# # title (string),
+# # author (string),
+# # year_published (int).
+# # Write a function clone_book(book: Book, new_year: int) -> Book that:
+# #
+# # Creates a new Book object with the same title and author,
+# # Sets the year_published to new_year (or modify as needed),
+# # Returns the new Book.
+#
+# class Book:
+#     def __init__(self, title, author, year_published):
+#         self.title = title
+#         self.author = author
+#         self.year_published = year_published
+#
+# def clone_book(book: Book, new_year: int):
+#     return Book(book.title, book.author, new_year)
+#
+# # Objective:
+# #
+# # Define a class Movie with attributes:
+# #
+# # title (string),
+# # director (string),
+# # release_year (int),
+# # rating (float, optional, default to None).
+# # Write a function clone_movie(movie: Movie, new_rating: float = None) -> Movie that:
+# #
+# # Creates a new Movie object with the same title, director, and release year.
+# # Sets the rating to new_rating if provided; otherwise keeps the original rating.
+# # Returns the new Movie.
+#
+# class Movie:
+#     def __init__(self, title, director, release_year, rating = None):
+#         self.title = title
+#         self.director = director
+#         self.release_year = release_year
+#         self.rating = rating
+#
+# def clone_movie(movie: Movie, new_rating: float = None):
+#     return Movie(movie.title, movie.director, movie.release_year, new_rating)
+#
+# original_movie = Movie("Inception", "Christopher Nolan", 2010, rating=8.8)
+# new_reviewed_movie = clone_movie(original_movie, new_rating=9.0)
+#
+# print(f"Original: {original_movie.title}, Rating: {original_movie.rating}")
+# print(f"Cloned: {new_reviewed_movie.title}, Rating: {new_reviewed_movie.rating}")
+
+# Define a class Song with attributes:
+#
+# title (string),
+# artist (string),
+# album (string),
+# year (int),
+# rating (float, optional, default None).
+# Write a function clone_song(song: Song, new_rating: float = None, new_year: int = None) -> Song that:
+#
+# Creates a new Song object with the same title, artist, and album.
+# Optionally updates the rating if new_rating is provided.
+# Optionally updates the year if new_year is provided.
+# Returns the new Song object.
+
+class Song:
+    def __init__(self, title, artist, album, year, rating = None):
+        self.title = title
+        self.artist = artist
+        self.album = album
+        self.year = year
+        self.rating = rating
+
+def clone_song(song: Song, new_rating: float = None, new_year: int = None):
+    return Song(song.title, song.artist, song.album,
+                year=new_year if new_year is not None else song.year,
+                rating = new_rating if new_rating is not None else song.rating)
+
+original = Song("Yesterday", "The Beatles", "Help!", 1965, 9.2)
+clone = clone_song(original, new_rating=9.8, new_year=1966)
+print(clone.title, clone.year, clone.rating)
+
+# Objective:
+#
+# Define a class Book with:
+#
+# Attributes: title (string), author (string), year_published (int), rating (float, optional, default None).
+# Write a function clone_book(book: Book, new_year=None, new_rating=None) that:
+#
+# Creates a new Book object with the same title and author.
+# If new_year is provided, set year_published to that; otherwise, keep original.
+# If new_rating is provided, set rating to that; otherwise, keep original.
+# Demonstrate by cloning an existing book with a new year and rating.
+
+class Book:
+    def __init__(self, title, author, year_published, rating = None):
+        self.title = title
+        self.author = author
+        self.year_published = year_published
+        self.rating = rating
+
+def clone_book(book: Book, new_year = None, new_rating = None):
+    return Book(title=book.title,
+                author=book.author,
+                year_published=new_year if new_year is not None else book.year_published,
+                rating=new_rating if new_rating is not None else book.rating)
+
+original = Book("1984", "George Orwell", 1949, rating = 9.0)
+cloned = clone_book(original, new_year=2002, new_rating=8.8)
+print(cloned.title, cloned.year_published, cloned.rating)
+
+# Objectives:
+#
+# Define a Movie class with attributes:
+#
+# title (str)
+# director (str)
+# release_year (int)
+# rating (float, optional, default None)
+# Write a function clone_movie(movie: Movie, new_year=None, new_rating=None) that:
+#
+# Creates a new Movie object with the same title and director
+# Sets release_year to new_year if provided, otherwise keeps the original
+# Sets rating to new_rating if provided, otherwise keeps the original
+# Demonstrate by cloning an existing movie with different year and rating.
+
+class Movie:
+    def __init__(self, title, director, release_year, rating = None):
+        self.title = title
+        self.director = director
+        self.release_year = release_year
+        self.rating = rating
+
+def clone_movie(movie: Movie, new_year=None, new_rating=None):
+    return Movie(title=movie.title,
+                 director=movie.director,
+                 release_year=new_year if new_year is not None else movie.release_year,
+                 rating= new_rating if new_rating is not None else movie.rating)
+
+originall = Movie("Gladiator", "Stephen Spielberg", 2000, 9.2)
+clonedd = clone_movie(originall, new_year=2002)
+print(clonedd.title, clonedd.director, clonedd.release_year, clonedd.rating)
+
+# Objective:
+#
+# Define a class Counter.
+# It should have:
+# An attribute value (initially 0).
+# Implement the following methods:
+# increment(): increases value by 1.
+# decrement(): decreases value by 1.
+# reset(): resets value to 0.
+# display(): prints the current value.
+
+class Counter:
+    def __init__(self, value=0):
+        self.value = value
+
+    def increment(self):
+        self.value += 1
+
+    def decrement(self):
+        self.value -= 1
+
+    def reset(self):
+        self.value = 0
+
+    def display(self):
+        print(f"{self.value}")
+
+counter = Counter()
+counter.increment()
+counter.increment()
+counter.decrement()
+counter.increment()
+counter.display()
+
+# Define a class BankAccount with:
+# 
+# Attributes:
+# owner (string)
+# balance (float, initially 0.0)
+# Methods:
+# deposit(amount): adds amount to balance, only if amount is positive.
+# withdraw(amount): subtracts amount if sufficient funds exist, and amount is positive.
+# get_balance(): returns current balance.
+# display(): prints the owner's name and current balance.
+# Add validation:
+# 
+# If deposit() or withdraw() are called with invalid amounts (zero or negative), print an error message.
+# Demonstrate usage:
+# 
+# Create an account, make some deposits and withdrawals, and display the account status after each operation.
+
+class BankAccount:
+    def __init__(self, owner, balance=0.0):
+        self.owner = owner
+        self.balance = balance
+    
+    def deposit(self, amount):
+        if amount > 0:
+            self.balance += amount
+        else:
+            print("Negative amount cannot be added.")
+    
+    def withdraw(self, amount):
+        if amount <= 0:
+            print("Error: Withdrawal amount must be positive.")
+        elif amount > self.balance:
+            print("Error: Insufficient funds.")
+        else:
+            self.balance -= amount
+    
+    def get_balance(self):
+        return self.balance
+
+    def display(self):
+        print(f"The name: {self.owner}, current balance: {self.balance}")
+
+acc = BankAccount("Alice")
+acc.display()  # Owner: Alice, Balance: $0.00
+acc.deposit(200)
+acc.display()  # Owner: Alice, Balance: $200.00
+acc.withdraw(50)
+acc.display()  # Owner: Alice, Balance: $150.00
+acc.withdraw(200)  # Insufficient funds
+acc.deposit(-10)
+
+# Define a class Car with attributes:
+#
+# doors (int)
+# wheels (int)
+# engines (int)
+# Write a function total_car_parts(cars: list) -> dict that:
+#
+# Takes a list of Car objects
+# Computes the total number of doors, wheels, and engines across all cars
+# Returns a dictionary similar to: {"doors": total, "wheels": total, "engines": total}
+
+class Car:
+    def __init__(self, doors, wheels, engines):
+        self.doors = doors
+        self.wheels = wheels
+        self.engines = engines
+
+def total_car_parts(cars: list) -> dict:
+    total = {"doors": 0, "wheels": 0, "engines": 0}
+    for car in cars:
+        total["doors"] += car.doors
+        total["wheels"] += car.wheels
+        total["engines"] += car.engines
+
+    return total
+
+cars = [Car(4, 4, 1), Car(2, 4, 1), Car(4, 4, 2)]
+totals = total_car_parts(cars)
+print(totals)
+
+# Define a class Computer with attributes:
+#
+# cpu_cores (int)
+# ram_gb (int)
+# storage_gb (int)
+# Write a function total_computer_specs(computers: list) -> dict that:
+#
+# Takes a list of Computer objects
+# Computes the total number of CPU cores, RAM (GB), and storage (GB) across all systems
+# Returns a dictionary like: {"total_cores": total, "total_ram_gb": total, "total_storage_gb": total}
+
+class Computer:
+    def __init__(self, cpu_cores, ram_gb, storage_gb):
+        self.cpu_cores = cpu_cores
+        self.ram_gb = ram_gb
+        self.storage_gb = storage_gb
+
+def total_computer_specs(computers: list) -> dict:
+    total = {"cpu_cores": 0, "ram_gb": 0, "storage_gb": 0}
+    for computer in computers:
+        total["cpu_cores"] += computer.cpu_cores
+        total["ram_gb"] += computer.ram_gb
+        total["storage_gb"] += computer.storage_gb
+
+    return total
+
+computers = [
+    Computer(8, 32, 1024),
+    Computer(4, 16, 512),
+    Computer(16, 64, 2048)
+]
+totals = total_computer_specs(computers)
+print(totals)
+
+# Define a class Smartphone with attributes:
+#
+# brand (str)
+# model (str)
+# storage_gb (int)
+# camera_megapixels (int)
+# Write a function total_smartphone_specs(smartphones: list) -> dict that:
+#
+# Takes a list of Smartphone objects
+# Calculates the total storage (GB) and total camera megapixels
+# Returns a dictionary like: {"total_storage_gb": total, "total_camera_megapixels": total}
+
+class Smartphone:
+    def __init__(self, brand, model, storage_gb, camera_megapixels):
+        self.brand = brand
+        self.model = model
+        self.storage_gb = storage_gb
+        self.camera_megapixels = camera_megapixels
+
+def total_smartphone_specs(smartphones: list) -> dict:
+    total = {"total_storage_gb": 0, "total_camera_megapixels": 0}
+    for smartphone in smartphones:
+        total["total_storage_gb"] += smartphone.storage_gb
+        total["total_camera_megapixels"] += smartphone.camera_megapixels
+
+    return total
+
+smartphones = [
+    Smartphone("Apple", "iPhone 13", 128, 12),
+    Smartphone("Samsung", "Galaxy S21", 256, 64),
+    Smartphone("Google", "Pixel 6", 128, 50)
+]
+totals = total_smartphone_specs(smartphones)
+print(totals)
+
+# Define a class Laptop with attributes:
+#
+# brand (str)
+# model (str)
+# cpu_cores (int)
+# ram_gb (int)
+# storage_gb (int)
+# Write a function aggregate_laptop_specs(laptops: list) -> dict that:
+#
+# Accepts a list of Laptop objects
+# Calculates:
+# Total CPU cores
+# Total RAM (GB)
+# Total storage (GB)
+
+class Laptop:
+    def __init__(self, brand, model, cpu_cores, ram_gb, storage_gb):
+        self.brand = brand
+        self.model = model
+        self.cpu_cores = cpu_cores
+        self.ram_gb = ram_gb
+        self.storage_gb = storage_gb
+
+def aggregate_laptop_specs(laptops: list) -> dict:
+    total = {"total_cpu_cores": 0, "total_ram_gb": 0, "total_storage_gb": 0}
+    for laptop in laptops:
+        total["total_cpu_cores"] += laptop.cpu_cores
+        total["total_ram_gb"] += laptop.ram_gb
+        total["total_storage_gb"] += laptop.storage_gb
+
+    return total
+
+
+laptops = [
+    Laptop("Dell", "XPS 13", 4, 16, 512),
+    Laptop("MacBook", "Air", 4, 8, 256),
+    Laptop("Lenovo", "ThinkPad", 4, 32, 1024)
+]
+totals = aggregate_laptop_specs(laptops)
+print(totals)
+
+# Define a class Server with:
+#
+# name (str)
+# cpu_cores (int)
+# ram_gb (int)
+# network_bandwidth_gbps (float, network bandwidth in gigabits per second)
+# Write a function total_network_capacity(servers: list) -> dict that:
+#
+# Takes a list of Server objects
+# Calculates the:
+# Total CPU cores
+# Total RAM (GB)
+# Total network bandwidth (sum of all servers’ network_bandwidth_gbps)
+
+class Server:
+    def __init__(self, name, cpu_cores, ram_gb, network_bandwidth_gbps):
+        self.name = name
+        self.cpu_cores = cpu_cores
+        self.ram_gb = ram_gb
+        self.network_bandwidth_gbps = network_bandwidth_gbps
+
+def total_network_capacity(servers: list) -> dict:
+    total = {"total_cpu_cores": 0, "total_ram_gb": 0, "total_network_bandwidth_gbps": 0}
+    for server in servers:
+        total["total_cpu_cores"] += server.cpu_cores
+        total["total_ram_gb"] += server.ram_gb
+        total["total_network_bandwidth_gbps"] += server.network_bandwidth_gbps
+
+    return total
+
+servers = [
+    Server("Server1", 16, 64, 10.0),
+    Server("Server2", 32, 128, 40.0),
+    Server("Server3", 8, 32, 5.0)
+]
+totals = total_network_capacity(servers)
+print(totals)
+
+# Create a Student class with: name (str) student_id (int) courses (list of course names)
+# Create a Department class with: name (str)students (list of Student objects)
+# Methods: # add_student(student: Student)##
+# average_students_per_course(): calculates the average number of students per course (assume each student can have multiple courses)
+# Create a University class with:
+# name (str)
+# departments (list of Department objects)
+# Methods:
+# add_department(department: Department)
+# total_students(): total number of students in all departments
+# average_students_per_department()
+# Create some students, departments, and add them to the university.
+# Calculate and print:
+# Total students in the university.
+# Average students per department.
+# Average students per course across all departments.
+
+class Student:
+    def __init__(self, name, student_id):
+        self.name = name
+        self.student_id = student_id
+        self.courses = []
+
+    def add_course(self, course_name):
+        if course_name not in self.courses:
+            self.courses.append(course_name)
+        else:
+            print(f"{course_name} is already in {self.name}'s course list.")
+
+class Department:
+    def __init__(self, name):
+        self.name = name
+        self.students = []
+        self.courses = []
+
+    def add_student(self, student: Student):
+        self.students.append(student)
+        for course in student.courses:
+            if course not in self.courses:
+                self.courses.append(course)
+
+    def average_students_per_course(self):
+        total_courses = len(self.courses)
+        if total_courses == 0:
+            return 0
+        total_students = len(self.students)
+        return total_students / total_courses
+
+    def print_department_info(self):
+        print(f"Department: {self.name}")
+        print(f"Number of students: {len(self.students)}")
+        print("Students and their courses:")
+        for student in self.students:
+            print(f" - {student.name}: {student.courses}")
+        print(f"Courses offered: {self.courses}")
+        print(f"Average students per course: {self.average_students_per_course():.2f}")
+        print("-" * 40)
+
+
+class University:
+    def __init__(self, name):
+        self.name = name
+        self.departments = []
+
+    def add_department(self, department: Department):
+        self.departments.append(department)
+
+    def total_students(self):
+        total = 0
+        for department in self.departments:
+            total += len(department.students)
+        return total
+
+    def average_student_per_department(self):
+        total = 0
+        for department in self.departments:
+            total += len(department.students)
+
+        average = total / len(self.departments)
+        return average
+student1 = Student("Sergiusz", 123)
+student2 = Student("Michal", 321)
+student3 = Student("Martyna", 333)
+student4 = Student("Inga", 232)
+student5 = Student("Irena", 120)
+student1.add_course("Psychology")
+student2.add_course("Psychology")
+student3.add_course("Psychology")
+student4.add_course("Psychology")
+student5.add_course("Psychology")
+department1 = Department("CS")
+department2 = Department("Medicine")
+department1.add_student(student1)
+department1.add_student(student2)
+department1.add_student(student3)
+department2.add_student(student4)
+department2.add_student(student5)
+uni = University("Stefana Wyszynskiego")
+uni.add_department(department1)
+uni.add_department(department2)
+print(uni.total_students())
+print(uni.average_student_per_department())
+print(department1.average_students_per_course())
+print(department2.average_students_per_course())
+department1.print_department_info()
+department2.print_department_info()
+
+# Objective:
+#
+# Define a class BankAccount with attributes:
+#
+# owner (string)
+# balance (float, default 0.0)
+# Implement the following methods:
+#
+# deposit(amount) — adds money to the balance. If the amount is negative, print an error.
+# withdraw(amount) — subtracts money if enough balance exists. If insufficient, print a message.
+# get_balance() — returns the current balance.
+# display() — prints the owner and current balance.
+# Create an account instance, perform some deposits and withdrawals, and print out the account details.
+
+class BankAccount:
+    def __init__(self, owner, balance = 0.0):
+        self.owner = owner
+        self.balance = balance
+
+    def deposit(self, amount):
+        if amount < 0:
+            print(f"Negative amount")
+        else:
+            self.balance += amount
+
+    def withdraw(self, amount):
+        if amount <= 0:
+            print("Withdrawal amount must be positive.")
+        elif amount > self.balance:
+            print("Insufficient funds.")
+        else:
+            self.balance -= amount
+
+    def get_balance(self):
+        return self.balance
+
+    def display(self):
+        print(f"The owner: {self.owner}, the balance: {self.balance}")
+
+my_bank_account = BankAccount("Sergiusz", 100000)
+my_bank_account.deposit(2000)
+my_bank_account.withdraw(1000)
+print(my_bank_account.get_balance())
+my_bank_account.display()
+
+# Objective:
+# Define a class Book with attributes:
+# title (string)
+# author (string)
+# total_copies (int)
+# copies_available (int)
+# Implement methods:
+# borrow() — decreases copies_available by 1 if available. If none available, print a message.
+# return_book() — increases copies_available by 1.
+# add_copies(number) — increases total_copies and copies_available by the given number.
+# display() — shows the book details, including how many copies are available.
+# Create a Book object, simulate borrowing and returning books, and display the status.
+
+class Book:
+    def __init__(self, title, author, total_copies, copies_available):
+        self.title = title
+        self.author = author
+        self.total_copies = total_copies
+        self.copies_available = copies_available
+
+    def borrow(self):
+        if self.copies_available <= 0:
+            print(f"no copies available")
+        else:
+            self.copies_available -= 1
+
+    def return_book(self):
+        if self.copies_available < self.total_copies:
+            self.copies_available += 1
+        else:
+            print("All copies already in the library.")
+
+    def add_copies(self, number):
+        self.total_copies += number
+        self.copies_available += number
+
+    def display(self):
+        print(f"Title: {self.title}, author: {self.author}, total copies: {self.total_copies}, copies available: {self.copies_available}")
+
+
+book = Book("1984", "George Orwell", 5, 3)
+
+book.borrow()
+book.borrow()
+book.display()
+book.return_book()
+book.display()
+book.add_copies(2)
+book.display()
