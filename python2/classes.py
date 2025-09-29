@@ -1150,3 +1150,33 @@ book.return_book()
 book.display()
 book.add_copies(2)
 book.display()
+
+
+class Matrix:
+    def __init__(self, matrix: list) -> None:
+        self.matrix = matrix
+
+    def get_diagonal(self) -> list:
+        return [self.matrix[i][i] for i in range(len(self.matrix))]
+
+    def get_counter_diagonal(self) -> list:
+        return [self.matrix[i][-i - 1] for i in range(len(self.matrix))]
+
+    def rotate_rows(self, number: int) -> None:
+        if not self.matrix:
+            return
+        num = number % len(self.matrix)
+        self.matrix = self.matrix[num:] + self.matrix[:num]
+
+    def rotate_columns(self, number: int) -> None:
+        if not self.matrix:
+            return
+        num = number % len(self.matrix)
+        for i in range(len(self.matrix)):
+            self.matrix[i] = self.matrix[i][num:] + self.matrix[i][:num]
+
+matrix = Matrix([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]])
+print(matrix.get_diagonal())
+print(matrix.get_counter_diagonal())
+matrix.rotate_columns(1)
+print(matrix.matrix)
