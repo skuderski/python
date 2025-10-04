@@ -1180,3 +1180,843 @@ print(matrix.get_diagonal())
 print(matrix.get_counter_diagonal())
 matrix.rotate_columns(1)
 print(matrix.matrix)
+
+# 1. Create a Vehicle Class
+# Define a class Vehicle with attributes like make, model, and year.
+# Add methods to display info and determine if the vehicle is vintage (older than 25 years).
+import datetime
+class Vehicle:
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+
+    def display(self):
+        current_year = datetime.datetime.now().year
+        age = current_year - self.year
+        if age > 25:
+            print(f"{self.make} {self.model} is vintage and is from {self.year}.")
+        else:
+            print(f"{self.make} {self.model} is not vintage and is from {self.year}")
+
+vehic = Vehicle("Toyota", "Corolla", 1990)
+vehic.display()
+
+
+# 2. Employee Management
+# Create an Employee class with attributes like name, employee_id, and department.
+# Add methods to change department, display employee info, and give a raise (increase salary).
+
+class Employee:
+    def __init__(self, name, employee_id, department, salary):
+        self.name = name
+        self.employee_id = employee_id
+        self.department = department
+        self.salary = salary
+
+    def change_dep(self, new_dep):
+        self.department = new_dep
+
+    def display(self):
+        print(f"Name of the employee: {self.name}, employee id: {self.employee_id}, the department: {self.department}, salary: {self.salary}")
+
+    def give_raise(self, give_raise):
+        if give_raise > 0:
+            self.salary += give_raise
+me = Employee("Sergiusz", "12345", "Customer Service", 20000)
+me.change_dep("HR")
+me.give_raise(2000)
+me.display()
+
+# 3. Book Library System
+# Create a Book class with attributes title, author, copies_available.
+# Add methods to borrow a book (reduce copies), return a book, and add new copies.
+
+class Book:
+    def __init__(self, title, author, copies_available):
+        self.title = title
+        self.author = author
+        self.copies_available = copies_available
+
+    def borrow_book(self):
+        if self.copies_available > 0:
+            self.copies_available -= 1
+        else:
+            print("No copies available to borrow.")
+
+    def return_book(self):
+        self.copies_available += 1
+
+    def add_new_copies(self, num):
+        self.copies_available += num
+
+    def display(self):
+        print(f"Name: {self.title}, author: {self.author}, copies available: {self.copies_available}")
+
+one = Book("The Bible", "God", 20)
+one.borrow_book()
+one.borrow_book()
+one.return_book()
+one.add_new_copies(5)
+one.display()
+
+
+# 4. Bank Account with Transfer
+# Create a BankAccount class with methods to deposit, withdraw, and transfer money between accounts.
+
+class BankAccount:
+    def __init__(self, name, balance):
+        self.name = name
+        self.balance = balance
+    def deposit(self, amount):
+        if amount > 0:
+            self.balance += amount
+        else:
+            print("The amount cannot be negative")
+
+    def withdraw(self, amount):
+        if self.balance <= 0:
+            print("Cannot withdraw, no money")
+        elif amount > self.balance:
+            print("Cannot withdraw. Insufficient funds.")
+        else:
+            self.balance -= amount
+    def transfer(self, target_account, amount):
+        if amount <= 0:
+            print("Transfer amount must be positive.")
+        elif amount > self.balance:
+            print("Insufficient funds for transfer.")
+        else:
+            self.withdraw(amount)
+            target_account.deposit(amount)
+
+    def display(self):
+        print(f"name: {self.name}, balance: {self.balance}")
+
+my_account = BankAccount("Sergiusz", 20000)
+other_account = BankAccount("Waclaw", 30000)
+my_account.deposit(300)
+my_account.withdraw(100)
+my_account.transfer(other_account, 350)
+my_account.display()
+other_account.display()
+
+
+
+
+# 5. School Class Management
+# Create a School class that contains students as objects with attributes before name and grade.
+# Add methods to add students, remove students, and find students by grade.
+
+class Student:
+    def __init__(self, name, grade):
+        self.name = name
+        self.grade = grade
+
+
+class School:
+    def __init__(self):
+        self.students = []
+
+    def add_student(self, student: Student):
+        self.students.append(student)
+
+    def remove_student(self, student_name):
+        self.students = [s for s in self.students if s.name != student_name]
+
+    def find_student_by_grade(self, grade):
+        return [s for s in self.students if s.grade == grade]
+
+    def display(self):
+        print(f"The students:")
+        for s in self.students:
+            print(f"Name: {s.name}, Grade: {s.grade}")
+
+Serg = Student("Sergiusz", "B")
+Tom = Student("Tommy", "A")
+Pete = Student("Piotrek", "C")
+the_sql = School()
+the_sql.add_student(Serg)
+the_sql.add_student(Tom)
+the_sql.add_student(Pete)
+the_sql.remove_student("Sergiusz")
+the_sql.find_student_by_grade("A")
+the_sql.add_student(Serg)
+the_sql.display()
+
+
+
+# 6. Simple Shopping Cart
+# Build a Product class with attributes like name and price.
+# Then create a ShoppingCart class that can add products, calculate total, and list all items.
+
+class Product:
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+
+class ShoppingCart:
+    def __init__(self):
+        self.items = []
+
+    def add_products(self, product):
+        self.items.append(product)
+
+    def calc_total(self):
+        return sum(product.price for product in self.items)
+
+    def list_products(self):
+        for product in self.items:
+            print(f"{product.name}: ${product.price:.2f}")
+
+p1 = Product("pen", 2.99)
+p2 = Product("banana", 3.99)
+p3 = Product("apple", 2)
+cart = ShoppingCart()
+cart.add_products(p1)
+cart.add_products(p2)
+cart.add_products(p3)
+print(cart.calc_total())
+cart.list_products()
+
+# 7. Online User Profile
+# Create a UserProfile class with username, email, and list of friends.
+# Add methods to add friends, remove friends, and display the friends list.
+
+class UserProfile:
+    def __init__(self, username, email):
+        self.username = username
+        self.email = email
+        self.friends = []
+
+    def add_friend(self, friend):
+        if friend not in self.friends:
+            self.friends.append(friend)
+        else:
+            print(f"{friend.username} is already a friend")
+
+    def remove_friends(self, friend):
+        if friend in self.friends:
+            self.friends.remove(friend)
+
+    def display(self):
+        print(f"{self.username}'s friends:")
+        for friend in self.friends:
+            print(f" - {friend.username}")
+
+user11 = UserProfile("skuderski", "skuderski@gmail.com")
+user22 = UserProfile("qwwerty", "qwerty@gmail.com")
+user33 = UserProfile("xyz", "xyz@gmail.com")
+user11.add_friend(user22)
+user11.add_friend(user33)
+user11.display()
+user11.remove_friends(user33)
+user11.display()
+
+user22.add_friend(user11)
+user22.add_friend(user33)
+user22.display()
+
+# 8. Airline Booking System
+# Create a Flight class with attributes such as flight_number, origin, destination,
+# and passenger_list. Add methods to book a passenger, cancel booking, and print passenger list.
+
+class Flight:
+    def __init__(self, flight_number, origin, destination):
+        self.flight_number = flight_number
+        self.origin = origin
+        self.destination = destination
+        self.passenger_list = []
+
+    def book_passenger(self, name):
+        if name not in self.passenger_list:
+            self.passenger_list.append(name)
+        else:
+            print(f"{name} already on the list")
+
+    def cancel_booking(self, name):
+        if name in self.passenger_list:
+            self.passenger_list.remove(name)
+        else:
+            print(f"{name} is not booked.")
+
+    def print_list(self):
+        print(f"The list of passengers:")
+        for passenger in self.passenger_list:
+            print(f" - {passenger}")
+
+flight1 = Flight("1234567", "New York", "LA")
+flight1.book_passenger("Sergiusz Kuderski")
+flight1.book_passenger("Martyna Mojecka")
+flight1.print_list()
+
+
+# 9. Movie Collection
+# Create a Movie class with attributes like title, director, and rating.
+# Add methods to rate the movie, display info, and check if the movie is top-rated (above a certain rating).
+
+class Movie:
+    def __init__(self, title, director):
+        self.title = title
+        self.director = director
+        self.ratings = []
+
+    def rate_movie(self, new_rating):
+        if 0 <= new_rating <= 10:
+            self.ratings.append(new_rating)
+        else:
+            print("Rating must be between 0 and 10")
+    def top_rated(self):
+        if not self.ratings:
+            print(f"{self.title} has no ratings yet.")
+            return
+        if any(r > 9 for r in self.ratings):
+            print(f"{self.title} is top-rated.")
+        else:
+            print(f"{self.title} is not top-rated.")
+    def display(self):
+        print(f"The movie: {self.title}, by {self.director},")
+        for r in self.ratings:
+            print(f" rating - {r}")
+movie1 = Movie("Gladiator", "Ridley Scott")
+movie2 = Movie("The Departed", "Martin Scorsese")
+movie1.rate_movie(9.2)
+movie1.rate_movie(8)
+movie2.rate_movie(8)
+movie2.rate_movie(7)
+movie1.top_rated()
+movie2.top_rated()
+movie1.display()
+movie2.display()
+
+
+
+# 10. Weather Station
+# Create a WeatherStation class with attributes location, temperature, humidity.
+# Add methods to update readings, display current weather, and convert temperature to Celsius or Fahrenheit.
+
+class WeatherStation:
+    def __init__(self, location, temperature_celsius, humidity):
+        self.location = location
+        self.temperature_celsius = temperature_celsius
+        self.humidity = humidity
+
+    def update_reading(self, new_temperature, new_humidity):
+        self.temperature_celsius = new_temperature
+        self.humidity = new_humidity
+
+    def current_weather(self):
+        print(f"The current weather in {self.location} is {self.temperature_celsius} C with {self.humidity}% humidity")
+
+    def convertion(self):
+        return self.temperature_celsius * 9 / 5 + 32
+
+
+ws = WeatherStation("Vilnius", 30, 25)
+ws.update_reading(29, 24)
+ws.current_weather()
+print(ws.convertion())
+
+# 1. Create a Person Class
+# Define a class with attributes name and age, with methods to display info, celebrate birthday (increment age), and introduce themselves.
+
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def display(self):
+        print(f"Name: {self.name}, Age: {self.age}")
+
+    def celebrate_birthday(self):
+        self.age += 1
+
+    def introduce_yourself(self):
+        print(f"Hello, my name is {self.name} and I am {self.age} years old.")
+
+Sergiusz = Person("Sergiusz", 31)
+Sergiusz.display()
+Sergiusz.celebrate_birthday()
+Sergiusz.introduce_yourself()
+
+# 2. Create a Rectangle Class
+# Define a rectangle with width and height; add methods to compute area, perimeter, and resize the rectangle.
+
+class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def compute_area(self):
+        area = self.width * self.height
+        return area
+
+    def perimeter(self):
+        peri = self.width * 2 + self.height * 2
+        return peri
+
+    def resizing(self, scale_factor):
+        self.width *= scale_factor
+        self.height *= scale_factor
+
+    def display(self):
+        print(f"perimeter: {rect.perimeter()}, area: {rect.compute_area()}")
+
+rect = Rectangle(10, 20)
+rect.compute_area()
+rect.perimeter()
+rect.display()
+rect.resizing(3)
+rect.display()
+
+
+# 3. Create a BankAccount Class
+# Implement deposit, withdraw, transfer, and display methods, including validation for sufficient balance.
+
+class BankAccount:
+    def __init__(self, balance, bank_number):
+        self.balance = balance
+        self.bank_number = bank_number
+
+    def deposit(self, amount):
+        if amount < 0:
+            print("Amount has to be positive")
+        else:
+            self.balance += amount
+
+    def withdraw(self, amount):
+        if amount > self.balance:
+            print("Not enough funds in the bank account")
+        else:
+            self.balance -= amount
+    def transfer(self, amount, target_account):
+        if amount <= 0:
+            print("Transfer amount must be positive")
+        elif amount > self.balance:
+            print("Not enough funds to transfer")
+        self.balance -= amount
+        target_account.deposit(amount)
+    def display(self):
+        print(f"The account has {self.balance}$ and the account number is {self.bank_number}")
+
+
+my_bank_acc = BankAccount(10000, 1234)
+other_bank_acc = BankAccount(20000, 4567)
+my_bank_acc.deposit(1000)
+my_bank_acc.withdraw(500)
+my_bank_acc.display()
+my_bank_acc.transfer(100, other_bank_acc)
+other_bank_acc.display()
+my_bank_acc.display()
+
+
+# 4. Create a Student Class
+# Include attributes like name, student_id, and courses (list). Add methods to add courses, remove courses, and display student info.
+
+class Student:
+    def __init__(self, name, student_id):
+        self.name = name
+        self.student_id = student_id
+        self.courses = []
+
+    def add_course(self, course):
+        if course not in self.courses:
+            self.courses.append(course)
+        else:
+            print(f"{course} is already enrolled.")
+    def remove_course(self, course):
+        if course in self.courses:
+            self.courses.remove(course)
+
+    def display_info(self):
+        print(f"Student's name: {self.name}, student id: {self.student_id}, enrolled in {self.courses}")
+
+Sergiuszek = Student("Sergiusz", 69420)
+Sergiuszek.add_course("Computer Science")
+Sergiuszek.display_info()
+
+
+# 5. Create a Car Class
+# With attributes make, model, year, and miles_driven. Add methods to drive (increment miles) and display info.
+
+class Car:
+    def __init__(self, make, model, year, miles_driven):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.miles_driven = miles_driven
+
+    def drive(self, increment):
+        self.miles_driven += increment
+
+    def display_info(self):
+        print(f"Make: {self.make}, model: {self.model}, year: {self.year}, miles driven: {self.miles_driven}")
+
+
+toyota = Car("Toyota", "Corollakis", 1994, 20000)
+toyota.drive(2000)
+toyota.display_info()
+
+
+# 6. Create a Book Class
+# Attributes: title, author, total_copies, copies_available. Methods for borrowing (decrementing available copies), returning, and restocking.
+
+class Book:
+    def __init__(self, title, author, total_copies, copies_available):
+        self.title = title
+        self.author = author
+        self.total_copies = total_copies
+        self.copies_available = copies_available
+
+    def borrow(self, copies):
+        if copies <= 0:
+            print("Number of copies must be positive")
+        elif copies > self.copies_available:
+            print(f"Not enough copies to borrow. Available: {self.copies_available}")
+        else:
+            self.copies_available -= copies
+            print(f"Borrowed {copies} copies of '{self.title}'")
+
+    def returning(self, copies):
+        if copies <= 0:
+            print("Number of copies must be positive")
+        self.copies_available += copies
+
+    def restocking(self, copies):
+        self.total_copies += copies
+        self.copies_available += copies
+
+    def displaying(self):
+        print(f"title: {self.title}, author: {self.author}, total copies: {self.total_copies}, copies available: {self.copies_available}")
+
+the_book = Book("Lord of the Rings", "J. R. R. Tolkien", 20000, 20)
+the_book.borrow(3)
+the_book.restocking(5)
+the_book.displaying()
+
+
+# 7. Create an Inventory Class
+# Manage items with name and quantity. Add methods to add items, remove items, and check total stock.
+
+class Inventory:
+    def __init__(self, name, quantity):
+        self.name = name
+        self.quantity = quantity
+
+    def add_items(self, amount):
+        if amount <= 0:
+            print("Add amount must be positive.")
+        else:
+            self.quantity += amount
+
+    def remove_items(self, amount):
+        if amount <= 0:
+            print("Remove amount must be positive.")
+        elif amount > self.quantity:
+            print(f"Cannot remove {amount} {self.name}(s). Only {self.quantity} in stock.")
+        else:
+            self.quantity -= amount
+            print(f"Removed {amount} {self.name}(s). New stock: {self.quantity}")
+
+    def check_stock(self):
+        return self.quantity
+
+
+
+# 8. Create a Movie Class
+# Attributes: title, director, release_year, rating. Methods to update rating, and display movie info,
+# and check if it's a classic (e.g., older than 30 years).
+
+class Movie:
+    def __init__(self, title, director, release_year, rating):
+        self.title = title
+        self.director = director
+        self.release_year = release_year
+        self.rating = rating
+
+    def update_rating(self, new_rating):
+        self.rating = new_rating
+
+    def classic_check(self, current_year = 2025):
+        return (current_year - self.release_year) > 30
+
+
+    def display(self):
+        print(f"The title: {self.title}, the director: {self.director}, the release year: {self.release_year}, the rating: {self.rating}")
+
+the_movie = Movie("Gladiator", "Ridley Scott", 2002, 8.0)
+print(the_movie.classic_check())
+the_movie.display()
+
+
+# 9. Create a ShoppingCart Class
+# Items (name, price, quantity). Methods to add items, remove items, and calculate total cost.
+
+class Product:
+    def __init__(self, name, price, quantity):
+        self.name = name
+        self.price = price
+        self.quantity = quantity
+class ShoppingCart:
+    def __init__(self):
+        self.items = []
+
+    def add_items(self, item):
+        self.items.append(item)
+
+    def remove_items(self, product_name):
+        for product in self.items:
+            if product.name == product_name:
+                self.items.remove(product)
+                print(f"Removed {product_name}.")
+                return
+        print(f"{product_name} not found in cart.")
+
+    def calc_cost(self):
+        total = 0
+        for product in self.items:
+            total += product.price * product.quantity
+        return total
+
+
+banana = Product("banana", 2.99, 100)
+apple = Product("apple", 2.00, 50)
+kiwi = Product("kiwi", 4.40, 25)
+cart  = ShoppingCart()
+cart.add_items(banana)
+cart.add_items(apple)
+cart.add_items(kiwi)
+print(cart.calc_cost())
+
+# 10. Create a Light Class
+# Attributes: color, status (on/off). Methods to turn on/off, change color, and display status.
+
+class Light:
+    def __init__(self, color, status: bool):
+        self.color = color
+        self.status = status
+
+    def turn_on(self):
+        self.status = True
+
+    def turn_off(self):
+        self.status = False
+
+    def change_color(self, new_color):
+        self.color = new_color
+
+    def display_status(self):
+        print(f"Current color is {self.color}.")
+        if self.status is True:
+            print(f"The status is on.")
+        else:
+            print(f"The status is off.")
+
+the_light = Light("blue", True)
+the_light.display_status()
+the_light.change_color("yellow")
+the_light.turn_off()
+the_light.display_status()
+
+
+
+# 1. Create a Calculator Class
+# Attributes: None needed initially.
+# Methods:
+# add(a, b)
+# subtract(a, b)
+# multiply(a, b)
+# divide(a, b) (handle division by zero)
+# Use the class without storing any state; just call methods and print results.
+
+class Calculator:
+    def __init__(self):
+        return
+
+    def add(self, a, b):
+        return a + b
+
+    def subtract(self, a, b):
+        return a - b
+
+    def multiply(self, a, b):
+        return a * b
+
+    def divide(self, a, b):
+        if b == 0:
+            print(f"Cannot divide by 0")
+            return None
+        return a / b
+calculator = Calculator()
+print(calculator.add(2, 5))
+print(calculator.subtract(2, 5))
+print(calculator.multiply(2, 5))
+print(calculator.divide(5, 5))
+
+
+
+# 2. Create a Timer Class
+# Attributes:
+# start_time (set to None initially)
+# Methods:
+# start(): start the timer (record current time)
+# stop(): stop the timer (calculate elapsed time)
+# reset(): reset the timer
+# get_elapsed_time(): return the elapsed time
+# Use the class to time a sleep operation (time.sleep()), then display the elapsed time.
+# import time
+# class Timer:
+#     def __init__(self):
+#         self.start_time = None
+#     def start(self):
+#         self.start_time = time.time()
+#
+#     def stop(self):
+#         if self.start_time is None:
+#             print("Timer was not started.")
+#             return
+#         elapsed_time = time.time() - self.start_time
+#         print(f"Timer stopped. Total elapsed: {elapsed_time:.2f} seconds.")
+#         self.start_time = None  # Reset or keep as needed
+#         return elapsed_time
+#
+#     def elapsed(self):
+#         if self.start_time is None:
+#             print("Timer has not been started.")
+#             return
+#         current_time = time.time()
+#         current_elapsed = current_time - self.start_time
+#         print(f"Current elapsed time: {current_elapsed:.2f} seconds")
+#         return current_elapsed
+#
+#     def reset(self):
+#         self.start_time = None
+#         print("Timer reset")
+#
+# timer = Timer()
+# timer.start()
+# time.sleep(2)
+# timer.elapsed()
+# timer.stop()
+# timer.reset()
+# time.sleep(3)
+# timer.start()
+# time.sleep(0.5)
+# timer.elapsed()
+
+
+
+
+
+# 3. Create a Rectangle Class
+# Attributes:
+# length, width
+# Methods:
+# area()
+# perimeter()
+# resize(factor) (scale both length and width)
+# display() (print dimensions and area)
+
+class Rectangle:
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
+
+    def area(self):
+        return self.width * self.length
+
+    def perimeter(self):
+        return 2 * self.width + 2 * self.length
+
+    def resize(self, factor):
+        self.width *= factor
+        self.length *= factor
+
+    def display(self):
+        print(f"length: {self.length}, width: {self.width}, area: {self.area()}, perimeter: {self.perimeter()}")
+
+recti = Rectangle(5, 9)
+print(recti.area())
+print(recti.perimeter())
+recti.resize(1.5)
+recti.display()
+
+
+
+
+
+# 4. Create a Fan Class
+# Attributes:
+# speed (1, 2, 3)
+# status (on or off)
+# Methods:
+# turn_on()
+# turn_off()
+# set_speed(speed)
+# display() (show current state)
+
+class Fan:
+    def __init__(self, speed = 1, status = False):
+        self.speed = speed
+        self.status = status
+
+    def turn_on(self):
+        self.status = True
+
+    def turn_off(self):
+        self.status = False
+
+    def set_speed(self, speed):
+        if speed in (1, 2, 3):
+            self.speed = speed
+        else:
+            print("Invalid speed, must be 1, 2 or 3")
+
+    def display(self):
+        state = "On" if self.status else "Off"
+        print(f"Fan is {state}. Speed: {self.speed}")
+
+my_fan = Fan()
+my_fan.turn_off()
+my_fan.set_speed(2)
+my_fan.display()
+
+
+# 5. Create a Point Class
+# Attributes:
+# x, y coordinates
+# Methods:
+# move(dx, dy) (move the point by delta values)
+# distance_to(other_point) (calculate Euclidean distance)
+# display() (print coordinates)
+# set_coordinates(x, y)
+import math
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def move(self, dx, dy):
+        self.x += dx
+        self.y += dy
+
+    def distance_to(self, other_point):
+        return math.sqrt((self.x - other_point.x) ** 2 + (self.y - other_point.y) ** 2)
+
+    def display(self):
+        print(f"Point at: {self.x}, {self.y}")
+
+    def set_coordinates(self, x, y):
+        self.x = x
+        self.y = y
+
+first_point = Point(5, 6)
+second_point = Point(3, 3)
+first_point.move(2, -2)
+print(first_point.distance_to(second_point))
+first_point.display()
+first_point.set_coordinates(2, 2)
+first_point.display()
+second_point.display()
+
+
