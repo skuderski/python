@@ -2020,3 +2020,428 @@ first_point.display()
 second_point.display()
 
 
+# Task: Create a CoffeeShop Class
+# Objective:
+#
+# Create a Coffee class with attributes:
+#
+# name (e.g., "Espresso")
+# price (per cup)
+# sold (number of cups sold, starting at 0)
+# Create a CoffeeShop class with:
+#
+# A list of Coffee objects
+# Methods for CoffeeShop:
+#
+# sell_coffee(coffee_name, cups):
+# Finds the coffee by name.
+# Checks if enough cups are available (imagine a stock limit).
+# Sells the cups, increasing sold for that coffee.
+# Calculates total earnings from those cups.
+# add_stock(coffee_name, cups):
+# Adds cups to the coffee's stock.
+# print_sales():
+# Prints total cups sold and total earnings for each coffee.
+
+
+class Coffee:
+    def __init__(self, name, price, stock, sold = 0):
+        self.name = name
+        self.price = price
+        self.stock = stock
+        self.sold = sold
+
+class CoffeeShop:
+    def __init__(self):
+        self.coffee = []
+
+    def adding(self, coffee):
+        self.coffee.append(coffee)
+
+    def sell_coffee(self, coffee_name, cups):
+        coffee = None
+        for c in self.coffee:
+            if c.name == coffee_name:
+                coffee = c
+                break
+        if coffee is None:
+            print(f"Coffee {coffee_name} not found")
+            return 0
+        if cups > coffee.stock:
+            print(f"Not enough stock for {coffee.name}. Available: {coffee.stock}")
+            return 0
+        coffee.stock -= cups
+        coffee.sold += cups
+
+        earnings = cups * coffee.price
+        return earnings
+
+# add_stock(coffee_name, cups):
+# Adds cups to the coffee's stock.
+
+    def add_stock(self, coffee_name, cups):
+        for c in self.coffee:
+            if c.name == coffee_name:
+                c.stock += cups
+                print(f"Added {cups} to {c.name}. Total stock: {c.stock}")
+                return
+        print(f"Coffee ' {coffee_name} not found")
+
+# print_sales():
+# Prints total cups sold and total earnings for each coffee.
+
+    def print_sales(self):
+        for c in self.coffee:
+            total_earnings = c.sold * c.price
+            print(f"{c.name}:")
+            print(f"sold {c.sold} cups")
+            print(f"remaining stock: {c.stock}")
+            print(f"total earnings: ${total_earnings:.2f}")
+
+coffee1 = Coffee("Lavazza", 5, 100, 20)
+coffee2 = Coffee("Tschibo", 4, 200, 33)
+shop = CoffeeShop()
+shop.adding(coffee1)
+shop.adding(coffee2)
+shop.add_stock("Lavazza", 20)
+shop.sell_coffee("Tschibo", 12)
+shop.print_sales()
+
+# Create a GroceryItem class with attributes:
+#
+# name (str)
+# price (float)
+# quantity_in_stock (int)
+# quantity_sold (int, default 0)
+# Create a Store class with:
+#
+# An attribute: items (list of GroceryItem)
+# Methods:
+# add_item(item: GroceryItem): Add a new item to the store.
+# sell_item(item_name, quantity): Sell a certain quantity of the item, update stock and sold quantity.
+# restock_item(item_name, quantity): Add stock to an item.
+# print_sales(): Display total quantity sold and total earnings for each item.
+
+class GroceryItem:
+    def __init__(self, name, price, quantity_in_stock, quantity_sold = 0):
+        self.name = name
+        self.price = price
+        self.quantity_in_stock = quantity_in_stock
+        self.quantity_sold = quantity_sold
+
+class Store:
+    def __init__(self):
+        self.items = []
+
+    def add_item(self, item: GroceryItem):
+        self.items.append(item)
+
+    def sell_item(self, item_name, quantity):
+        item = None
+        for i in self.items:
+            if i.name == item_name:
+                item = i
+                break
+        if item is None:
+            print(f"{item_name} not found in store")
+            return
+
+        if item.quantity_in_stock < quantity:
+            print("Not enough in stock.")
+        else:
+            item.quantity_in_stock -= quantity
+            item.quantity_sold += quantity
+            print(f"Sold {quantity} {item_name}")
+
+# restock_item(item_name, quantity): Add stock to an item.
+# print_sales(): Display total quantity sold and total earnings for each item.
+
+    def restock_items(self, item_name, quantity):
+        if quantity <= 0:
+            print(f"Cannot restock non-positive amount of {item_name}")
+        for i in self.items:
+            if i.name == item_name:
+                i.quantity_in_stock += quantity
+                print(f"Restocked {quantity} {item_name}(s).")
+                return
+        print(f"{item_name} not found in store")
+
+    def print_sales(self):
+        for i in self.items:
+            total_earnings = i.quantity_sold * i.price
+            print(f"item {i.name}")
+            print(f"quantity sold: {i.quantity_sold} for price of {i.price}")
+            print(f"total earnings: {total_earnings}")
+one1 = GroceryItem("banana", 2, 1000, 200)
+one2 = GroceryItem("potato", 3.00, 250, 100)
+store = Store()
+store.add_item(one1)
+store.add_item(one2)
+store.print_sales()
+store.restock_items("banana", 200)
+store.restock_items("potato", 300)
+store.sell_item("banana", 400)
+store.sell_item("potato", 250)
+store.print_sales()
+
+
+# Create a Book class with attributes: title (str)  author (str) total_copies (int) copies_borrowed (int, default 0)
+# Create a Library class with attributes:
+# name (str)
+# books (list of Book objects)
+# Implement methods for Library:
+# add_book(book: Book): add a new book to the library.
+# borrow_book(title: str, copies=1): borrow a number of copies of a book (if available).
+# return_book(title: str, copies=1): return copies of a book.
+# print_inventory(): display all books with their available copies and total copies.
+# calculate_overdue_fees(days_overdue): estimate overall late fee based on overdue days, e.g., $0.50 per day per copy borrowed.
+# Use case:
+#
+# Add multiple books.
+# Borrow some copies.
+# Return some copies.
+# Calculate total late fees for overdue books.
+
+class Book:
+    def __init__(self, title, author, total_copies, copies_borrowed = 0):
+        self.title = title
+        self.author = author
+        self.total_copies = total_copies
+        self.copies_borrowed = copies_borrowed
+
+class Library:
+    def __init__(self, name):
+        self.name = name
+        self.books = []
+
+    def add_book(self, book: Book):
+        self.books.append(book)
+
+    def borrow_book(self, title, copies = 1):
+        for book in self.books:
+            if book.title == title:
+                available_copies = book.total_copies - book.copies_borrowed
+
+            if copies <= 0:
+                print("Number of copies must be positive")
+                return
+            elif copies > available_copies:
+                print("Not enough copies to borrow")
+                return
+
+            book.copies_borrowed += copies
+            print(f"Borrowed {copies} copies of {title}.")
+            return
+        print(f"Book {title} not found in the library.")
+# return_book(title: str, copies=1): return copies of a book.
+# print_inventory(): display all books with their available copies and total copies.
+# calculate_overdue_fees(days_overdue): estimate overall late fee based on overdue days, e.g., $0.50 per day per copy borrowed.
+
+    def return_book(self, title, copies = 1):
+        for b in self.books:
+            if b.title == title:
+                if copies <= 0:
+                    print("Number of copies to return must be positive.")
+                    return
+                if copies > b.copies_borrowed:
+                    print(f"Cannot return more books than borrowed. Borrowed: {b.copies_borrowed}")
+                    return
+                b.copies_borrowed -= copies
+                print(f"Returned {copies} books of {b.title}")
+                return
+        print(f"{title} not found in the library.")
+
+    def print_inventory(self):
+        for b in self.books:
+            print(f"Title of the book: {b.title}, total copies: {b.total_copies}, available copies: {b.total_copies - b.copies_borrowed}")
+
+    def calculate_overdue_fees(self, days_overdue):
+        total_fee = 0
+        fee_per_day = 0.50
+        for book in self.books:
+            total_fee += book.copies_borrowed * days_overdue * fee_per_day
+        return round(total_fee, 2)
+
+
+book1 = Book("Harry Potter", "J. K. Rowling", 2000, 30)
+book2 = Book("Romeo and Juliet", "Shakespeare", 2000, 200)
+libr = Library("The Big Library")
+libr.add_book(book1)
+libr.add_book(book2)
+print(libr.calculate_overdue_fees(10))
+libr.print_inventory()
+libr.borrow_book("Harry Potter", 1970)
+libr.return_book("Romeo and Juliet", 100)
+libr.return_book("Harry Potter", 500)
+libr.print_inventory()
+
+# 1. SmartLight Class
+# Attributes:
+#
+# color (str): e.g., "white", "red", "blue"
+# status (bool): on or off (default off)
+# Methods:
+#
+# turn_on(): sets status to True
+# turn_off(): sets status to False
+# change_color(new_color): updates the color
+# display(): prints current color and status
+# 2. SmartLightController Class
+# Attributes:
+#
+# lights (list of SmartLight objects)
+# Methods:
+#
+# add_light(light: SmartLight): to add a light to the system
+# turn_all_on(): turn all lights on
+# turn_all_off(): turn all lights off
+# change_all_colors(new_color): change color of all lights
+# show_status(): display status of all lights in the system
+
+
+class SmartLight:
+    def __init__(self, color: str, status=False):
+        self.color = color
+        self.status = status
+
+    def turn_on(self):
+        self.status = True
+
+    def turn_off(self):
+        self.status = False
+
+    def change_color(self, new_color):
+        self.color = new_color
+        print(f"Changed color to: {self.color}")
+
+    def display(self):
+        status_str = "on" if self.status else "off"
+        print(f"The current color is {self.color} and status is {status_str}")
+
+
+# 2. SmartLightController Class
+# Attributes:
+#
+# lights (list of SmartLight objects)
+# Methods:
+#
+# add_light(light: SmartLight): to add a light to the system
+# turn_all_on(): turn all lights on
+# turn_all_off(): turn all lights off
+# change_all_colors(new_color): change color of all lights
+# show_status(): display status of all lights in the system
+
+
+class SmartLightController:
+    def __init__(self):
+        self.lights = []
+
+    def add_light(self, light: SmartLight):
+        self.lights.append(light)
+
+    def turn_all_on(self):
+        for l in self.lights:
+            l.turn_on()
+        print("All lights have been turned on.")
+
+    def turn_all_off(self):
+        for l in self.lights:
+            l.turn_off()
+        print("All lights have been turned off.")
+
+    def change_all_colors(self, new_color):
+        for l in self.lights:
+            l.change_color(new_color)
+        print(f"All lights have been changed to {new_color}")
+
+    def show_status(self):
+        for l in self.lights:
+            print(f"Color: {l.color}, Status: {'on' if l.status else 'off'}")
+light1 = SmartLight("red", True)
+light2 = SmartLight("yellow", False)
+light3 = SmartLight("blue", True)
+controller = SmartLightController()
+controller.add_light(light1)
+controller.add_light(light2)
+controller.add_light(light3)
+controller.turn_all_on()
+controller.show_status()
+controller.change_all_colors("brown")
+controller.show_status()
+light1.change_color("red")
+controller.show_status()
+light2.turn_off()
+controller.show_status()
+light3.display()
+light1.display()
+#
+# Task: Create an OnlineGame System
+# 1. Player Class
+# Attributes:
+# username (str)
+# level (int)
+# experience (int)
+# 2. GameServer Class
+# Attributes:
+# server_name (str)
+# max_players (int)
+# players (list of Player objects)
+# average_score (float)
+# player_count (int)
+
+class Player:
+    def __init__(self, username, level, experience):
+        self.username = username
+        self.level = level
+        self.experience = experience
+
+class GameServer:
+    def __init__(self, server_name, max_players, average_score, player_count):
+        self.server_name = server_name
+        self.max_players = max_players
+        self.average_score = average_score
+        self.player_count = player_count
+        self.players = []
+
+    def add_player(self, player: Player):
+        self.players.append(player)
+
+    def remove_player(self, username):
+        for p in self.players:
+            if p.username == username:
+                self.players.remove(p)
+                print(f"Player {username} removed.")
+                return
+        print("Couldn't find the player")
+
+
+
+    def play_game(self, player: Player, experience_gained):
+        player.experience += experience_gained
+
+        while player.experience >= 100:
+            player.level += 1
+            player.experience -= 100
+            print(f"{player.username} leveled up! Now level {player.level}.")
+
+    def calculate_average_score(self):
+        if not self.players:
+            return 0
+        total_experience = sum(p.experience for p in self.players)
+        return total_experience / len(self.players)
+
+    def player_stats(self):
+        for p in self.players:
+            print(f"Username: {p.username}, Level: {p.level}, Experience: {p.experience}")
+player1 = Player("Jonas", 3, 80)
+player2 = Player("Nathan", 4, 50)
+player3 = Player("Dzuba", 2, 30)
+server = GameServer("Marino", 10, 3, 3)
+server.add_player(player1)
+server.add_player(player2)
+server.add_player(player3)
+server.play_game(player2, 60)
+server.player_stats()
+print(server.calculate_average_score())
+server.remove_player("Jonas")
+server.player_stats()
